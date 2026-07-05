@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-demo",
+  "type": "registry:example",
+  "title": "Button Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/button-demo.tsx",
+      "content": "import { Button } from \"@/registry/seam/ui/button\"\n\nexport default function ButtonDemo() {\n  return <Button>Continue</Button>\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "seamui",
+  "homepage": "https://seamui.dev",
+  "items": [
+    {
+      "name": "theme",
+      "type": "registry:theme",
+      "title": "seam theme",
+      "description": "shadcn-compatible Tailwind v4 tokens plus the seam depth shadow scale.",
+      "files": [
+        {
+          "path": "registry/seam/theme/theme.css",
+          "type": "registry:theme",
+          "target": "app/globals.css"
+        }
+      ]
+    },
+    {
+      "name": "utils",
+      "type": "registry:lib",
+      "title": "cn utility",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/seam/lib/utils.ts",
+          "type": "registry:lib",
+          "target": "lib/utils.ts"
+        }
+      ]
+    },
+    {
+      "name": "motion",
+      "type": "registry:lib",
+      "title": "seam motion tokens",
+      "description": "Spring presets and the depth (z-axis) scale that power every seamui animation.",
+      "dependencies": ["motion"],
+      "files": [
+        {
+          "path": "registry/seam/lib/motion.ts",
+          "type": "registry:lib",
+          "target": "lib/motion.ts"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "Button built on Base UI with seam depth motion.",
+      "dependencies": ["@base-ui/react", "motion", "class-variance-authority"],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/button.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "button-demo",
+      "type": "registry:example",
+      "title": "Button Demo",
+      "registryDependencies": ["https://seamui.dev/r/button.json"],
+      "files": [
+        { "path": "registry/seam/examples/button-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "button-variants",
+      "type": "registry:example",
+      "title": "Button Variants",
+      "registryDependencies": ["https://seamui.dev/r/button.json"],
+      "files": [
+        { "path": "registry/seam/examples/button-variants.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "button-sizes",
+      "type": "registry:example",
+      "title": "Button Sizes",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["https://seamui.dev/r/button.json"],
+      "files": [
+        { "path": "registry/seam/examples/button-sizes.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "button-loading",
+      "type": "registry:example",
+      "title": "Button Loading",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["https://seamui.dev/r/button.json"],
+      "files": [
+        { "path": "registry/seam/examples/button-loading.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "button-link",
+      "type": "registry:example",
+      "title": "Button Link",
+      "registryDependencies": ["https://seamui.dev/r/button.json"],
+      "files": [
+        { "path": "registry/seam/examples/button-link.tsx", "type": "registry:example" }
+      ]
+    }
+  ]
+}

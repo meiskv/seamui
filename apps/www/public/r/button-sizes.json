@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-sizes",
+  "type": "registry:example",
+  "title": "Button Sizes",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "https://seamui.dev/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/button-sizes.tsx",
+      "content": "import { ArrowRight } from \"lucide-react\"\n\nimport { Button } from \"@/registry/seam/ui/button\"\n\nexport default function ButtonSizes() {\n  return (\n    <div className=\"flex flex-wrap items-center gap-3\">\n      <Button size=\"sm\">Small</Button>\n      <Button size=\"default\">Default</Button>\n      <Button size=\"lg\">Large</Button>\n      <Button size=\"icon\" aria-label=\"Next\">\n        <ArrowRight />\n      </Button>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}
