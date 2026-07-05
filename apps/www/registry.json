@@ -62,6 +62,72 @@
       ]
     },
     {
+      "name": "toggle",
+      "type": "registry:ui",
+      "title": "Toggle",
+      "description": "Two-state button built on Base UI with seam press-depth motion.",
+      "dependencies": ["@base-ui/react", "motion", "class-variance-authority"],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/toggle.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/toggle.tsx"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "Text input built on Base UI, Field-aware.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["https://seamui.dev/r/utils.json"],
+      "files": [
+        {
+          "path": "registry/seam/ui/input.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/input.tsx"
+        }
+      ]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "Avatar",
+      "description": "Avatar built on Base UI with a seam fade-in on image load.",
+      "dependencies": ["@base-ui/react", "motion"],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/avatar.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/avatar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "Accessible separator built on Base UI.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["https://seamui.dev/r/utils.json"],
+      "files": [
+        {
+          "path": "registry/seam/ui/separator.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/separator.tsx"
+        }
+      ]
+    },
+    {
       "name": "button-demo",
       "type": "registry:example",
       "title": "Button Demo",
@@ -106,6 +172,43 @@
       "registryDependencies": ["https://seamui.dev/r/button.json"],
       "files": [
         { "path": "registry/seam/examples/button-link.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "toggle-demo",
+      "type": "registry:example",
+      "title": "Toggle Demo",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["https://seamui.dev/r/toggle.json"],
+      "files": [
+        { "path": "registry/seam/examples/toggle-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "input-demo",
+      "type": "registry:example",
+      "title": "Input Demo",
+      "registryDependencies": ["https://seamui.dev/r/input.json"],
+      "files": [
+        { "path": "registry/seam/examples/input-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "avatar-demo",
+      "type": "registry:example",
+      "title": "Avatar Demo",
+      "registryDependencies": ["https://seamui.dev/r/avatar.json"],
+      "files": [
+        { "path": "registry/seam/examples/avatar-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "separator-demo",
+      "type": "registry:example",
+      "title": "Separator Demo",
+      "registryDependencies": ["https://seamui.dev/r/separator.json"],
+      "files": [
+        { "path": "registry/seam/examples/separator-demo.tsx", "type": "registry:example" }
       ]
     }
   ]
