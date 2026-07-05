@@ -11,6 +11,10 @@ const COMPONENTS = [
   { name: "input", title: "Input", desc: "Field-aware text input." },
   { name: "avatar", title: "Avatar", desc: "Image with fade-in and fallback." },
   { name: "separator", title: "Separator", desc: "Divider in any orientation." },
+  { name: "switch", title: "Switch", desc: "Thumb springs between states." },
+  { name: "checkbox", title: "Checkbox", desc: "Mark pops in with a spring." },
+  { name: "radio-group", title: "Radio Group", desc: "Single-choice with spring dot." },
+  { name: "slider", title: "Slider", desc: "Thumb swells when grabbed." },
 ]
 
 export default function ComponentsIndex() {

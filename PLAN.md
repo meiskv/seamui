@@ -598,6 +598,7 @@ Exit animations for overlay components: Base UI keeps popups mounted during exit
 2. **Create** `apps/www/registry/seam/ui/<name>.tsx`:
    - `"use client"` at top.
    - Import parts from `@base-ui/react/<name>`, motion from `motion/react`, tokens from `@/lib/motion`, `cn` from `@/lib/utils`.
+   - ⚠️ **`motion.create()` typing gotcha:** when you wrap a Base UI part with `motion.create()`, type the wrapper component's props with `React.ComponentPropsWithoutRef<typeof MotionX>` — **not** `React.ComponentProps<typeof BaseX>`. Base UI types DOM handlers like `onAnimationStart` as CSS-animation events, which collide with motion's lifecycle callbacks of the same name; taking props from the motion-wrapped component resolves the overload. (Learned building Button + Avatar.)
    - One exported wrapper per Base UI part, named like shadcn (`Dialog`, `DialogTrigger`, `DialogContent`, …), each with `data-slot` attributes.
    - Style with `cva` when the part has variants; plain `cn` otherwise.
    - Animate **only** with tokens from `lib/motion.ts`; assign the correct depth level (press → `pressed`, floating → `overlay`, top-of-stack → `modal`).
