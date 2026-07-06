@@ -15,6 +15,9 @@ const COMPONENTS = [
   { name: "checkbox", title: "Checkbox", desc: "Mark pops in with a spring." },
   { name: "radio-group", title: "Radio Group", desc: "Single-choice with spring dot." },
   { name: "slider", title: "Slider", desc: "Thumb swells when grabbed." },
+  { name: "tooltip", title: "Tooltip", desc: "Rises with overlay depth." },
+  { name: "popover", title: "Popover", desc: "Floating panel, overlay depth." },
+  { name: "preview-card", title: "Preview Card", desc: "Link preview on hover." },
 ]
 
 export default function ComponentsIndex() {
