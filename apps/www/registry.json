@@ -98,6 +98,24 @@
       ]
     },
     {
+      "name": "combobox",
+      "type": "registry:ui",
+      "title": "Combobox",
+      "description": "A filterable input bound to a listbox popup, built on Base UI Combobox with seam depth motion.",
+      "dependencies": ["@base-ui/react", "motion", "lucide-react"],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/combobox.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/combobox.tsx"
+        }
+      ]
+    },
+    {
       "name": "input",
       "type": "registry:ui",
       "title": "Input",
@@ -558,6 +576,70 @@
       "registryDependencies": ["https://seamui.dev/r/toggle-group.json"],
       "files": [
         { "path": "registry/seam/examples/toggle-group-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "combobox-demo",
+      "type": "registry:example",
+      "title": "Combobox Demo",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["https://seamui.dev/r/combobox.json"],
+      "files": [
+        { "path": "registry/seam/examples/combobox-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "combobox-multiple",
+      "type": "registry:example",
+      "title": "Combobox Multiple",
+      "registryDependencies": ["https://seamui.dev/r/combobox.json"],
+      "files": [
+        { "path": "registry/seam/examples/combobox-multiple.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "combobox-clear",
+      "type": "registry:example",
+      "title": "Combobox Clear",
+      "registryDependencies": ["https://seamui.dev/r/combobox.json"],
+      "files": [
+        { "path": "registry/seam/examples/combobox-clear.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "combobox-groups",
+      "type": "registry:example",
+      "title": "Combobox Groups",
+      "registryDependencies": ["https://seamui.dev/r/combobox.json"],
+      "files": [
+        { "path": "registry/seam/examples/combobox-groups.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "combobox-custom",
+      "type": "registry:example",
+      "title": "Combobox Custom Items",
+      "registryDependencies": ["https://seamui.dev/r/combobox.json"],
+      "files": [
+        { "path": "registry/seam/examples/combobox-custom.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "combobox-invalid",
+      "type": "registry:example",
+      "title": "Combobox Invalid",
+      "registryDependencies": ["https://seamui.dev/r/combobox.json"],
+      "files": [
+        { "path": "registry/seam/examples/combobox-invalid.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "combobox-disabled",
+      "type": "registry:example",
+      "title": "Combobox Disabled",
+      "registryDependencies": ["https://seamui.dev/r/combobox.json"],
+      "files": [
+        { "path": "registry/seam/examples/combobox-disabled.tsx", "type": "registry:example" }
       ]
     },
     {

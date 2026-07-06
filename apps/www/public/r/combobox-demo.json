@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "combobox-demo",
+  "type": "registry:example",
+  "title": "Combobox Demo",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "https://seamui.dev/r/combobox.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/combobox-demo.tsx",
+      "content": "\"use client\"\n\nimport {\n  Combobox,\n  ComboboxContent,\n  ComboboxEmpty,\n  ComboboxInput,\n  ComboboxItem,\n  ComboboxList,\n} from \"@/registry/seam/ui/combobox\"\n\nconst frameworks = [\n  { value: \"next\", label: \"Next.js\" },\n  { value: \"svelte\", label: \"SvelteKit\" },\n  { value: \"nuxt\", label: \"Nuxt\" },\n  { value: \"remix\", label: \"Remix\" },\n  { value: \"astro\", label: \"Astro\" },\n  { value: \"solid\", label: \"SolidStart\" },\n]\n\nexport default function ComboboxDemo() {\n  return (\n    <div className=\"w-64\">\n      <Combobox\n        items={frameworks}\n        itemToStringLabel={(f: (typeof frameworks)[number]) => f.label}\n      >\n        <ComboboxInput placeholder=\"Search framework…\" />\n        <ComboboxContent>\n          <ComboboxEmpty>No framework found.</ComboboxEmpty>\n          <ComboboxList>\n            {(framework: (typeof frameworks)[number]) => (\n              <ComboboxItem key={framework.value} value={framework}>\n                {framework.label}\n              </ComboboxItem>\n            )}\n          </ComboboxList>\n        </ComboboxContent>\n      </Combobox>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

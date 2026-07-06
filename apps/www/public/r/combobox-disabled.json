@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "combobox-disabled",
+  "type": "registry:example",
+  "title": "Combobox Disabled",
+  "registryDependencies": [
+    "https://seamui.dev/r/combobox.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/combobox-disabled.tsx",
+      "content": "\"use client\"\n\nimport {\n  Combobox,\n  ComboboxContent,\n  ComboboxEmpty,\n  ComboboxInput,\n  ComboboxItem,\n  ComboboxList,\n} from \"@/registry/seam/ui/combobox\"\n\nconst plans = [\n  { value: \"free\", label: \"Free\" },\n  { value: \"pro\", label: \"Pro\" },\n  { value: \"team\", label: \"Team\" },\n  { value: \"enterprise\", label: \"Enterprise\" },\n]\n\ntype Plan = (typeof plans)[number]\n\nexport default function ComboboxDisabled() {\n  return (\n    <div className=\"w-64\">\n      <Combobox\n        disabled\n        items={plans}\n        defaultValue={plans[1]}\n        itemToStringLabel={(p: Plan) => p.label}\n      >\n        <ComboboxInput placeholder=\"Select a plan…\" />\n        <ComboboxContent>\n          <ComboboxEmpty>No plan found.</ComboboxEmpty>\n          <ComboboxList>\n            {(p: Plan) => (\n              <ComboboxItem key={p.value} value={p}>\n                {p.label}\n              </ComboboxItem>\n            )}\n          </ComboboxList>\n        </ComboboxContent>\n      </Combobox>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

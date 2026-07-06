@@ -23,6 +23,7 @@ export const NAV: NavGroup[] = [
       c("switch", "Switch"),
       c("slider", "Slider"),
       c("select", "Select"),
+      c("combobox", "Combobox"),
       c("number-field", "Number Field"),
       c("otp-field", "OTP Field"),
     ],

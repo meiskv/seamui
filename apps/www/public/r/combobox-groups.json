@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "combobox-groups",
+  "type": "registry:example",
+  "title": "Combobox Groups",
+  "registryDependencies": [
+    "https://seamui.dev/r/combobox.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/combobox-groups.tsx",
+      "content": "\"use client\"\n\nimport {\n  Combobox,\n  ComboboxCollection,\n  ComboboxContent,\n  ComboboxEmpty,\n  ComboboxGroup,\n  ComboboxGroupLabel,\n  ComboboxInput,\n  ComboboxItem,\n  ComboboxList,\n} from \"@/registry/seam/ui/combobox\"\n\ntype Food = { value: string; label: string }\ntype FoodGroup = { value: string; items: Food[] }\n\n// Grouped items: each entry has a label (`value`) and its own `items`.\nconst groups: FoodGroup[] = [\n  {\n    value: \"Fruits\",\n    items: [\n      { value: \"apple\", label: \"Apple\" },\n      { value: \"banana\", label: \"Banana\" },\n      { value: \"grape\", label: \"Grape\" },\n    ],\n  },\n  {\n    value: \"Vegetables\",\n    items: [\n      { value: \"carrot\", label: \"Carrot\" },\n      { value: \"spinach\", label: \"Spinach\" },\n      { value: \"potato\", label: \"Potato\" },\n    ],\n  },\n]\n\nexport default function ComboboxGroups() {\n  return (\n    <div className=\"w-64\">\n      <Combobox items={groups} itemToStringLabel={(f: Food) => f.label}>\n        <ComboboxInput placeholder=\"Search food…\" />\n        <ComboboxContent>\n          <ComboboxEmpty>No food found.</ComboboxEmpty>\n          <ComboboxList>\n            {(group: FoodGroup) => (\n              <ComboboxGroup key={group.value} items={group.items}>\n                <ComboboxGroupLabel>{group.value}</ComboboxGroupLabel>\n                <ComboboxCollection>\n                  {(food: Food) => (\n                    <ComboboxItem key={food.value} value={food}>\n                      {food.label}\n                    </ComboboxItem>\n                  )}\n                </ComboboxCollection>\n              </ComboboxGroup>\n            )}\n          </ComboboxList>\n        </ComboboxContent>\n      </Combobox>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}
