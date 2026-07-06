@@ -213,22 +213,29 @@ function ComboboxSeparator({
    </ComboboxChips>
 */
 
-/** The debossed well that holds chips + the input in multi-select mode. */
+/**
+ * The debossed well that holds chips + the input in multi-select mode.
+ * Wrapped in Base UI's InputGroup so the popup anchors to (and matches the
+ * width of) the whole well — not the bare input, which would otherwise pin
+ * the dropdown to the caret and squeeze it to the input's width.
+ */
 function ComboboxChips({
   className,
   ...props
 }: React.ComponentProps<typeof BaseCombobox.Chips>) {
   return (
-    <BaseCombobox.Chips
-      data-slot="combobox-chips"
-      className={cn(
-        "flex min-h-10 w-full flex-wrap items-center gap-1.5 rounded-md squircle border border-border/60 bg-muted px-2 py-1.5 text-sm shadow-well outline-none",
-        "focus-within:ring-2 focus-within:ring-ring/50 focus-within:border-ring",
-        "has-aria-invalid:border-destructive has-aria-invalid:ring-2 has-aria-invalid:ring-destructive/30",
-        className
-      )}
-      {...props}
-    />
+    <BaseCombobox.InputGroup className="w-full">
+      <BaseCombobox.Chips
+        data-slot="combobox-chips"
+        className={cn(
+          "flex min-h-10 w-full flex-wrap items-center gap-1.5 rounded-md squircle border border-border/60 bg-muted px-2 py-1.5 text-sm shadow-well outline-none",
+          "focus-within:ring-2 focus-within:ring-ring/50 focus-within:border-ring",
+          "has-aria-invalid:border-destructive has-aria-invalid:ring-2 has-aria-invalid:ring-destructive/30",
+          className
+        )}
+        {...props}
+      />
+    </BaseCombobox.InputGroup>
   )
 }
 
