@@ -254,6 +254,57 @@
       ]
     },
     {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": "Modal dialog built on Base UI; the surface rises with modal depth and the page dims behind it.",
+      "dependencies": ["@base-ui/react", "motion", "lucide-react"],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/dialog.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/dialog.tsx"
+        }
+      ]
+    },
+    {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "title": "Alert Dialog",
+      "description": "Confirmation dialog built on Base UI with seam modal depth.",
+      "dependencies": ["@base-ui/react", "motion"],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/alert-dialog.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/alert-dialog.tsx"
+        }
+      ]
+    },
+    {
+      "name": "drawer",
+      "type": "registry:ui",
+      "title": "Drawer",
+      "description": "Mobile bottom-sheet built on Base UI's native swipe-to-dismiss engine.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["https://seamui.dev/r/utils.json"],
+      "files": [
+        {
+          "path": "registry/seam/ui/drawer.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/drawer.tsx"
+        }
+      ]
+    },
+    {
       "name": "button-demo",
       "type": "registry:example",
       "title": "Button Demo",
@@ -404,6 +455,42 @@
       "registryDependencies": ["https://seamui.dev/r/preview-card.json"],
       "files": [
         { "path": "registry/seam/examples/preview-card-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "dialog-demo",
+      "type": "registry:example",
+      "title": "Dialog Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/dialog.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        { "path": "registry/seam/examples/dialog-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "alert-dialog-demo",
+      "type": "registry:example",
+      "title": "Alert Dialog Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/alert-dialog.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        { "path": "registry/seam/examples/alert-dialog-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "drawer-demo",
+      "type": "registry:example",
+      "title": "Drawer Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/drawer.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        { "path": "registry/seam/examples/drawer-demo.tsx", "type": "registry:example" }
       ]
     }
   ]

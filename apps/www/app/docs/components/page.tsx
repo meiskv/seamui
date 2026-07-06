@@ -18,6 +18,9 @@ const COMPONENTS = [
   { name: "tooltip", title: "Tooltip", desc: "Rises with overlay depth." },
   { name: "popover", title: "Popover", desc: "Floating panel, overlay depth." },
   { name: "preview-card", title: "Preview Card", desc: "Link preview on hover." },
+  { name: "dialog", title: "Dialog", desc: "Modal with top-of-stack depth." },
+  { name: "alert-dialog", title: "Alert Dialog", desc: "Confirm a destructive action." },
+  { name: "drawer", title: "Drawer", desc: "Swipe-to-dismiss bottom sheet." },
 ]
 
 export default function ComponentsIndex() {
