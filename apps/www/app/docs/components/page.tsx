@@ -24,6 +24,9 @@ const COMPONENTS = [
   { name: "dropdown-menu", title: "Dropdown Menu", desc: "Actions menu, overlay depth." },
   { name: "select", title: "Select", desc: "Choose one from a listbox." },
   { name: "context-menu", title: "Context Menu", desc: "Right-click menu." },
+  { name: "tabs", title: "Tabs", desc: "Indicator springs to active tab." },
+  { name: "accordion", title: "Accordion", desc: "Height-animated sections." },
+  { name: "collapsible", title: "Collapsible", desc: "Single expandable region." },
 ]
 
 export default function ComponentsIndex() {

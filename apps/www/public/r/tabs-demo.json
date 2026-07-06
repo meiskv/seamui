@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tabs-demo",
+  "type": "registry:example",
+  "title": "Tabs Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/tabs.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/tabs-demo.tsx",
+      "content": "import {\n  Tabs,\n  TabsContent,\n  TabsList,\n  TabsTrigger,\n} from \"@/registry/seam/ui/tabs\"\n\nexport default function TabsDemo() {\n  return (\n    <Tabs defaultValue=\"account\" className=\"w-80\">\n      <TabsList>\n        <TabsTrigger value=\"account\">Account</TabsTrigger>\n        <TabsTrigger value=\"password\">Password</TabsTrigger>\n        <TabsTrigger value=\"team\">Team</TabsTrigger>\n      </TabsList>\n      <TabsContent value=\"account\" className=\"text-muted-foreground pt-2 text-sm\">\n        Manage your account. The indicator springs between tabs.\n      </TabsContent>\n      <TabsContent value=\"password\" className=\"text-muted-foreground pt-2 text-sm\">\n        Change your password here.\n      </TabsContent>\n      <TabsContent value=\"team\" className=\"text-muted-foreground pt-2 text-sm\">\n        Invite and manage your team.\n      </TabsContent>\n    </Tabs>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

@@ -359,6 +359,54 @@
       ]
     },
     {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "Tabs built on Base UI; a motion indicator springs to the active tab.",
+      "dependencies": ["@base-ui/react", "motion"],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/tabs.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/tabs.tsx"
+        }
+      ]
+    },
+    {
+      "name": "accordion",
+      "type": "registry:ui",
+      "title": "Accordion",
+      "description": "Accordion built on Base UI with eased height animation.",
+      "dependencies": ["@base-ui/react", "lucide-react"],
+      "registryDependencies": ["https://seamui.dev/r/utils.json"],
+      "files": [
+        {
+          "path": "registry/seam/ui/accordion.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/accordion.tsx"
+        }
+      ]
+    },
+    {
+      "name": "collapsible",
+      "type": "registry:ui",
+      "title": "Collapsible",
+      "description": "Collapsible built on Base UI with eased height animation.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["https://seamui.dev/r/utils.json"],
+      "files": [
+        {
+          "path": "registry/seam/ui/collapsible.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/collapsible.tsx"
+        }
+      ]
+    },
+    {
       "name": "button-demo",
       "type": "registry:example",
       "title": "Button Demo",
@@ -575,6 +623,36 @@
       "registryDependencies": ["https://seamui.dev/r/context-menu.json"],
       "files": [
         { "path": "registry/seam/examples/context-menu-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "tabs-demo",
+      "type": "registry:example",
+      "title": "Tabs Demo",
+      "registryDependencies": ["https://seamui.dev/r/tabs.json"],
+      "files": [
+        { "path": "registry/seam/examples/tabs-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "accordion-demo",
+      "type": "registry:example",
+      "title": "Accordion Demo",
+      "registryDependencies": ["https://seamui.dev/r/accordion.json"],
+      "files": [
+        { "path": "registry/seam/examples/accordion-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "collapsible-demo",
+      "type": "registry:example",
+      "title": "Collapsible Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/collapsible.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        { "path": "registry/seam/examples/collapsible-demo.tsx", "type": "registry:example" }
       ]
     }
   ]
