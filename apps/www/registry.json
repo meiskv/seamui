@@ -98,6 +98,24 @@
       ]
     },
     {
+      "name": "combobox",
+      "type": "registry:ui",
+      "title": "Combobox",
+      "description": "A filterable input bound to a listbox popup, built on Base UI Combobox with seam depth motion.",
+      "dependencies": ["@base-ui/react", "motion", "lucide-react"],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/combobox.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/combobox.tsx"
+        }
+      ]
+    },
+    {
       "name": "input",
       "type": "registry:ui",
       "title": "Input",
@@ -558,6 +576,16 @@
       "registryDependencies": ["https://seamui.dev/r/toggle-group.json"],
       "files": [
         { "path": "registry/seam/examples/toggle-group-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "combobox-demo",
+      "type": "registry:example",
+      "title": "Combobox Demo",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["https://seamui.dev/r/combobox.json"],
+      "files": [
+        { "path": "registry/seam/examples/combobox-demo.tsx", "type": "registry:example" }
       ]
     },
     {
