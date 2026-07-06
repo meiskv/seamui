@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "number-field",
+  "type": "registry:ui",
+  "title": "Number Field",
+  "description": "Number input with press-depth steppers, built on Base UI.",
+  "dependencies": [
+    "@base-ui/react",
+    "motion",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "https://seamui.dev/r/utils.json",
+    "https://seamui.dev/r/motion.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/ui/number-field.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { NumberField as BaseNumberField } from \"@base-ui/react/number-field\"\nimport { motion, useReducedMotion } from \"motion/react\"\nimport { Minus, Plus } from \"lucide-react\"\n\nimport { cn } from \"@/lib/utils\"\nimport { springs, depth } from \"@/lib/motion\"\n\nconst MotionIncrement = motion.create(BaseNumberField.Increment)\nconst MotionDecrement = motion.create(BaseNumberField.Decrement)\n\nconst stepperClass =\n  \"flex h-9 w-9 items-center justify-center border-input text-muted-foreground outline-none hover:bg-accent hover:text-accent-foreground disabled:pointer-events-none disabled:opacity-50 [&_svg]:size-4\"\n\nfunction NumberField({\n  className,\n  ...props\n}: React.ComponentProps<typeof BaseNumberField.Root>) {\n  const reduceMotion = useReducedMotion()\n  const tap = reduceMotion ? undefined : depth.pressed\n\n  return (\n    <BaseNumberField.Root data-slot=\"number-field\" {...props}>\n      <BaseNumberField.Group\n        data-slot=\"number-field-group\"\n        className={cn(\n          \"inline-flex items-center rounded-md border border-input shadow-pressed\",\n          className\n        )}\n      >\n        <MotionDecrement\n          data-slot=\"number-field-decrement\"\n          className={cn(stepperClass, \"rounded-l-md border-r\")}\n          whileTap={tap}\n          transition={springs.press}\n          aria-label=\"Decrease\"\n        >\n          <Minus />\n        </MotionDecrement>\n        <BaseNumberField.Input\n          data-slot=\"number-field-input\"\n          className=\"h-9 w-16 bg-transparent text-center text-sm tabular-nums outline-none\"\n        />\n        <MotionIncrement\n          data-slot=\"number-field-increment\"\n          className={cn(stepperClass, \"rounded-r-md border-l\")}\n          whileTap={tap}\n          transition={springs.press}\n          aria-label=\"Increase\"\n        >\n          <Plus />\n        </MotionIncrement>\n      </BaseNumberField.Group>\n    </BaseNumberField.Root>\n  )\n}\n\nexport { NumberField }\n",
+      "type": "registry:ui",
+      "target": "components/ui/number-field.tsx"
+    }
+  ]
+}

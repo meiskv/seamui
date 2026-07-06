@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toast-demo",
+  "type": "registry:example",
+  "title": "Toast Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/toast.json",
+    "https://seamui.dev/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/toast-demo.tsx",
+      "content": "\"use client\"\n\nimport { Button } from \"@/registry/seam/ui/button\"\nimport { ToastProvider, useToast } from \"@/registry/seam/ui/toast\"\n\nfunction ToastButton() {\n  const toast = useToast()\n  return (\n    <Button\n      variant=\"outline\"\n      onClick={() =>\n        toast.add({\n          title: \"Saved\",\n          description: \"Your changes bounced into view.\",\n        })\n      }\n    >\n      Show toast\n    </Button>\n  )\n}\n\nexport default function ToastDemo() {\n  return (\n    <ToastProvider>\n      <ToastButton />\n    </ToastProvider>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

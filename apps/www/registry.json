@@ -407,6 +407,75 @@
       ]
     },
     {
+      "name": "progress",
+      "type": "registry:ui",
+      "title": "Progress",
+      "description": "Progress bar built on Base UI with an eased fill.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["https://seamui.dev/r/utils.json"],
+      "files": [
+        { "path": "registry/seam/ui/progress.tsx", "type": "registry:ui", "target": "components/ui/progress.tsx" }
+      ]
+    },
+    {
+      "name": "meter",
+      "type": "registry:ui",
+      "title": "Meter",
+      "description": "Meter (static measurement) built on Base UI.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["https://seamui.dev/r/utils.json"],
+      "files": [
+        { "path": "registry/seam/ui/meter.tsx", "type": "registry:ui", "target": "components/ui/meter.tsx" }
+      ]
+    },
+    {
+      "name": "number-field",
+      "type": "registry:ui",
+      "title": "Number Field",
+      "description": "Number input with press-depth steppers, built on Base UI.",
+      "dependencies": ["@base-ui/react", "motion", "lucide-react"],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json"
+      ],
+      "files": [
+        { "path": "registry/seam/ui/number-field.tsx", "type": "registry:ui", "target": "components/ui/number-field.tsx" }
+      ]
+    },
+    {
+      "name": "otp-field",
+      "type": "registry:ui",
+      "title": "OTP Field",
+      "description": "One-time-code input built on Base UI.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["https://seamui.dev/r/utils.json"],
+      "files": [
+        { "path": "registry/seam/ui/otp-field.tsx", "type": "registry:ui", "target": "components/ui/otp-field.tsx" }
+      ]
+    },
+    {
+      "name": "scroll-area",
+      "type": "registry:ui",
+      "title": "Scroll Area",
+      "description": "Custom scrollbar area built on Base UI.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["https://seamui.dev/r/utils.json"],
+      "files": [
+        { "path": "registry/seam/ui/scroll-area.tsx", "type": "registry:ui", "target": "components/ui/scroll-area.tsx" }
+      ]
+    },
+    {
+      "name": "toast",
+      "type": "registry:ui",
+      "title": "Toast",
+      "description": "Toast notifications built on Base UI with a bouncy seam entrance.",
+      "dependencies": ["@base-ui/react", "lucide-react"],
+      "registryDependencies": ["https://seamui.dev/r/utils.json"],
+      "files": [
+        { "path": "registry/seam/ui/toast.tsx", "type": "registry:ui", "target": "components/ui/toast.tsx" }
+      ]
+    },
+    {
       "name": "button-demo",
       "type": "registry:example",
       "title": "Button Demo",
@@ -653,6 +722,63 @@
       ],
       "files": [
         { "path": "registry/seam/examples/collapsible-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "progress-demo",
+      "type": "registry:example",
+      "title": "Progress Demo",
+      "registryDependencies": ["https://seamui.dev/r/progress.json"],
+      "files": [
+        { "path": "registry/seam/examples/progress-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "meter-demo",
+      "type": "registry:example",
+      "title": "Meter Demo",
+      "registryDependencies": ["https://seamui.dev/r/meter.json"],
+      "files": [
+        { "path": "registry/seam/examples/meter-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "number-field-demo",
+      "type": "registry:example",
+      "title": "Number Field Demo",
+      "registryDependencies": ["https://seamui.dev/r/number-field.json"],
+      "files": [
+        { "path": "registry/seam/examples/number-field-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "otp-field-demo",
+      "type": "registry:example",
+      "title": "OTP Field Demo",
+      "registryDependencies": ["https://seamui.dev/r/otp-field.json"],
+      "files": [
+        { "path": "registry/seam/examples/otp-field-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "scroll-area-demo",
+      "type": "registry:example",
+      "title": "Scroll Area Demo",
+      "registryDependencies": ["https://seamui.dev/r/scroll-area.json"],
+      "files": [
+        { "path": "registry/seam/examples/scroll-area-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "toast-demo",
+      "type": "registry:example",
+      "title": "Toast Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/toast.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        { "path": "registry/seam/examples/toast-demo.tsx", "type": "registry:example" }
       ]
     }
   ]

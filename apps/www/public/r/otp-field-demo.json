@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "otp-field-demo",
+  "type": "registry:example",
+  "title": "OTP Field Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/otp-field.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/otp-field-demo.tsx",
+      "content": "import { OTPField } from \"@/registry/seam/ui/otp-field\"\n\nexport default function OTPFieldDemo() {\n  return <OTPField length={6} defaultValue=\"123\" />\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

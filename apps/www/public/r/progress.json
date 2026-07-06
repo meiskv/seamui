@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "progress",
+  "type": "registry:ui",
+  "title": "Progress",
+  "description": "Progress bar built on Base UI with an eased fill.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "https://seamui.dev/r/utils.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/ui/progress.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { Progress as BaseProgress } from \"@base-ui/react/progress\"\n\nimport { cn } from \"@/lib/utils\"\n\nfunction Progress({\n  className,\n  value,\n  ...props\n}: React.ComponentProps<typeof BaseProgress.Root>) {\n  return (\n    <BaseProgress.Root data-slot=\"progress\" value={value} {...props}>\n      <BaseProgress.Track\n        data-slot=\"progress-track\"\n        className={cn(\n          \"bg-muted relative h-2 w-full overflow-hidden rounded-full\",\n          className\n        )}\n      >\n        <BaseProgress.Indicator\n          data-slot=\"progress-indicator\"\n          // Width is a layout dimension, so it eases with a duration (like the\n          // accordion height) rather than a transform spring.\n          className=\"bg-primary h-full rounded-full transition-[width] duration-500 ease-out\"\n        />\n      </BaseProgress.Track>\n    </BaseProgress.Root>\n  )\n}\n\nexport { Progress }\n",
+      "type": "registry:ui",
+      "target": "components/ui/progress.tsx"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "progress-demo",
+  "type": "registry:example",
+  "title": "Progress Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/progress.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/progress-demo.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport { Progress } from \"@/registry/seam/ui/progress\"\n\nexport default function ProgressDemo() {\n  const [value, setValue] = React.useState(30)\n\n  React.useEffect(() => {\n    const id = setInterval(() => setValue((v) => (v >= 100 ? 0 : v + 20)), 1200)\n    return () => clearInterval(id)\n  }, [])\n\n  return <Progress value={value} className=\"w-64\" />\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

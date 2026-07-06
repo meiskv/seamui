@@ -27,6 +27,12 @@ const COMPONENTS = [
   { name: "tabs", title: "Tabs", desc: "Indicator springs to active tab." },
   { name: "accordion", title: "Accordion", desc: "Height-animated sections." },
   { name: "collapsible", title: "Collapsible", desc: "Single expandable region." },
+  { name: "progress", title: "Progress", desc: "Eased task-completion fill." },
+  { name: "meter", title: "Meter", desc: "Static measurement in a range." },
+  { name: "number-field", title: "Number Field", desc: "Steppers with press depth." },
+  { name: "otp-field", title: "OTP Field", desc: "One-time-code input." },
+  { name: "scroll-area", title: "Scroll Area", desc: "Fading custom scrollbar." },
+  { name: "toast", title: "Toast", desc: "Bouncy stacked notifications." },
 ]
 
 export default function ComponentsIndex() {
