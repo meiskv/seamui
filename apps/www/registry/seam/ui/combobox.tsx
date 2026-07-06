@@ -152,8 +152,12 @@ function ComboboxEmpty({
   return (
     <BaseCombobox.Empty
       data-slot="combobox-empty"
+      // Base UI keeps this element mounted (for screen-reader announcements)
+      // and only renders children when the list is actually empty. `empty:`
+      // collapses its padding to zero height while there are matches, so it
+      // doesn't leave a gap at the top of the popup.
       className={cn(
-        "text-muted-foreground py-6 text-center text-sm",
+        "text-muted-foreground py-6 text-center text-sm empty:py-0",
         className
       )}
       {...props}
