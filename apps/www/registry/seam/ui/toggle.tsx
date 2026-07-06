@@ -6,43 +6,49 @@ import { motion, useReducedMotion } from "motion/react"
 import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
-import { springs, depth } from "@/lib/motion"
+import { springs, fades, depth, reduced } from "@/lib/motion"
 
 const toggleVariants = cva(
-  "inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium outline-none select-none focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 data-[pressed]:bg-accent data-[pressed]:text-accent-foreground [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0",
+  // pressed-on state rises as a white key out of the surface (seam design language).
+  "inline-flex items-center justify-center gap-2 rounded-md squircle text-sm font-medium outline-none select-none focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 data-[pressed]:bg-secondary data-[pressed]:text-secondary-foreground data-[pressed]:shadow-resting [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        default: "bg-transparent hover:bg-muted hover:text-muted-foreground",
+        default: "bg-transparent hover:bg-accent hover:text-accent-foreground",
         outline:
-          "border border-input bg-transparent shadow-pressed hover:bg-accent hover:text-accent-foreground",
+          "border border-border/60 bg-transparent shadow-pressed hover:bg-accent hover:text-accent-foreground",
       },
       size: {
-        default: "h-9 min-w-9 px-2.5",
-        sm: "h-8 min-w-8 px-2 text-xs",
-        lg: "h-10 min-w-10 px-3",
+        default: "h-10 min-w-10 px-3",
+        sm: "h-9 min-w-9 px-2.5 text-xs",
+        lg: "h-11 min-w-11 px-3.5",
       },
     },
     defaultVariants: { variant: "default", size: "default" },
   }
 )
 
-const MotionToggle = motion.create(BaseToggle)
-
 export interface ToggleProps
-  extends React.ComponentPropsWithoutRef<typeof MotionToggle>,
+  extends Omit<React.ComponentProps<typeof BaseToggle>, "render">,
     VariantProps<typeof toggleVariants> {}
 
 function Toggle({ className, variant, size, disabled, ...props }: ToggleProps) {
   const reduceMotion = useReducedMotion()
 
   return (
-    <MotionToggle
+    <BaseToggle
       data-slot="toggle"
       className={cn(toggleVariants({ variant, size, className }))}
       disabled={disabled}
-      whileTap={reduceMotion || disabled ? undefined : depth.pressed}
-      transition={springs.press}
+      // Base UI keeps native <button> semantics; motion supplies press depth.
+      render={
+        <motion.button
+          whileTap={
+            disabled ? undefined : reduceMotion ? reduced.pressed : depth.pressed
+          }
+          transition={reduceMotion ? fades.fast : springs.press}
+        />
+      }
       {...props}
     />
   )

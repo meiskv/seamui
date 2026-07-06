@@ -35,8 +35,8 @@ function Toaster() {
             // Base UI owns stacking + swipe transforms; seam adds a bouncy,
             // spring-shaped entrance/exit via a cubic-bezier on opacity/offset.
             className={cn(
-              "bg-popover text-popover-foreground absolute inset-x-0 bottom-0 z-[calc(1000-var(--toast-index))] rounded-lg border p-4 shadow-overlay",
-              "[transition:transform_0.5s,opacity_0.35s] [transition-timing-function:cubic-bezier(0.22,1.3,0.36,1)]",
+              "bg-popover text-popover-foreground absolute inset-x-0 bottom-0 z-[calc(1000-var(--toast-index))] rounded-lg squircle border p-4 shadow-overlay",
+              "[transition:transform_0.5s,opacity_0.35s] [transition-timing-function:cubic-bezier(0.22,1.3,0.36,1)] motion-reduce:[transition:opacity_0.35s]",
               "data-[starting-style]:translate-y-6 data-[starting-style]:opacity-0",
               "data-[ending-style]:translate-y-4 data-[ending-style]:opacity-0",
               "data-[ending-style]:[&[data-swipe-direction]]:translate-y-0"

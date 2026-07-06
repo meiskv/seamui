@@ -5,7 +5,7 @@ import { Menu as BaseMenu } from "@base-ui/react/menu"
 import { motion, useReducedMotion } from "motion/react"
 
 import { cn } from "@/lib/utils"
-import { springs, depth } from "@/lib/motion"
+import { springs, fades, depth, reduced } from "@/lib/motion"
 
 function DropdownMenu(props: React.ComponentProps<typeof BaseMenu.Root>) {
   return <BaseMenu.Root {...props} />
@@ -40,9 +40,9 @@ function DropdownMenuContent({
           )}
           render={
             <motion.div
-              initial={reduceMotion ? false : depth.overlay.initial}
+              initial={reduceMotion ? reduced.fadeIn.initial : depth.overlay.initial}
               animate={depth.overlay.animate}
-              transition={springs.surface}
+              transition={reduceMotion ? fades.normal : springs.surface}
             />
           }
           {...props}

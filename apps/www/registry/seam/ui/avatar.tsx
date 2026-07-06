@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { Avatar as BaseAvatar } from "@base-ui/react/avatar"
-import { motion, useReducedMotion } from "motion/react"
+import { motion } from "motion/react"
 
 import { cn } from "@/lib/utils"
 import { fades } from "@/lib/motion"
@@ -29,13 +29,12 @@ function AvatarImage({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<typeof MotionImage>) {
-  const reduceMotion = useReducedMotion()
   return (
     <MotionImage
       data-slot="avatar-image"
       className={cn("aspect-square size-full", className)}
       // seam motion: images resolve in with a gentle fade — no layout shift.
-      initial={reduceMotion ? false : { opacity: 0 }}
+      initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={fades.normal}
       {...props}

@@ -6,7 +6,7 @@ import { motion, useReducedMotion } from "motion/react"
 import { X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { springs, depth, fades } from "@/lib/motion"
+import { springs, fades, depth, reduced } from "@/lib/motion"
 
 function Dialog(props: React.ComponentProps<typeof BaseDialog.Root>) {
   return <BaseDialog.Root {...props} />
@@ -32,7 +32,7 @@ function DialogContent({
         // seam motion: the page recedes — backdrop dims what's below.
         render={
           <motion.div
-            initial={reduceMotion ? false : { opacity: 0 }}
+            initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={fades.normal}
           />
@@ -41,15 +41,15 @@ function DialogContent({
       <BaseDialog.Popup
         data-slot="dialog-content"
         className={cn(
-          "bg-background text-foreground fixed left-1/2 top-1/2 z-50 grid w-full max-w-lg -translate-x-1/2 -translate-y-1/2 gap-4 rounded-xl border p-6 shadow-modal outline-none",
+          "bg-popover text-popover-foreground fixed left-1/2 top-1/2 z-50 grid w-full max-w-lg -translate-x-1/2 -translate-y-1/2 gap-4 rounded-xl squircle border p-6 shadow-modal outline-none",
           className
         )}
         // seam motion: the surface rises to the top of the stack.
         render={
           <motion.div
-            initial={reduceMotion ? false : depth.modal.initial}
+            initial={reduceMotion ? reduced.fadeIn.initial : depth.modal.initial}
             animate={depth.modal.animate}
-            transition={springs.surface}
+            transition={reduceMotion ? fades.normal : springs.surface}
           />
         }
         {...props}

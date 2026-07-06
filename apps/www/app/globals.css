@@ -3,59 +3,69 @@
 /* seam theme tokens (kept in sync with registry/seam/theme/theme.css). */
 
 :root {
-  --radius: 0.625rem;
+  --radius: 0.875rem;
 
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --background: oklch(0.958 0.003 106);
+  --foreground: oklch(0.23 0.004 286);
+  --card: oklch(0.99 0.001 106);
+  --card-foreground: oklch(0.23 0.004 286);
+  --popover: oklch(0.995 0.001 106);
+  --popover-foreground: oklch(0.23 0.004 286);
+  --primary: oklch(0.24 0.005 286);
+  --primary-foreground: oklch(0.985 0.001 106);
+  --secondary: oklch(1 0 0);
+  --secondary-foreground: oklch(0.23 0.004 286);
+  --muted: oklch(0.948 0.003 106);
+  --muted-foreground: oklch(0.52 0.006 106);
+  --accent: oklch(0.93 0.004 106);
+  --accent-foreground: oklch(0.23 0.004 286);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --border: oklch(0.905 0.004 106);
+  --input: oklch(0.905 0.004 106);
+  --ring: oklch(0.71 0.005 106);
 
-  --shadow-pressed: 0 1px 1px 0 rgb(0 0 0 / 0.04);
-  --shadow-resting: 0 1px 2px 0 rgb(0 0 0 / 0.06), 0 1px 3px 0 rgb(0 0 0 / 0.08);
-  --shadow-raised: 0 2px 4px -1px rgb(0 0 0 / 0.07), 0 4px 8px -2px rgb(0 0 0 / 0.08);
-  --shadow-overlay: 0 4px 12px -2px rgb(0 0 0 / 0.1), 0 12px 24px -4px rgb(0 0 0 / 0.12);
-  --shadow-modal: 0 8px 24px -4px rgb(0 0 0 / 0.14), 0 24px 48px -8px rgb(0 0 0 / 0.18);
+  /* seam depth shadows — used by the motion system's z-axis.
+     Soft and diffuse: white keys resting on a warm-gray surface. */
+  --shadow-pressed: 0 1px 1px 0 oklch(0.23 0.004 286 / 0.04);
+  --shadow-resting: 0 1px 2px 0 oklch(0.23 0.004 286 / 0.05),
+    0 2px 6px -1px oklch(0.23 0.004 286 / 0.06);
+  --shadow-raised: 0 2px 4px -1px oklch(0.23 0.004 286 / 0.06),
+    0 6px 14px -3px oklch(0.23 0.004 286 / 0.08);
+  --shadow-overlay: 0 4px 10px -2px oklch(0.23 0.004 286 / 0.08),
+    0 16px 32px -6px oklch(0.23 0.004 286 / 0.12);
+  --shadow-modal: 0 8px 20px -4px oklch(0.23 0.004 286 / 0.12),
+    0 32px 64px -12px oklch(0.23 0.004 286 / 0.16);
+  /* debossed well — grouped controls sit inside it; the active key rises. */
+  --shadow-well: inset 0 1px 2px 0 oklch(0.23 0.004 286 / 0.05),
+    inset 0 2px 4px 0 oklch(0.23 0.004 286 / 0.03);
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
+  --background: oklch(0.19 0.004 286);
+  --foreground: oklch(0.97 0.002 106);
+  --card: oklch(0.235 0.005 286);
+  --card-foreground: oklch(0.97 0.002 106);
+  --popover: oklch(0.235 0.005 286);
+  --popover-foreground: oklch(0.97 0.002 106);
+  --primary: oklch(0.94 0.003 106);
+  --primary-foreground: oklch(0.22 0.005 286);
+  --secondary: oklch(0.285 0.005 286);
+  --secondary-foreground: oklch(0.97 0.002 106);
+  --muted: oklch(0.265 0.005 286);
+  --muted-foreground: oklch(0.72 0.004 106);
+  --accent: oklch(0.285 0.005 286);
+  --accent-foreground: oklch(0.97 0.002 106);
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.556 0 0);
 
   --shadow-pressed: 0 1px 1px 0 rgb(0 0 0 / 0.3);
-  --shadow-resting: 0 1px 2px 0 rgb(0 0 0 / 0.4), 0 1px 3px 0 rgb(0 0 0 / 0.5);
-  --shadow-raised: 0 2px 4px -1px rgb(0 0 0 / 0.5), 0 4px 8px -2px rgb(0 0 0 / 0.5);
-  --shadow-overlay: 0 4px 12px -2px rgb(0 0 0 / 0.6), 0 12px 24px -4px rgb(0 0 0 / 0.6);
-  --shadow-modal: 0 8px 24px -4px rgb(0 0 0 / 0.7), 0 24px 48px -8px rgb(0 0 0 / 0.7);
+  --shadow-resting: 0 1px 2px 0 rgb(0 0 0 / 0.4), 0 2px 6px -1px rgb(0 0 0 / 0.45);
+  --shadow-raised: 0 2px 4px -1px rgb(0 0 0 / 0.5), 0 6px 14px -3px rgb(0 0 0 / 0.5);
+  --shadow-overlay: 0 4px 10px -2px rgb(0 0 0 / 0.6), 0 16px 32px -6px rgb(0 0 0 / 0.6);
+  --shadow-modal: 0 8px 20px -4px rgb(0 0 0 / 0.7), 0 32px 64px -12px rgb(0 0 0 / 0.7);
+  --shadow-well: inset 0 1px 3px 0 rgb(0 0 0 / 0.35);
 }
 
 @theme inline {
@@ -78,7 +88,7 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  --radius-sm: calc(var(--radius) - 4px);
+  --radius-sm: calc(var(--radius) - 6px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
@@ -88,6 +98,14 @@
   --shadow-raised: var(--shadow-raised);
   --shadow-overlay: var(--shadow-overlay);
   --shadow-modal: var(--shadow-modal);
+  --shadow-well: var(--shadow-well);
+}
+
+/* Squircle corners — continuous (superellipse) curvature on browsers that
+   support `corner-shape` (Chrome 139+); falls back to plain border-radius.
+   Never combine with rounded-full elements that must stay circular. */
+@utility squircle {
+  corner-shape: squircle;
 }
 
 @layer base {
@@ -99,6 +117,7 @@
     background-color: var(--background);
     color: var(--foreground);
   }
+  /* Base UI requirement: popups need an isolated stacking context at the root. */
   body > div:first-child,
   main {
     isolation: isolate;

@@ -31,7 +31,7 @@ function DrawerContent({
       <BaseDrawer.Popup
         data-slot="drawer-content"
         className={cn(
-          "bg-background text-foreground fixed inset-x-0 bottom-0 z-50 mx-auto flex max-h-[90vh] w-full max-w-md flex-col gap-4 rounded-t-2xl border-t p-6 shadow-modal outline-none",
+          "bg-popover text-popover-foreground fixed inset-x-0 bottom-0 z-50 mx-auto flex max-h-[90vh] w-full max-w-md flex-col gap-4 rounded-t-2xl squircle border-t p-6 shadow-modal outline-none",
           className
         )}
         {...props}

@@ -5,7 +5,7 @@ import { ContextMenu as BaseContextMenu } from "@base-ui/react/context-menu"
 import { motion, useReducedMotion } from "motion/react"
 
 import { cn } from "@/lib/utils"
-import { springs, depth } from "@/lib/motion"
+import { springs, fades, depth, reduced } from "@/lib/motion"
 
 function ContextMenu(
   props: React.ComponentProps<typeof BaseContextMenu.Root>
@@ -44,9 +44,9 @@ function ContextMenuContent({
           )}
           render={
             <motion.div
-              initial={reduceMotion ? false : depth.overlay.initial}
+              initial={reduceMotion ? reduced.fadeIn.initial : depth.overlay.initial}
               animate={depth.overlay.animate}
-              transition={springs.surface}
+              transition={reduceMotion ? fades.normal : springs.surface}
             />
           }
           {...props}

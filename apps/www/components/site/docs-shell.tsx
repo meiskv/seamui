@@ -12,6 +12,7 @@ import {
   DrawerTrigger,
 } from "@/registry/seam/ui/drawer"
 import { NavList } from "./nav-list"
+import { ReducedMotionNotice } from "./reduced-motion-notice"
 import { ThemeToggle } from "./theme-toggle"
 
 export function DocsShell({ children }: { children: React.ReactNode }) {
@@ -63,7 +64,12 @@ export function DocsShell({ children }: { children: React.ReactNode }) {
           <NavList />
         </aside>
 
-        <div className="min-w-0 flex-1">{children}</div>
+        <div className="min-w-0 flex-1">
+          <div className="px-4">
+            <ReducedMotionNotice />
+          </div>
+          {children}
+        </div>
       </div>
     </div>
   )

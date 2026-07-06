@@ -29,7 +29,7 @@ function CollapsibleContent({
       data-slot="collapsible-content"
       // Height eased between 0 and Base UI's measured value (see Accordion).
       className={cn(
-        "h-[var(--collapsible-panel-height)] overflow-hidden transition-[height] duration-200 ease-out",
+        "h-[var(--collapsible-panel-height)] overflow-hidden transition-[height] duration-200 ease-out motion-reduce:transition-none",
         "data-[starting-style]:h-0 data-[ending-style]:h-0",
         className
       )}

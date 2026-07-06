@@ -5,7 +5,7 @@ import { Tooltip as BaseTooltip } from "@base-ui/react/tooltip"
 import { motion, useReducedMotion } from "motion/react"
 
 import { cn } from "@/lib/utils"
-import { springs, depth } from "@/lib/motion"
+import { springs, fades, depth, reduced } from "@/lib/motion"
 
 function TooltipProvider({
   delay = 200,
@@ -38,15 +38,16 @@ function TooltipContent({
         <BaseTooltip.Popup
           data-slot="tooltip-content"
           className={cn(
-            "bg-primary text-primary-foreground z-50 w-fit rounded-md px-3 py-1.5 text-xs shadow-overlay",
+            // raised white key floating above the surface (seam design language).
+            "bg-popover text-popover-foreground z-50 w-fit rounded-lg squircle px-3 py-1.5 text-xs font-medium shadow-overlay",
             className
           )}
           // seam motion: the surface rises toward the user on open.
           render={
             <motion.div
-              initial={reduceMotion ? false : depth.overlay.initial}
+              initial={reduceMotion ? reduced.fadeIn.initial : depth.overlay.initial}
               animate={depth.overlay.animate}
-              transition={springs.surface}
+              transition={reduceMotion ? fades.normal : springs.surface}
             />
           }
           {...props}

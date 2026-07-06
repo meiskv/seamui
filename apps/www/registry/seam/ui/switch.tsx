@@ -2,10 +2,10 @@
 
 import * as React from "react"
 import { Switch as BaseSwitch } from "@base-ui/react/switch"
-import { motion } from "motion/react"
+import { motion, useReducedMotion } from "motion/react"
 
 import { cn } from "@/lib/utils"
-import { springs } from "@/lib/motion"
+import { springs, reduced } from "@/lib/motion"
 
 const MotionThumb = motion.create(BaseSwitch.Thumb)
 
@@ -13,6 +13,8 @@ function Switch({
   className,
   ...props
 }: React.ComponentProps<typeof BaseSwitch.Root>) {
+  const reduceMotion = useReducedMotion()
+
   return (
     <BaseSwitch.Root
       data-slot="switch"
@@ -31,8 +33,8 @@ function Switch({
         data-slot="switch-thumb"
         // seam motion: `layout` springs the thumb when justify flips on toggle.
         layout
-        transition={springs.snappy}
-        className="bg-background size-4 rounded-full shadow-resting"
+        transition={reduceMotion ? reduced.instant : springs.snappy}
+        className="bg-card size-4 rounded-full shadow-resting"
       />
     </BaseSwitch.Root>
   )

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toggle-group-demo",
+  "type": "registry:example",
+  "title": "Toggle Group Demo",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "https://seamui.dev/r/toggle-group.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/toggle-group-demo.tsx",
+      "content": "\"use client\"\n\nimport { AlignCenter, AlignLeft, AlignRight } from \"lucide-react\"\n\nimport { Toggle } from \"@/registry/seam/ui/toggle\"\nimport { ToggleGroup } from \"@/registry/seam/ui/toggle-group\"\n\nexport default function ToggleGroupDemo() {\n  return (\n    <ToggleGroup defaultValue={[\"left\"]}>\n      <Toggle value=\"left\" aria-label=\"Align left\">\n        <AlignLeft />\n      </Toggle>\n      <Toggle value=\"center\" aria-label=\"Align center\">\n        <AlignCenter />\n      </Toggle>\n      <Toggle value=\"right\" aria-label=\"Align right\">\n        <AlignRight />\n      </Toggle>\n    </ToggleGroup>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

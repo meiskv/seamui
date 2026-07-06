@@ -50,7 +50,7 @@ function AccordionTrigger({
       >
         {children}
         <ChevronDown
-          className="text-muted-foreground size-4 shrink-0 transition-transform duration-200 group-data-[panel-open]/acc:rotate-180"
+          className="text-muted-foreground size-4 shrink-0 transition-transform duration-200 group-data-[panel-open]/acc:rotate-180 motion-reduce:transition-none"
         />
       </BaseAccordion.Trigger>
     </BaseAccordion.Header>
@@ -69,7 +69,7 @@ function AccordionContent({
       // height between 0 and that measured value. Height is the one thing we
       // ease with a duration (like opacity), not a transform spring.
       className={cn(
-        "h-[var(--accordion-panel-height)] overflow-hidden text-sm transition-[height] duration-200 ease-out",
+        "h-[var(--accordion-panel-height)] overflow-hidden text-sm transition-[height] duration-200 ease-out motion-reduce:transition-none",
         "data-[starting-style]:h-0 data-[ending-style]:h-0",
         className
       )}
