@@ -305,6 +305,60 @@
       ]
     },
     {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "title": "Dropdown Menu",
+      "description": "Dropdown menu built on Base UI with seam overlay-depth entrance.",
+      "dependencies": ["@base-ui/react", "motion"],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/dropdown-menu.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/dropdown-menu.tsx"
+        }
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "Select built on Base UI with seam overlay-depth entrance.",
+      "dependencies": ["@base-ui/react", "motion", "lucide-react"],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/select.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/select.tsx"
+        }
+      ]
+    },
+    {
+      "name": "context-menu",
+      "type": "registry:ui",
+      "title": "Context Menu",
+      "description": "Right-click menu built on Base UI with seam overlay-depth entrance.",
+      "dependencies": ["@base-ui/react", "motion"],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/context-menu.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/context-menu.tsx"
+        }
+      ]
+    },
+    {
       "name": "button-demo",
       "type": "registry:example",
       "title": "Button Demo",
@@ -491,6 +545,36 @@
       ],
       "files": [
         { "path": "registry/seam/examples/drawer-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "dropdown-menu-demo",
+      "type": "registry:example",
+      "title": "Dropdown Menu Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/dropdown-menu.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        { "path": "registry/seam/examples/dropdown-menu-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "select-demo",
+      "type": "registry:example",
+      "title": "Select Demo",
+      "registryDependencies": ["https://seamui.dev/r/select.json"],
+      "files": [
+        { "path": "registry/seam/examples/select-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "context-menu-demo",
+      "type": "registry:example",
+      "title": "Context Menu Demo",
+      "registryDependencies": ["https://seamui.dev/r/context-menu.json"],
+      "files": [
+        { "path": "registry/seam/examples/context-menu-demo.tsx", "type": "registry:example" }
       ]
     }
   ]

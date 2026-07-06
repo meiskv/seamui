@@ -21,6 +21,9 @@ const COMPONENTS = [
   { name: "dialog", title: "Dialog", desc: "Modal with top-of-stack depth." },
   { name: "alert-dialog", title: "Alert Dialog", desc: "Confirm a destructive action." },
   { name: "drawer", title: "Drawer", desc: "Swipe-to-dismiss bottom sheet." },
+  { name: "dropdown-menu", title: "Dropdown Menu", desc: "Actions menu, overlay depth." },
+  { name: "select", title: "Select", desc: "Choose one from a listbox." },
+  { name: "context-menu", title: "Context Menu", desc: "Right-click menu." },
 ]
 
 export default function ComponentsIndex() {

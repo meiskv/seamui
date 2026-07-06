@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "context-menu-demo",
+  "type": "registry:example",
+  "title": "Context Menu Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/context-menu.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/context-menu-demo.tsx",
+      "content": "import {\n  ContextMenu,\n  ContextMenuContent,\n  ContextMenuItem,\n  ContextMenuSeparator,\n  ContextMenuTrigger,\n} from \"@/registry/seam/ui/context-menu\"\n\nexport default function ContextMenuDemo() {\n  return (\n    <ContextMenu>\n      <ContextMenuTrigger className=\"flex h-28 w-72 items-center justify-center rounded-lg border border-dashed text-sm text-muted-foreground\">\n        Right-click here\n      </ContextMenuTrigger>\n      <ContextMenuContent>\n        <ContextMenuItem>Back</ContextMenuItem>\n        <ContextMenuItem>Forward</ContextMenuItem>\n        <ContextMenuItem>Reload</ContextMenuItem>\n        <ContextMenuSeparator />\n        <ContextMenuItem>Save as…</ContextMenuItem>\n      </ContextMenuContent>\n    </ContextMenu>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}
