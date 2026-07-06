@@ -42,6 +42,7 @@ function ComboboxInput({
           "flex h-10 w-full min-w-0 rounded-md squircle border border-border/60 bg-muted pl-9 pr-16 py-1 text-sm shadow-well outline-none",
           "placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground",
           "focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:border-ring",
+          "aria-invalid:border-destructive aria-invalid:ring-2 aria-invalid:ring-destructive/30",
           "disabled:pointer-events-none disabled:opacity-50",
           className
         )}
@@ -169,6 +170,9 @@ function ComboboxGroup(props: React.ComponentProps<typeof BaseCombobox.Group>) {
   return <BaseCombobox.Group data-slot="combobox-group" {...props} />
 }
 
+/** Renders the filtered items within a group. See the Groups example. */
+const ComboboxCollection = BaseCombobox.Collection
+
 function ComboboxGroupLabel({
   className,
   ...props
@@ -200,6 +204,94 @@ function ComboboxSeparator({
   )
 }
 
+/* ── Multi-select (chips) ────────────────────────────────────────────────
+   For `multiple` comboboxes: a debossed well that wraps selected values as
+   embossed chips alongside the input. Compose as
+   <ComboboxChips>
+     <ComboboxValue>{(items) => items.map((i) => <ComboboxChip …/>)}</ComboboxValue>
+     <ComboboxChipsInput placeholder="…" />
+   </ComboboxChips>
+*/
+
+/** The debossed well that holds chips + the input in multi-select mode. */
+function ComboboxChips({
+  className,
+  ...props
+}: React.ComponentProps<typeof BaseCombobox.Chips>) {
+  return (
+    <BaseCombobox.Chips
+      data-slot="combobox-chips"
+      className={cn(
+        "flex min-h-10 w-full flex-wrap items-center gap-1.5 rounded-md squircle border border-border/60 bg-muted px-2 py-1.5 text-sm shadow-well outline-none",
+        "focus-within:ring-2 focus-within:ring-ring/50 focus-within:border-ring",
+        "has-aria-invalid:border-destructive has-aria-invalid:ring-2 has-aria-invalid:ring-destructive/30",
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
+/** Reads the selected value(s); pass a render function to map them to chips. */
+const ComboboxValue = BaseCombobox.Value
+
+/** An embossed pill representing one selected value. */
+function ComboboxChip({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<typeof BaseCombobox.Chip>) {
+  return (
+    <BaseCombobox.Chip
+      data-slot="combobox-chip"
+      className={cn(
+        "bg-secondary text-secondary-foreground shadow-resting flex items-center gap-1 rounded-md squircle py-0.5 pl-2 pr-1 text-xs font-medium outline-none",
+        "data-[highlighted]:ring-2 data-[highlighted]:ring-ring/50",
+        className
+      )}
+      {...props}
+    >
+      {children}
+    </BaseCombobox.Chip>
+  )
+}
+
+function ComboboxChipRemove({
+  className,
+  ...props
+}: React.ComponentProps<typeof BaseCombobox.ChipRemove>) {
+  return (
+    <BaseCombobox.ChipRemove
+      data-slot="combobox-chip-remove"
+      className={cn(
+        "text-muted-foreground hover:text-foreground flex size-4 items-center justify-center rounded-sm outline-none",
+        className
+      )}
+      aria-label="Remove"
+      {...props}
+    >
+      <X className="size-3" />
+    </BaseCombobox.ChipRemove>
+  )
+}
+
+/** A bare input sized to sit inside the chips well (no icons/affordances). */
+function ComboboxChipsInput({
+  className,
+  ...props
+}: React.ComponentProps<typeof BaseCombobox.Input>) {
+  return (
+    <BaseCombobox.Input
+      data-slot="combobox-chips-input"
+      className={cn(
+        "placeholder:text-muted-foreground min-w-16 flex-1 bg-transparent outline-none",
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
 export {
   Combobox,
   ComboboxInput,
@@ -209,5 +301,11 @@ export {
   ComboboxEmpty,
   ComboboxGroup,
   ComboboxGroupLabel,
+  ComboboxCollection,
   ComboboxSeparator,
+  ComboboxChips,
+  ComboboxChip,
+  ComboboxChipRemove,
+  ComboboxChipsInput,
+  ComboboxValue,
 }

@@ -4,6 +4,12 @@ import { ComponentPreview } from "@/components/docs/component-preview"
 import { Section, CodeBlock, Install } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import ComboboxDemo from "@/registry/seam/examples/combobox-demo"
+import ComboboxMultiple from "@/registry/seam/examples/combobox-multiple"
+import ComboboxClear from "@/registry/seam/examples/combobox-clear"
+import ComboboxGroups from "@/registry/seam/examples/combobox-groups"
+import ComboboxCustom from "@/registry/seam/examples/combobox-custom"
+import ComboboxInvalid from "@/registry/seam/examples/combobox-invalid"
+import ComboboxDisabled from "@/registry/seam/examples/combobox-disabled"
 
 export const metadata: Metadata = {
   title: "Combobox — seamui",
@@ -60,6 +66,67 @@ export default function ComboboxDocs() {
           token UI). Control with <code>value</code> /{" "}
           <code>onValueChange</code>.
         </p>
+      </Section>
+
+      <Section title="Examples">
+        <h3 className="mt-6 text-lg font-medium">Basic</h3>
+        <p className="text-muted-foreground text-sm">
+          A single-select filter — type to narrow, pick one option.
+        </p>
+        <ComponentPreview code={exampleSource("combobox-demo")}>
+          <ComboboxDemo />
+        </ComponentPreview>
+
+        <h3 className="mt-6 text-lg font-medium">Multiple</h3>
+        <p className="text-muted-foreground text-sm">
+          Set <code>multiple</code> and render selected values as chips in a{" "}
+          <code>ComboboxChips</code> well.
+        </p>
+        <ComponentPreview code={exampleSource("combobox-multiple")}>
+          <ComboboxMultiple />
+        </ComponentPreview>
+
+        <h3 className="mt-6 text-lg font-medium">Clear</h3>
+        <p className="text-muted-foreground text-sm">
+          With a value selected, the trailing <code>×</code> resets the field.
+        </p>
+        <ComponentPreview code={exampleSource("combobox-clear")}>
+          <ComboboxClear />
+        </ComponentPreview>
+
+        <h3 className="mt-6 text-lg font-medium">Groups</h3>
+        <p className="text-muted-foreground text-sm">
+          Grouped items with labels, filtered across groups via{" "}
+          <code>ComboboxCollection</code>.
+        </p>
+        <ComponentPreview code={exampleSource("combobox-groups")}>
+          <ComboboxGroups />
+        </ComponentPreview>
+
+        <h3 className="mt-6 text-lg font-medium">Custom items</h3>
+        <p className="text-muted-foreground text-sm">
+          Items can render arbitrary content — here an avatar, name, and role.
+        </p>
+        <ComponentPreview code={exampleSource("combobox-custom")}>
+          <ComboboxCustom />
+        </ComponentPreview>
+
+        <h3 className="mt-6 text-lg font-medium">Invalid</h3>
+        <p className="text-muted-foreground text-sm">
+          <code>aria-invalid</code> on the input paints the destructive
+          border and ring.
+        </p>
+        <ComponentPreview code={exampleSource("combobox-invalid")}>
+          <ComboboxInvalid />
+        </ComponentPreview>
+
+        <h3 className="mt-6 text-lg font-medium">Disabled</h3>
+        <p className="text-muted-foreground text-sm">
+          Pass <code>disabled</code> on the root to freeze the whole control.
+        </p>
+        <ComponentPreview code={exampleSource("combobox-disabled")}>
+          <ComboboxDisabled />
+        </ComponentPreview>
       </Section>
 
       <Section title="Anatomy">

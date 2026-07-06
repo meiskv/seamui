@@ -589,6 +589,60 @@
       ]
     },
     {
+      "name": "combobox-multiple",
+      "type": "registry:example",
+      "title": "Combobox Multiple",
+      "registryDependencies": ["https://seamui.dev/r/combobox.json"],
+      "files": [
+        { "path": "registry/seam/examples/combobox-multiple.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "combobox-clear",
+      "type": "registry:example",
+      "title": "Combobox Clear",
+      "registryDependencies": ["https://seamui.dev/r/combobox.json"],
+      "files": [
+        { "path": "registry/seam/examples/combobox-clear.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "combobox-groups",
+      "type": "registry:example",
+      "title": "Combobox Groups",
+      "registryDependencies": ["https://seamui.dev/r/combobox.json"],
+      "files": [
+        { "path": "registry/seam/examples/combobox-groups.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "combobox-custom",
+      "type": "registry:example",
+      "title": "Combobox Custom Items",
+      "registryDependencies": ["https://seamui.dev/r/combobox.json"],
+      "files": [
+        { "path": "registry/seam/examples/combobox-custom.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "combobox-invalid",
+      "type": "registry:example",
+      "title": "Combobox Invalid",
+      "registryDependencies": ["https://seamui.dev/r/combobox.json"],
+      "files": [
+        { "path": "registry/seam/examples/combobox-invalid.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "combobox-disabled",
+      "type": "registry:example",
+      "title": "Combobox Disabled",
+      "registryDependencies": ["https://seamui.dev/r/combobox.json"],
+      "files": [
+        { "path": "registry/seam/examples/combobox-disabled.tsx", "type": "registry:example" }
+      ]
+    },
+    {
       "name": "input-demo",
       "type": "registry:example",
       "title": "Input Demo",

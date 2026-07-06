@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "combobox-invalid",
+  "type": "registry:example",
+  "title": "Combobox Invalid",
+  "registryDependencies": [
+    "https://seamui.dev/r/combobox.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/combobox-invalid.tsx",
+      "content": "\"use client\"\n\nimport {\n  Combobox,\n  ComboboxContent,\n  ComboboxEmpty,\n  ComboboxInput,\n  ComboboxItem,\n  ComboboxList,\n} from \"@/registry/seam/ui/combobox\"\n\nconst countries = [\n  { value: \"ae\", label: \"United Arab Emirates\" },\n  { value: \"au\", label: \"Australia\" },\n  { value: \"sg\", label: \"Singapore\" },\n  { value: \"jp\", label: \"Japan\" },\n]\n\ntype Country = (typeof countries)[number]\n\nexport default function ComboboxInvalid() {\n  return (\n    <div className=\"w-64 space-y-1.5\">\n      <Combobox items={countries} itemToStringLabel={(c: Country) => c.label}>\n        {/* aria-invalid drives the destructive border/ring. */}\n        <ComboboxInput aria-invalid placeholder=\"Select a country…\" />\n        <ComboboxContent>\n          <ComboboxEmpty>No country found.</ComboboxEmpty>\n          <ComboboxList>\n            {(c: Country) => (\n              <ComboboxItem key={c.value} value={c}>\n                {c.label}\n              </ComboboxItem>\n            )}\n          </ComboboxList>\n        </ComboboxContent>\n      </Combobox>\n      <p className=\"text-destructive text-xs\">Please select a country.</p>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

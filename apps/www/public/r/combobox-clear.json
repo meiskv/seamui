@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "combobox-clear",
+  "type": "registry:example",
+  "title": "Combobox Clear",
+  "registryDependencies": [
+    "https://seamui.dev/r/combobox.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/combobox-clear.tsx",
+      "content": "\"use client\"\n\nimport {\n  Combobox,\n  ComboboxContent,\n  ComboboxEmpty,\n  ComboboxInput,\n  ComboboxItem,\n  ComboboxList,\n} from \"@/registry/seam/ui/combobox\"\n\nconst timezones = [\n  { value: \"utc\", label: \"UTC\" },\n  { value: \"pst\", label: \"Pacific (PST)\" },\n  { value: \"est\", label: \"Eastern (EST)\" },\n  { value: \"cet\", label: \"Central European (CET)\" },\n  { value: \"gst\", label: \"Gulf (GST)\" },\n  { value: \"aest\", label: \"Australian Eastern (AEST)\" },\n]\n\ntype Timezone = (typeof timezones)[number]\n\nexport default function ComboboxClear() {\n  return (\n    <div className=\"w-64\">\n      {/* Starts with a value selected, so the Clear (×) button is actionable. */}\n      <Combobox\n        items={timezones}\n        defaultValue={timezones[4]}\n        itemToStringLabel={(t: Timezone) => t.label}\n      >\n        <ComboboxInput placeholder=\"Search timezone…\" />\n        <ComboboxContent>\n          <ComboboxEmpty>No timezone found.</ComboboxEmpty>\n          <ComboboxList>\n            {(t: Timezone) => (\n              <ComboboxItem key={t.value} value={t}>\n                {t.label}\n              </ComboboxItem>\n            )}\n          </ComboboxList>\n        </ComboboxContent>\n      </Combobox>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}
