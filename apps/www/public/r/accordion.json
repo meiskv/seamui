@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "accordion",
+  "type": "registry:ui",
+  "title": "Accordion",
+  "description": "Accordion built on Base UI with eased height animation.",
+  "dependencies": [
+    "@base-ui/react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "https://seamui.dev/r/utils.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/ui/accordion.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { Accordion as BaseAccordion } from \"@base-ui/react/accordion\"\nimport { ChevronDown } from \"lucide-react\"\n\nimport { cn } from \"@/lib/utils\"\n\nfunction Accordion({\n  className,\n  ...props\n}: React.ComponentProps<typeof BaseAccordion.Root>) {\n  return (\n    <BaseAccordion.Root\n      data-slot=\"accordion\"\n      className={cn(\"w-full\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction AccordionItem({\n  className,\n  ...props\n}: React.ComponentProps<typeof BaseAccordion.Item>) {\n  return (\n    <BaseAccordion.Item\n      data-slot=\"accordion-item\"\n      className={cn(\"border-b\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction AccordionTrigger({\n  className,\n  children,\n  ...props\n}: React.ComponentProps<typeof BaseAccordion.Trigger>) {\n  return (\n    <BaseAccordion.Header className=\"flex\">\n      <BaseAccordion.Trigger\n        data-slot=\"accordion-trigger\"\n        className={cn(\n          \"group/acc flex flex-1 items-center justify-between gap-4 py-4 text-left text-sm font-medium outline-none\",\n          \"focus-visible:ring-2 focus-visible:ring-ring/50\",\n          className\n        )}\n        {...props}\n      >\n        {children}\n        <ChevronDown\n          className=\"text-muted-foreground size-4 shrink-0 transition-transform duration-200 group-data-[panel-open]/acc:rotate-180\"\n        />\n      </BaseAccordion.Trigger>\n    </BaseAccordion.Header>\n  )\n}\n\nfunction AccordionContent({\n  className,\n  children,\n  ...props\n}: React.ComponentProps<typeof BaseAccordion.Panel>) {\n  return (\n    <BaseAccordion.Panel\n      data-slot=\"accordion-content\"\n      // Base UI measures the panel height into a CSS var; we spring-ease the\n      // height between 0 and that measured value. Height is the one thing we\n      // ease with a duration (like opacity), not a transform spring.\n      className={cn(\n        \"h-[var(--accordion-panel-height)] overflow-hidden text-sm transition-[height] duration-200 ease-out\",\n        \"data-[starting-style]:h-0 data-[ending-style]:h-0\",\n        className\n      )}\n      {...props}\n    >\n      <div className=\"pb-4\">{children}</div>\n    </BaseAccordion.Panel>\n  )\n}\n\nexport { Accordion, AccordionItem, AccordionTrigger, AccordionContent }\n",
+      "type": "registry:ui",
+      "target": "components/ui/accordion.tsx"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+import Link from "next/link"
+
+import { Button } from "@/registry/seam/ui/button"
+import ButtonVariants from "@/registry/seam/examples/button-variants"
+import { ThemeToggle } from "@/components/site/theme-toggle"
+
+export default function HomePage() {
+  return (
+    <>
+      <header className="mx-auto flex h-14 max-w-2xl items-center justify-end px-6">
+        <ThemeToggle />
+      </header>
+      <main className="mx-auto flex min-h-[calc(100vh-3.5rem)] max-w-2xl flex-col items-start justify-center gap-8 px-6 pb-24">
+      <div className="space-y-3">
+        <h1 className="text-4xl font-semibold tracking-tight">seamui</h1>
+        <p className="text-muted-foreground text-lg">
+          Beautifully animated components you own. shadcn&apos;s distribution
+          model, rebuilt on Base UI primitives with a motion.dev animation layer
+          designed around mobile principles — springs, touch feedback, and
+          depth.
+        </p>
+      </div>
+
+      <div className="bg-card w-full rounded-xl border p-8 shadow-resting">
+        <ButtonVariants />
+      </div>
+
+      <div className="flex items-center gap-3">
+        <Button render={<Link href="/docs/components/button" />}>
+          Get started
+        </Button>
+        <Button
+          variant="outline"
+          render={<a href="https://base-ui.com" target="_blank" rel="noreferrer" />}
+        >
+          Base UI
+        </Button>
+      </div>
+      </main>
+    </>
+  )
+}

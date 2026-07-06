@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "slider-demo",
+  "type": "registry:example",
+  "title": "Slider Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/slider.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/slider-demo.tsx",
+      "content": "import { Slider } from \"@/registry/seam/ui/slider\"\n\nexport default function SliderDemo() {\n  return (\n    <div className=\"w-full max-w-xs\">\n      <Slider defaultValue={50} max={100} step={1} />\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

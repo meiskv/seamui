@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "preview-card-demo",
+  "type": "registry:example",
+  "title": "Preview Card Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/preview-card.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/preview-card-demo.tsx",
+      "content": "import {\n  PreviewCard,\n  PreviewCardContent,\n  PreviewCardTrigger,\n} from \"@/registry/seam/ui/preview-card\"\n\nexport default function PreviewCardDemo() {\n  return (\n    <p className=\"text-sm\">\n      Built on{\" \"}\n      <PreviewCard>\n        <PreviewCardTrigger\n          render={<a href=\"https://base-ui.com\" className=\"underline\" />}\n        >\n          Base UI\n        </PreviewCardTrigger>\n        <PreviewCardContent>\n          <div className=\"space-y-1.5\">\n            <div className=\"font-medium\">Base UI</div>\n            <p className=\"text-muted-foreground text-sm\">\n              Unstyled React components from the creators of Radix, Floating UI,\n              and Material UI.\n            </p>\n          </div>\n        </PreviewCardContent>\n      </PreviewCard>\n      .\n    </p>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

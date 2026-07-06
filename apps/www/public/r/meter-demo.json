@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "meter-demo",
+  "type": "registry:example",
+  "title": "Meter Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/meter.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/meter-demo.tsx",
+      "content": "import { Meter, MeterLabel, MeterValue } from \"@/registry/seam/ui/meter\"\n\nexport default function MeterDemo() {\n  return (\n    <Meter value={72} className=\"w-64\">\n      <div className=\"flex items-center justify-between\">\n        <MeterLabel>Storage used</MeterLabel>\n        <MeterValue />\n      </div>\n    </Meter>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

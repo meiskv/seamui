@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "select-demo",
+  "type": "registry:example",
+  "title": "Select Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/select.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/select-demo.tsx",
+      "content": "import {\n  Select,\n  SelectContent,\n  SelectItem,\n  SelectTrigger,\n  SelectValue,\n} from \"@/registry/seam/ui/select\"\n\nexport default function SelectDemo() {\n  return (\n    <Select defaultValue=\"spring\">\n      <SelectTrigger className=\"w-52\">\n        <SelectValue placeholder=\"Choose a transition\" />\n      </SelectTrigger>\n      <SelectContent>\n        <SelectItem value=\"spring\">Spring</SelectItem>\n        <SelectItem value=\"snappy\">Snappy</SelectItem>\n        <SelectItem value=\"surface\">Surface</SelectItem>\n        <SelectItem value=\"bouncy\">Bouncy</SelectItem>\n      </SelectContent>\n    </Select>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

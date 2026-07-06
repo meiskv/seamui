@@ -1,0 +1,23 @@
+{
+  "name": "seamui",
+  "version": "0.1.0",
+  "description": "CLI for seamui — beautifully animated components you own, built on Base UI + motion.dev.",
+  "type": "module",
+  "bin": {
+    "seamui": "dist/index.js"
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "bun build ./src/index.ts --target=node --outfile=dist/index.js",
+    "dev": "bun run ./src/index.ts"
+  },
+  "keywords": ["shadcn", "base-ui", "motion", "components", "react", "cli"],
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^13.0.0",
+    "picocolors": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0"
+  }
+}

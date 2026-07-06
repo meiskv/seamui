@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "drawer-demo",
+  "type": "registry:example",
+  "title": "Drawer Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/drawer.json",
+    "https://seamui.dev/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/drawer-demo.tsx",
+      "content": "import { Button } from \"@/registry/seam/ui/button\"\nimport {\n  Drawer,\n  DrawerContent,\n  DrawerDescription,\n  DrawerFooter,\n  DrawerHeader,\n  DrawerTitle,\n  DrawerTrigger,\n  DrawerClose,\n} from \"@/registry/seam/ui/drawer\"\n\nexport default function DrawerDemo() {\n  return (\n    <Drawer>\n      <DrawerTrigger render={<Button variant=\"outline\">Open drawer</Button>} />\n      <DrawerContent>\n        <DrawerHeader>\n          <DrawerTitle>Mobile sheet</DrawerTitle>\n          <DrawerDescription>\n            Drag the handle down to dismiss — Base UI&apos;s native swipe\n            physics, backdrop dimming as you go.\n          </DrawerDescription>\n        </DrawerHeader>\n        <DrawerFooter>\n          <DrawerClose render={<Button>Done</Button>} />\n        </DrawerFooter>\n      </DrawerContent>\n    </Drawer>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

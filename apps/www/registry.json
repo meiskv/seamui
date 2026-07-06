@@ -1,0 +1,785 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "seamui",
+  "homepage": "https://seamui.dev",
+  "items": [
+    {
+      "name": "theme",
+      "type": "registry:theme",
+      "title": "seam theme",
+      "description": "shadcn-compatible Tailwind v4 tokens plus the seam depth shadow scale.",
+      "files": [
+        {
+          "path": "registry/seam/theme/theme.css",
+          "type": "registry:theme",
+          "target": "app/globals.css"
+        }
+      ]
+    },
+    {
+      "name": "utils",
+      "type": "registry:lib",
+      "title": "cn utility",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/seam/lib/utils.ts",
+          "type": "registry:lib",
+          "target": "lib/utils.ts"
+        }
+      ]
+    },
+    {
+      "name": "motion",
+      "type": "registry:lib",
+      "title": "seam motion tokens",
+      "description": "Spring presets and the depth (z-axis) scale that power every seamui animation.",
+      "dependencies": ["motion"],
+      "files": [
+        {
+          "path": "registry/seam/lib/motion.ts",
+          "type": "registry:lib",
+          "target": "lib/motion.ts"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "Button built on Base UI with seam depth motion.",
+      "dependencies": ["@base-ui/react", "motion", "class-variance-authority"],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/button.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "toggle",
+      "type": "registry:ui",
+      "title": "Toggle",
+      "description": "Two-state button built on Base UI with seam press-depth motion.",
+      "dependencies": ["@base-ui/react", "motion", "class-variance-authority"],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/toggle.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/toggle.tsx"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "Text input built on Base UI, Field-aware.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["https://seamui.dev/r/utils.json"],
+      "files": [
+        {
+          "path": "registry/seam/ui/input.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/input.tsx"
+        }
+      ]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "Avatar",
+      "description": "Avatar built on Base UI with a seam fade-in on image load.",
+      "dependencies": ["@base-ui/react", "motion"],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/avatar.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/avatar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "Accessible separator built on Base UI.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["https://seamui.dev/r/utils.json"],
+      "files": [
+        {
+          "path": "registry/seam/ui/separator.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/separator.tsx"
+        }
+      ]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "Switch built on Base UI; the thumb springs between states.",
+      "dependencies": ["@base-ui/react", "motion"],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/switch.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/switch.tsx"
+        }
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "Checkbox built on Base UI; the mark pops in with a spring.",
+      "dependencies": ["@base-ui/react", "motion", "lucide-react"],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/checkbox.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/checkbox.tsx"
+        }
+      ]
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "title": "Radio Group",
+      "description": "Radio group built on Base UI; the dot pops in with a spring.",
+      "dependencies": ["@base-ui/react", "motion"],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/radio-group.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/radio-group.tsx"
+        }
+      ]
+    },
+    {
+      "name": "slider",
+      "type": "registry:ui",
+      "title": "Slider",
+      "description": "Slider built on Base UI; the thumb swells when grabbed.",
+      "dependencies": ["@base-ui/react", "motion"],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/slider.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/slider.tsx"
+        }
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "Tooltip built on Base UI; the surface rises with overlay depth.",
+      "dependencies": ["@base-ui/react", "motion"],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/tooltip.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/tooltip.tsx"
+        }
+      ]
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "title": "Popover",
+      "description": "Popover built on Base UI with seam overlay-depth entrance.",
+      "dependencies": ["@base-ui/react", "motion"],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/popover.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/popover.tsx"
+        }
+      ]
+    },
+    {
+      "name": "preview-card",
+      "type": "registry:ui",
+      "title": "Preview Card",
+      "description": "Preview card built on Base UI with seam overlay-depth entrance.",
+      "dependencies": ["@base-ui/react", "motion"],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/preview-card.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/preview-card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": "Modal dialog built on Base UI; the surface rises with modal depth and the page dims behind it.",
+      "dependencies": ["@base-ui/react", "motion", "lucide-react"],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/dialog.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/dialog.tsx"
+        }
+      ]
+    },
+    {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "title": "Alert Dialog",
+      "description": "Confirmation dialog built on Base UI with seam modal depth.",
+      "dependencies": ["@base-ui/react", "motion"],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/alert-dialog.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/alert-dialog.tsx"
+        }
+      ]
+    },
+    {
+      "name": "drawer",
+      "type": "registry:ui",
+      "title": "Drawer",
+      "description": "Mobile bottom-sheet built on Base UI's native swipe-to-dismiss engine.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["https://seamui.dev/r/utils.json"],
+      "files": [
+        {
+          "path": "registry/seam/ui/drawer.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/drawer.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "title": "Dropdown Menu",
+      "description": "Dropdown menu built on Base UI with seam overlay-depth entrance.",
+      "dependencies": ["@base-ui/react", "motion"],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/dropdown-menu.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/dropdown-menu.tsx"
+        }
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "Select built on Base UI with seam overlay-depth entrance.",
+      "dependencies": ["@base-ui/react", "motion", "lucide-react"],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/select.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/select.tsx"
+        }
+      ]
+    },
+    {
+      "name": "context-menu",
+      "type": "registry:ui",
+      "title": "Context Menu",
+      "description": "Right-click menu built on Base UI with seam overlay-depth entrance.",
+      "dependencies": ["@base-ui/react", "motion"],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/context-menu.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/context-menu.tsx"
+        }
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "Tabs built on Base UI; a motion indicator springs to the active tab.",
+      "dependencies": ["@base-ui/react", "motion"],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/tabs.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/tabs.tsx"
+        }
+      ]
+    },
+    {
+      "name": "accordion",
+      "type": "registry:ui",
+      "title": "Accordion",
+      "description": "Accordion built on Base UI with eased height animation.",
+      "dependencies": ["@base-ui/react", "lucide-react"],
+      "registryDependencies": ["https://seamui.dev/r/utils.json"],
+      "files": [
+        {
+          "path": "registry/seam/ui/accordion.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/accordion.tsx"
+        }
+      ]
+    },
+    {
+      "name": "collapsible",
+      "type": "registry:ui",
+      "title": "Collapsible",
+      "description": "Collapsible built on Base UI with eased height animation.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["https://seamui.dev/r/utils.json"],
+      "files": [
+        {
+          "path": "registry/seam/ui/collapsible.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/collapsible.tsx"
+        }
+      ]
+    },
+    {
+      "name": "progress",
+      "type": "registry:ui",
+      "title": "Progress",
+      "description": "Progress bar built on Base UI with an eased fill.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["https://seamui.dev/r/utils.json"],
+      "files": [
+        { "path": "registry/seam/ui/progress.tsx", "type": "registry:ui", "target": "components/ui/progress.tsx" }
+      ]
+    },
+    {
+      "name": "meter",
+      "type": "registry:ui",
+      "title": "Meter",
+      "description": "Meter (static measurement) built on Base UI.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["https://seamui.dev/r/utils.json"],
+      "files": [
+        { "path": "registry/seam/ui/meter.tsx", "type": "registry:ui", "target": "components/ui/meter.tsx" }
+      ]
+    },
+    {
+      "name": "number-field",
+      "type": "registry:ui",
+      "title": "Number Field",
+      "description": "Number input with press-depth steppers, built on Base UI.",
+      "dependencies": ["@base-ui/react", "motion", "lucide-react"],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json"
+      ],
+      "files": [
+        { "path": "registry/seam/ui/number-field.tsx", "type": "registry:ui", "target": "components/ui/number-field.tsx" }
+      ]
+    },
+    {
+      "name": "otp-field",
+      "type": "registry:ui",
+      "title": "OTP Field",
+      "description": "One-time-code input built on Base UI.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["https://seamui.dev/r/utils.json"],
+      "files": [
+        { "path": "registry/seam/ui/otp-field.tsx", "type": "registry:ui", "target": "components/ui/otp-field.tsx" }
+      ]
+    },
+    {
+      "name": "scroll-area",
+      "type": "registry:ui",
+      "title": "Scroll Area",
+      "description": "Custom scrollbar area built on Base UI.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["https://seamui.dev/r/utils.json"],
+      "files": [
+        { "path": "registry/seam/ui/scroll-area.tsx", "type": "registry:ui", "target": "components/ui/scroll-area.tsx" }
+      ]
+    },
+    {
+      "name": "toast",
+      "type": "registry:ui",
+      "title": "Toast",
+      "description": "Toast notifications built on Base UI with a bouncy seam entrance.",
+      "dependencies": ["@base-ui/react", "lucide-react"],
+      "registryDependencies": ["https://seamui.dev/r/utils.json"],
+      "files": [
+        { "path": "registry/seam/ui/toast.tsx", "type": "registry:ui", "target": "components/ui/toast.tsx" }
+      ]
+    },
+    {
+      "name": "button-demo",
+      "type": "registry:example",
+      "title": "Button Demo",
+      "registryDependencies": ["https://seamui.dev/r/button.json"],
+      "files": [
+        { "path": "registry/seam/examples/button-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "button-variants",
+      "type": "registry:example",
+      "title": "Button Variants",
+      "registryDependencies": ["https://seamui.dev/r/button.json"],
+      "files": [
+        { "path": "registry/seam/examples/button-variants.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "button-sizes",
+      "type": "registry:example",
+      "title": "Button Sizes",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["https://seamui.dev/r/button.json"],
+      "files": [
+        { "path": "registry/seam/examples/button-sizes.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "button-loading",
+      "type": "registry:example",
+      "title": "Button Loading",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["https://seamui.dev/r/button.json"],
+      "files": [
+        { "path": "registry/seam/examples/button-loading.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "button-link",
+      "type": "registry:example",
+      "title": "Button Link",
+      "registryDependencies": ["https://seamui.dev/r/button.json"],
+      "files": [
+        { "path": "registry/seam/examples/button-link.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "toggle-demo",
+      "type": "registry:example",
+      "title": "Toggle Demo",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["https://seamui.dev/r/toggle.json"],
+      "files": [
+        { "path": "registry/seam/examples/toggle-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "input-demo",
+      "type": "registry:example",
+      "title": "Input Demo",
+      "registryDependencies": ["https://seamui.dev/r/input.json"],
+      "files": [
+        { "path": "registry/seam/examples/input-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "avatar-demo",
+      "type": "registry:example",
+      "title": "Avatar Demo",
+      "registryDependencies": ["https://seamui.dev/r/avatar.json"],
+      "files": [
+        { "path": "registry/seam/examples/avatar-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "separator-demo",
+      "type": "registry:example",
+      "title": "Separator Demo",
+      "registryDependencies": ["https://seamui.dev/r/separator.json"],
+      "files": [
+        { "path": "registry/seam/examples/separator-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "switch-demo",
+      "type": "registry:example",
+      "title": "Switch Demo",
+      "registryDependencies": ["https://seamui.dev/r/switch.json"],
+      "files": [
+        { "path": "registry/seam/examples/switch-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "checkbox-demo",
+      "type": "registry:example",
+      "title": "Checkbox Demo",
+      "registryDependencies": ["https://seamui.dev/r/checkbox.json"],
+      "files": [
+        { "path": "registry/seam/examples/checkbox-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "radio-group-demo",
+      "type": "registry:example",
+      "title": "Radio Group Demo",
+      "registryDependencies": ["https://seamui.dev/r/radio-group.json"],
+      "files": [
+        { "path": "registry/seam/examples/radio-group-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "slider-demo",
+      "type": "registry:example",
+      "title": "Slider Demo",
+      "registryDependencies": ["https://seamui.dev/r/slider.json"],
+      "files": [
+        { "path": "registry/seam/examples/slider-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "tooltip-demo",
+      "type": "registry:example",
+      "title": "Tooltip Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/tooltip.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        { "path": "registry/seam/examples/tooltip-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "popover-demo",
+      "type": "registry:example",
+      "title": "Popover Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/popover.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        { "path": "registry/seam/examples/popover-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "preview-card-demo",
+      "type": "registry:example",
+      "title": "Preview Card Demo",
+      "registryDependencies": ["https://seamui.dev/r/preview-card.json"],
+      "files": [
+        { "path": "registry/seam/examples/preview-card-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "dialog-demo",
+      "type": "registry:example",
+      "title": "Dialog Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/dialog.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        { "path": "registry/seam/examples/dialog-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "alert-dialog-demo",
+      "type": "registry:example",
+      "title": "Alert Dialog Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/alert-dialog.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        { "path": "registry/seam/examples/alert-dialog-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "drawer-demo",
+      "type": "registry:example",
+      "title": "Drawer Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/drawer.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        { "path": "registry/seam/examples/drawer-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "dropdown-menu-demo",
+      "type": "registry:example",
+      "title": "Dropdown Menu Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/dropdown-menu.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        { "path": "registry/seam/examples/dropdown-menu-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "select-demo",
+      "type": "registry:example",
+      "title": "Select Demo",
+      "registryDependencies": ["https://seamui.dev/r/select.json"],
+      "files": [
+        { "path": "registry/seam/examples/select-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "context-menu-demo",
+      "type": "registry:example",
+      "title": "Context Menu Demo",
+      "registryDependencies": ["https://seamui.dev/r/context-menu.json"],
+      "files": [
+        { "path": "registry/seam/examples/context-menu-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "tabs-demo",
+      "type": "registry:example",
+      "title": "Tabs Demo",
+      "registryDependencies": ["https://seamui.dev/r/tabs.json"],
+      "files": [
+        { "path": "registry/seam/examples/tabs-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "accordion-demo",
+      "type": "registry:example",
+      "title": "Accordion Demo",
+      "registryDependencies": ["https://seamui.dev/r/accordion.json"],
+      "files": [
+        { "path": "registry/seam/examples/accordion-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "collapsible-demo",
+      "type": "registry:example",
+      "title": "Collapsible Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/collapsible.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        { "path": "registry/seam/examples/collapsible-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "progress-demo",
+      "type": "registry:example",
+      "title": "Progress Demo",
+      "registryDependencies": ["https://seamui.dev/r/progress.json"],
+      "files": [
+        { "path": "registry/seam/examples/progress-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "meter-demo",
+      "type": "registry:example",
+      "title": "Meter Demo",
+      "registryDependencies": ["https://seamui.dev/r/meter.json"],
+      "files": [
+        { "path": "registry/seam/examples/meter-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "number-field-demo",
+      "type": "registry:example",
+      "title": "Number Field Demo",
+      "registryDependencies": ["https://seamui.dev/r/number-field.json"],
+      "files": [
+        { "path": "registry/seam/examples/number-field-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "otp-field-demo",
+      "type": "registry:example",
+      "title": "OTP Field Demo",
+      "registryDependencies": ["https://seamui.dev/r/otp-field.json"],
+      "files": [
+        { "path": "registry/seam/examples/otp-field-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "scroll-area-demo",
+      "type": "registry:example",
+      "title": "Scroll Area Demo",
+      "registryDependencies": ["https://seamui.dev/r/scroll-area.json"],
+      "files": [
+        { "path": "registry/seam/examples/scroll-area-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "toast-demo",
+      "type": "registry:example",
+      "title": "Toast Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/toast.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        { "path": "registry/seam/examples/toast-demo.tsx", "type": "registry:example" }
+      ]
+    }
+  ]
+}

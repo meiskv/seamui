@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tooltip-demo",
+  "type": "registry:example",
+  "title": "Tooltip Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/tooltip.json",
+    "https://seamui.dev/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/tooltip-demo.tsx",
+      "content": "import { Button } from \"@/registry/seam/ui/button\"\nimport {\n  Tooltip,\n  TooltipContent,\n  TooltipProvider,\n  TooltipTrigger,\n} from \"@/registry/seam/ui/tooltip\"\n\nexport default function TooltipDemo() {\n  return (\n    <TooltipProvider>\n      <Tooltip>\n        <TooltipTrigger render={<Button variant=\"outline\">Hover me</Button>} />\n        <TooltipContent>Rises with overlay depth</TooltipContent>\n      </Tooltip>\n    </TooltipProvider>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "context-menu",
+  "type": "registry:ui",
+  "title": "Context Menu",
+  "description": "Right-click menu built on Base UI with seam overlay-depth entrance.",
+  "dependencies": [
+    "@base-ui/react",
+    "motion"
+  ],
+  "registryDependencies": [
+    "https://seamui.dev/r/utils.json",
+    "https://seamui.dev/r/motion.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/ui/context-menu.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { ContextMenu as BaseContextMenu } from \"@base-ui/react/context-menu\"\nimport { motion, useReducedMotion } from \"motion/react\"\n\nimport { cn } from \"@/lib/utils\"\nimport { springs, depth } from \"@/lib/motion\"\n\nfunction ContextMenu(\n  props: React.ComponentProps<typeof BaseContextMenu.Root>\n) {\n  return <BaseContextMenu.Root {...props} />\n}\n\nfunction ContextMenuTrigger({\n  className,\n  ...props\n}: React.ComponentProps<typeof BaseContextMenu.Trigger>) {\n  return (\n    <BaseContextMenu.Trigger\n      data-slot=\"context-menu-trigger\"\n      className={className}\n      {...props}\n    />\n  )\n}\n\nfunction ContextMenuContent({\n  className,\n  children,\n  ...props\n}: React.ComponentProps<typeof BaseContextMenu.Popup>) {\n  const reduceMotion = useReducedMotion()\n\n  return (\n    <BaseContextMenu.Portal>\n      <BaseContextMenu.Positioner className=\"z-50\">\n        <BaseContextMenu.Popup\n          data-slot=\"context-menu-content\"\n          className={cn(\n            \"bg-popover text-popover-foreground z-50 min-w-40 rounded-lg border p-1 shadow-overlay outline-none\",\n            className\n          )}\n          render={\n            <motion.div\n              initial={reduceMotion ? false : depth.overlay.initial}\n              animate={depth.overlay.animate}\n              transition={springs.surface}\n            />\n          }\n          {...props}\n        >\n          {children}\n        </BaseContextMenu.Popup>\n      </BaseContextMenu.Positioner>\n    </BaseContextMenu.Portal>\n  )\n}\n\nfunction ContextMenuItem({\n  className,\n  ...props\n}: React.ComponentProps<typeof BaseContextMenu.Item>) {\n  return (\n    <BaseContextMenu.Item\n      data-slot=\"context-menu-item\"\n      className={cn(\n        \"relative flex cursor-default select-none items-center gap-2 rounded-md px-2 py-1.5 text-sm outline-none\",\n        \"data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground\",\n        \"data-[disabled]:pointer-events-none data-[disabled]:opacity-50\",\n        \"[&_svg]:size-4 [&_svg]:shrink-0\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction ContextMenuLabel({\n  className,\n  ...props\n}: React.ComponentProps<typeof BaseContextMenu.GroupLabel>) {\n  return (\n    <BaseContextMenu.GroupLabel\n      data-slot=\"context-menu-label\"\n      className={cn(\"px-2 py-1.5 text-xs font-medium text-muted-foreground\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction ContextMenuSeparator({\n  className,\n  ...props\n}: React.ComponentProps<typeof BaseContextMenu.Separator>) {\n  return (\n    <BaseContextMenu.Separator\n      data-slot=\"context-menu-separator\"\n      className={cn(\"bg-border -mx-1 my-1 h-px\", className)}\n      {...props}\n    />\n  )\n}\n\nexport {\n  ContextMenu,\n  ContextMenuTrigger,\n  ContextMenuContent,\n  ContextMenuItem,\n  ContextMenuLabel,\n  ContextMenuSeparator,\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/context-menu.tsx"
+    }
+  ]
+}

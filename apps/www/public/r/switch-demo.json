@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "switch-demo",
+  "type": "registry:example",
+  "title": "Switch Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/switch.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/switch-demo.tsx",
+      "content": "import { Switch } from \"@/registry/seam/ui/switch\"\n\nexport default function SwitchDemo() {\n  return (\n    <label className=\"flex items-center gap-2 text-sm\">\n      <Switch defaultChecked />\n      Airplane mode\n    </label>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

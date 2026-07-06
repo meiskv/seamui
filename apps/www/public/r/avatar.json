@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "avatar",
+  "type": "registry:ui",
+  "title": "Avatar",
+  "description": "Avatar built on Base UI with a seam fade-in on image load.",
+  "dependencies": [
+    "@base-ui/react",
+    "motion"
+  ],
+  "registryDependencies": [
+    "https://seamui.dev/r/utils.json",
+    "https://seamui.dev/r/motion.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/ui/avatar.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { Avatar as BaseAvatar } from \"@base-ui/react/avatar\"\nimport { motion, useReducedMotion } from \"motion/react\"\n\nimport { cn } from \"@/lib/utils\"\nimport { fades } from \"@/lib/motion\"\n\nfunction Avatar({\n  className,\n  ...props\n}: React.ComponentProps<typeof BaseAvatar.Root>) {\n  return (\n    <BaseAvatar.Root\n      data-slot=\"avatar\"\n      className={cn(\n        \"relative flex size-9 shrink-0 overflow-hidden rounded-full\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nconst MotionImage = motion.create(BaseAvatar.Image)\n\nfunction AvatarImage({\n  className,\n  ...props\n}: React.ComponentPropsWithoutRef<typeof MotionImage>) {\n  const reduceMotion = useReducedMotion()\n  return (\n    <MotionImage\n      data-slot=\"avatar-image\"\n      className={cn(\"aspect-square size-full\", className)}\n      // seam motion: images resolve in with a gentle fade — no layout shift.\n      initial={reduceMotion ? false : { opacity: 0 }}\n      animate={{ opacity: 1 }}\n      transition={fades.normal}\n      {...props}\n    />\n  )\n}\n\nfunction AvatarFallback({\n  className,\n  ...props\n}: React.ComponentProps<typeof BaseAvatar.Fallback>) {\n  return (\n    <BaseAvatar.Fallback\n      data-slot=\"avatar-fallback\"\n      className={cn(\n        \"bg-muted text-muted-foreground flex size-full items-center justify-center rounded-full text-sm\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { Avatar, AvatarImage, AvatarFallback }\n",
+      "type": "registry:ui",
+      "target": "components/ui/avatar.tsx"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radio-group-demo",
+  "type": "registry:example",
+  "title": "Radio Group Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/radio-group.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/radio-group-demo.tsx",
+      "content": "import { RadioGroup, RadioGroupItem } from \"@/registry/seam/ui/radio-group\"\n\nexport default function RadioGroupDemo() {\n  return (\n    <RadioGroup defaultValue=\"spring\">\n      {[\"spring\", \"duration\"].map((v) => (\n        <label key={v} className=\"flex items-center gap-2 text-sm capitalize\">\n          <RadioGroupItem value={v} />\n          {v}\n        </label>\n      ))}\n    </RadioGroup>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

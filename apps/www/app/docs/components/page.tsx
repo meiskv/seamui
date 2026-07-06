@@ -1,0 +1,61 @@
+import type { Metadata } from "next"
+import Link from "next/link"
+
+export const metadata: Metadata = {
+  title: "Components — seamui",
+}
+
+const COMPONENTS = [
+  { name: "button", title: "Button", desc: "Pressable action with depth motion." },
+  { name: "toggle", title: "Toggle", desc: "Two-state button." },
+  { name: "input", title: "Input", desc: "Field-aware text input." },
+  { name: "avatar", title: "Avatar", desc: "Image with fade-in and fallback." },
+  { name: "separator", title: "Separator", desc: "Divider in any orientation." },
+  { name: "switch", title: "Switch", desc: "Thumb springs between states." },
+  { name: "checkbox", title: "Checkbox", desc: "Mark pops in with a spring." },
+  { name: "radio-group", title: "Radio Group", desc: "Single-choice with spring dot." },
+  { name: "slider", title: "Slider", desc: "Thumb swells when grabbed." },
+  { name: "tooltip", title: "Tooltip", desc: "Rises with overlay depth." },
+  { name: "popover", title: "Popover", desc: "Floating panel, overlay depth." },
+  { name: "preview-card", title: "Preview Card", desc: "Link preview on hover." },
+  { name: "dialog", title: "Dialog", desc: "Modal with top-of-stack depth." },
+  { name: "alert-dialog", title: "Alert Dialog", desc: "Confirm a destructive action." },
+  { name: "drawer", title: "Drawer", desc: "Swipe-to-dismiss bottom sheet." },
+  { name: "dropdown-menu", title: "Dropdown Menu", desc: "Actions menu, overlay depth." },
+  { name: "select", title: "Select", desc: "Choose one from a listbox." },
+  { name: "context-menu", title: "Context Menu", desc: "Right-click menu." },
+  { name: "tabs", title: "Tabs", desc: "Indicator springs to active tab." },
+  { name: "accordion", title: "Accordion", desc: "Height-animated sections." },
+  { name: "collapsible", title: "Collapsible", desc: "Single expandable region." },
+  { name: "progress", title: "Progress", desc: "Eased task-completion fill." },
+  { name: "meter", title: "Meter", desc: "Static measurement in a range." },
+  { name: "number-field", title: "Number Field", desc: "Steppers with press depth." },
+  { name: "otp-field", title: "OTP Field", desc: "One-time-code input." },
+  { name: "scroll-area", title: "Scroll Area", desc: "Fading custom scrollbar." },
+  { name: "toast", title: "Toast", desc: "Bouncy stacked notifications." },
+]
+
+export default function ComponentsIndex() {
+  return (
+    <main className="mx-auto max-w-3xl px-6 py-16">
+      <h1 className="text-3xl font-semibold tracking-tight">Components</h1>
+      <p className="text-muted-foreground mt-2 text-lg">
+        Beautifully animated components you own — Base UI primitives with a
+        motion.dev depth layer.
+      </p>
+      <ul className="mt-8 grid gap-3 sm:grid-cols-2">
+        {COMPONENTS.map((c) => (
+          <li key={c.name}>
+            <Link
+              href={`/docs/components/${c.name}`}
+              className="bg-card hover:shadow-raised block rounded-xl border p-4 shadow-resting"
+            >
+              <div className="font-medium">{c.title}</div>
+              <div className="text-muted-foreground mt-1 text-sm">{c.desc}</div>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </main>
+  )
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox-demo",
+  "type": "registry:example",
+  "title": "Checkbox Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/checkbox.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/checkbox-demo.tsx",
+      "content": "import { Checkbox } from \"@/registry/seam/ui/checkbox\"\n\nexport default function CheckboxDemo() {\n  return (\n    <label className=\"flex items-center gap-2 text-sm\">\n      <Checkbox defaultChecked />\n      Accept terms and conditions\n    </label>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "separator-demo",
+  "type": "registry:example",
+  "title": "Separator Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/separator.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/separator-demo.tsx",
+      "content": "import { Separator } from \"@/registry/seam/ui/separator\"\n\nexport default function SeparatorDemo() {\n  return (\n    <div className=\"w-full max-w-xs\">\n      <div className=\"space-y-1\">\n        <h4 className=\"text-sm font-medium leading-none\">seamui</h4>\n        <p className=\"text-muted-foreground text-sm\">Components you own.</p>\n      </div>\n      <Separator className=\"my-4\" />\n      <div className=\"flex h-5 items-center gap-4 text-sm\">\n        <span>Docs</span>\n        <Separator orientation=\"vertical\" />\n        <span>Source</span>\n        <Separator orientation=\"vertical\" />\n        <span>Motion</span>\n      </div>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

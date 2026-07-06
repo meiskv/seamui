@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button",
+  "type": "registry:ui",
+  "title": "Button",
+  "description": "Button built on Base UI with seam depth motion.",
+  "dependencies": [
+    "@base-ui/react",
+    "motion",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "https://seamui.dev/r/utils.json",
+    "https://seamui.dev/r/motion.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/ui/button.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { Button as BaseButton } from \"@base-ui/react/button\"\nimport { motion, useReducedMotion } from \"motion/react\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\n\nimport { cn } from \"@/lib/utils\"\nimport { springs, depth } from \"@/lib/motion\"\n\nconst buttonVariants = cva(\n  // base — no CSS transition classes; motion.dev owns transform/shadow.\n  \"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium outline-none select-none focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0\",\n  {\n    variants: {\n      variant: {\n        default:\n          \"bg-primary text-primary-foreground shadow-resting hover:bg-primary/90\",\n        destructive:\n          \"bg-destructive text-white shadow-resting hover:bg-destructive/90\",\n        outline:\n          \"border border-input bg-background shadow-pressed hover:bg-accent hover:text-accent-foreground\",\n        secondary:\n          \"bg-secondary text-secondary-foreground shadow-pressed hover:bg-secondary/80\",\n        ghost: \"hover:bg-accent hover:text-accent-foreground\",\n        link: \"text-primary underline-offset-4 hover:underline\",\n      },\n      size: {\n        default: \"h-9 px-4 py-2\",\n        sm: \"h-8 rounded-md px-3 text-xs\",\n        lg: \"h-10 rounded-md px-6\",\n        icon: \"size-9\",\n      },\n    },\n    defaultVariants: { variant: \"default\", size: \"default\" },\n  }\n)\n\n// Base UI Button composed with motion. motion.create() wraps any\n// ref-forwarding component with animation props (whileTap, transition, …).\nconst MotionBase = motion.create(BaseButton)\n\n/** Variants that sit flat on the surface don't animate depth on press. */\nconst FLAT_VARIANTS = new Set([\"ghost\", \"link\"])\n\nexport interface ButtonProps\n  extends React.ComponentPropsWithoutRef<typeof MotionBase>,\n    VariantProps<typeof buttonVariants> {}\n\nfunction Button({ className, variant, size, disabled, ...props }: ButtonProps) {\n  const reduceMotion = useReducedMotion()\n  const animatesDepth =\n    !reduceMotion && !disabled && !FLAT_VARIANTS.has(variant ?? \"default\")\n\n  return (\n    <MotionBase\n      data-slot=\"button\"\n      className={cn(buttonVariants({ variant, size, className }))}\n      disabled={disabled}\n      // seam motion: press recedes into the surface, release springs back.\n      whileTap={animatesDepth ? depth.pressed : undefined}\n      transition={springs.press}\n      {...props}\n    />\n  )\n}\n\nexport { Button, buttonVariants }\n",
+      "type": "registry:ui",
+      "target": "components/ui/button.tsx"
+    }
+  ]
+}
