@@ -73,13 +73,13 @@ function TabsTrigger({
           >
             {state.active &&
               (reduceMotion ? (
-                <span className="bg-secondary shadow-raised absolute inset-0 -z-10 rounded-md squircle" />
+                <span className="bg-secondary shadow-resting absolute inset-0 z-0 rounded-md squircle" />
               ) : (
                 // seam motion: the indicator springs to the active tab.
                 <motion.span
                   layoutId={layoutId}
                   transition={springs.snappy}
-                  className="bg-secondary shadow-raised absolute inset-0 -z-10 rounded-md squircle"
+                  className="bg-secondary shadow-resting absolute inset-0 z-0 rounded-md squircle"
                 />
               ))}
             <span className="relative z-10">{children}</span>
