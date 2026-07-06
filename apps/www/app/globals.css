@@ -5,11 +5,11 @@
 :root {
   --radius: 0.875rem;
 
-  --background: oklch(0.958 0.003 106);
+  --background: oklch(0.993 0.0015 106);
   --foreground: oklch(0.23 0.004 286);
-  --card: oklch(0.99 0.001 106);
+  --card: oklch(1 0 0);
   --card-foreground: oklch(0.23 0.004 286);
-  --popover: oklch(0.995 0.001 106);
+  --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.23 0.004 286);
   --primary: oklch(0.24 0.005 286);
   --primary-foreground: oklch(0.985 0.001 106);
