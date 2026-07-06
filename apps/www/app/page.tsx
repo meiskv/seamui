@@ -2,10 +2,15 @@ import Link from "next/link"
 
 import { Button } from "@/registry/seam/ui/button"
 import ButtonVariants from "@/registry/seam/examples/button-variants"
+import { ThemeToggle } from "@/components/site/theme-toggle"
 
 export default function HomePage() {
   return (
-    <main className="mx-auto flex min-h-screen max-w-2xl flex-col items-start justify-center gap-8 px-6 py-24">
+    <>
+      <header className="mx-auto flex h-14 max-w-2xl items-center justify-end px-6">
+        <ThemeToggle />
+      </header>
+      <main className="mx-auto flex min-h-[calc(100vh-3.5rem)] max-w-2xl flex-col items-start justify-center gap-8 px-6 pb-24">
       <div className="space-y-3">
         <h1 className="text-4xl font-semibold tracking-tight">seamui</h1>
         <p className="text-muted-foreground text-lg">
@@ -31,6 +36,7 @@ export default function HomePage() {
           Base UI
         </Button>
       </div>
-    </main>
+      </main>
+    </>
   )
 }
