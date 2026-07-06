@@ -6,7 +6,7 @@ import { motion, useReducedMotion } from "motion/react"
 import { Check, ChevronDown } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { springs, depth } from "@/lib/motion"
+import { springs, fades, depth, reduced } from "@/lib/motion"
 
 function Select(props: React.ComponentProps<typeof BaseSelect.Root>) {
   return <BaseSelect.Root {...props} />
@@ -19,13 +19,23 @@ function SelectValue(props: React.ComponentProps<typeof BaseSelect.Value>) {
 function SelectTrigger({
   className,
   children,
+  variant = "default",
   ...props
-}: React.ComponentProps<typeof BaseSelect.Trigger>) {
+}: React.ComponentProps<typeof BaseSelect.Trigger> & {
+  /**
+   * default — recessed muted pill (inline-editable value in a toolbar well).
+   * ghost   — naked text + chevron for inline dropdowns.
+   */
+  variant?: "default" | "ghost"
+}) {
   return (
     <BaseSelect.Trigger
       data-slot="select-trigger"
       className={cn(
-        "flex h-9 w-full items-center justify-between gap-2 rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-pressed outline-none",
+        "flex h-10 items-center justify-between gap-2 rounded-md squircle text-sm outline-none",
+        variant === "default" &&
+          "w-full bg-muted shadow-well px-3.5 py-2 font-medium hover:bg-muted/80",
+        variant === "ghost" && "w-fit bg-transparent px-2 py-2 hover:text-foreground",
         "data-[popup-open]:ring-2 data-[popup-open]:ring-ring/50 focus-visible:ring-2 focus-visible:ring-ring/50",
         "disabled:pointer-events-none disabled:opacity-50",
         className
@@ -59,9 +69,10 @@ function SelectContent({
           )}
           render={
             <motion.div
-              initial={reduceMotion ? false : depth.overlay.initial}
+              // reduced motion: opacity-only fade — never a dead pop-in.
+              initial={reduceMotion ? reduced.fadeIn.initial : depth.overlay.initial}
               animate={depth.overlay.animate}
-              transition={springs.surface}
+              transition={reduceMotion ? fades.normal : springs.surface}
             />
           }
           {...props}

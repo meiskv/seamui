@@ -5,7 +5,7 @@ import { Slider as BaseSlider } from "@base-ui/react/slider"
 import { motion, useReducedMotion } from "motion/react"
 
 import { cn } from "@/lib/utils"
-import { springs, depth } from "@/lib/motion"
+import { springs, fades, depth, reduced } from "@/lib/motion"
 
 const MotionThumb = motion.create(BaseSlider.Thumb)
 
@@ -33,10 +33,10 @@ function Slider({
         </BaseSlider.Track>
         <MotionThumb
           data-slot="slider-thumb"
-          className="bg-background block size-4 rounded-full border border-primary/60 shadow-resting outline-none focus-visible:ring-2 focus-visible:ring-ring/50"
+          className="bg-card block size-4 rounded-full border border-primary/60 shadow-resting outline-none focus-visible:ring-2 focus-visible:ring-ring/50"
           // seam motion: the thumb swells slightly when grabbed.
-          whileTap={reduceMotion ? undefined : depth.raised}
-          transition={springs.snappy}
+          whileTap={reduceMotion ? reduced.pressed : depth.raised}
+          transition={reduceMotion ? fades.fast : springs.snappy}
         />
       </BaseSlider.Control>
     </BaseSlider.Root>

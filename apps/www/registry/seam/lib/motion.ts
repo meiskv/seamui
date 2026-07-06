@@ -43,3 +43,21 @@ export const depth = {
     exit: { opacity: 0, scale: 0.97, y: 6 },
   },
 } as const
+
+/**
+ * Reduced-motion fallbacks — used when `useReducedMotion()` is true.
+ * Policy: never go dead. Swap movement (scale/translate) for opacity so
+ * every interaction still gives feedback; it just doesn't travel.
+ */
+export const reduced = {
+  /** Press feedback without movement: a brief dim. */
+  pressed: { opacity: 0.7 },
+  /** Entrances collapse to opacity-only fades. */
+  fadeIn: {
+    initial: { opacity: 0 },
+    animate: { opacity: 1 },
+    exit: { opacity: 0 },
+  },
+  /** Layout / position changes jump instantly instead of springing. */
+  instant: { duration: 0 } satisfies Transition,
+} as const

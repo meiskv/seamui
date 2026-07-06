@@ -6,7 +6,7 @@ import { motion, useReducedMotion } from "motion/react"
 import { Check, Minus } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { springs } from "@/lib/motion"
+import { springs, fades, reduced } from "@/lib/motion"
 
 function Checkbox({
   className,
@@ -18,9 +18,10 @@ function Checkbox({
     <BaseCheckbox.Root
       data-slot="checkbox"
       className={cn(
-        "group/cb peer size-4.5 shrink-0 rounded-[4px] border border-input shadow-pressed outline-none",
-        "data-[checked]:bg-primary data-[checked]:border-primary data-[checked]:text-primary-foreground",
-        "data-[indeterminate]:bg-primary data-[indeterminate]:border-primary data-[indeterminate]:text-primary-foreground",
+        // debossed well unchecked → embossed primary key when checked.
+        "group/cb peer flex size-4.5 shrink-0 items-center justify-center rounded-[5px] squircle border border-border/60 bg-muted shadow-well outline-none",
+        "data-[checked]:bg-primary data-[checked]:border-primary data-[checked]:text-primary-foreground data-[checked]:shadow-resting",
+        "data-[indeterminate]:bg-primary data-[indeterminate]:border-primary data-[indeterminate]:text-primary-foreground data-[indeterminate]:shadow-resting",
         "focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
         "disabled:pointer-events-none disabled:opacity-50",
         className
@@ -33,9 +34,9 @@ function Checkbox({
         render={
           // seam motion: the mark pops in with a snappy spring.
           <motion.span
-            initial={reduceMotion ? false : { scale: 0, opacity: 0 }}
+            initial={reduceMotion ? reduced.fadeIn.initial : { scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            transition={springs.snappy}
+            transition={reduceMotion ? fades.fast : springs.snappy}
           />
         }
       >

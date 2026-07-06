@@ -5,7 +5,7 @@ import { AlertDialog as BaseAlertDialog } from "@base-ui/react/alert-dialog"
 import { motion, useReducedMotion } from "motion/react"
 
 import { cn } from "@/lib/utils"
-import { springs, depth, fades } from "@/lib/motion"
+import { springs, fades, depth, reduced } from "@/lib/motion"
 
 function AlertDialog(
   props: React.ComponentProps<typeof BaseAlertDialog.Root>
@@ -33,7 +33,7 @@ function AlertDialogContent({
         className="fixed inset-0 z-50 bg-black/50"
         render={
           <motion.div
-            initial={reduceMotion ? false : { opacity: 0 }}
+            initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={fades.normal}
           />
@@ -42,14 +42,14 @@ function AlertDialogContent({
       <BaseAlertDialog.Popup
         data-slot="alert-dialog-content"
         className={cn(
-          "bg-background text-foreground fixed left-1/2 top-1/2 z-50 grid w-full max-w-lg -translate-x-1/2 -translate-y-1/2 gap-4 rounded-xl border p-6 shadow-modal outline-none",
+          "bg-popover text-popover-foreground fixed left-1/2 top-1/2 z-50 grid w-full max-w-lg -translate-x-1/2 -translate-y-1/2 gap-4 rounded-xl squircle border p-6 shadow-modal outline-none",
           className
         )}
         render={
           <motion.div
-            initial={reduceMotion ? false : depth.modal.initial}
+            initial={reduceMotion ? reduced.fadeIn.initial : depth.modal.initial}
             animate={depth.modal.animate}
-            transition={springs.surface}
+            transition={reduceMotion ? fades.normal : springs.surface}
           />
         }
         {...props}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toggle-group",
+  "type": "registry:ui",
+  "title": "Toggle Group",
+  "description": "A debossed well of toggles; the pressed one rises as an embossed key.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "https://seamui.dev/r/utils.json",
+    "https://seamui.dev/r/toggle.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/ui/toggle-group.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { ToggleGroup as BaseToggleGroup } from \"@base-ui/react/toggle-group\"\n\nimport { cn } from \"@/lib/utils\"\n\n/**\n * A debossed well holding a set of Toggles — the pressed one rises out of it\n * as an embossed white key (seam design language). Use with the seamui\n * Toggle as items: <ToggleGroup><Toggle value=\"left\">…</Toggle></ToggleGroup>\n */\nfunction ToggleGroup({\n  className,\n  ...props\n}: React.ComponentProps<typeof BaseToggleGroup>) {\n  return (\n    <BaseToggleGroup\n      data-slot=\"toggle-group\"\n      className={cn(\n        \"bg-muted shadow-well inline-flex w-fit items-center gap-1 rounded-lg squircle p-1.5\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { ToggleGroup }\n",
+      "type": "registry:ui",
+      "target": "components/ui/toggle-group.tsx"
+    }
+  ]
+}

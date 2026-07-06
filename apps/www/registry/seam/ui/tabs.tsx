@@ -35,7 +35,9 @@ function TabsList({
     <BaseTabs.List
       data-slot="tabs-list"
       className={cn(
-        "bg-muted text-muted-foreground inline-flex w-fit items-center gap-1 rounded-lg p-1",
+        // recessed well — grouped controls sit below the surface; the active
+        // one rises as a white key (seam design language).
+        "bg-muted text-muted-foreground shadow-well inline-flex w-fit items-center gap-1 rounded-lg squircle p-1.5",
         className
       )}
       {...props}
@@ -63,7 +65,7 @@ function TabsTrigger({
             {...rest}
             className={cn(
               baseClassName,
-              "relative inline-flex items-center justify-center rounded-md px-3 py-1.5 text-sm font-medium outline-none transition-colors",
+              "relative inline-flex items-center justify-center rounded-md squircle px-3.5 py-2 text-sm font-medium outline-none transition-colors",
               state.active ? "text-foreground" : "text-muted-foreground",
               "focus-visible:ring-2 focus-visible:ring-ring/50",
               className
@@ -71,13 +73,13 @@ function TabsTrigger({
           >
             {state.active &&
               (reduceMotion ? (
-                <span className="bg-background shadow-resting absolute inset-0 -z-10 rounded-md" />
+                <span className="bg-secondary shadow-resting absolute inset-0 -z-10 rounded-md squircle" />
               ) : (
                 // seam motion: the indicator springs to the active tab.
                 <motion.span
                   layoutId={layoutId}
                   transition={springs.snappy}
-                  className="bg-background shadow-resting absolute inset-0 -z-10 rounded-md"
+                  className="bg-secondary shadow-resting absolute inset-0 -z-10 rounded-md squircle"
                 />
               ))}
             <span className="relative z-10">{children}</span>

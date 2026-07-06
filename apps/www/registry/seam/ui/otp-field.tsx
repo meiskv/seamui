@@ -23,7 +23,7 @@ function OTPField({
           key={i}
           data-slot="otp-field-input"
           className={cn(
-            "size-10 rounded-md border border-input bg-transparent text-center text-sm shadow-pressed outline-none",
+            "size-10 rounded-md squircle border border-border/60 bg-muted text-center text-sm shadow-well outline-none",
             "focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/50",
             "data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
           )}

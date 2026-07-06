@@ -16,6 +16,7 @@ export const NAV: NavGroup[] = [
     items: [
       c("button", "Button"),
       c("toggle", "Toggle"),
+      c("toggle-group", "Toggle Group"),
       c("input", "Input"),
       c("checkbox", "Checkbox"),
       c("radio-group", "Radio Group"),
