@@ -49,7 +49,9 @@
   --popover-foreground: oklch(0.97 0.002 106);
   --primary: oklch(0.94 0.003 106);
   --primary-foreground: oklch(0.22 0.005 286);
-  --secondary: oklch(0.285 0.005 286);
+  /* raised "key" surface — must sit clearly lighter than the --muted well
+     (0.265) so active tabs / pressed toggles read as lifted in dark mode. */
+  --secondary: oklch(0.33 0.005 286);
   --secondary-foreground: oklch(0.97 0.002 106);
   --muted: oklch(0.265 0.005 286);
   --muted-foreground: oklch(0.72 0.004 106);
