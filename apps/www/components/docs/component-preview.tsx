@@ -23,7 +23,7 @@ export function ComponentPreview({
 }) {
   return (
     <div className="squircle bg-card my-4 overflow-hidden rounded-xl border">
-      <Tabs defaultValue="preview">
+      <Tabs defaultValue="preview" size="sm">
         <div className="border-b px-2 py-1.5">
           <TabsList>
             <TabsTrigger value="preview">Preview</TabsTrigger>

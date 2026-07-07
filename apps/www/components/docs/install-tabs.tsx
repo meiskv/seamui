@@ -10,7 +10,7 @@ import { CodeBlock } from "./code-block"
  */
 export function InstallTabs({ name }: { name: string }) {
   return (
-    <Tabs defaultValue="seamui">
+    <Tabs defaultValue="seamui" size="sm">
       <TabsList>
         <TabsTrigger value="seamui">seamui</TabsTrigger>
         <TabsTrigger value="shadcn">shadcn</TabsTrigger>

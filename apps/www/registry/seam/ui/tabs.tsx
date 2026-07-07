@@ -7,22 +7,30 @@ import { motion, useReducedMotion } from "motion/react"
 import { cn } from "@/lib/utils"
 import { springs } from "@/lib/motion"
 
+type TabsSize = "default" | "sm"
+
 // Each Tabs instance gets a unique layoutId so multiple tab groups on one
 // page don't share (and fight over) the sliding indicator.
 const TabsLayoutContext = React.createContext<string>("seam-tabs")
+// Size flows from the Root down to the List/Trigger via context so callers
+// only set it in one place: <Tabs size="sm">.
+const TabsSizeContext = React.createContext<TabsSize>("default")
 
 function Tabs({
   className,
+  size = "default",
   ...props
-}: React.ComponentProps<typeof BaseTabs.Root>) {
+}: React.ComponentProps<typeof BaseTabs.Root> & { size?: TabsSize }) {
   const layoutId = React.useId()
   return (
     <TabsLayoutContext.Provider value={layoutId}>
-      <BaseTabs.Root
-        data-slot="tabs"
-        className={cn("flex flex-col gap-2", className)}
-        {...props}
-      />
+      <TabsSizeContext.Provider value={size}>
+        <BaseTabs.Root
+          data-slot="tabs"
+          className={cn("flex flex-col gap-2", className)}
+          {...props}
+        />
+      </TabsSizeContext.Provider>
     </TabsLayoutContext.Provider>
   )
 }
@@ -31,13 +39,15 @@ function TabsList({
   className,
   ...props
 }: React.ComponentProps<typeof BaseTabs.List>) {
+  const size = React.useContext(TabsSizeContext)
   return (
     <BaseTabs.List
       data-slot="tabs-list"
       className={cn(
         // recessed well — grouped controls sit below the surface; the active
         // one rises as a white key (seam design language).
-        "bg-muted text-muted-foreground shadow-well inline-flex w-fit items-center gap-1 rounded-lg squircle p-1.5",
+        "bg-muted text-muted-foreground shadow-well inline-flex w-fit items-center rounded-lg squircle",
+        size === "sm" ? "gap-0.5 p-1" : "gap-1 p-1.5",
         className
       )}
       {...props}
@@ -51,6 +61,7 @@ function TabsTrigger({
   ...props
 }: React.ComponentProps<typeof BaseTabs.Tab>) {
   const layoutId = React.useContext(TabsLayoutContext)
+  const size = React.useContext(TabsSizeContext)
   const reduceMotion = useReducedMotion()
 
   return (
@@ -65,7 +76,8 @@ function TabsTrigger({
             {...rest}
             className={cn(
               baseClassName,
-              "relative inline-flex items-center justify-center rounded-md squircle px-3.5 py-2 text-sm font-medium outline-none transition-colors",
+              "relative inline-flex items-center justify-center rounded-md squircle font-medium outline-none transition-colors",
+              size === "sm" ? "px-2.5 py-1 text-xs" : "px-3.5 py-2 text-sm",
               state.active ? "text-foreground" : "text-muted-foreground",
               "focus-visible:ring-2 focus-visible:ring-ring/50",
               className
