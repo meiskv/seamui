@@ -1,5 +1,9 @@
 import * as React from "react"
 
+import { InstallTabs } from "./install-tabs"
+
+export { CodeBlock } from "./code-block"
+
 export function Section({
   title,
   children,
@@ -17,22 +21,10 @@ export function Section({
   )
 }
 
-export function CodeBlock({ children }: { children: string }) {
-  return (
-    <pre className="bg-muted squircle shadow-well overflow-x-auto rounded-lg px-3 py-2.5 text-[0.8125rem] leading-relaxed">
-      <code>{children}</code>
-    </pre>
-  )
-}
-
 export function Install({ name }: { name: string }) {
   return (
     <Section title="Installation">
-      <CodeBlock>{`# seamui CLI
-bunx --bun seamui@latest add ${name}
-
-# or the shadcn CLI
-bunx --bun shadcn@latest add @seamui/${name}`}</CodeBlock>
+      <InstallTabs name={name} />
     </Section>
   )
 }
