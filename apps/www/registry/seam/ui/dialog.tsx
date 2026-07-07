@@ -7,6 +7,7 @@ import { X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { springs, fades, depth, reduced } from "@/lib/motion"
+import { Button } from "./button"
 
 function Dialog(props: React.ComponentProps<typeof BaseDialog.Root>) {
   return <BaseDialog.Root {...props} />
@@ -58,7 +59,13 @@ function DialogContent({
         {showClose && (
           <BaseDialog.Close
             data-slot="dialog-close"
-            className="absolute right-4 top-4 rounded-md opacity-70 outline-none transition-opacity hover:opacity-100 focus-visible:ring-2 focus-visible:ring-ring/50"
+            render={
+              <Button
+                variant="ghost"
+                size="icon"
+                className="text-muted-foreground absolute right-3 top-3 size-8"
+              />
+            }
             aria-label="Close"
           >
             <X className="size-4" />

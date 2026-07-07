@@ -105,7 +105,8 @@
       "dependencies": ["@base-ui/react", "motion", "lucide-react"],
       "registryDependencies": [
         "https://seamui.dev/r/utils.json",
-        "https://seamui.dev/r/motion.json"
+        "https://seamui.dev/r/motion.json",
+        "https://seamui.dev/r/button.json"
       ],
       "files": [
         {
@@ -297,7 +298,8 @@
       "dependencies": ["@base-ui/react", "motion", "lucide-react"],
       "registryDependencies": [
         "https://seamui.dev/r/utils.json",
-        "https://seamui.dev/r/motion.json"
+        "https://seamui.dev/r/motion.json",
+        "https://seamui.dev/r/button.json"
       ],
       "files": [
         {
@@ -473,7 +475,8 @@
       "dependencies": ["@base-ui/react", "motion", "lucide-react"],
       "registryDependencies": [
         "https://seamui.dev/r/utils.json",
-        "https://seamui.dev/r/motion.json"
+        "https://seamui.dev/r/motion.json",
+        "https://seamui.dev/r/button.json"
       ],
       "files": [
         { "path": "registry/seam/ui/number-field.tsx", "type": "registry:ui", "target": "components/ui/number-field.tsx" }
@@ -507,7 +510,7 @@
       "title": "Toast",
       "description": "Toast notifications built on Base UI with a bouncy seam entrance.",
       "dependencies": ["@base-ui/react", "lucide-react"],
-      "registryDependencies": ["https://seamui.dev/r/utils.json"],
+      "registryDependencies": ["https://seamui.dev/r/utils.json", "https://seamui.dev/r/button.json"],
       "files": [
         { "path": "registry/seam/ui/toast.tsx", "type": "registry:ui", "target": "components/ui/toast.tsx" }
       ]

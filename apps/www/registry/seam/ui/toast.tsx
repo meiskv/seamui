@@ -5,6 +5,7 @@ import { Toast as BaseToast } from "@base-ui/react/toast"
 import { X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+import { Button } from "./button"
 
 /** Re-exported so callers can `const toast = useToast(); toast.add({ ... })`. */
 const useToast = BaseToast.useToastManager
@@ -50,7 +51,13 @@ function Toaster() {
             <BaseToast.Title className="text-sm font-medium" />
             <BaseToast.Description className="text-muted-foreground text-sm" />
             <BaseToast.Close
-              className="absolute right-3 top-3 rounded-md opacity-70 outline-none hover:opacity-100"
+              render={
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="text-muted-foreground absolute right-2 top-2 size-8"
+                />
+              }
               aria-label="Close"
             >
               <X className="size-4" />
