@@ -6,6 +6,7 @@ import { motion, useReducedMotion } from "motion/react"
 
 import { cn } from "@/lib/utils"
 import { springs } from "@/lib/motion"
+import { buttonVariants } from "./button"
 
 type TabsSize = "default" | "sm"
 
@@ -68,6 +69,13 @@ function TabsTrigger({
     <BaseTabs.Tab
       data-slot="tabs-trigger"
       {...props}
+      // The trigger is a button, so it wears the seam Button's own styling —
+      // buttonVariants (ghost + size) is the single source of truth. We reuse
+      // the cva rather than the Button component itself: Base UI's Tab manages
+      // roving focus via the rendered element's ref, and an extra wrapper
+      // breaks arrow-key navigation. The tab keeps its signature — a
+      // transparent key with the active indicator springing between tabs — so
+      // the ghost hover fill is neutralised.
       render={(tabProps, state) => {
         const { className: baseClassName, ...rest } =
           tabProps as React.ComponentProps<"button">
@@ -76,10 +84,11 @@ function TabsTrigger({
             {...rest}
             className={cn(
               baseClassName,
-              "relative inline-flex items-center justify-center rounded-md squircle font-medium outline-none transition-colors",
-              size === "sm" ? "px-2.5 py-1 text-xs" : "px-3.5 py-2 text-sm",
-              state.active ? "text-foreground" : "text-muted-foreground",
-              "focus-visible:ring-2 focus-visible:ring-ring/50",
+              buttonVariants({ variant: "ghost", size: size === "sm" ? "sm" : "default" }),
+              "relative hover:bg-transparent",
+              state.active
+                ? "text-foreground"
+                : "text-muted-foreground hover:text-foreground",
               className
             )}
           >
