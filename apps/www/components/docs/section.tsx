@@ -8,18 +8,18 @@ export function Section({
   children: React.ReactNode
 }) {
   return (
-    <section className="mt-10">
-      <h2 className="border-b pb-2 text-2xl font-semibold tracking-tight">
+    <section className="mt-8">
+      <h2 className="text-muted-foreground text-[0.6875rem] font-semibold tracking-[0.14em] uppercase">
         {title}
       </h2>
-      <div className="mt-4 space-y-3">{children}</div>
+      <div className="mt-2.5 space-y-2.5">{children}</div>
     </section>
   )
 }
 
 export function CodeBlock({ children }: { children: string }) {
   return (
-    <pre className="bg-card overflow-x-auto rounded-lg border p-3 text-sm">
+    <pre className="bg-muted squircle shadow-well overflow-x-auto rounded-lg px-3 py-2.5 text-[0.8125rem] leading-relaxed">
       <code>{children}</code>
     </pre>
   )
@@ -28,10 +28,11 @@ export function CodeBlock({ children }: { children: string }) {
 export function Install({ name }: { name: string }) {
   return (
     <Section title="Installation">
-      <p className="text-muted-foreground text-sm">With the seamui CLI:</p>
-      <CodeBlock>{`bunx --bun seamui@latest add ${name}`}</CodeBlock>
-      <p className="text-muted-foreground text-sm">Or the shadcn CLI:</p>
-      <CodeBlock>{`bunx --bun shadcn@latest add @seamui/${name}`}</CodeBlock>
+      <CodeBlock>{`# seamui CLI
+bunx --bun seamui@latest add ${name}
+
+# or the shadcn CLI
+bunx --bun shadcn@latest add @seamui/${name}`}</CodeBlock>
     </Section>
   )
 }

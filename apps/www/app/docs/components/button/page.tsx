@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 
 import { ComponentPreview } from "@/components/docs/component-preview"
+import { Section, CodeBlock, Install } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import ButtonDemo from "@/registry/seam/examples/button-demo"
 import ButtonVariants from "@/registry/seam/examples/button-variants"
@@ -15,9 +16,9 @@ export const metadata: Metadata = {
 
 export default function ButtonDocs() {
   return (
-    <main className="prose-neutral mx-auto max-w-3xl px-6 py-16">
-      <h1 className="text-3xl font-semibold tracking-tight">Button</h1>
-      <p className="text-muted-foreground mt-2 text-lg">
+    <main className="mx-auto max-w-3xl px-6 py-10">
+      <h1 className="text-2xl font-semibold tracking-tight">Button</h1>
+      <p className="text-muted-foreground mt-1.5 text-[0.9375rem]">
         Displays a button. Built on Base UI, animated with seam depth motion.
       </p>
 
@@ -25,35 +26,39 @@ export default function ButtonDocs() {
         <ButtonDemo />
       </ComponentPreview>
 
-      <Section title="Installation">
-        <p className="text-muted-foreground text-sm">With the seamui CLI:</p>
-        <CodeBlock>{`bunx --bun seamui@latest add button`}</CodeBlock>
-        <p className="text-muted-foreground text-sm">Or the shadcn CLI:</p>
-        <CodeBlock>{`bunx --bun shadcn@latest add @seamui/button`}</CodeBlock>
-      </Section>
+      <Install name="button" />
 
       <Section title="Usage">
-        <CodeBlock>{`import { Button } from "@/components/ui/button"`}</CodeBlock>
-        <CodeBlock>{`<Button variant="outline" size="lg">Button</Button>`}</CodeBlock>
+        <CodeBlock>{`import { Button } from "@/components/ui/button"
+
+<Button variant="outline" size="lg">Button</Button>`}</CodeBlock>
       </Section>
 
       <Section title="Examples">
-        <h3 className="mt-6 text-lg font-medium">Variants</h3>
+        <h3 className="text-muted-foreground/80 mt-4 text-xs font-medium">
+          Variants
+        </h3>
         <ComponentPreview code={exampleSource("button-variants")}>
           <ButtonVariants />
         </ComponentPreview>
 
-        <h3 className="mt-6 text-lg font-medium">Sizes</h3>
+        <h3 className="text-muted-foreground/80 mt-4 text-xs font-medium">
+          Sizes
+        </h3>
         <ComponentPreview code={exampleSource("button-sizes")}>
           <ButtonSizes />
         </ComponentPreview>
 
-        <h3 className="mt-6 text-lg font-medium">Loading</h3>
+        <h3 className="text-muted-foreground/80 mt-4 text-xs font-medium">
+          Loading
+        </h3>
         <ComponentPreview code={exampleSource("button-loading")}>
           <ButtonLoading />
         </ComponentPreview>
 
-        <h3 className="mt-6 text-lg font-medium">As a link</h3>
+        <h3 className="text-muted-foreground/80 mt-4 text-xs font-medium">
+          As a link
+        </h3>
         <p className="text-muted-foreground text-sm">
           Use Base UI&apos;s <code>render</code> prop (replaces Radix{" "}
           <code>asChild</code>):
@@ -64,10 +69,10 @@ export default function ButtonDocs() {
       </Section>
 
       <Section title="API Reference">
-        <div className="overflow-x-auto">
+        <div className="squircle overflow-hidden rounded-lg border">
           <table className="w-full border-collapse text-sm">
             <thead>
-              <tr className="border-b text-left">
+              <tr className="bg-muted/50 text-muted-foreground text-left text-xs">
                 <Th>Prop</Th>
                 <Th>Type</Th>
                 <Th>Default</Th>
@@ -102,7 +107,7 @@ export default function ButtonDocs() {
             </tbody>
           </table>
         </div>
-        <p className="text-muted-foreground mt-3 text-sm">
+        <p className="text-muted-foreground mt-2 text-sm">
           Plus all native <code>&lt;button&gt;</code> props and motion props (
           <code>whileTap</code> etc. can be overridden).
         </p>
@@ -131,33 +136,8 @@ export default function ButtonDocs() {
   )
 }
 
-function Section({
-  title,
-  children,
-}: {
-  title: string
-  children: React.ReactNode
-}) {
-  return (
-    <section className="mt-10">
-      <h2 className="border-b pb-2 text-2xl font-semibold tracking-tight">
-        {title}
-      </h2>
-      <div className="mt-4 space-y-3">{children}</div>
-    </section>
-  )
-}
-
-function CodeBlock({ children }: { children: string }) {
-  return (
-    <pre className="bg-card overflow-x-auto rounded-lg border p-3 text-sm">
-      <code>{children}</code>
-    </pre>
-  )
-}
-
 function Th({ children }: { children: React.ReactNode }) {
-  return <th className="py-2 pr-4 font-medium">{children}</th>
+  return <th className="px-3 py-2 font-medium">{children}</th>
 }
 
 function Row({
@@ -172,11 +152,11 @@ function Row({
   desc: string
 }) {
   return (
-    <tr className="border-b align-top">
-      <td className="py-2 pr-4 font-mono text-xs">{prop}</td>
-      <td className="py-2 pr-4 font-mono text-xs">{type}</td>
-      <td className="py-2 pr-4 font-mono text-xs">{def}</td>
-      <td className="text-muted-foreground py-2">{desc}</td>
+    <tr className="border-t align-top">
+      <td className="px-3 py-2 font-mono text-xs">{prop}</td>
+      <td className="px-3 py-2 font-mono text-xs">{type}</td>
+      <td className="px-3 py-2 font-mono text-xs">{def}</td>
+      <td className="text-muted-foreground px-3 py-2">{desc}</td>
     </tr>
   )
 }

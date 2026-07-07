@@ -12,9 +12,9 @@ export const metadata: Metadata = {
 
 export default function AvatarDocs() {
   return (
-    <main className="mx-auto max-w-3xl px-6 py-16">
-      <h1 className="text-3xl font-semibold tracking-tight">Avatar</h1>
-      <p className="text-muted-foreground mt-2 text-lg">
+    <main className="mx-auto max-w-3xl px-6 py-10">
+      <h1 className="text-2xl font-semibold tracking-tight">Avatar</h1>
+      <p className="text-muted-foreground mt-1.5 text-[0.9375rem]">
         An image element with a text fallback. The image resolves in with a
         gentle fade — no layout shift, no flash of the fallback.
       </p>

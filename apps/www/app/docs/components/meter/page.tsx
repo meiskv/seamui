@@ -12,9 +12,9 @@ export const metadata: Metadata = {
 
 export default function MeterDocs() {
   return (
-    <main className="mx-auto max-w-3xl px-6 py-16">
-      <h1 className="text-3xl font-semibold tracking-tight">Meter</h1>
-      <p className="text-muted-foreground mt-2 text-lg">
+    <main className="mx-auto max-w-3xl px-6 py-10">
+      <h1 className="text-2xl font-semibold tracking-tight">Meter</h1>
+      <p className="text-muted-foreground mt-1.5 text-[0.9375rem]">
         Displays a measurement within a known range — like disk usage or a
         score. Unlike Progress, it represents a static value, not task progress.
       </p>

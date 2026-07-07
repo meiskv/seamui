@@ -12,9 +12,9 @@ export const metadata: Metadata = {
 
 export default function DrawerDocs() {
   return (
-    <main className="mx-auto max-w-3xl px-6 py-16">
-      <h1 className="text-3xl font-semibold tracking-tight">Drawer</h1>
-      <p className="text-muted-foreground mt-2 text-lg">
+    <main className="mx-auto max-w-3xl px-6 py-10">
+      <h1 className="text-2xl font-semibold tracking-tight">Drawer</h1>
+      <p className="text-muted-foreground mt-1.5 text-[0.9375rem]">
         A bottom sheet that slides up and dismisses with a downward swipe — the
         most mobile-native surface in seamui.
       </p>
