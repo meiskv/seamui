@@ -4,7 +4,7 @@
   "type": "registry:example",
   "title": "Scroll Area Demo",
   "registryDependencies": [
-    "https://seamui.dev/r/scroll-area.json"
+    "https://seamui.vercel.app/r/scroll-area.json"
   ],
   "files": [
     {

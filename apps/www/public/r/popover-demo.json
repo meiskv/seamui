@@ -4,8 +4,8 @@
   "type": "registry:example",
   "title": "Popover Demo",
   "registryDependencies": [
-    "https://seamui.dev/r/popover.json",
-    "https://seamui.dev/r/button.json"
+    "https://seamui.vercel.app/r/popover.json",
+    "https://seamui.vercel.app/r/button.json"
   ],
   "files": [
     {

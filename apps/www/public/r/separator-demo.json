@@ -4,7 +4,7 @@
   "type": "registry:example",
   "title": "Separator Demo",
   "registryDependencies": [
-    "https://seamui.dev/r/separator.json"
+    "https://seamui.vercel.app/r/separator.json"
   ],
   "files": [
     {

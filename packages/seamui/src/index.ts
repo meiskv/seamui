@@ -14,7 +14,7 @@ import pc from "picocolors"
 
 /** The public seamui registry. Namespace resolves {name} → registry item. */
 const REGISTRY_NAMESPACE = "@seamui"
-const REGISTRY_URL = "https://seamui.dev/r/{name}.json"
+const REGISTRY_URL = "https://seamui.vercel.app/r/{name}.json"
 
 /** Foundation items installed on every `init`. */
 const FOUNDATION = ["theme", "utils", "motion"]

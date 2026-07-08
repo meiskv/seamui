@@ -4,8 +4,8 @@
   "type": "registry:example",
   "title": "Tooltip Demo",
   "registryDependencies": [
-    "https://seamui.dev/r/tooltip.json",
-    "https://seamui.dev/r/button.json"
+    "https://seamui.vercel.app/r/tooltip.json",
+    "https://seamui.vercel.app/r/button.json"
   ],
   "files": [
     {

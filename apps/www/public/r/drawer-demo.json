@@ -4,8 +4,8 @@
   "type": "registry:example",
   "title": "Drawer Demo",
   "registryDependencies": [
-    "https://seamui.dev/r/drawer.json",
-    "https://seamui.dev/r/button.json"
+    "https://seamui.vercel.app/r/drawer.json",
+    "https://seamui.vercel.app/r/button.json"
   ],
   "files": [
     {

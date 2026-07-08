@@ -4,7 +4,7 @@
   "type": "registry:example",
   "title": "Context Menu Demo",
   "registryDependencies": [
-    "https://seamui.dev/r/context-menu.json"
+    "https://seamui.vercel.app/r/context-menu.json"
   ],
   "files": [
     {

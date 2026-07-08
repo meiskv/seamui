@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "seamui",
-  "homepage": "https://seamui.dev",
+  "homepage": "https://seamui.vercel.app",
   "items": [
     {
       "name": "theme",
@@ -50,8 +50,8 @@
       "description": "Button built on Base UI with seam depth motion.",
       "dependencies": ["@base-ui/react", "motion", "class-variance-authority"],
       "registryDependencies": [
-        "https://seamui.dev/r/utils.json",
-        "https://seamui.dev/r/motion.json"
+        "https://seamui.vercel.app/r/utils.json",
+        "https://seamui.vercel.app/r/motion.json"
       ],
       "files": [
         {
@@ -68,8 +68,8 @@
       "description": "Two-state button built on Base UI with seam press-depth motion.",
       "dependencies": ["@base-ui/react", "motion", "class-variance-authority"],
       "registryDependencies": [
-        "https://seamui.dev/r/utils.json",
-        "https://seamui.dev/r/motion.json"
+        "https://seamui.vercel.app/r/utils.json",
+        "https://seamui.vercel.app/r/motion.json"
       ],
       "files": [
         {
@@ -86,8 +86,8 @@
       "description": "A debossed well of toggles; the pressed one rises as an embossed key.",
       "dependencies": ["@base-ui/react"],
       "registryDependencies": [
-        "https://seamui.dev/r/utils.json",
-        "https://seamui.dev/r/toggle.json"
+        "https://seamui.vercel.app/r/utils.json",
+        "https://seamui.vercel.app/r/toggle.json"
       ],
       "files": [
         {
@@ -104,9 +104,9 @@
       "description": "A filterable input bound to a listbox popup, built on Base UI Combobox with seam depth motion.",
       "dependencies": ["@base-ui/react", "motion", "lucide-react"],
       "registryDependencies": [
-        "https://seamui.dev/r/utils.json",
-        "https://seamui.dev/r/motion.json",
-        "https://seamui.dev/r/button.json"
+        "https://seamui.vercel.app/r/utils.json",
+        "https://seamui.vercel.app/r/motion.json",
+        "https://seamui.vercel.app/r/button.json"
       ],
       "files": [
         {
@@ -122,7 +122,7 @@
       "title": "Input",
       "description": "Text input built on Base UI, Field-aware.",
       "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["https://seamui.dev/r/utils.json"],
+      "registryDependencies": ["https://seamui.vercel.app/r/utils.json"],
       "files": [
         {
           "path": "registry/seam/ui/input.tsx",
@@ -138,8 +138,8 @@
       "description": "Avatar built on Base UI with a seam fade-in on image load.",
       "dependencies": ["@base-ui/react", "motion"],
       "registryDependencies": [
-        "https://seamui.dev/r/utils.json",
-        "https://seamui.dev/r/motion.json"
+        "https://seamui.vercel.app/r/utils.json",
+        "https://seamui.vercel.app/r/motion.json"
       ],
       "files": [
         {
@@ -155,7 +155,7 @@
       "title": "Separator",
       "description": "Accessible separator built on Base UI.",
       "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["https://seamui.dev/r/utils.json"],
+      "registryDependencies": ["https://seamui.vercel.app/r/utils.json"],
       "files": [
         {
           "path": "registry/seam/ui/separator.tsx",
@@ -171,8 +171,8 @@
       "description": "Switch built on Base UI; the thumb springs between states.",
       "dependencies": ["@base-ui/react", "motion"],
       "registryDependencies": [
-        "https://seamui.dev/r/utils.json",
-        "https://seamui.dev/r/motion.json"
+        "https://seamui.vercel.app/r/utils.json",
+        "https://seamui.vercel.app/r/motion.json"
       ],
       "files": [
         {
@@ -189,8 +189,8 @@
       "description": "Checkbox built on Base UI; the mark pops in with a spring.",
       "dependencies": ["@base-ui/react", "motion", "lucide-react"],
       "registryDependencies": [
-        "https://seamui.dev/r/utils.json",
-        "https://seamui.dev/r/motion.json"
+        "https://seamui.vercel.app/r/utils.json",
+        "https://seamui.vercel.app/r/motion.json"
       ],
       "files": [
         {
@@ -207,8 +207,8 @@
       "description": "Radio group built on Base UI; the dot pops in with a spring.",
       "dependencies": ["@base-ui/react", "motion"],
       "registryDependencies": [
-        "https://seamui.dev/r/utils.json",
-        "https://seamui.dev/r/motion.json"
+        "https://seamui.vercel.app/r/utils.json",
+        "https://seamui.vercel.app/r/motion.json"
       ],
       "files": [
         {
@@ -225,8 +225,8 @@
       "description": "Slider built on Base UI; the thumb swells when grabbed.",
       "dependencies": ["@base-ui/react", "motion"],
       "registryDependencies": [
-        "https://seamui.dev/r/utils.json",
-        "https://seamui.dev/r/motion.json"
+        "https://seamui.vercel.app/r/utils.json",
+        "https://seamui.vercel.app/r/motion.json"
       ],
       "files": [
         {
@@ -243,8 +243,8 @@
       "description": "Tooltip built on Base UI; the surface rises with overlay depth.",
       "dependencies": ["@base-ui/react", "motion"],
       "registryDependencies": [
-        "https://seamui.dev/r/utils.json",
-        "https://seamui.dev/r/motion.json"
+        "https://seamui.vercel.app/r/utils.json",
+        "https://seamui.vercel.app/r/motion.json"
       ],
       "files": [
         {
@@ -261,8 +261,8 @@
       "description": "Popover built on Base UI with seam overlay-depth entrance.",
       "dependencies": ["@base-ui/react", "motion"],
       "registryDependencies": [
-        "https://seamui.dev/r/utils.json",
-        "https://seamui.dev/r/motion.json"
+        "https://seamui.vercel.app/r/utils.json",
+        "https://seamui.vercel.app/r/motion.json"
       ],
       "files": [
         {
@@ -279,8 +279,8 @@
       "description": "Preview card built on Base UI with seam overlay-depth entrance.",
       "dependencies": ["@base-ui/react", "motion"],
       "registryDependencies": [
-        "https://seamui.dev/r/utils.json",
-        "https://seamui.dev/r/motion.json"
+        "https://seamui.vercel.app/r/utils.json",
+        "https://seamui.vercel.app/r/motion.json"
       ],
       "files": [
         {
@@ -297,9 +297,9 @@
       "description": "Modal dialog built on Base UI; the surface rises with modal depth and the page dims behind it.",
       "dependencies": ["@base-ui/react", "motion", "lucide-react"],
       "registryDependencies": [
-        "https://seamui.dev/r/utils.json",
-        "https://seamui.dev/r/motion.json",
-        "https://seamui.dev/r/button.json"
+        "https://seamui.vercel.app/r/utils.json",
+        "https://seamui.vercel.app/r/motion.json",
+        "https://seamui.vercel.app/r/button.json"
       ],
       "files": [
         {
@@ -316,8 +316,8 @@
       "description": "Confirmation dialog built on Base UI with seam modal depth.",
       "dependencies": ["@base-ui/react", "motion"],
       "registryDependencies": [
-        "https://seamui.dev/r/utils.json",
-        "https://seamui.dev/r/motion.json"
+        "https://seamui.vercel.app/r/utils.json",
+        "https://seamui.vercel.app/r/motion.json"
       ],
       "files": [
         {
@@ -333,7 +333,7 @@
       "title": "Drawer",
       "description": "Mobile bottom-sheet built on Base UI's native swipe-to-dismiss engine.",
       "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["https://seamui.dev/r/utils.json"],
+      "registryDependencies": ["https://seamui.vercel.app/r/utils.json"],
       "files": [
         {
           "path": "registry/seam/ui/drawer.tsx",
@@ -349,8 +349,8 @@
       "description": "Dropdown menu built on Base UI with seam overlay-depth entrance.",
       "dependencies": ["@base-ui/react", "motion"],
       "registryDependencies": [
-        "https://seamui.dev/r/utils.json",
-        "https://seamui.dev/r/motion.json"
+        "https://seamui.vercel.app/r/utils.json",
+        "https://seamui.vercel.app/r/motion.json"
       ],
       "files": [
         {
@@ -367,8 +367,8 @@
       "description": "Select built on Base UI with seam overlay-depth entrance.",
       "dependencies": ["@base-ui/react", "motion", "lucide-react"],
       "registryDependencies": [
-        "https://seamui.dev/r/utils.json",
-        "https://seamui.dev/r/motion.json"
+        "https://seamui.vercel.app/r/utils.json",
+        "https://seamui.vercel.app/r/motion.json"
       ],
       "files": [
         {
@@ -385,8 +385,8 @@
       "description": "Right-click menu built on Base UI with seam overlay-depth entrance.",
       "dependencies": ["@base-ui/react", "motion"],
       "registryDependencies": [
-        "https://seamui.dev/r/utils.json",
-        "https://seamui.dev/r/motion.json"
+        "https://seamui.vercel.app/r/utils.json",
+        "https://seamui.vercel.app/r/motion.json"
       ],
       "files": [
         {
@@ -403,9 +403,9 @@
       "description": "Tabs built on Base UI; a motion indicator springs to the active tab.",
       "dependencies": ["@base-ui/react", "motion"],
       "registryDependencies": [
-        "https://seamui.dev/r/utils.json",
-        "https://seamui.dev/r/motion.json",
-        "https://seamui.dev/r/button.json"
+        "https://seamui.vercel.app/r/utils.json",
+        "https://seamui.vercel.app/r/motion.json",
+        "https://seamui.vercel.app/r/button.json"
       ],
       "files": [
         {
@@ -421,7 +421,7 @@
       "title": "Accordion",
       "description": "Accordion built on Base UI with eased height animation.",
       "dependencies": ["@base-ui/react", "lucide-react"],
-      "registryDependencies": ["https://seamui.dev/r/utils.json"],
+      "registryDependencies": ["https://seamui.vercel.app/r/utils.json"],
       "files": [
         {
           "path": "registry/seam/ui/accordion.tsx",
@@ -436,7 +436,7 @@
       "title": "Collapsible",
       "description": "Collapsible built on Base UI with eased height animation.",
       "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["https://seamui.dev/r/utils.json"],
+      "registryDependencies": ["https://seamui.vercel.app/r/utils.json"],
       "files": [
         {
           "path": "registry/seam/ui/collapsible.tsx",
@@ -451,7 +451,7 @@
       "title": "Progress",
       "description": "Progress bar built on Base UI with an eased fill.",
       "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["https://seamui.dev/r/utils.json"],
+      "registryDependencies": ["https://seamui.vercel.app/r/utils.json"],
       "files": [
         { "path": "registry/seam/ui/progress.tsx", "type": "registry:ui", "target": "components/ui/progress.tsx" }
       ]
@@ -462,7 +462,7 @@
       "title": "Meter",
       "description": "Meter (static measurement) built on Base UI.",
       "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["https://seamui.dev/r/utils.json"],
+      "registryDependencies": ["https://seamui.vercel.app/r/utils.json"],
       "files": [
         { "path": "registry/seam/ui/meter.tsx", "type": "registry:ui", "target": "components/ui/meter.tsx" }
       ]
@@ -474,9 +474,9 @@
       "description": "Number input with press-depth steppers, built on Base UI.",
       "dependencies": ["@base-ui/react", "motion", "lucide-react"],
       "registryDependencies": [
-        "https://seamui.dev/r/utils.json",
-        "https://seamui.dev/r/motion.json",
-        "https://seamui.dev/r/button.json"
+        "https://seamui.vercel.app/r/utils.json",
+        "https://seamui.vercel.app/r/motion.json",
+        "https://seamui.vercel.app/r/button.json"
       ],
       "files": [
         { "path": "registry/seam/ui/number-field.tsx", "type": "registry:ui", "target": "components/ui/number-field.tsx" }
@@ -488,7 +488,7 @@
       "title": "OTP Field",
       "description": "One-time-code input built on Base UI.",
       "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["https://seamui.dev/r/utils.json"],
+      "registryDependencies": ["https://seamui.vercel.app/r/utils.json"],
       "files": [
         { "path": "registry/seam/ui/otp-field.tsx", "type": "registry:ui", "target": "components/ui/otp-field.tsx" }
       ]
@@ -499,7 +499,7 @@
       "title": "Scroll Area",
       "description": "Custom scrollbar area built on Base UI.",
       "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["https://seamui.dev/r/utils.json"],
+      "registryDependencies": ["https://seamui.vercel.app/r/utils.json"],
       "files": [
         { "path": "registry/seam/ui/scroll-area.tsx", "type": "registry:ui", "target": "components/ui/scroll-area.tsx" }
       ]
@@ -510,7 +510,7 @@
       "title": "Toast",
       "description": "Toast notifications built on Base UI with a bouncy seam entrance.",
       "dependencies": ["@base-ui/react", "lucide-react"],
-      "registryDependencies": ["https://seamui.dev/r/utils.json", "https://seamui.dev/r/button.json"],
+      "registryDependencies": ["https://seamui.vercel.app/r/utils.json", "https://seamui.vercel.app/r/button.json"],
       "files": [
         { "path": "registry/seam/ui/toast.tsx", "type": "registry:ui", "target": "components/ui/toast.tsx" }
       ]
@@ -519,7 +519,7 @@
       "name": "button-demo",
       "type": "registry:example",
       "title": "Button Demo",
-      "registryDependencies": ["https://seamui.dev/r/button.json"],
+      "registryDependencies": ["https://seamui.vercel.app/r/button.json"],
       "files": [
         { "path": "registry/seam/examples/button-demo.tsx", "type": "registry:example" }
       ]
@@ -528,7 +528,7 @@
       "name": "button-variants",
       "type": "registry:example",
       "title": "Button Variants",
-      "registryDependencies": ["https://seamui.dev/r/button.json"],
+      "registryDependencies": ["https://seamui.vercel.app/r/button.json"],
       "files": [
         { "path": "registry/seam/examples/button-variants.tsx", "type": "registry:example" }
       ]
@@ -538,7 +538,7 @@
       "type": "registry:example",
       "title": "Button Sizes",
       "dependencies": ["lucide-react"],
-      "registryDependencies": ["https://seamui.dev/r/button.json"],
+      "registryDependencies": ["https://seamui.vercel.app/r/button.json"],
       "files": [
         { "path": "registry/seam/examples/button-sizes.tsx", "type": "registry:example" }
       ]
@@ -548,7 +548,7 @@
       "type": "registry:example",
       "title": "Button Loading",
       "dependencies": ["lucide-react"],
-      "registryDependencies": ["https://seamui.dev/r/button.json"],
+      "registryDependencies": ["https://seamui.vercel.app/r/button.json"],
       "files": [
         { "path": "registry/seam/examples/button-loading.tsx", "type": "registry:example" }
       ]
@@ -557,7 +557,7 @@
       "name": "button-link",
       "type": "registry:example",
       "title": "Button Link",
-      "registryDependencies": ["https://seamui.dev/r/button.json"],
+      "registryDependencies": ["https://seamui.vercel.app/r/button.json"],
       "files": [
         { "path": "registry/seam/examples/button-link.tsx", "type": "registry:example" }
       ]
@@ -567,7 +567,7 @@
       "type": "registry:example",
       "title": "Toggle Demo",
       "dependencies": ["lucide-react"],
-      "registryDependencies": ["https://seamui.dev/r/toggle.json"],
+      "registryDependencies": ["https://seamui.vercel.app/r/toggle.json"],
       "files": [
         { "path": "registry/seam/examples/toggle-demo.tsx", "type": "registry:example" }
       ]
@@ -577,7 +577,7 @@
       "type": "registry:example",
       "title": "Toggle Group Demo",
       "dependencies": ["lucide-react"],
-      "registryDependencies": ["https://seamui.dev/r/toggle-group.json"],
+      "registryDependencies": ["https://seamui.vercel.app/r/toggle-group.json"],
       "files": [
         { "path": "registry/seam/examples/toggle-group-demo.tsx", "type": "registry:example" }
       ]
@@ -587,7 +587,7 @@
       "type": "registry:example",
       "title": "Combobox Demo",
       "dependencies": ["lucide-react"],
-      "registryDependencies": ["https://seamui.dev/r/combobox.json"],
+      "registryDependencies": ["https://seamui.vercel.app/r/combobox.json"],
       "files": [
         { "path": "registry/seam/examples/combobox-demo.tsx", "type": "registry:example" }
       ]
@@ -596,7 +596,7 @@
       "name": "combobox-multiple",
       "type": "registry:example",
       "title": "Combobox Multiple",
-      "registryDependencies": ["https://seamui.dev/r/combobox.json"],
+      "registryDependencies": ["https://seamui.vercel.app/r/combobox.json"],
       "files": [
         { "path": "registry/seam/examples/combobox-multiple.tsx", "type": "registry:example" }
       ]
@@ -605,7 +605,7 @@
       "name": "combobox-clear",
       "type": "registry:example",
       "title": "Combobox Clear",
-      "registryDependencies": ["https://seamui.dev/r/combobox.json"],
+      "registryDependencies": ["https://seamui.vercel.app/r/combobox.json"],
       "files": [
         { "path": "registry/seam/examples/combobox-clear.tsx", "type": "registry:example" }
       ]
@@ -614,7 +614,7 @@
       "name": "combobox-groups",
       "type": "registry:example",
       "title": "Combobox Groups",
-      "registryDependencies": ["https://seamui.dev/r/combobox.json"],
+      "registryDependencies": ["https://seamui.vercel.app/r/combobox.json"],
       "files": [
         { "path": "registry/seam/examples/combobox-groups.tsx", "type": "registry:example" }
       ]
@@ -623,7 +623,7 @@
       "name": "combobox-custom",
       "type": "registry:example",
       "title": "Combobox Custom Items",
-      "registryDependencies": ["https://seamui.dev/r/combobox.json"],
+      "registryDependencies": ["https://seamui.vercel.app/r/combobox.json"],
       "files": [
         { "path": "registry/seam/examples/combobox-custom.tsx", "type": "registry:example" }
       ]
@@ -632,7 +632,7 @@
       "name": "combobox-invalid",
       "type": "registry:example",
       "title": "Combobox Invalid",
-      "registryDependencies": ["https://seamui.dev/r/combobox.json"],
+      "registryDependencies": ["https://seamui.vercel.app/r/combobox.json"],
       "files": [
         { "path": "registry/seam/examples/combobox-invalid.tsx", "type": "registry:example" }
       ]
@@ -641,7 +641,7 @@
       "name": "combobox-disabled",
       "type": "registry:example",
       "title": "Combobox Disabled",
-      "registryDependencies": ["https://seamui.dev/r/combobox.json"],
+      "registryDependencies": ["https://seamui.vercel.app/r/combobox.json"],
       "files": [
         { "path": "registry/seam/examples/combobox-disabled.tsx", "type": "registry:example" }
       ]
@@ -650,7 +650,7 @@
       "name": "input-demo",
       "type": "registry:example",
       "title": "Input Demo",
-      "registryDependencies": ["https://seamui.dev/r/input.json"],
+      "registryDependencies": ["https://seamui.vercel.app/r/input.json"],
       "files": [
         { "path": "registry/seam/examples/input-demo.tsx", "type": "registry:example" }
       ]
@@ -659,7 +659,7 @@
       "name": "avatar-demo",
       "type": "registry:example",
       "title": "Avatar Demo",
-      "registryDependencies": ["https://seamui.dev/r/avatar.json"],
+      "registryDependencies": ["https://seamui.vercel.app/r/avatar.json"],
       "files": [
         { "path": "registry/seam/examples/avatar-demo.tsx", "type": "registry:example" }
       ]
@@ -668,7 +668,7 @@
       "name": "separator-demo",
       "type": "registry:example",
       "title": "Separator Demo",
-      "registryDependencies": ["https://seamui.dev/r/separator.json"],
+      "registryDependencies": ["https://seamui.vercel.app/r/separator.json"],
       "files": [
         { "path": "registry/seam/examples/separator-demo.tsx", "type": "registry:example" }
       ]
@@ -677,7 +677,7 @@
       "name": "switch-demo",
       "type": "registry:example",
       "title": "Switch Demo",
-      "registryDependencies": ["https://seamui.dev/r/switch.json"],
+      "registryDependencies": ["https://seamui.vercel.app/r/switch.json"],
       "files": [
         { "path": "registry/seam/examples/switch-demo.tsx", "type": "registry:example" }
       ]
@@ -686,7 +686,7 @@
       "name": "checkbox-demo",
       "type": "registry:example",
       "title": "Checkbox Demo",
-      "registryDependencies": ["https://seamui.dev/r/checkbox.json"],
+      "registryDependencies": ["https://seamui.vercel.app/r/checkbox.json"],
       "files": [
         { "path": "registry/seam/examples/checkbox-demo.tsx", "type": "registry:example" }
       ]
@@ -695,7 +695,7 @@
       "name": "radio-group-demo",
       "type": "registry:example",
       "title": "Radio Group Demo",
-      "registryDependencies": ["https://seamui.dev/r/radio-group.json"],
+      "registryDependencies": ["https://seamui.vercel.app/r/radio-group.json"],
       "files": [
         { "path": "registry/seam/examples/radio-group-demo.tsx", "type": "registry:example" }
       ]
@@ -704,7 +704,7 @@
       "name": "slider-demo",
       "type": "registry:example",
       "title": "Slider Demo",
-      "registryDependencies": ["https://seamui.dev/r/slider.json"],
+      "registryDependencies": ["https://seamui.vercel.app/r/slider.json"],
       "files": [
         { "path": "registry/seam/examples/slider-demo.tsx", "type": "registry:example" }
       ]
@@ -714,8 +714,8 @@
       "type": "registry:example",
       "title": "Tooltip Demo",
       "registryDependencies": [
-        "https://seamui.dev/r/tooltip.json",
-        "https://seamui.dev/r/button.json"
+        "https://seamui.vercel.app/r/tooltip.json",
+        "https://seamui.vercel.app/r/button.json"
       ],
       "files": [
         { "path": "registry/seam/examples/tooltip-demo.tsx", "type": "registry:example" }
@@ -726,8 +726,8 @@
       "type": "registry:example",
       "title": "Popover Demo",
       "registryDependencies": [
-        "https://seamui.dev/r/popover.json",
-        "https://seamui.dev/r/button.json"
+        "https://seamui.vercel.app/r/popover.json",
+        "https://seamui.vercel.app/r/button.json"
       ],
       "files": [
         { "path": "registry/seam/examples/popover-demo.tsx", "type": "registry:example" }
@@ -737,7 +737,7 @@
       "name": "preview-card-demo",
       "type": "registry:example",
       "title": "Preview Card Demo",
-      "registryDependencies": ["https://seamui.dev/r/preview-card.json"],
+      "registryDependencies": ["https://seamui.vercel.app/r/preview-card.json"],
       "files": [
         { "path": "registry/seam/examples/preview-card-demo.tsx", "type": "registry:example" }
       ]
@@ -747,8 +747,8 @@
       "type": "registry:example",
       "title": "Dialog Demo",
       "registryDependencies": [
-        "https://seamui.dev/r/dialog.json",
-        "https://seamui.dev/r/button.json"
+        "https://seamui.vercel.app/r/dialog.json",
+        "https://seamui.vercel.app/r/button.json"
       ],
       "files": [
         { "path": "registry/seam/examples/dialog-demo.tsx", "type": "registry:example" }
@@ -759,8 +759,8 @@
       "type": "registry:example",
       "title": "Alert Dialog Demo",
       "registryDependencies": [
-        "https://seamui.dev/r/alert-dialog.json",
-        "https://seamui.dev/r/button.json"
+        "https://seamui.vercel.app/r/alert-dialog.json",
+        "https://seamui.vercel.app/r/button.json"
       ],
       "files": [
         { "path": "registry/seam/examples/alert-dialog-demo.tsx", "type": "registry:example" }
@@ -771,8 +771,8 @@
       "type": "registry:example",
       "title": "Drawer Demo",
       "registryDependencies": [
-        "https://seamui.dev/r/drawer.json",
-        "https://seamui.dev/r/button.json"
+        "https://seamui.vercel.app/r/drawer.json",
+        "https://seamui.vercel.app/r/button.json"
       ],
       "files": [
         { "path": "registry/seam/examples/drawer-demo.tsx", "type": "registry:example" }
@@ -783,8 +783,8 @@
       "type": "registry:example",
       "title": "Dropdown Menu Demo",
       "registryDependencies": [
-        "https://seamui.dev/r/dropdown-menu.json",
-        "https://seamui.dev/r/button.json"
+        "https://seamui.vercel.app/r/dropdown-menu.json",
+        "https://seamui.vercel.app/r/button.json"
       ],
       "files": [
         { "path": "registry/seam/examples/dropdown-menu-demo.tsx", "type": "registry:example" }
@@ -794,7 +794,7 @@
       "name": "select-demo",
       "type": "registry:example",
       "title": "Select Demo",
-      "registryDependencies": ["https://seamui.dev/r/select.json"],
+      "registryDependencies": ["https://seamui.vercel.app/r/select.json"],
       "files": [
         { "path": "registry/seam/examples/select-demo.tsx", "type": "registry:example" }
       ]
@@ -803,7 +803,7 @@
       "name": "context-menu-demo",
       "type": "registry:example",
       "title": "Context Menu Demo",
-      "registryDependencies": ["https://seamui.dev/r/context-menu.json"],
+      "registryDependencies": ["https://seamui.vercel.app/r/context-menu.json"],
       "files": [
         { "path": "registry/seam/examples/context-menu-demo.tsx", "type": "registry:example" }
       ]
@@ -812,7 +812,7 @@
       "name": "tabs-demo",
       "type": "registry:example",
       "title": "Tabs Demo",
-      "registryDependencies": ["https://seamui.dev/r/tabs.json"],
+      "registryDependencies": ["https://seamui.vercel.app/r/tabs.json"],
       "files": [
         { "path": "registry/seam/examples/tabs-demo.tsx", "type": "registry:example" }
       ]
@@ -821,7 +821,7 @@
       "name": "accordion-demo",
       "type": "registry:example",
       "title": "Accordion Demo",
-      "registryDependencies": ["https://seamui.dev/r/accordion.json"],
+      "registryDependencies": ["https://seamui.vercel.app/r/accordion.json"],
       "files": [
         { "path": "registry/seam/examples/accordion-demo.tsx", "type": "registry:example" }
       ]
@@ -831,8 +831,8 @@
       "type": "registry:example",
       "title": "Collapsible Demo",
       "registryDependencies": [
-        "https://seamui.dev/r/collapsible.json",
-        "https://seamui.dev/r/button.json"
+        "https://seamui.vercel.app/r/collapsible.json",
+        "https://seamui.vercel.app/r/button.json"
       ],
       "files": [
         { "path": "registry/seam/examples/collapsible-demo.tsx", "type": "registry:example" }
@@ -842,7 +842,7 @@
       "name": "progress-demo",
       "type": "registry:example",
       "title": "Progress Demo",
-      "registryDependencies": ["https://seamui.dev/r/progress.json"],
+      "registryDependencies": ["https://seamui.vercel.app/r/progress.json"],
       "files": [
         { "path": "registry/seam/examples/progress-demo.tsx", "type": "registry:example" }
       ]
@@ -851,7 +851,7 @@
       "name": "meter-demo",
       "type": "registry:example",
       "title": "Meter Demo",
-      "registryDependencies": ["https://seamui.dev/r/meter.json"],
+      "registryDependencies": ["https://seamui.vercel.app/r/meter.json"],
       "files": [
         { "path": "registry/seam/examples/meter-demo.tsx", "type": "registry:example" }
       ]
@@ -860,7 +860,7 @@
       "name": "number-field-demo",
       "type": "registry:example",
       "title": "Number Field Demo",
-      "registryDependencies": ["https://seamui.dev/r/number-field.json"],
+      "registryDependencies": ["https://seamui.vercel.app/r/number-field.json"],
       "files": [
         { "path": "registry/seam/examples/number-field-demo.tsx", "type": "registry:example" }
       ]
@@ -869,7 +869,7 @@
       "name": "otp-field-demo",
       "type": "registry:example",
       "title": "OTP Field Demo",
-      "registryDependencies": ["https://seamui.dev/r/otp-field.json"],
+      "registryDependencies": ["https://seamui.vercel.app/r/otp-field.json"],
       "files": [
         { "path": "registry/seam/examples/otp-field-demo.tsx", "type": "registry:example" }
       ]
@@ -878,7 +878,7 @@
       "name": "scroll-area-demo",
       "type": "registry:example",
       "title": "Scroll Area Demo",
-      "registryDependencies": ["https://seamui.dev/r/scroll-area.json"],
+      "registryDependencies": ["https://seamui.vercel.app/r/scroll-area.json"],
       "files": [
         { "path": "registry/seam/examples/scroll-area-demo.tsx", "type": "registry:example" }
       ]
@@ -888,8 +888,8 @@
       "type": "registry:example",
       "title": "Toast Demo",
       "registryDependencies": [
-        "https://seamui.dev/r/toast.json",
-        "https://seamui.dev/r/button.json"
+        "https://seamui.vercel.app/r/toast.json",
+        "https://seamui.vercel.app/r/button.json"
       ],
       "files": [
         { "path": "registry/seam/examples/toast-demo.tsx", "type": "registry:example" }

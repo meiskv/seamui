@@ -4,7 +4,7 @@
   "type": "registry:example",
   "title": "Select Demo",
   "registryDependencies": [
-    "https://seamui.dev/r/select.json"
+    "https://seamui.vercel.app/r/select.json"
   ],
   "files": [
     {

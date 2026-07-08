@@ -4,7 +4,7 @@
   "type": "registry:example",
   "title": "Tabs Demo",
   "registryDependencies": [
-    "https://seamui.dev/r/tabs.json"
+    "https://seamui.vercel.app/r/tabs.json"
   ],
   "files": [
     {

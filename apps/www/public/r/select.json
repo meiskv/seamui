@@ -10,8 +10,8 @@
     "lucide-react"
   ],
   "registryDependencies": [
-    "https://seamui.dev/r/utils.json",
-    "https://seamui.dev/r/motion.json"
+    "https://seamui.vercel.app/r/utils.json",
+    "https://seamui.vercel.app/r/motion.json"
   ],
   "files": [
     {

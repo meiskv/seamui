@@ -4,8 +4,8 @@
   "type": "registry:example",
   "title": "Dialog Demo",
   "registryDependencies": [
-    "https://seamui.dev/r/dialog.json",
-    "https://seamui.dev/r/button.json"
+    "https://seamui.vercel.app/r/dialog.json",
+    "https://seamui.vercel.app/r/button.json"
   ],
   "files": [
     {

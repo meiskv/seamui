@@ -4,7 +4,7 @@
   "type": "registry:example",
   "title": "Avatar Demo",
   "registryDependencies": [
-    "https://seamui.dev/r/avatar.json"
+    "https://seamui.vercel.app/r/avatar.json"
   ],
   "files": [
     {

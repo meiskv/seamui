@@ -64,7 +64,7 @@ bun run dev              # docs site at http://localhost:3000
 bun run registry:build   # compile registry/ → apps/www/public/r/*.json
 ```
 
-> Note: the `@seamui` registry currently points at the `https://seamui.dev`
+> Note: the `@seamui` registry currently points at the `https://seamui.vercel.app`
 > placeholder host. Publishing (deploying `apps/www` + the `seamui` npm
 > package) is Phase 3a and is not done yet, so the `bunx seamui@latest` /
 > `shadcn add @seamui/button` commands go live once that host exists.

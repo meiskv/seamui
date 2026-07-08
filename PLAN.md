@@ -79,7 +79,7 @@ These are decided. Do not re-litigate them during implementation.
 | Runtime | React 19+, RSC-compatible | Every animated component gets `"use client"`. |
 | Package manager / runner | `bun` in all docs examples (`bunx --bun …`), but registry items must not assume any package manager. | |
 | Registry style name | `seam` | Single style (no `new-york`/`default` split). Lives under `registry/seam/`. |
-| Docs/registry host | Next.js app at `apps/www`, registry JSON served from `/r/{name}.json` | Domain placeholder: `https://seamui.dev`. Until the domain exists, use the deployment URL; it is referenced in exactly one place (`REGISTRY_URL` constant + docs), so swapping is trivial. |
+| Docs/registry host | Next.js app at `apps/www`, registry JSON served from `/r/{name}.json` | Domain placeholder: `https://seamui.vercel.app`. Until the domain exists, use the deployment URL; it is referenced in exactly one place (`REGISTRY_URL` constant + docs), so swapping is trivial. |
 
 **Key Base UI facts the implementer must know:**
 
@@ -385,7 +385,7 @@ export default function ButtonDemo() {
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "seamui",
-  "homepage": "https://seamui.dev",
+  "homepage": "https://seamui.vercel.app",
   "items": [
     {
       "name": "theme",
@@ -412,7 +412,7 @@ export default function ButtonDemo() {
       "title": "Button",
       "description": "Button built on Base UI with seam depth motion.",
       "dependencies": ["@base-ui/react", "motion", "class-variance-authority"],
-      "registryDependencies": ["https://seamui.dev/r/utils.json", "https://seamui.dev/r/motion.json"],
+      "registryDependencies": ["https://seamui.vercel.app/r/utils.json", "https://seamui.vercel.app/r/motion.json"],
       "files": [{ "path": "registry/seam/ui/button.tsx", "type": "registry:ui" }]
     }
   ]
@@ -440,7 +440,7 @@ Deploy `apps/www` (Vercel). Users configure the namespace once in their `compone
 ```json
 {
   "registries": {
-    "@seamui": "https://seamui.dev/r/{name}.json"
+    "@seamui": "https://seamui.vercel.app/r/{name}.json"
   }
 }
 ```
@@ -451,7 +451,7 @@ Then:
 bunx --bun shadcn@latest add @seamui/button
 ```
 
-Also support direct URLs with no config: `bunx --bun shadcn@latest add https://seamui.dev/r/button.json`.
+Also support direct URLs with no config: `bunx --bun shadcn@latest add https://seamui.vercel.app/r/button.json`.
 
 ### Phase 3b — the `seamui` CLI (npm package `seamui`)
 

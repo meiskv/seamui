@@ -4,7 +4,7 @@
   "type": "registry:example",
   "title": "Number Field Demo",
   "registryDependencies": [
-    "https://seamui.dev/r/number-field.json"
+    "https://seamui.vercel.app/r/number-field.json"
   ],
   "files": [
     {

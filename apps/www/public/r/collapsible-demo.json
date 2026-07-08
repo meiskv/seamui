@@ -4,8 +4,8 @@
   "type": "registry:example",
   "title": "Collapsible Demo",
   "registryDependencies": [
-    "https://seamui.dev/r/collapsible.json",
-    "https://seamui.dev/r/button.json"
+    "https://seamui.vercel.app/r/collapsible.json",
+    "https://seamui.vercel.app/r/button.json"
   ],
   "files": [
     {

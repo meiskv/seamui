@@ -18,6 +18,6 @@
     "hooks": "@/hooks"
   },
   "registries": {
-    "@seamui": "https://seamui.dev/r/{name}.json"
+    "@seamui": "https://seamui.vercel.app/r/{name}.json"
   }
 }

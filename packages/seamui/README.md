@@ -1,6 +1,6 @@
 # seamui CLI
 
-The command-line installer for [seamui](https://seamui.dev) — beautifully animated components you own, built on Base UI primitives with a motion.dev animation layer.
+The command-line installer for [seamui](https://seamui.vercel.app) — beautifully animated components you own, built on Base UI primitives with a motion.dev animation layer.
 
 It's a thin wrapper over the shadcn CLI: it scaffolds your project, wires the `@seamui` registry namespace into `components.json`, and delegates installs to shadcn.
 
@@ -17,7 +17,7 @@ bunx --bun seamui@latest add button
 Prefer the shadcn CLI directly? Add the namespace to `components.json`:
 
 ```json
-{ "registries": { "@seamui": "https://seamui.dev/r/{name}.json" } }
+{ "registries": { "@seamui": "https://seamui.vercel.app/r/{name}.json" } }
 ```
 
 then `bunx --bun shadcn@latest add @seamui/button`.

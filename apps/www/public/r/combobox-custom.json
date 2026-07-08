@@ -4,7 +4,7 @@
   "type": "registry:example",
   "title": "Combobox Custom Items",
   "registryDependencies": [
-    "https://seamui.dev/r/combobox.json"
+    "https://seamui.vercel.app/r/combobox.json"
   ],
   "files": [
     {

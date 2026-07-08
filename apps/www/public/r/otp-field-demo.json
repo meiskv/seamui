@@ -4,7 +4,7 @@
   "type": "registry:example",
   "title": "OTP Field Demo",
   "registryDependencies": [
-    "https://seamui.dev/r/otp-field.json"
+    "https://seamui.vercel.app/r/otp-field.json"
   ],
   "files": [
     {

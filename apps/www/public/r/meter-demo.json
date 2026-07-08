@@ -4,7 +4,7 @@
   "type": "registry:example",
   "title": "Meter Demo",
   "registryDependencies": [
-    "https://seamui.dev/r/meter.json"
+    "https://seamui.vercel.app/r/meter.json"
   ],
   "files": [
     {

@@ -4,7 +4,7 @@
   "type": "registry:example",
   "title": "Input Demo",
   "registryDependencies": [
-    "https://seamui.dev/r/input.json"
+    "https://seamui.vercel.app/r/input.json"
   ],
   "files": [
     {

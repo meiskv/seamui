@@ -4,7 +4,7 @@
   "type": "registry:example",
   "title": "Preview Card Demo",
   "registryDependencies": [
-    "https://seamui.dev/r/preview-card.json"
+    "https://seamui.vercel.app/r/preview-card.json"
   ],
   "files": [
     {

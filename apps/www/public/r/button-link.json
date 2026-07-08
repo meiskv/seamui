@@ -4,7 +4,7 @@
   "type": "registry:example",
   "title": "Button Link",
   "registryDependencies": [
-    "https://seamui.dev/r/button.json"
+    "https://seamui.vercel.app/r/button.json"
   ],
   "files": [
     {

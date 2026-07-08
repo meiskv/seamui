@@ -4,7 +4,7 @@
   "type": "registry:example",
   "title": "Slider Demo",
   "registryDependencies": [
-    "https://seamui.dev/r/slider.json"
+    "https://seamui.vercel.app/r/slider.json"
   ],
   "files": [
     {

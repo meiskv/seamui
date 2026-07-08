@@ -8,8 +8,8 @@
     "@base-ui/react"
   ],
   "registryDependencies": [
-    "https://seamui.dev/r/utils.json",
-    "https://seamui.dev/r/toggle.json"
+    "https://seamui.vercel.app/r/utils.json",
+    "https://seamui.vercel.app/r/toggle.json"
   ],
   "files": [
     {

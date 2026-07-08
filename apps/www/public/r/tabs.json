@@ -9,9 +9,9 @@
     "motion"
   ],
   "registryDependencies": [
-    "https://seamui.dev/r/utils.json",
-    "https://seamui.dev/r/motion.json",
-    "https://seamui.dev/r/button.json"
+    "https://seamui.vercel.app/r/utils.json",
+    "https://seamui.vercel.app/r/motion.json",
+    "https://seamui.vercel.app/r/button.json"
   ],
   "files": [
     {
