@@ -2,6 +2,7 @@ import Link from "next/link"
 
 import { Button } from "@/registry/seam/ui/button"
 import ButtonVariants from "@/registry/seam/examples/button-variants"
+import { HapticButtons } from "@/components/site/haptic-buttons"
 import { ThemeToggle } from "@/components/site/theme-toggle"
 
 export default function HomePage() {
@@ -43,6 +44,16 @@ export default function HomePage() {
 
       <div className="bg-card w-full rounded-xl border p-8 shadow-resting">
         <ButtonVariants />
+      </div>
+
+      <div className="squircle bg-card w-full space-y-4 rounded-xl border p-8 shadow-resting">
+        <div className="flex items-center gap-2">
+          <span className="bg-secondary text-secondary-foreground shadow-resting squircle inline-flex rounded-md px-2 py-0.5 text-[0.6875rem] font-semibold tracking-wide uppercase">
+            WIP
+          </span>
+          <h2 className="text-sm font-medium">Spring touch + haptics</h2>
+        </div>
+        <HapticButtons />
       </div>
 
       <div className="flex items-center gap-3">
