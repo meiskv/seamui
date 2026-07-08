@@ -21,6 +21,26 @@ export default function HomePage() {
         </p>
       </div>
 
+      <div className="squircle bg-muted/60 shadow-well w-full space-y-2 rounded-lg p-4">
+        <span className="bg-secondary text-secondary-foreground shadow-resting squircle inline-flex rounded-md px-2 py-0.5 text-[0.6875rem] font-semibold tracking-wide uppercase">
+          WIP
+        </span>
+        <p className="text-muted-foreground text-sm leading-relaxed">
+          Next: bringing seamui to <strong className="text-foreground font-medium">Expo / React Native</strong> —
+          porting the spring, touch-feedback, and depth system to native, with
+          real on-device haptics powered by{" "}
+          <a
+            href="https://haptics.lochie.me/"
+            target="_blank"
+            rel="noreferrer"
+            className="text-foreground font-medium underline underline-offset-4 hover:text-primary"
+          >
+            haptics.lochie.me
+          </a>
+          . In active development.
+        </p>
+      </div>
+
       <div className="bg-card w-full rounded-xl border p-8 shadow-resting">
         <ButtonVariants />
       </div>
