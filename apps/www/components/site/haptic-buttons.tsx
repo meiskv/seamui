@@ -1,57 +1,123 @@
 "use client"
 
 import * as React from "react"
+import { AnimatePresence, motion, useReducedMotion } from "motion/react"
+import { Volume2, VolumeX } from "lucide-react"
+import { useWebHaptics } from "web-haptics/react"
 
 import { Button } from "@/registry/seam/ui/button"
+import { fades } from "@/lib/motion"
 
 /**
- * WIP preview of seam's touch-feedback pillar with real haptics. On the web
- * the closest analog to native haptics is the Vibration API; on press each
- * button springs (seam depth) and fires a haptic tick where the device
- * supports it. The Expo / React Native build swaps this for on-device
- * haptics (expo-haptics / haptics.lochie.me).
- *
- * Fires on pointerdown so the buzz lands with the press — not the click —
- * matching the "react in ≤1 frame" rule.
+ * WIP preview of seam's touch-feedback pillar with real haptics — the juicy
+ * button feel of haptics.lochie.me, driven by its own library (web-haptics).
+ * On press each key springs (seam depth), fires the web-haptics feedback
+ * (Vibration API on Android, the taptic "switch" trick on iOS, plus the
+ * library's click audio), and bursts emoji bubbles. The Expo / React Native
+ * build swaps web-haptics for on-device expo-haptics.
  */
-const TAPS: { label: string; pattern: number | number[] }[] = [
-  { label: "Light", pattern: 6 },
-  { label: "Medium", pattern: 16 },
-  { label: "Heavy", pattern: [10, 8, 22] },
+type Tap = {
+  label: string
+  preset: "light" | "medium" | "heavy"
+  emojis: string[]
+}
+
+const TAPS: Tap[] = [
+  { label: "Light", preset: "light", emojis: ["✨", "🫧"] },
+  { label: "Medium", preset: "medium", emojis: ["💫", "🫧", "✨"] },
+  { label: "Heavy", preset: "heavy", emojis: ["💥", "🔥", "⚡️"] },
 ]
 
-export function HapticButtons() {
-  const [supported, setSupported] = React.useState(true)
+type Bubble = { id: number; emoji: string; dx: number }
 
-  React.useEffect(() => {
-    setSupported(
-      typeof navigator !== "undefined" && typeof navigator.vibrate === "function"
-    )
-  }, [])
+function TapButton({
+  tap,
+  reduce,
+  onTap,
+}: {
+  tap: Tap
+  reduce: boolean
+  onTap: (preset: Tap["preset"]) => void
+}) {
+  const [bubbles, setBubbles] = React.useState<Bubble[]>([])
+  const nextId = React.useRef(0)
 
-  function buzz(pattern: number | number[]) {
-    if (typeof navigator !== "undefined" && typeof navigator.vibrate === "function") {
-      navigator.vibrate(pattern)
-    }
+  function press() {
+    onTap(tap.preset)
+    const count = reduce ? 1 : 3
+    const spawned: Bubble[] = Array.from({ length: count }, () => ({
+      id: nextId.current++,
+      emoji: tap.emojis[Math.floor(Math.random() * tap.emojis.length)],
+      dx: Math.round((Math.random() - 0.5) * 44),
+    }))
+    setBubbles((b) => [...b, ...spawned])
   }
 
   return (
-    <div className="space-y-3">
-      <div className="flex flex-wrap gap-3">
-        {TAPS.map((tap) => (
-          <Button
-            key={tap.label}
-            variant="secondary"
-            onPointerDown={() => buzz(tap.pattern)}
+    <span className="relative inline-flex">
+      <AnimatePresence>
+        {bubbles.map((bubble) => (
+          <motion.span
+            key={bubble.id}
+            aria-hidden
+            className="pointer-events-none absolute -top-1 left-1/2 z-10 -translate-x-1/2 text-lg select-none"
+            initial={{ opacity: 0, y: 0, x: 0, scale: 0.4 }}
+            animate={
+              reduce
+                ? { opacity: [0, 1, 0] }
+                : { opacity: [0, 1, 1, 0], y: -72, x: bubble.dx, scale: 1 }
+            }
+            transition={reduce ? fades.normal : { duration: 1, ease: "easeOut" }}
+            onAnimationComplete={() =>
+              setBubbles((b) => b.filter((x) => x.id !== bubble.id))
+            }
           >
-            {tap.label}
-          </Button>
+            {bubble.emoji}
+          </motion.span>
         ))}
+      </AnimatePresence>
+      <Button variant="secondary" onPointerDown={press}>
+        {tap.label}
+      </Button>
+    </span>
+  )
+}
+
+export function HapticButtons() {
+  const [muted, setMuted] = React.useState(false)
+  const reduce = useReducedMotion() ?? false
+  // debug: true makes web-haptics also play its click audio on every device
+  // (by default the audio only fires as the iOS fallback) — the "lochie feel".
+  const { trigger } = useWebHaptics({ debug: true })
+
+  return (
+    <div className="space-y-3">
+      <div className="flex flex-wrap items-center gap-3">
+        {TAPS.map((tap) => (
+          <TapButton
+            key={tap.label}
+            tap={tap}
+            reduce={reduce}
+            onTap={(preset) => {
+              if (!muted) void trigger(preset)
+            }}
+          />
+        ))}
+        <Button
+          variant="ghost"
+          size="icon"
+          aria-label={muted ? "Unmute tap feedback" : "Mute tap feedback"}
+          aria-pressed={muted}
+          className="text-muted-foreground ml-auto"
+          onClick={() => setMuted((m) => !m)}
+        >
+          {muted ? <VolumeX /> : <Volume2 />}
+        </Button>
       </div>
       <p className="text-muted-foreground text-xs leading-relaxed">
-        {supported
-          ? "Tap on a phone — the press springs and fires a haptic tick."
-          : "This device has no Vibration API — try an Android phone. Real on-device haptics arrive with the Expo / React Native build."}
+        Tap a key — it springs, clicks, and bursts emoji. On a phone it buzzes
+        too (Android Vibration API / iOS taptic). Real on-device haptics arrive
+        with the Expo / React Native build.
       </p>
     </div>
   )
