@@ -29,16 +29,7 @@ export default function HomePage() {
         <p className="text-muted-foreground text-sm leading-relaxed">
           Next: bringing seamui to <strong className="text-foreground font-medium">Expo / React Native</strong> —
           porting the spring, touch-feedback, and depth system to native, with
-          real on-device haptics powered by{" "}
-          <a
-            href="https://haptics.lochie.me/"
-            target="_blank"
-            rel="noreferrer"
-            className="text-foreground font-medium underline underline-offset-4 hover:text-primary"
-          >
-            haptics.lochie.me
-          </a>
-          . In active development.
+          real on-device haptics. In active development.
         </p>
       </div>
 
