@@ -12,9 +12,9 @@ export const metadata: Metadata = {
 
 export default function OTPFieldDocs() {
   return (
-    <main className="mx-auto max-w-3xl px-6 py-16">
-      <h1 className="text-3xl font-semibold tracking-tight">OTP Field</h1>
-      <p className="text-muted-foreground mt-2 text-lg">
+    <main className="mx-auto max-w-3xl px-6 py-10">
+      <h1 className="text-2xl font-semibold tracking-tight">OTP Field</h1>
+      <p className="text-muted-foreground mt-1.5 text-[0.9375rem]">
         A segmented input for one-time codes, with paste-to-fill and per-slot
         focus handled by Base UI.
       </p>

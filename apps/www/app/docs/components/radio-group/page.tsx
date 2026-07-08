@@ -12,9 +12,9 @@ export const metadata: Metadata = {
 
 export default function RadioGroupDocs() {
   return (
-    <main className="mx-auto max-w-3xl px-6 py-16">
-      <h1 className="text-3xl font-semibold tracking-tight">Radio Group</h1>
-      <p className="text-muted-foreground mt-2 text-lg">
+    <main className="mx-auto max-w-3xl px-6 py-10">
+      <h1 className="text-2xl font-semibold tracking-tight">Radio Group</h1>
+      <p className="text-muted-foreground mt-1.5 text-[0.9375rem]">
         A set of options where only one can be selected. The selected dot pops
         in with a spring.
       </p>

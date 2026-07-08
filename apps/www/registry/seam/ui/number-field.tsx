@@ -2,29 +2,20 @@
 
 import * as React from "react"
 import { NumberField as BaseNumberField } from "@base-ui/react/number-field"
-import { motion, useReducedMotion } from "motion/react"
 import { Minus, Plus } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { springs, fades, depth, reduced } from "@/lib/motion"
+import { Button } from "./button"
 
-const stepperClass =
-  "flex h-10 w-10 items-center justify-center border-input text-muted-foreground outline-none hover:bg-accent hover:text-accent-foreground disabled:pointer-events-none disabled:opacity-50 [&_svg]:size-4"
+// Steppers dogfood the foundation: a ghost icon Button (base classes, focus
+// ring, disabled + press depth for free). Only the shape is overridden — square
+// inner corners and a divider so the pair reads as one control in the well.
+const stepperClass = "text-muted-foreground size-10 rounded-none border-input"
 
 function NumberField({
   className,
   ...props
 }: React.ComponentProps<typeof BaseNumberField.Root>) {
-  const reduceMotion = useReducedMotion()
-  // Base UI keeps native <button> semantics via render; motion supplies the
-  // press depth — a dim instead of movement under reduced motion.
-  const stepperMotion = (
-    <motion.button
-      whileTap={reduceMotion ? reduced.pressed : depth.pressed}
-      transition={reduceMotion ? fades.fast : springs.press}
-    />
-  )
-
   return (
     <BaseNumberField.Root data-slot="number-field" {...props}>
       <BaseNumberField.Group
@@ -36,8 +27,13 @@ function NumberField({
       >
         <BaseNumberField.Decrement
           data-slot="number-field-decrement"
-          className={cn(stepperClass, "rounded-l-md border-r")}
-          render={stepperMotion}
+          render={
+            <Button
+              variant="ghost"
+              size="icon"
+              className={cn(stepperClass, "rounded-l-md border-r")}
+            />
+          }
           aria-label="Decrease"
         >
           <Minus />
@@ -48,8 +44,13 @@ function NumberField({
         />
         <BaseNumberField.Increment
           data-slot="number-field-increment"
-          className={cn(stepperClass, "rounded-r-md border-l")}
-          render={stepperMotion}
+          render={
+            <Button
+              variant="ghost"
+              size="icon"
+              className={cn(stepperClass, "rounded-r-md border-l")}
+            />
+          }
           aria-label="Increase"
         >
           <Plus />

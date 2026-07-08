@@ -12,9 +12,9 @@ export const metadata: Metadata = {
 
 export default function ContextMenuDocs() {
   return (
-    <main className="mx-auto max-w-3xl px-6 py-16">
-      <h1 className="text-3xl font-semibold tracking-tight">Context Menu</h1>
-      <p className="text-muted-foreground mt-2 text-lg">
+    <main className="mx-auto max-w-3xl px-6 py-10">
+      <h1 className="text-2xl font-semibold tracking-tight">Context Menu</h1>
+      <p className="text-muted-foreground mt-1.5 text-[0.9375rem]">
         A menu opened by right-click (or long-press), anchored to the pointer.
         Same overlay depth as the dropdown menu.
       </p>

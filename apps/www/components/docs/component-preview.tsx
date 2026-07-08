@@ -22,8 +22,8 @@ export function ComponentPreview({
   code: string
 }) {
   return (
-    <div className="my-6 overflow-hidden rounded-xl border">
-      <Tabs defaultValue="preview">
+    <div className="squircle bg-card my-4 overflow-hidden rounded-xl border">
+      <Tabs defaultValue="preview" size="sm">
         <div className="border-b px-2 py-1.5">
           <TabsList>
             <TabsTrigger value="preview">Preview</TabsTrigger>
@@ -31,12 +31,12 @@ export function ComponentPreview({
           </TabsList>
         </div>
         <TabsContent value="preview">
-          <div className="flex min-h-40 items-center justify-center p-10">
+          <div className="flex min-h-28 items-center justify-center p-6">
             {children}
           </div>
         </TabsContent>
         <TabsContent value="code">
-          <pre className="bg-card overflow-x-auto p-4 text-sm leading-relaxed">
+          <pre className="overflow-x-auto p-4 text-[0.8125rem] leading-relaxed">
             <code>{code}</code>
           </pre>
         </TabsContent>

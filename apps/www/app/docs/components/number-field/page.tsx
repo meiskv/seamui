@@ -12,9 +12,9 @@ export const metadata: Metadata = {
 
 export default function NumberFieldDocs() {
   return (
-    <main className="mx-auto max-w-3xl px-6 py-16">
-      <h1 className="text-3xl font-semibold tracking-tight">Number Field</h1>
-      <p className="text-muted-foreground mt-2 text-lg">
+    <main className="mx-auto max-w-3xl px-6 py-10">
+      <h1 className="text-2xl font-semibold tracking-tight">Number Field</h1>
+      <p className="text-muted-foreground mt-1.5 text-[0.9375rem]">
         A numeric input with increment and decrement steppers — and pointer
         scrubbing from Base UI. The steppers press with seam depth.
       </p>

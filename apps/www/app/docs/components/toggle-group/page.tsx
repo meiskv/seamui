@@ -13,9 +13,9 @@ export const metadata: Metadata = {
 
 export default function ToggleGroupDocs() {
   return (
-    <main className="mx-auto max-w-3xl px-6 py-16">
-      <h1 className="text-3xl font-semibold tracking-tight">Toggle Group</h1>
-      <p className="text-muted-foreground mt-2 text-lg">
+    <main className="mx-auto max-w-3xl px-6 py-10">
+      <h1 className="text-2xl font-semibold tracking-tight">Toggle Group</h1>
+      <p className="text-muted-foreground mt-1.5 text-[0.9375rem]">
         A set of two-state buttons in a debossed well — the pressed one rises
         out of it as an embossed white key.
       </p>

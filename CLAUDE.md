@@ -192,6 +192,42 @@ motion-wraps whatever element type that is (cached `motion.create` per type), an
 sets Base UI's `nativeButton` prop correctly so semantics stay intact. See
 `registry/seam/ui/button.tsx` — copy that shape for anything button-like.
 
+### Always dogfood the foundation — reuse `Button`/`buttonVariants`, never re-roll it
+
+**seamui is a set of components built *on its own foundation*, not 30 independent
+one-offs.** The foundation primitives — `Button` (and its exported
+`buttonVariants`), `Toggle` (`toggleVariants`), `Input` — are the single source of
+truth for how those shapes look, size, focus, and give feedback. Any *new* control
+that is button-shaped (a trigger, a close "✕", a stepper, an icon button, a
+pressable key, a segmented option) must **wear the foundation**, not hand-roll a
+copy of it.
+
+Two allowed ways to dogfood, in order of preference:
+
+1. **Render the `Button` component** through the Base UI part's `render` prop:
+   `<Something.Close render={<Button variant="ghost" size="icon" />}>`. You get the
+   base classes, sizes, focus ring, disabled handling, and press motion for free.
+2. **Reuse `buttonVariants(...)` classes** on the part's own native element when
+   wrapping it in the `Button` *component* would break the part. This is not a
+   loophole — it's required for **Base UI composite widgets** (Tabs, Toolbar, Menu)
+   where the parent manages roving focus through the child's ref; an extra `Button`
+   wrapper swallows that ref and **kills arrow-key navigation** (this actually
+   happened with Tabs). There, do
+   `className={cn(buttonVariants({ variant: "ghost", size }), …)}` on the plain
+   composite-safe element. Same idea for toggle-shaped controls → `toggleVariants`.
+
+**Never** paste the button base string (`inline-flex items-center justify-center …
+focus-visible:ring-2 focus-visible:ring-ring/50 … disabled:pointer-events-none …`)
+or an inline `whileTap={depth.pressed}` into a component when the foundation already
+encodes it. If you're tempted to, you're forking the foundation — stop and reuse it.
+
+**Not everything clickable is a Button.** Debossed *entry wells* (text input, the
+default Select trigger, OTP slots, number-field group) are inputs, not keys — they
+follow the debossed rule (§1), not `buttonVariants`. Circular thumbs/dots (switch,
+slider, radio) are Pattern B. And a slot that only ever renders a
+**consumer-provided** element (`DialogTrigger`, `DialogClose`, `PopoverTrigger`) is
+already dogfooding — the demo passes a `<Button>` in; leave it be.
+
 ### Pattern B — non-button parts (overlays, thumbs, indicators): `render={<motion.div/>}` or `motion.create`
 
 For popups, thumbs, dots, and indicators there's no native-button constraint, so
@@ -319,5 +355,6 @@ packages/seamui/            # the `seamui` CLI (thin wrapper over shadcn)
 - Motion only from `@/lib/motion`. No inline springs/durations.
 - Every animated component ships a reduced-motion *fallback* (not an off switch).
 - Interactive Base UI buttons use the `render` pattern (§5A), never `motion.create`.
+- Dogfood the foundation: button-shaped controls reuse `Button`/`buttonVariants` (§5A), never a hand-rolled copy of the button base classes or inline `whileTap`.
 - `data-slot` on every wrapper; shadcn-style names; squircle + depth per §2.
 - Verify in a browser across the four gates before declaring done.

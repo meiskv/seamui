@@ -12,9 +12,9 @@ export const metadata: Metadata = {
 
 export default function DropdownMenuDocs() {
   return (
-    <main className="mx-auto max-w-3xl px-6 py-16">
-      <h1 className="text-3xl font-semibold tracking-tight">Dropdown Menu</h1>
-      <p className="text-muted-foreground mt-2 text-lg">
+    <main className="mx-auto max-w-3xl px-6 py-10">
+      <h1 className="text-2xl font-semibold tracking-tight">Dropdown Menu</h1>
+      <p className="text-muted-foreground mt-1.5 text-[0.9375rem]">
         A menu of actions triggered by a button. Rises with overlay depth; items
         highlight on hover and keyboard navigation.
       </p>

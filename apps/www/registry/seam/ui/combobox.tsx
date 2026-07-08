@@ -7,6 +7,7 @@ import { Check, ChevronsUpDown, Search, X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { springs, fades, depth, reduced } from "@/lib/motion"
+import { buttonVariants } from "./button"
 
 /**
  * Combobox — a filterable input bound to a listbox popup. Built on Base UI's
@@ -52,7 +53,10 @@ function ComboboxInput({
         {showClear && (
           <BaseCombobox.Clear
             data-slot="combobox-clear"
-            className="text-muted-foreground hover:text-foreground flex size-6 items-center justify-center rounded-md outline-none focus-visible:ring-2 focus-visible:ring-ring/50"
+            className={cn(
+              buttonVariants({ variant: "ghost", size: "icon" }),
+              "text-muted-foreground size-6 rounded-md"
+            )}
             aria-label="Clear"
           >
             <X className="size-4" />
@@ -271,7 +275,8 @@ function ComboboxChipRemove({
     <BaseCombobox.ChipRemove
       data-slot="combobox-chip-remove"
       className={cn(
-        "text-muted-foreground hover:text-foreground flex size-4 items-center justify-center rounded-sm outline-none",
+        buttonVariants({ variant: "ghost", size: "icon" }),
+        "text-muted-foreground size-4 rounded-sm",
         className
       )}
       aria-label="Remove"

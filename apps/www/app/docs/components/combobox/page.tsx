@@ -19,9 +19,9 @@ export const metadata: Metadata = {
 
 export default function ComboboxDocs() {
   return (
-    <main className="mx-auto max-w-3xl px-6 py-16">
-      <h1 className="text-3xl font-semibold tracking-tight">Combobox</h1>
-      <p className="text-muted-foreground mt-2 text-lg">
+    <main className="mx-auto max-w-3xl px-6 py-10">
+      <h1 className="text-2xl font-semibold tracking-tight">Combobox</h1>
+      <p className="text-muted-foreground mt-1.5 text-[0.9375rem]">
         A debossed text field that filters a listbox of options as you type.
         Built on Base UI Combobox — it owns filtering, keyboard navigation, and
         selection; seamui adds the well/key depth and overlay motion.
