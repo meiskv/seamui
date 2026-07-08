@@ -2,6 +2,7 @@ import Link from "next/link"
 
 import { Button } from "@/registry/seam/ui/button"
 import ButtonVariants from "@/registry/seam/examples/button-variants"
+import { HapticButtons } from "@/components/site/haptic-buttons"
 import { ThemeToggle } from "@/components/site/theme-toggle"
 
 export default function HomePage() {
@@ -21,19 +22,34 @@ export default function HomePage() {
         </p>
       </div>
 
+      <div className="squircle bg-muted/60 shadow-well w-full space-y-2 rounded-lg p-4">
+        <span className="bg-secondary text-secondary-foreground shadow-resting squircle inline-flex rounded-md px-2 py-0.5 text-[0.6875rem] font-semibold tracking-wide uppercase">
+          WIP
+        </span>
+        <p className="text-muted-foreground text-sm leading-relaxed">
+          Next: bringing seamui to <strong className="text-foreground font-medium">Expo / React Native</strong> —
+          porting the spring, touch-feedback, and depth system to native, with
+          real on-device haptics. In active development.
+        </p>
+      </div>
+
       <div className="bg-card w-full rounded-xl border p-8 shadow-resting">
         <ButtonVariants />
+      </div>
+
+      <div className="squircle bg-card w-full space-y-4 rounded-xl border p-8 shadow-resting">
+        <div className="flex items-center gap-2">
+          <span className="bg-secondary text-secondary-foreground shadow-resting squircle inline-flex rounded-md px-2 py-0.5 text-[0.6875rem] font-semibold tracking-wide uppercase">
+            WIP
+          </span>
+          <h2 className="text-sm font-medium">Spring touch + haptics</h2>
+        </div>
+        <HapticButtons />
       </div>
 
       <div className="flex items-center gap-3">
         <Button render={<Link href="/docs/components/button" />}>
           Get started
-        </Button>
-        <Button
-          variant="outline"
-          render={<a href="https://base-ui.com" target="_blank" rel="noreferrer" />}
-        >
-          Base UI
         </Button>
       </div>
       </main>
