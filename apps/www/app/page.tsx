@@ -29,12 +29,6 @@ export default function HomePage() {
         <Button render={<Link href="/docs/components/button" />}>
           Get started
         </Button>
-        <Button
-          variant="outline"
-          render={<a href="https://base-ui.com" target="_blank" rel="noreferrer" />}
-        >
-          Base UI
-        </Button>
       </div>
       </main>
     </>
