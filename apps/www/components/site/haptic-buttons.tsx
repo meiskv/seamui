@@ -28,7 +28,13 @@ const TAPS: Tap[] = [
   { label: "Heavy", preset: "heavy", emojis: ["💥", "🔥", "⚡️"] },
 ]
 
-type Bubble = { id: number; emoji: string; dx: number }
+type Bubble = {
+  id: number
+  emoji: string
+  dx: number
+  dist: number
+  rot: number
+}
 
 function TapButton({
   tap,
@@ -44,11 +50,14 @@ function TapButton({
 
   function press() {
     onTap(tap.preset)
-    const count = reduce ? 1 : 3
+    const count = reduce ? 1 : 4
     const spawned: Bubble[] = Array.from({ length: count }, () => ({
       id: nextId.current++,
       emoji: tap.emojis[Math.floor(Math.random() * tap.emojis.length)],
-      dx: Math.round((Math.random() - 0.5) * 44),
+      // spread wide and float high so they escape the card, like haptics.lochie.me
+      dx: Math.round((Math.random() - 0.5) * 140),
+      dist: 150 + Math.round(Math.random() * 130),
+      rot: Math.round((Math.random() - 0.5) * 55),
     }))
     setBubbles((b) => [...b, ...spawned])
   }
@@ -60,14 +69,23 @@ function TapButton({
           <motion.span
             key={bubble.id}
             aria-hidden
-            className="pointer-events-none absolute -top-1 left-1/2 z-10 -translate-x-1/2 text-lg select-none"
-            initial={{ opacity: 0, y: 0, x: 0, scale: 0.4 }}
+            // z-50 + no clipping ancestor so bubbles rise up out of the card
+            className="pointer-events-none absolute -top-2 left-1/2 z-50 -translate-x-1/2 text-4xl select-none"
+            initial={{ opacity: 0, y: 0, x: 0, scale: 0.3, rotate: 0 }}
             animate={
               reduce
                 ? { opacity: [0, 1, 0] }
-                : { opacity: [0, 1, 1, 0], y: -72, x: bubble.dx, scale: 1 }
+                : {
+                    opacity: [0, 1, 1, 0],
+                    y: -bubble.dist,
+                    x: bubble.dx,
+                    scale: [0.3, 1.15, 1],
+                    rotate: bubble.rot,
+                  }
             }
-            transition={reduce ? fades.normal : { duration: 1, ease: "easeOut" }}
+            transition={
+              reduce ? fades.normal : { duration: 1.4, ease: "easeOut" }
+            }
             onAnimationComplete={() =>
               setBubbles((b) => b.filter((x) => x.id !== bubble.id))
             }
