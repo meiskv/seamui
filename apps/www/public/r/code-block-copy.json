@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "code-block-copy",
+  "type": "registry:example",
+  "title": "Code Block Copy",
+  "registryDependencies": [
+    "https://seamui.dev/r/code-block.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/code-block-copy.tsx",
+      "content": "import { CodeBlock } from \"@/registry/seam/ui/code-block\"\n\n// Press the copy key in the header — the icon crossfades to a check and back.\nexport default function CodeBlockCopy() {\n  return (\n    <div className=\"w-full max-w-md\">\n      <CodeBlock\n        language=\"bash\"\n        code={`npx shadcn@latest add https://seamui.dev/r/code-block.json`}\n      />\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

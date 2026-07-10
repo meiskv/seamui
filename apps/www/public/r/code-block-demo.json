@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "code-block-demo",
+  "type": "registry:example",
+  "title": "Code Block Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/code-block.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/code-block-demo.tsx",
+      "content": "import { CodeBlock } from \"@/registry/seam/ui/code-block\"\n\nconst CODE = `import { Button } from \"@/components/ui/button\"\n\nexport function Save() {\n  return <Button variant=\"secondary\">Save changes</Button>\n}`\n\nexport default function CodeBlockDemo() {\n  return (\n    <div className=\"w-full max-w-md\">\n      <CodeBlock code={CODE} language=\"tsx\" />\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

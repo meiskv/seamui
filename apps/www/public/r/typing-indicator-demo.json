@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "typing-indicator-demo",
+  "type": "registry:example",
+  "title": "Typing Indicator Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/typing-indicator.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/typing-indicator-demo.tsx",
+      "content": "import { TypingIndicator } from \"@/registry/seam/ui/typing-indicator\"\n\nexport default function TypingIndicatorDemo() {\n  return (\n    <div className=\"flex h-10 items-center\">\n      <TypingIndicator />\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

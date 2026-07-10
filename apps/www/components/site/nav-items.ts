@@ -78,6 +78,9 @@ export const NAV: NavGroup[] = [
       c("conversation", "Conversation"),
       c("composer", "Composer"),
       c("response", "Response"),
+      c("code-block", "Code Block"),
+      c("tool", "Tool"),
+      c("typing-indicator", "Typing Indicator"),
     ],
   },
 ]

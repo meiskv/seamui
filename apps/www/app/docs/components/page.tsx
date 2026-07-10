@@ -45,6 +45,9 @@ const COMPONENTS = [
   { name: "conversation", title: "Conversation", desc: "Stick-to-bottom chat viewport." },
   { name: "composer", title: "Composer", desc: "Prompt well with send and stop." },
   { name: "response", title: "Response", desc: "Streaming-safe markdown renderer." },
+  { name: "code-block", title: "Code Block", desc: "Highlighted code well with copy." },
+  { name: "tool", title: "Tool", desc: "Agentic step + reasoning disclosure." },
+  { name: "typing-indicator", title: "Typing Indicator", desc: "Pre-first-token dots." },
 ]
 
 export default function ComponentsIndex() {
