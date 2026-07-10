@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "code-block",
+  "type": "registry:ui",
+  "title": "Code Block",
+  "description": "Highlighted code in a debossed well, with a copy key.",
+  "dependencies": [
+    "shiki",
+    "motion",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "https://seamui.dev/r/utils.json",
+    "https://seamui.dev/r/motion.json",
+    "https://seamui.dev/r/badge.json",
+    "https://seamui.dev/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/ui/code-block.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { AnimatePresence, motion } from \"motion/react\"\nimport { Check, Copy } from \"lucide-react\"\nimport { codeToHtml } from \"shiki\"\n\nimport { cn } from \"@/lib/utils\"\nimport { fades } from \"@/lib/motion\"\nimport { Badge } from \"./badge\"\nimport { Button } from \"./button\"\n\n// Shiki runs in dual-theme mode (defaultColor:false → each token carries a\n// --shiki-light and --shiki-dark var). These rules pick the right one per\n// theme and let the debossed well show through, so the dark gate passes\n// without shipping a second highlighted payload.\nconst THEME_CSS = `\n.seam-code .shiki,\n.seam-code .shiki span { color: var(--shiki-light); background-color: transparent !important; }\n.dark .seam-code .shiki,\n.dark .seam-code .shiki span { color: var(--shiki-dark); }\n.seam-code .shiki { margin: 0; }\n`\n\nfunction CodeBlockCopyButton({\n  code,\n  className,\n  ...props\n}: React.ComponentProps<typeof Button> & { code: string }) {\n  const [copied, setCopied] = React.useState(false)\n\n  const copy = async () => {\n    try {\n      await navigator.clipboard.writeText(code)\n      setCopied(true)\n      setTimeout(() => setCopied(false), 2000)\n    } catch {\n      // clipboard unavailable (insecure context) — silently no-op\n    }\n  }\n\n  return (\n    <Button\n      data-slot=\"code-block-copy\"\n      variant=\"ghost\"\n      size=\"icon\"\n      onClick={copy}\n      aria-label={copied ? \"Copied\" : \"Copy code\"}\n      className={cn(\"text-muted-foreground size-7\", className)}\n      {...props}\n    >\n      {/* Confirmation is an opacity crossfade — identical under reduced motion. */}\n      <AnimatePresence mode=\"wait\" initial={false}>\n        <motion.span\n          key={copied ? \"check\" : \"copy\"}\n          initial={{ opacity: 0 }}\n          animate={{ opacity: 1 }}\n          exit={{ opacity: 0 }}\n          transition={fades.fast}\n          className=\"flex items-center justify-center\"\n        >\n          {copied ? <Check className=\"size-3.5\" /> : <Copy className=\"size-3.5\" />}\n        </motion.span>\n      </AnimatePresence>\n    </Button>\n  )\n}\n\n// Code is content you look *into* — so the block is a debossed well, with the\n// copy key embossed in its header. Highlighting resolves asynchronously; until\n// it does (and while a fence is still streaming) the raw text renders, so the\n// block is never blank and never breaks mid-stream.\nfunction CodeBlock({\n  code,\n  language = \"text\",\n  showHeader = true,\n  className,\n  ...props\n}: Omit<React.ComponentProps<\"div\">, \"children\"> & {\n  code: string\n  language?: string\n  showHeader?: boolean\n}) {\n  const source = code.replace(/\\n$/, \"\")\n  const [html, setHtml] = React.useState<string | null>(null)\n\n  React.useEffect(() => {\n    let active = true\n    codeToHtml(source, {\n      lang: language,\n      themes: { light: \"github-light\", dark: \"github-dark\" },\n      defaultColor: false,\n    })\n      .then((h) => active && setHtml(h))\n      // unknown language / load failure → keep the plain-text fallback\n      .catch(() => active && setHtml(null))\n    return () => {\n      active = false\n    }\n  }, [source, language])\n\n  return (\n    <div\n      data-slot=\"code-block\"\n      className={cn(\n        \"seam-code bg-muted overflow-hidden rounded-lg squircle border border-border/60 shadow-well\",\n        className\n      )}\n      {...props}\n    >\n      <style>{THEME_CSS}</style>\n      {showHeader && (\n        <div\n          data-slot=\"code-block-header\"\n          className=\"flex items-center justify-between gap-2 border-b border-border/60 px-2 py-1\"\n        >\n          <Badge variant=\"muted\" className=\"font-mono shadow-none\">\n            {language}\n          </Badge>\n          <CodeBlockCopyButton code={source} />\n        </div>\n      )}\n      <div\n        data-slot=\"code-block-content\"\n        // Keyboard users can scroll a wide block.\n        tabIndex={0}\n        className=\"overflow-x-auto p-3 text-[0.85em] leading-relaxed outline-none [&_pre]:bg-transparent!\"\n      >\n        {html ? (\n          <div dangerouslySetInnerHTML={{ __html: html }} />\n        ) : (\n          <pre className=\"font-mono whitespace-pre\">\n            <code>{source}</code>\n          </pre>\n        )}\n      </div>\n    </div>\n  )\n}\n\nexport { CodeBlock, CodeBlockCopyButton }\n",
+      "type": "registry:ui",
+      "target": "components/ui/code-block.tsx"
+    }
+  ]
+}

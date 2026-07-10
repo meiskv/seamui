@@ -5,6 +5,7 @@ import ReactMarkdown, { type Components } from "react-markdown"
 import remarkGfm from "remark-gfm"
 
 import { cn } from "@/lib/utils"
+import { CodeBlock } from "./code-block"
 
 // Streaming hardening: a half-arrived response often ends mid-code-fence. Left
 // as-is, the open ``` swallows the rest of the stream into one broken <pre>.
@@ -18,8 +19,9 @@ function completeMarkdown(md: string): string {
   return md
 }
 
-// Fenced code is delegated to a plain seam well here; when the `code-block`
-// component lands it drops in via the `pre`/`code` overrides with no API change.
+// Fenced code renders through the seam CodeBlock (well + copy + highlight);
+// inline code stays a debossed chip. `pre` becomes a pass-through since
+// CodeBlock brings its own container.
 const components: Components = {
   a: ({ className, ...props }) => (
     <a
@@ -32,27 +34,33 @@ const components: Components = {
       {...props}
     />
   ),
-  pre: ({ className, ...props }) => (
-    <pre
-      className={cn(
-        "bg-muted my-3 overflow-x-auto rounded-lg squircle border border-border/60 p-3 text-[0.85em] shadow-well",
-        "[&_code]:bg-transparent [&_code]:p-0 [&_code]:shadow-none",
-        className
-      )}
-      // Keyboard users can scroll a wide block.
-      tabIndex={0}
-      {...props}
-    />
-  ),
-  code: ({ className, ...props }) => (
-    <code
-      className={cn(
-        "bg-muted rounded squircle px-1.5 py-0.5 text-[0.85em] shadow-well",
-        className
-      )}
-      {...props}
-    />
-  ),
+  pre: ({ children }) => <>{children}</>,
+  code: ({ className, children, ...props }) => {
+    const match = /language-(\w+)/.exec(className ?? "")
+    const text = String(children ?? "")
+    // A fence with no language still arrives multiline — treat it as a block.
+    const isBlock = !!match || text.includes("\n")
+    if (isBlock) {
+      return (
+        <CodeBlock
+          code={text.replace(/\n$/, "")}
+          language={match?.[1] ?? "text"}
+          className="my-3"
+        />
+      )
+    }
+    return (
+      <code
+        className={cn(
+          "bg-muted rounded squircle px-1.5 py-0.5 text-[0.85em] shadow-well",
+          className
+        )}
+        {...props}
+      >
+        {children}
+      </code>
+    )
+  },
   table: ({ className, ...props }) => (
     <div className="my-3 overflow-x-auto">
       <table
