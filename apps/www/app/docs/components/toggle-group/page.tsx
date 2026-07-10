@@ -1,9 +1,11 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
+import { VariantPreview } from "@/components/docs/variant-preview"
 import { Section, CodeBlock, Install } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import ToggleGroupDemo from "@/registry/seam/examples/toggle-group-demo"
+import ToggleGroupText from "@/registry/seam/examples/toggle-group-text"
+import ToggleGroupDisabled from "@/registry/seam/examples/toggle-group-disabled"
 
 export const metadata: Metadata = {
   title: "Toggle Group — seamui",
@@ -20,9 +22,13 @@ export default function ToggleGroupDocs() {
         out of it as an embossed white key.
       </p>
 
-      <ComponentPreview code={exampleSource("toggle-group-demo")}>
-        <ToggleGroupDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          { key: "default", title: "Alignment", component: <ToggleGroupDemo />, code: exampleSource("toggle-group-demo") },
+          { key: "text", title: "Formatting", component: <ToggleGroupText />, code: exampleSource("toggle-group-text") },
+          { key: "disabled", title: "Disabled", component: <ToggleGroupDisabled />, code: exampleSource("toggle-group-disabled") },
+        ]}
+      />
 
       <Install name="toggle-group" />
 

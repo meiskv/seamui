@@ -1,9 +1,11 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
+import { VariantPreview } from "@/components/docs/variant-preview"
 import { Section, CodeBlock, Install } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import NumberFieldDemo from "@/registry/seam/examples/number-field-demo"
+import NumberFieldFormat from "@/registry/seam/examples/number-field-format"
+import NumberFieldDisabled from "@/registry/seam/examples/number-field-disabled"
 
 export const metadata: Metadata = {
   title: "Number Field — seamui",
@@ -19,9 +21,13 @@ export default function NumberFieldDocs() {
         scrubbing from Base UI. The steppers press with seam depth.
       </p>
 
-      <ComponentPreview code={exampleSource("number-field-demo")}>
-        <NumberFieldDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          { key: "default", title: "Default", component: <NumberFieldDemo />, code: exampleSource("number-field-demo") },
+          { key: "format", title: "Currency", component: <NumberFieldFormat />, code: exampleSource("number-field-format") },
+          { key: "disabled", title: "Disabled", component: <NumberFieldDisabled />, code: exampleSource("number-field-disabled") },
+        ]}
+      />
 
       <Install name="number-field" />
 

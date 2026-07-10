@@ -1,9 +1,13 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
+import { VariantPreview } from "@/components/docs/variant-preview"
 import { Section, CodeBlock, Install } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import ToggleDemo from "@/registry/seam/examples/toggle-demo"
+import ToggleWithText from "@/registry/seam/examples/toggle-with-text"
+import ToggleOutline from "@/registry/seam/examples/toggle-outline"
+import ToggleSizes from "@/registry/seam/examples/toggle-sizes"
+import ToggleDisabled from "@/registry/seam/examples/toggle-disabled"
 
 export const metadata: Metadata = {
   title: "Toggle — seamui",
@@ -19,9 +23,15 @@ export default function ToggleDocs() {
         surface with seam depth motion.
       </p>
 
-      <ComponentPreview code={exampleSource("toggle-demo")}>
-        <ToggleDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          { key: "default", title: "Default", component: <ToggleDemo />, code: exampleSource("toggle-demo") },
+          { key: "with-text", title: "With text", component: <ToggleWithText />, code: exampleSource("toggle-with-text") },
+          { key: "outline", title: "Outline", component: <ToggleOutline />, code: exampleSource("toggle-outline") },
+          { key: "sizes", title: "Sizes", component: <ToggleSizes />, code: exampleSource("toggle-sizes") },
+          { key: "disabled", title: "Disabled", component: <ToggleDisabled />, code: exampleSource("toggle-disabled") },
+        ]}
+      />
 
       <Install name="toggle" />
 

@@ -1,9 +1,12 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
+import { VariantPreview } from "@/components/docs/variant-preview"
 import { Section, CodeBlock, Install } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import CheckboxDemo from "@/registry/seam/examples/checkbox-demo"
+import CheckboxWithText from "@/registry/seam/examples/checkbox-with-text"
+import CheckboxIndeterminate from "@/registry/seam/examples/checkbox-indeterminate"
+import CheckboxDisabled from "@/registry/seam/examples/checkbox-disabled"
 
 export const metadata: Metadata = {
   title: "Checkbox — seamui",
@@ -19,9 +22,14 @@ export default function CheckboxDocs() {
         pops in with a spring.
       </p>
 
-      <ComponentPreview code={exampleSource("checkbox-demo")}>
-        <CheckboxDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          { key: "default", title: "Default", component: <CheckboxDemo />, code: exampleSource("checkbox-demo") },
+          { key: "with-text", title: "With text", component: <CheckboxWithText />, code: exampleSource("checkbox-with-text") },
+          { key: "indeterminate", title: "Indeterminate", component: <CheckboxIndeterminate />, code: exampleSource("checkbox-indeterminate") },
+          { key: "disabled", title: "Disabled", component: <CheckboxDisabled />, code: exampleSource("checkbox-disabled") },
+        ]}
+      />
 
       <Install name="checkbox" />
 

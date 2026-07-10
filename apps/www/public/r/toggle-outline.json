@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toggle-outline",
+  "type": "registry:example",
+  "title": "Toggle Outline",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "https://seamui.dev/r/toggle.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/toggle-outline.tsx",
+      "content": "import { Italic } from \"lucide-react\"\n\nimport { Toggle } from \"@/registry/seam/ui/toggle\"\n\nexport default function ToggleOutline() {\n  return (\n    <Toggle variant=\"outline\" aria-label=\"Toggle italic\">\n      <Italic />\n    </Toggle>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

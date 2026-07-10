@@ -1,9 +1,11 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
+import { VariantPreview } from "@/components/docs/variant-preview"
 import { Section, CodeBlock, Install } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import SliderDemo from "@/registry/seam/examples/slider-demo"
+import SliderSteps from "@/registry/seam/examples/slider-steps"
+import SliderDisabled from "@/registry/seam/examples/slider-disabled"
 
 export const metadata: Metadata = {
   title: "Slider — seamui",
@@ -19,9 +21,13 @@ export default function SliderDocs() {
         when grabbed, so touch targets feel tactile.
       </p>
 
-      <ComponentPreview code={exampleSource("slider-demo")}>
-        <SliderDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          { key: "default", title: "Default", component: <SliderDemo />, code: exampleSource("slider-demo") },
+          { key: "steps", title: "Steps", component: <SliderSteps />, code: exampleSource("slider-steps") },
+          { key: "disabled", title: "Disabled", component: <SliderDisabled />, code: exampleSource("slider-disabled") },
+        ]}
+      />
 
       <Install name="slider" />
 

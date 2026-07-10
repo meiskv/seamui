@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox-disabled",
+  "type": "registry:example",
+  "title": "Checkbox Disabled",
+  "registryDependencies": [
+    "https://seamui.dev/r/checkbox.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/checkbox-disabled.tsx",
+      "content": "import { Checkbox } from \"@/registry/seam/ui/checkbox\"\n\nexport default function CheckboxDisabled() {\n  return (\n    <div className=\"grid gap-2.5 text-sm\">\n      <label className=\"flex items-center gap-2 opacity-50\">\n        <Checkbox disabled />\n        Unchecked\n      </label>\n      <label className=\"flex items-center gap-2 opacity-50\">\n        <Checkbox disabled defaultChecked />\n        Checked\n      </label>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

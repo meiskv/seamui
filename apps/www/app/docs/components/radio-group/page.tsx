@@ -1,9 +1,11 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
+import { VariantPreview } from "@/components/docs/variant-preview"
 import { Section, CodeBlock, Install } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import RadioGroupDemo from "@/registry/seam/examples/radio-group-demo"
+import RadioGroupDescriptions from "@/registry/seam/examples/radio-group-descriptions"
+import RadioGroupDisabled from "@/registry/seam/examples/radio-group-disabled"
 
 export const metadata: Metadata = {
   title: "Radio Group — seamui",
@@ -19,9 +21,13 @@ export default function RadioGroupDocs() {
         in with a spring.
       </p>
 
-      <ComponentPreview code={exampleSource("radio-group-demo")}>
-        <RadioGroupDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          { key: "default", title: "Default", component: <RadioGroupDemo />, code: exampleSource("radio-group-demo") },
+          { key: "descriptions", title: "With descriptions", component: <RadioGroupDescriptions />, code: exampleSource("radio-group-descriptions") },
+          { key: "disabled", title: "Disabled", component: <RadioGroupDisabled />, code: exampleSource("radio-group-disabled") },
+        ]}
+      />
 
       <Install name="radio-group" />
 
