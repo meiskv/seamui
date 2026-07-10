@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "message",
+  "type": "registry:ui",
+  "title": "Message",
+  "description": "Chat message row — user as an embossed key, assistant as flat prose.",
+  "dependencies": [
+    "@base-ui/react",
+    "motion"
+  ],
+  "registryDependencies": [
+    "https://seamui.dev/r/utils.json",
+    "https://seamui.dev/r/motion.json",
+    "https://seamui.dev/r/avatar.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/ui/message.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { motion, useReducedMotion } from \"motion/react\"\n\nimport { cn } from \"@/lib/utils\"\nimport { springs, fades, depth, reduced } from \"@/lib/motion\"\nimport { Avatar, AvatarFallback, AvatarImage } from \"./avatar\"\n\ntype Role = \"user\" | \"assistant\"\n\n// The row. User and assistant sit on opposite sides of the same axis; the\n// `group/message` scope lets content + actions react to the row's role and\n// hover state. Enters by rising off the canvas on a spring; under reduced\n// motion it fades in place — movement swapped for opacity, never removed.\nfunction Message({\n  className,\n  from = \"assistant\",\n  ...props\n}: React.ComponentProps<typeof motion.div> & { from?: Role }) {\n  const reduceMotion = useReducedMotion()\n\n  return (\n    <motion.div\n      data-slot=\"message\"\n      data-role={from}\n      initial={reduceMotion ? reduced.fadeIn.initial : depth.overlay.initial}\n      animate={depth.overlay.animate}\n      transition={reduceMotion ? fades.normal : springs.snappy}\n      className={cn(\n        \"group/message flex w-full items-start gap-3 py-1.5\",\n        \"data-[role=user]:flex-row-reverse\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\n// The bubble/prose slot. The asymmetry is the design: the user's words are an\n// embossed key they placed on the surface (bg-secondary + shadow-resting,\n// right-aligned); the assistant's reply is flat prose — the surface itself\n// speaking — so it carries no bubble and no shadow.\nfunction MessageContent({\n  className,\n  ...props\n}: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"message-content\"\n      className={cn(\n        \"min-w-0 text-sm leading-relaxed\",\n        // user → embossed key\n        \"group-data-[role=user]/message:max-w-[80%] group-data-[role=user]/message:rounded-2xl group-data-[role=user]/message:squircle group-data-[role=user]/message:bg-secondary group-data-[role=user]/message:px-4 group-data-[role=user]/message:py-2.5 group-data-[role=user]/message:text-secondary-foreground group-data-[role=user]/message:shadow-resting\",\n        // assistant → flat prose on the canvas\n        \"group-data-[role=assistant]/message:w-full group-data-[role=assistant]/message:pt-1\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction initials(name?: string) {\n  if (!name) return \"\"\n  return name\n    .trim()\n    .split(/\\s+/)\n    .slice(0, 2)\n    .map((w) => w[0]?.toUpperCase() ?? \"\")\n    .join(\"\")\n}\n\n// Dogfoods Avatar: image with an initials fallback. Sits at the top of the row.\nfunction MessageAvatar({\n  src,\n  name,\n  className,\n  children,\n  ...props\n}: React.ComponentProps<typeof Avatar> & { src?: string; name?: string }) {\n  return (\n    <Avatar\n      data-slot=\"message-avatar\"\n      className={cn(\"size-8 shrink-0\", className)}\n      {...props}\n    >\n      {src ? <AvatarImage src={src} alt={name ?? \"\"} /> : null}\n      <AvatarFallback className=\"text-xs\">\n        {children ?? initials(name)}\n      </AvatarFallback>\n    </Avatar>\n  )\n}\n\n// Hover/focus-revealed action row (copy, regenerate, …). Reveal is opacity\n// only — the one animation seamui runs on a plain duration — so it survives\n// reduced motion; it just appears instantly instead of fading.\nfunction MessageActions({\n  className,\n  ...props\n}: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"message-actions\"\n      className={cn(\n        \"flex items-center gap-0.5 opacity-0 transition-opacity duration-150 ease-out\",\n        \"group-hover/message:opacity-100 group-focus-within/message:opacity-100 motion-reduce:transition-none\",\n        \"group-data-[role=user]/message:justify-end\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { Message, MessageContent, MessageAvatar, MessageActions }\n",
+      "type": "registry:ui",
+      "target": "components/ui/message.tsx"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "response-code",
+  "type": "registry:example",
+  "title": "Response Code",
+  "registryDependencies": [
+    "https://seamui.dev/r/response.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/response-code.tsx",
+      "content": "import { Response } from \"@/registry/seam/ui/response\"\n\nconst MARKDOWN = `A fenced block renders as a debossed well; inline \\`cn()\\` stays a chip.\n\n\\`\\`\\`tsx\nfunction Button({ variant, size, ...props }: ButtonProps) {\n  return <BaseButton className={cn(buttonVariants({ variant, size }))} {...props} />\n}\n\\`\\`\\`\n\n| Token | Use |\n| --- | --- |\n| \\`springs.press\\` | press-down feedback |\n| \\`depth.overlay\\` | floating surfaces |`\n\nexport default function ResponseCode() {\n  return (\n    <div className=\"w-full max-w-md\">\n      <Response>{MARKDOWN}</Response>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}
