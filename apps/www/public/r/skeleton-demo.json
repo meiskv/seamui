@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "skeleton-demo",
+  "type": "registry:example",
+  "title": "Skeleton Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/skeleton.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/skeleton-demo.tsx",
+      "content": "import { Skeleton } from \"@/registry/seam/ui/skeleton\"\n\nexport default function SkeletonDemo() {\n  return (\n    <div className=\"flex w-full max-w-sm items-center gap-3.5\">\n      <Skeleton className=\"size-11 shrink-0 rounded-full\" />\n      <div className=\"grid w-full gap-2\">\n        <Skeleton className=\"h-4 w-3/5\" />\n        <Skeleton className=\"h-4 w-4/5\" />\n      </div>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

@@ -516,6 +516,68 @@
       ]
     },
     {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "Auto-growing multiline text field styled as a seam entry well.",
+      "registryDependencies": ["https://seamui.dev/r/utils.json"],
+      "files": [
+        { "path": "registry/seam/ui/textarea.tsx", "type": "registry:ui", "target": "components/ui/textarea.tsx" }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "A raised surface key with header, content, and footer sections.",
+      "registryDependencies": ["https://seamui.dev/r/utils.json"],
+      "files": [
+        { "path": "registry/seam/ui/card.tsx", "type": "registry:ui", "target": "components/ui/card.tsx" }
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "Miniature embossed status chip with seam depth variants.",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["https://seamui.dev/r/utils.json"],
+      "files": [
+        { "path": "registry/seam/ui/badge.tsx", "type": "registry:ui", "target": "components/ui/badge.tsx" }
+      ]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "title": "Skeleton",
+      "description": "Loading placeholder well with an opacity-only pulse.",
+      "registryDependencies": ["https://seamui.dev/r/utils.json"],
+      "files": [
+        { "path": "registry/seam/ui/skeleton.tsx", "type": "registry:ui", "target": "components/ui/skeleton.tsx" }
+      ]
+    },
+    {
+      "name": "spinner",
+      "type": "registry:ui",
+      "title": "Spinner",
+      "description": "Loading indicator with a reduced-motion opacity fallback.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["https://seamui.dev/r/utils.json"],
+      "files": [
+        { "path": "registry/seam/ui/spinner.tsx", "type": "registry:ui", "target": "components/ui/spinner.tsx" }
+      ]
+    },
+    {
+      "name": "kbd",
+      "type": "registry:ui",
+      "title": "Kbd",
+      "description": "Keyboard shortcut rendered as a tiny embossed keycap.",
+      "registryDependencies": ["https://seamui.dev/r/utils.json"],
+      "files": [
+        { "path": "registry/seam/ui/kbd.tsx", "type": "registry:ui", "target": "components/ui/kbd.tsx" }
+      ]
+    },
+    {
       "name": "button-demo",
       "type": "registry:example",
       "title": "Button Demo",
@@ -547,8 +609,7 @@
       "name": "button-loading",
       "type": "registry:example",
       "title": "Button Loading",
-      "dependencies": ["lucide-react"],
-      "registryDependencies": ["https://seamui.dev/r/button.json"],
+      "registryDependencies": ["https://seamui.dev/r/button.json", "https://seamui.dev/r/spinner.json"],
       "files": [
         { "path": "registry/seam/examples/button-loading.tsx", "type": "registry:example" }
       ]
@@ -893,6 +954,79 @@
       ],
       "files": [
         { "path": "registry/seam/examples/toast-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "textarea-demo",
+      "type": "registry:example",
+      "title": "Textarea Demo",
+      "registryDependencies": ["https://seamui.dev/r/textarea.json"],
+      "files": [
+        { "path": "registry/seam/examples/textarea-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "textarea-disabled",
+      "type": "registry:example",
+      "title": "Textarea Disabled",
+      "registryDependencies": ["https://seamui.dev/r/textarea.json"],
+      "files": [
+        { "path": "registry/seam/examples/textarea-disabled.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "textarea-with-button",
+      "type": "registry:example",
+      "title": "Textarea With Button",
+      "registryDependencies": ["https://seamui.dev/r/textarea.json", "https://seamui.dev/r/button.json"],
+      "files": [
+        { "path": "registry/seam/examples/textarea-with-button.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "card-demo",
+      "type": "registry:example",
+      "title": "Card Demo",
+      "registryDependencies": ["https://seamui.dev/r/card.json", "https://seamui.dev/r/button.json", "https://seamui.dev/r/input.json"],
+      "files": [
+        { "path": "registry/seam/examples/card-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "badge-demo",
+      "type": "registry:example",
+      "title": "Badge Demo",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["https://seamui.dev/r/badge.json"],
+      "files": [
+        { "path": "registry/seam/examples/badge-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "skeleton-demo",
+      "type": "registry:example",
+      "title": "Skeleton Demo",
+      "registryDependencies": ["https://seamui.dev/r/skeleton.json"],
+      "files": [
+        { "path": "registry/seam/examples/skeleton-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "spinner-demo",
+      "type": "registry:example",
+      "title": "Spinner Demo",
+      "registryDependencies": ["https://seamui.dev/r/spinner.json"],
+      "files": [
+        { "path": "registry/seam/examples/spinner-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "kbd-demo",
+      "type": "registry:example",
+      "title": "Kbd Demo",
+      "registryDependencies": ["https://seamui.dev/r/kbd.json"],
+      "files": [
+        { "path": "registry/seam/examples/kbd-demo.tsx", "type": "registry:example" }
       ]
     }
   ]

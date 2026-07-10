@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: seamui docs
+    url: https://seamui.dev/docs/components
+    about: Component docs, installation, and usage examples.

@@ -3,16 +3,14 @@
   "name": "button-loading",
   "type": "registry:example",
   "title": "Button Loading",
-  "dependencies": [
-    "lucide-react"
-  ],
   "registryDependencies": [
-    "https://seamui.dev/r/button.json"
+    "https://seamui.dev/r/button.json",
+    "https://seamui.dev/r/spinner.json"
   ],
   "files": [
     {
       "path": "registry/seam/examples/button-loading.tsx",
-      "content": "import { Loader2 } from \"lucide-react\"\n\nimport { Button } from \"@/registry/seam/ui/button\"\n\nexport default function ButtonLoading() {\n  return (\n    <Button disabled>\n      <Loader2 className=\"animate-spin\" />\n      Please wait\n    </Button>\n  )\n}\n",
+      "content": "import { Button } from \"@/registry/seam/ui/button\"\nimport { Spinner } from \"@/registry/seam/ui/spinner\"\n\nexport default function ButtonLoading() {\n  return (\n    <Button disabled>\n      <Spinner />\n      Please wait\n    </Button>\n  )\n}\n",
       "type": "registry:example"
     }
   ]

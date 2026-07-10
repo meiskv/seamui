@@ -1,0 +1,60 @@
+name: Bug report
+description: Something broken in a seamui component, the registry, or the docs site.
+title: "[bug]: "
+labels: ["bug"]
+body:
+  - type: input
+    id: component
+    attributes:
+      label: Component
+      description: Which component (or "registry" / "docs site").
+      placeholder: e.g. dialog
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened, and what did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Install with `npx shadcn add https://seamui.dev/r/dialog.json`
+        2. …
+    validations:
+      required: true
+  - type: dropdown
+    id: gate
+    attributes:
+      label: Which gate does it fail?
+      description: seamui verifies four gates; knowing which one fails speeds up triage.
+      multiple: true
+      options:
+        - Pointer interaction
+        - Keyboard activation
+        - Reduced motion
+        - Dark mode
+        - Other / not gate-related
+    validations:
+      required: true
+  - type: dropdown
+    id: reduced-motion
+    attributes:
+      label: Is "Reduce Motion" enabled on your OS?
+      description: Reduced motion swaps movement for opacity feedback by design — an OS setting is the most common cause of "motion looks broken".
+      options:
+        - "No"
+        - "Yes"
+        - Not sure
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      placeholder: e.g. Chrome 126 / macOS 15, iOS 18 Safari
+    validations:
+      required: false

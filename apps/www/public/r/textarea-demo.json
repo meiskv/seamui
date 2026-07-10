@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "textarea-demo",
+  "type": "registry:example",
+  "title": "Textarea Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/textarea.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/textarea-demo.tsx",
+      "content": "import { Textarea } from \"@/registry/seam/ui/textarea\"\n\nexport default function TextareaDemo() {\n  return (\n    <Textarea\n      placeholder=\"Type your message here — the well grows with your text.\"\n      className=\"max-w-sm\"\n    />\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}
