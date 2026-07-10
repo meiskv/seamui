@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "chat-timeline-demo",
+  "type": "registry:example",
+  "title": "Chat Timeline Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/chat-timeline.json",
+    "https://seamui.dev/r/conversation.json",
+    "https://seamui.dev/r/message.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/chat-timeline-demo.tsx",
+      "content": "import {\n  Conversation,\n  ConversationContent,\n} from \"@/registry/seam/ui/conversation\"\nimport {\n  Message,\n  MessageAvatar,\n  MessageContent,\n} from \"@/registry/seam/ui/message\"\nimport {\n  ChatTimeline,\n  ChatTimelineGroup,\n  ChatTimelineHeader,\n} from \"@/registry/seam/ui/chat-timeline\"\n\nconst DAYS = [\n  {\n    label: \"Monday\",\n    messages: [\n      { from: \"user\", text: \"Can you set up the project?\" },\n      { from: \"assistant\", text: \"Done — registry, docs, and CI are wired.\" },\n      { from: \"assistant\", text: \"Want me to open a PR?\" },\n    ],\n  },\n  {\n    label: \"Today\",\n    messages: [\n      { from: \"user\", text: \"Yes, open it.\" },\n      { from: \"assistant\", text: \"Opened. Sticky headers pin as you scroll.\" },\n    ],\n  },\n] as const\n\nexport default function ChatTimelineDemo() {\n  return (\n    <div className=\"bg-card flex h-80 w-full max-w-md rounded-xl squircle border shadow-resting\">\n      <Conversation>\n        <ConversationContent>\n          <ChatTimeline>\n            {DAYS.map((day) => (\n              <ChatTimelineGroup key={day.label}>\n                <ChatTimelineHeader>{day.label}</ChatTimelineHeader>\n                {day.messages.map((m, i) => {\n                  // Collapse the avatar on consecutive assistant messages.\n                  const prev = day.messages[i - 1]\n                  const firstOfRun = !prev || prev.from !== m.from\n                  return (\n                    <Message key={i} from={m.from} role=\"listitem\">\n                      {m.from === \"assistant\" &&\n                        (firstOfRun ? (\n                          <MessageAvatar name=\"Seam UI\" />\n                        ) : (\n                          <span className=\"w-8 shrink-0\" aria-hidden />\n                        ))}\n                      <MessageContent>{m.text}</MessageContent>\n                    </Message>\n                  )\n                })}\n              </ChatTimelineGroup>\n            ))}\n          </ChatTimeline>\n        </ConversationContent>\n      </Conversation>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

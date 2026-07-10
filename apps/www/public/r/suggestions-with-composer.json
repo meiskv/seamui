@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "suggestions-with-composer",
+  "type": "registry:example",
+  "title": "Suggestions With Composer",
+  "registryDependencies": [
+    "https://seamui.dev/r/suggestions.json",
+    "https://seamui.dev/r/composer.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/suggestions-with-composer.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport {\n  Composer,\n  ComposerSubmit,\n  ComposerTextarea,\n  ComposerToolbar,\n} from \"@/registry/seam/ui/composer\"\nimport { Suggestion, Suggestions } from \"@/registry/seam/ui/suggestions\"\n\nconst PROMPTS = [\n  \"Draft a standup update\",\n  \"Summarize this thread\",\n  \"Write a test plan\",\n]\n\n// Selecting a suggestion fills the composer — the common empty-state pattern.\nexport default function SuggestionsWithComposer() {\n  const [value, setValue] = React.useState(\"\")\n\n  return (\n    <div className=\"w-full max-w-md space-y-3\">\n      <Suggestions>\n        {PROMPTS.map((p, i) => (\n          <Suggestion key={p} index={i} onClick={() => setValue(p)}>\n            {p}\n          </Suggestion>\n        ))}\n      </Suggestions>\n      <Composer\n        onSubmit={(e) => {\n          e.preventDefault()\n          setValue(\"\")\n        }}\n      >\n        <ComposerTextarea\n          value={value}\n          onChange={(e) => setValue(e.target.value)}\n          placeholder=\"Ask anything…\"\n        />\n        <ComposerToolbar>\n          <ComposerSubmit disabled={!value.trim()} />\n        </ComposerToolbar>\n      </Composer>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

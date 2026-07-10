@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "suggestions",
+  "type": "registry:ui",
+  "title": "Suggestions",
+  "description": "Scrollable row of prompt chips with a staggered entrance.",
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [
+    "https://seamui.dev/r/utils.json",
+    "https://seamui.dev/r/motion.json",
+    "https://seamui.dev/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/ui/suggestions.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { motion, useReducedMotion } from \"motion/react\"\n\nimport { cn } from \"@/lib/utils\"\nimport { springs, fades, depth, reduced } from \"@/lib/motion\"\nimport { Button } from \"./button\"\n\n// A horizontally scrollable row of prompt chips. The scrollbar is hidden but\n// the row stays keyboard-scrollable and every chip is a real button, so focus\n// rings are never clipped (no edge-fade mask, on purpose).\nfunction Suggestions({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"suggestions\"\n      className={cn(\n        \"flex w-full gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\n// Each suggestion is a small embossed key — it's pressable, so it *is* a\n// Button (never a hand-rolled chip). Pass `index` to opt into a staggered\n// entrance; under reduced motion the stagger drops and it simply fades in.\nfunction Suggestion({\n  className,\n  index = 0,\n  ...props\n}: React.ComponentProps<typeof Button> & { index?: number }) {\n  const reduceMotion = useReducedMotion()\n\n  return (\n    <motion.div\n      className=\"shrink-0\"\n      initial={reduceMotion ? reduced.fadeIn.initial : depth.overlay.initial}\n      animate={depth.overlay.animate}\n      transition={{\n        ...(reduceMotion ? fades.normal : springs.snappy),\n        delay: reduceMotion ? 0 : index * 0.04,\n      }}\n    >\n      <Button\n        data-slot=\"suggestion\"\n        variant=\"outline\"\n        size=\"sm\"\n        className={cn(\"rounded-full font-normal\", className)}\n        {...props}\n      />\n    </motion.div>\n  )\n}\n\nexport { Suggestions, Suggestion }\n",
+      "type": "registry:ui",
+      "target": "components/ui/suggestions.tsx"
+    }
+  ]
+}

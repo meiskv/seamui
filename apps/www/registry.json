@@ -655,6 +655,38 @@
       ]
     },
     {
+      "name": "suggestions",
+      "type": "registry:ui",
+      "title": "Suggestions",
+      "description": "Scrollable row of prompt chips with a staggered entrance.",
+      "dependencies": ["motion"],
+      "registryDependencies": ["https://seamui.dev/r/utils.json", "https://seamui.dev/r/motion.json", "https://seamui.dev/r/button.json"],
+      "files": [
+        { "path": "registry/seam/ui/suggestions.tsx", "type": "registry:ui", "target": "components/ui/suggestions.tsx" }
+      ]
+    },
+    {
+      "name": "sources",
+      "type": "registry:ui",
+      "title": "Sources",
+      "description": "Grounded-answer sources list and hoverable inline citations.",
+      "dependencies": ["motion", "lucide-react"],
+      "registryDependencies": ["https://seamui.dev/r/utils.json", "https://seamui.dev/r/motion.json", "https://seamui.dev/r/avatar.json", "https://seamui.dev/r/badge.json", "https://seamui.dev/r/button.json", "https://seamui.dev/r/collapsible.json", "https://seamui.dev/r/preview-card.json"],
+      "files": [
+        { "path": "registry/seam/ui/sources.tsx", "type": "registry:ui", "target": "components/ui/sources.tsx" }
+      ]
+    },
+    {
+      "name": "chat-timeline",
+      "type": "registry:ui",
+      "title": "Chat Timeline",
+      "description": "Grouped, timestamped conversation history with sticky day headers.",
+      "registryDependencies": ["https://seamui.dev/r/utils.json", "https://seamui.dev/r/badge.json", "https://seamui.dev/r/separator.json"],
+      "files": [
+        { "path": "registry/seam/ui/chat-timeline.tsx", "type": "registry:ui", "target": "components/ui/chat-timeline.tsx" }
+      ]
+    },
+    {
       "name": "button-demo",
       "type": "registry:example",
       "title": "Button Demo",
@@ -1287,6 +1319,60 @@
       "registryDependencies": ["https://seamui.dev/r/typing-indicator.json", "https://seamui.dev/r/message.json"],
       "files": [
         { "path": "registry/seam/examples/typing-indicator-in-message.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "suggestions-demo",
+      "type": "registry:example",
+      "title": "Suggestions Demo",
+      "registryDependencies": ["https://seamui.dev/r/suggestions.json"],
+      "files": [
+        { "path": "registry/seam/examples/suggestions-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "suggestions-with-composer",
+      "type": "registry:example",
+      "title": "Suggestions With Composer",
+      "registryDependencies": ["https://seamui.dev/r/suggestions.json", "https://seamui.dev/r/composer.json"],
+      "files": [
+        { "path": "registry/seam/examples/suggestions-with-composer.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "sources-demo",
+      "type": "registry:example",
+      "title": "Sources Demo",
+      "registryDependencies": ["https://seamui.dev/r/sources.json"],
+      "files": [
+        { "path": "registry/seam/examples/sources-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "inline-citation-demo",
+      "type": "registry:example",
+      "title": "Inline Citation Demo",
+      "registryDependencies": ["https://seamui.dev/r/sources.json"],
+      "files": [
+        { "path": "registry/seam/examples/inline-citation-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "chat-timeline-demo",
+      "type": "registry:example",
+      "title": "Chat Timeline Demo",
+      "registryDependencies": ["https://seamui.dev/r/chat-timeline.json", "https://seamui.dev/r/conversation.json", "https://seamui.dev/r/message.json"],
+      "files": [
+        { "path": "registry/seam/examples/chat-timeline-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "chat-timeline-unread",
+      "type": "registry:example",
+      "title": "Chat Timeline Unread",
+      "registryDependencies": ["https://seamui.dev/r/chat-timeline.json", "https://seamui.dev/r/conversation.json", "https://seamui.dev/r/message.json"],
+      "files": [
+        { "path": "registry/seam/examples/chat-timeline-unread.tsx", "type": "registry:example" }
       ]
     }
   ]

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "suggestions-demo",
+  "type": "registry:example",
+  "title": "Suggestions Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/suggestions.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/suggestions-demo.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport { Suggestion, Suggestions } from \"@/registry/seam/ui/suggestions\"\n\nconst PROMPTS = [\n  \"Explain springs vs durations\",\n  \"What is the debossed rule?\",\n  \"Show me a composer\",\n  \"How does reduced motion work?\",\n]\n\nexport default function SuggestionsDemo() {\n  const [picked, setPicked] = React.useState<string | null>(null)\n\n  return (\n    <div className=\"w-full max-w-md space-y-3\">\n      <Suggestions>\n        {PROMPTS.map((p, i) => (\n          <Suggestion key={p} index={i} onClick={() => setPicked(p)}>\n            {p}\n          </Suggestion>\n        ))}\n      </Suggestions>\n      <p className=\"text-muted-foreground text-sm\">\n        {picked ? `Picked: ${picked}` : \"Pick a suggestion above.\"}\n      </p>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}
