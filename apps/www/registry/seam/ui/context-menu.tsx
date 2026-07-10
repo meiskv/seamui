@@ -77,12 +77,15 @@ function ContextMenuItem({
   )
 }
 
+// Plain styled label so it works standalone (matching the shadcn API); Base
+// UI's GroupLabel requires a wrapping Menu.Group. Use ContextMenuGroup for a
+// labelled group.
 function ContextMenuLabel({
   className,
   ...props
-}: React.ComponentProps<typeof BaseContextMenu.GroupLabel>) {
+}: React.ComponentProps<"div">) {
   return (
-    <BaseContextMenu.GroupLabel
+    <div
       data-slot="context-menu-label"
       className={cn("px-2 py-1.5 text-xs font-medium text-muted-foreground", className)}
       {...props}

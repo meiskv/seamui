@@ -77,12 +77,15 @@ function DropdownMenuGroup(props: React.ComponentProps<typeof BaseMenu.Group>) {
   return <BaseMenu.Group data-slot="dropdown-menu-group" {...props} />
 }
 
+// A plain styled label so it works standalone in the menu (matching the
+// shadcn API). Base UI's Menu.GroupLabel requires a wrapping Menu.Group and
+// throws otherwise; use DropdownMenuGroup when you want a labelled group.
 function DropdownMenuLabel({
   className,
   ...props
-}: React.ComponentProps<typeof BaseMenu.GroupLabel>) {
+}: React.ComponentProps<"div">) {
   return (
-    <BaseMenu.GroupLabel
+    <div
       data-slot="dropdown-menu-label"
       className={cn("px-2 py-1.5 text-xs font-medium text-muted-foreground", className)}
       {...props}
