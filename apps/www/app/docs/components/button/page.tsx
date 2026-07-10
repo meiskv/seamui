@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
+import { VariantPreview } from "@/components/docs/variant-preview"
 import { Section, CodeBlock, Install } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import ButtonDemo from "@/registry/seam/examples/button-demo"
@@ -22,9 +22,15 @@ export default function ButtonDocs() {
         Displays a button. Built on Base UI, animated with seam depth motion.
       </p>
 
-      <ComponentPreview code={exampleSource("button-demo")}>
-        <ButtonDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          { key: "default", title: "Default", component: <ButtonDemo />, code: exampleSource("button-demo") },
+          { key: "variants", title: "Variants", component: <ButtonVariants />, code: exampleSource("button-variants") },
+          { key: "sizes", title: "Sizes", component: <ButtonSizes />, code: exampleSource("button-sizes") },
+          { key: "loading", title: "Loading", component: <ButtonLoading />, code: exampleSource("button-loading") },
+          { key: "link", title: "As a link", component: <ButtonLink />, code: exampleSource("button-link") },
+        ]}
+      />
 
       <Install name="button" />
 
@@ -32,40 +38,11 @@ export default function ButtonDocs() {
         <CodeBlock>{`import { Button } from "@/components/ui/button"
 
 <Button variant="outline" size="lg">Button</Button>`}</CodeBlock>
-      </Section>
-
-      <Section title="Examples">
-        <h3 className="text-muted-foreground/80 mt-4 text-xs font-medium">
-          Variants
-        </h3>
-        <ComponentPreview code={exampleSource("button-variants")}>
-          <ButtonVariants />
-        </ComponentPreview>
-
-        <h3 className="text-muted-foreground/80 mt-4 text-xs font-medium">
-          Sizes
-        </h3>
-        <ComponentPreview code={exampleSource("button-sizes")}>
-          <ButtonSizes />
-        </ComponentPreview>
-
-        <h3 className="text-muted-foreground/80 mt-4 text-xs font-medium">
-          Loading
-        </h3>
-        <ComponentPreview code={exampleSource("button-loading")}>
-          <ButtonLoading />
-        </ComponentPreview>
-
-        <h3 className="text-muted-foreground/80 mt-4 text-xs font-medium">
-          As a link
-        </h3>
         <p className="text-muted-foreground text-sm">
-          Use Base UI&apos;s <code>render</code> prop (replaces Radix{" "}
-          <code>asChild</code>):
+          For the <strong>As a link</strong> variant, use Base UI&apos;s{" "}
+          <code>render</code> prop (it replaces Radix&apos;s{" "}
+          <code>asChild</code>).
         </p>
-        <ComponentPreview code={exampleSource("button-link")}>
-          <ButtonLink />
-        </ComponentPreview>
       </Section>
 
       <Section title="API Reference">

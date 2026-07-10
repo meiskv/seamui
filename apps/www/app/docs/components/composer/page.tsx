@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
+import { VariantPreview } from "@/components/docs/variant-preview"
 import { Section, CodeBlock, Install } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import ComposerDemo from "@/registry/seam/examples/composer-demo"
@@ -23,9 +23,13 @@ export default function ComposerDocs() {
         the embossed token that fires the action.
       </p>
 
-      <ComponentPreview code={exampleSource("composer-demo")}>
-        <ComposerDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          { key: "default", title: "Default", component: <ComposerDemo />, code: exampleSource("composer-demo") },
+          { key: "streaming", title: "Streaming", component: <ComposerStreaming />, code: exampleSource("composer-streaming") },
+          { key: "attachments", title: "Attachments", component: <ComposerAttachments />, code: exampleSource("composer-attachments") },
+        ]}
+      />
 
       <Install name="composer" />
 
@@ -52,22 +56,6 @@ export default function ComposerDocs() {
           The shape maps 1:1 onto the AI SDK&apos;s <code>useChat</code>, with no
           runtime dependency on it.
         </p>
-      </Section>
-
-      <Section title="Examples">
-        <h3 className="text-muted-foreground/80 mt-4 text-xs font-medium">
-          Streaming (send becomes stop)
-        </h3>
-        <ComponentPreview code={exampleSource("composer-streaming")}>
-          <ComposerStreaming />
-        </ComponentPreview>
-
-        <h3 className="text-muted-foreground/80 mt-4 text-xs font-medium">
-          Attachments
-        </h3>
-        <ComponentPreview code={exampleSource("composer-attachments")}>
-          <ComposerAttachments />
-        </ComponentPreview>
       </Section>
 
       <Section title="Motion">

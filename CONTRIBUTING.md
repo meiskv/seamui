@@ -70,18 +70,30 @@ this the slot, or the token in the slot?* Slot → debossed. Token → embossed.
 ## The docs page template
 
 Every component gets `apps/www/app/docs/components/<name>/page.tsx` with this
-exact section order (copy an existing page, e.g. `input`):
+exact section order (copy an existing page, e.g. `button`):
 
 1. **Title + one-line description** — what it is, in seam terms.
-2. **Hero `ComponentPreview`** — the `<name>-demo` example.
+2. **`VariantPreview`** — the single persistent preview panel. Pass every
+   meaningful example as a variant (the `<name>-demo` first); the switcher swaps
+   the live example *and* its source in place, so the whole examples set lives
+   in one panel instead of a long scroll. Use `ComponentPreview` only for a
+   truly single-example component.
 3. **Installation** — `<Install name="<name>" />`.
 4. **Usage** — import + minimal JSX snippet.
-5. **Examples** — one `ComponentPreview` per variant example.
-6. **Motion** — what animates, at which depth, with which tokens, *and what the
+5. **Motion** — what animates, at which depth, with which tokens, *and what the
    reduced-motion variant does*. If the component is static, say that it's
    static by design and why.
-7. **Accessibility** — what element renders, what Base UI provides, what the
+6. **Accessibility** — what element renders, what Base UI provides, what the
    consumer must still do.
+
+**The `VariantPreview` (examples switcher).** `components/docs/variant-preview.tsx`
+takes `variants: { key, title, component, code, description? }[]`. `key` is a
+URL-hash-safe slug (the selected variant is reflected in the hash, so
+`…/button#loading` deep-links). `code` is `exampleSource("<example-name>")` so it
+never drifts from what ships. The switcher and the Preview/Code toggle both
+dogfood the seamui `Tabs`; the panel swap is opacity-only (identical under
+reduced motion). Don't reintroduce a stacked "Examples" section below it — the
+switcher *is* the examples.
 
 Then add the component to **both** hand-maintained indexes:
 - `components/site/nav-items.ts` (sidebar group)
