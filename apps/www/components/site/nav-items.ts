@@ -71,4 +71,13 @@ export const NAV: NavGroup[] = [
       c("kbd", "Kbd"),
     ],
   },
+  {
+    title: "AI",
+    items: [
+      c("message", "Message"),
+      c("conversation", "Conversation"),
+      c("composer", "Composer"),
+      c("response", "Response"),
+    ],
+  },
 ]

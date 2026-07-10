@@ -41,6 +41,10 @@ const COMPONENTS = [
   { name: "badge", title: "Badge", desc: "Miniature embossed status chip." },
   { name: "card", title: "Card", desc: "Raised surface with sections." },
   { name: "kbd", title: "Kbd", desc: "Shortcut as an embossed keycap." },
+  { name: "message", title: "Message", desc: "Chat row: user key, assistant prose." },
+  { name: "conversation", title: "Conversation", desc: "Stick-to-bottom chat viewport." },
+  { name: "composer", title: "Composer", desc: "Prompt well with send and stop." },
+  { name: "response", title: "Response", desc: "Streaming-safe markdown renderer." },
 ]
 
 export default function ComponentsIndex() {

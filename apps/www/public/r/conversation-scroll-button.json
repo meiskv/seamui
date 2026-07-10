@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "conversation-scroll-button",
+  "type": "registry:example",
+  "title": "Conversation Scroll Button",
+  "registryDependencies": [
+    "https://seamui.dev/r/conversation.json",
+    "https://seamui.dev/r/message.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/conversation-scroll-button.tsx",
+      "content": "import {\n  Conversation,\n  ConversationContent,\n  ConversationScrollButton,\n} from \"@/registry/seam/ui/conversation\"\nimport {\n  Message,\n  MessageAvatar,\n  MessageContent,\n} from \"@/registry/seam/ui/message\"\n\n// Scroll up inside the panel: the \"jump to latest\" key rises at overlay depth.\n// Return to the bottom and it falls away.\nexport default function ConversationScrollButtonExample() {\n  return (\n    <div className=\"bg-card flex h-72 w-full max-w-md rounded-xl squircle border shadow-resting\">\n      <Conversation>\n        <ConversationContent>\n          {Array.from({ length: 12 }).map((_, i) => (\n            <Message key={i} from={i % 2 === 0 ? \"user\" : \"assistant\"}>\n              {i % 2 === 1 && <MessageAvatar name=\"Seam UI\" />}\n              <MessageContent>\n                {i % 2 === 0\n                  ? `Question number ${i / 2 + 1}.`\n                  : \"A reply long enough to fill the viewport so there is something to scroll through and back down from.\"}\n              </MessageContent>\n            </Message>\n          ))}\n        </ConversationContent>\n        <ConversationScrollButton />\n      </Conversation>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

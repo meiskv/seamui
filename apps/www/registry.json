@@ -578,6 +578,50 @@
       ]
     },
     {
+      "name": "message",
+      "type": "registry:ui",
+      "title": "Message",
+      "description": "Chat message row — user as an embossed key, assistant as flat prose.",
+      "dependencies": ["@base-ui/react", "motion"],
+      "registryDependencies": ["https://seamui.dev/r/utils.json", "https://seamui.dev/r/motion.json", "https://seamui.dev/r/avatar.json"],
+      "files": [
+        { "path": "registry/seam/ui/message.tsx", "type": "registry:ui", "target": "components/ui/message.tsx" }
+      ]
+    },
+    {
+      "name": "conversation",
+      "type": "registry:ui",
+      "title": "Conversation",
+      "description": "Stick-to-bottom chat viewport with a floating scroll-to-latest key.",
+      "dependencies": ["motion", "lucide-react"],
+      "registryDependencies": ["https://seamui.dev/r/utils.json", "https://seamui.dev/r/motion.json", "https://seamui.dev/r/button.json"],
+      "files": [
+        { "path": "registry/seam/ui/conversation.tsx", "type": "registry:ui", "target": "components/ui/conversation.tsx" }
+      ]
+    },
+    {
+      "name": "composer",
+      "type": "registry:ui",
+      "title": "Composer",
+      "description": "The prompt input — a debossed well with send/stop, attachments, and Enter-to-send.",
+      "dependencies": ["motion", "lucide-react"],
+      "registryDependencies": ["https://seamui.dev/r/utils.json", "https://seamui.dev/r/motion.json", "https://seamui.dev/r/button.json", "https://seamui.dev/r/textarea.json", "https://seamui.dev/r/badge.json"],
+      "files": [
+        { "path": "registry/seam/ui/composer.tsx", "type": "registry:ui", "target": "components/ui/composer.tsx" }
+      ]
+    },
+    {
+      "name": "response",
+      "type": "registry:ui",
+      "title": "Response",
+      "description": "Streaming-safe markdown renderer that hardens incomplete blocks.",
+      "dependencies": ["react-markdown", "remark-gfm"],
+      "registryDependencies": ["https://seamui.dev/r/utils.json"],
+      "files": [
+        { "path": "registry/seam/ui/response.tsx", "type": "registry:ui", "target": "components/ui/response.tsx" }
+      ]
+    },
+    {
       "name": "button-demo",
       "type": "registry:example",
       "title": "Button Demo",
@@ -1027,6 +1071,117 @@
       "registryDependencies": ["https://seamui.dev/r/kbd.json"],
       "files": [
         { "path": "registry/seam/examples/kbd-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "message-demo",
+      "type": "registry:example",
+      "title": "Message Demo",
+      "registryDependencies": ["https://seamui.dev/r/message.json"],
+      "files": [
+        { "path": "registry/seam/examples/message-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "message-actions",
+      "type": "registry:example",
+      "title": "Message Actions",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["https://seamui.dev/r/message.json", "https://seamui.dev/r/button.json"],
+      "files": [
+        { "path": "registry/seam/examples/message-actions.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "message-avatar-fallback",
+      "type": "registry:example",
+      "title": "Message Avatar Fallback",
+      "registryDependencies": ["https://seamui.dev/r/message.json"],
+      "files": [
+        { "path": "registry/seam/examples/message-avatar-fallback.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "conversation-demo",
+      "type": "registry:example",
+      "title": "Conversation Demo",
+      "registryDependencies": ["https://seamui.dev/r/conversation.json", "https://seamui.dev/r/message.json", "https://seamui.dev/r/button.json"],
+      "files": [
+        { "path": "registry/seam/examples/conversation-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "conversation-scroll-button",
+      "type": "registry:example",
+      "title": "Conversation Scroll Button",
+      "registryDependencies": ["https://seamui.dev/r/conversation.json", "https://seamui.dev/r/message.json"],
+      "files": [
+        { "path": "registry/seam/examples/conversation-scroll-button.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "composer-demo",
+      "type": "registry:example",
+      "title": "Composer Demo",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["https://seamui.dev/r/composer.json", "https://seamui.dev/r/button.json", "https://seamui.dev/r/kbd.json"],
+      "files": [
+        { "path": "registry/seam/examples/composer-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "composer-streaming",
+      "type": "registry:example",
+      "title": "Composer Streaming",
+      "registryDependencies": ["https://seamui.dev/r/composer.json"],
+      "files": [
+        { "path": "registry/seam/examples/composer-streaming.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "composer-attachments",
+      "type": "registry:example",
+      "title": "Composer Attachments",
+      "dependencies": ["motion", "lucide-react"],
+      "registryDependencies": ["https://seamui.dev/r/composer.json", "https://seamui.dev/r/button.json"],
+      "files": [
+        { "path": "registry/seam/examples/composer-attachments.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "response-demo",
+      "type": "registry:example",
+      "title": "Response Demo",
+      "registryDependencies": ["https://seamui.dev/r/response.json"],
+      "files": [
+        { "path": "registry/seam/examples/response-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "response-streaming",
+      "type": "registry:example",
+      "title": "Response Streaming",
+      "registryDependencies": ["https://seamui.dev/r/response.json", "https://seamui.dev/r/button.json"],
+      "files": [
+        { "path": "registry/seam/examples/response-streaming.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "response-code",
+      "type": "registry:example",
+      "title": "Response Code",
+      "registryDependencies": ["https://seamui.dev/r/response.json"],
+      "files": [
+        { "path": "registry/seam/examples/response-code.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "chat-demo",
+      "type": "registry:example",
+      "title": "Chat Demo",
+      "registryDependencies": ["https://seamui.dev/r/composer.json", "https://seamui.dev/r/conversation.json", "https://seamui.dev/r/message.json", "https://seamui.dev/r/response.json"],
+      "files": [
+        { "path": "registry/seam/examples/chat-demo.tsx", "type": "registry:example" }
       ]
     }
   ]

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "response-streaming",
+  "type": "registry:example",
+  "title": "Response Streaming",
+  "registryDependencies": [
+    "https://seamui.dev/r/response.json",
+    "https://seamui.dev/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/response-streaming.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport { Button } from \"@/registry/seam/ui/button\"\nimport { Response } from \"@/registry/seam/ui/response\"\n\nconst FULL = `Here is a **streamed** answer. Watch it arrive token by token:\n\n- the dangling code fence never breaks the layout\n- reflowing text does not bounce\n\n\\`\\`\\`ts\nconst spring = springs.snappy\n\\`\\`\\`\n\nThat last block stayed renderable even while the fence was still open.`\n\nexport default function ResponseStreaming() {\n  const [n, setN] = React.useState(FULL.length)\n\n  const stream = () => {\n    setN(0)\n    const tokens = FULL.split(/(\\s+)/)\n    let i = 0\n    let acc = 0\n    const id = setInterval(() => {\n      acc += tokens[i]?.length ?? 0\n      i++\n      setN(acc)\n      if (i >= tokens.length) clearInterval(id)\n    }, 60)\n  }\n\n  return (\n    <div className=\"w-full max-w-md space-y-3\">\n      <Response>{FULL.slice(0, n)}</Response>\n      <Button size=\"sm\" variant=\"secondary\" onClick={stream}>\n        Replay stream\n      </Button>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

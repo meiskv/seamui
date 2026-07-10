@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "response-demo",
+  "type": "registry:example",
+  "title": "Response Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/response.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/response-demo.tsx",
+      "content": "import { Response } from \"@/registry/seam/ui/response\"\n\nconst MARKDOWN = `Springs beat durations because they carry **velocity**. A few consequences:\n\n- an interrupted animation redirects smoothly\n- release always settles naturally\n- there is no fixed clock to fight\n\nInline code like \\`springs.press\\` stays debossed, and blocks get a well:\n\n\\`\\`\\`ts\nwhileTap={reduceMotion ? reduced.pressed : depth.pressed}\n\\`\\`\\`\n\n> Reduced motion swaps movement for opacity — it never removes feedback.`\n\nexport default function ResponseDemo() {\n  return (\n    <div className=\"w-full max-w-md\">\n      <Response>{MARKDOWN}</Response>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "conversation-demo",
+  "type": "registry:example",
+  "title": "Conversation Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/conversation.json",
+    "https://seamui.dev/r/message.json",
+    "https://seamui.dev/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/conversation-demo.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport { Button } from \"@/registry/seam/ui/button\"\nimport {\n  Conversation,\n  ConversationContent,\n  ConversationScrollButton,\n} from \"@/registry/seam/ui/conversation\"\nimport {\n  Message,\n  MessageAvatar,\n  MessageContent,\n} from \"@/registry/seam/ui/message\"\n\nconst SEED = [\n  { from: \"user\", text: \"Give me a few sentences about springs.\" },\n  {\n    from: \"assistant\",\n    text: \"A spring animates toward a target by simulating stiffness, damping, and mass rather than a fixed clock. Because it carries velocity, an interrupted spring redirects smoothly instead of snapping.\",\n  },\n  { from: \"user\", text: \"And why depth?\" },\n  {\n    from: \"assistant\",\n    text: \"Depth turns the interface into a stack of surfaces on a virtual z-axis. Pressing recedes a control into the surface; overlays rise toward you. It reads as physical, not flat.\",\n  },\n] as const\n\nexport default function ConversationDemo() {\n  const [messages, setMessages] = React.useState<\n    { from: \"user\" | \"assistant\"; text: string }[]\n  >(SEED.map((m) => ({ ...m })))\n\n  const send = () => {\n    setMessages((prev) => [\n      ...prev,\n      { from: \"user\", text: \"Tell me one more thing.\" },\n      {\n        from: \"assistant\",\n        text: \"Every interactive control reacts to press within a frame and settles springy on release — the viewport follows along, staying pinned to the newest message while you're at the bottom.\",\n      },\n    ])\n  }\n\n  return (\n    <div className=\"bg-card flex h-80 w-full max-w-md flex-col rounded-xl squircle border shadow-resting\">\n      <Conversation>\n        <ConversationContent>\n          {messages.map((m, i) => (\n            <Message key={i} from={m.from}>\n              {m.from === \"assistant\" && <MessageAvatar name=\"Seam UI\" />}\n              <MessageContent>{m.text}</MessageContent>\n            </Message>\n          ))}\n        </ConversationContent>\n        <ConversationScrollButton />\n      </Conversation>\n      <div className=\"border-t p-2\">\n        <Button size=\"sm\" className=\"w-full\" onClick={send}>\n          Send more\n        </Button>\n      </div>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}
