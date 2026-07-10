@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "number-field-disabled",
+  "type": "registry:example",
+  "title": "Number Field Disabled",
+  "registryDependencies": [
+    "https://seamui.dev/r/number-field.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/number-field-disabled.tsx",
+      "content": "import { NumberField } from \"@/registry/seam/ui/number-field\"\n\nexport default function NumberFieldDisabled() {\n  return <NumberField defaultValue={3} min={0} max={10} disabled />\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

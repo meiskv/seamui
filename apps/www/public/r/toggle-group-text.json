@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toggle-group-text",
+  "type": "registry:example",
+  "title": "Toggle Group Text",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "https://seamui.dev/r/toggle.json",
+    "https://seamui.dev/r/toggle-group.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/toggle-group-text.tsx",
+      "content": "\"use client\"\n\nimport { Bold, Italic, Underline } from \"lucide-react\"\n\nimport { Toggle } from \"@/registry/seam/ui/toggle\"\nimport { ToggleGroup } from \"@/registry/seam/ui/toggle-group\"\n\nexport default function ToggleGroupText() {\n  return (\n    <ToggleGroup defaultValue={[\"bold\"]}>\n      <Toggle value=\"bold\" aria-label=\"Bold\">\n        <Bold />\n      </Toggle>\n      <Toggle value=\"italic\" aria-label=\"Italic\">\n        <Italic />\n      </Toggle>\n      <Toggle value=\"underline\" aria-label=\"Underline\">\n        <Underline />\n      </Toggle>\n    </ToggleGroup>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

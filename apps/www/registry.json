@@ -1374,6 +1374,228 @@
       "files": [
         { "path": "registry/seam/examples/chat-timeline-unread.tsx", "type": "registry:example" }
       ]
+    },
+    {
+      "name": "toggle-with-text",
+      "type": "registry:example",
+      "title": "Toggle With Text",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["https://seamui.dev/r/toggle.json"],
+      "files": [
+        { "path": "registry/seam/examples/toggle-with-text.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "toggle-outline",
+      "type": "registry:example",
+      "title": "Toggle Outline",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["https://seamui.dev/r/toggle.json"],
+      "files": [
+        { "path": "registry/seam/examples/toggle-outline.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "toggle-sizes",
+      "type": "registry:example",
+      "title": "Toggle Sizes",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["https://seamui.dev/r/toggle.json"],
+      "files": [
+        { "path": "registry/seam/examples/toggle-sizes.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "toggle-disabled",
+      "type": "registry:example",
+      "title": "Toggle Disabled",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["https://seamui.dev/r/toggle.json"],
+      "files": [
+        { "path": "registry/seam/examples/toggle-disabled.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "toggle-group-text",
+      "type": "registry:example",
+      "title": "Toggle Group Text",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["https://seamui.dev/r/toggle.json", "https://seamui.dev/r/toggle-group.json"],
+      "files": [
+        { "path": "registry/seam/examples/toggle-group-text.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "toggle-group-disabled",
+      "type": "registry:example",
+      "title": "Toggle Group Disabled",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["https://seamui.dev/r/toggle.json", "https://seamui.dev/r/toggle-group.json"],
+      "files": [
+        { "path": "registry/seam/examples/toggle-group-disabled.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "input-disabled",
+      "type": "registry:example",
+      "title": "Input Disabled",
+      "registryDependencies": ["https://seamui.dev/r/input.json"],
+      "files": [
+        { "path": "registry/seam/examples/input-disabled.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "input-invalid",
+      "type": "registry:example",
+      "title": "Input Invalid",
+      "registryDependencies": ["https://seamui.dev/r/input.json"],
+      "files": [
+        { "path": "registry/seam/examples/input-invalid.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "input-file",
+      "type": "registry:example",
+      "title": "Input File",
+      "registryDependencies": ["https://seamui.dev/r/input.json"],
+      "files": [
+        { "path": "registry/seam/examples/input-file.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "switch-disabled",
+      "type": "registry:example",
+      "title": "Switch Disabled",
+      "registryDependencies": ["https://seamui.dev/r/switch.json"],
+      "files": [
+        { "path": "registry/seam/examples/switch-disabled.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "switch-settings",
+      "type": "registry:example",
+      "title": "Switch Settings",
+      "registryDependencies": ["https://seamui.dev/r/switch.json"],
+      "files": [
+        { "path": "registry/seam/examples/switch-settings.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "checkbox-indeterminate",
+      "type": "registry:example",
+      "title": "Checkbox Indeterminate",
+      "registryDependencies": ["https://seamui.dev/r/checkbox.json"],
+      "files": [
+        { "path": "registry/seam/examples/checkbox-indeterminate.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "checkbox-disabled",
+      "type": "registry:example",
+      "title": "Checkbox Disabled",
+      "registryDependencies": ["https://seamui.dev/r/checkbox.json"],
+      "files": [
+        { "path": "registry/seam/examples/checkbox-disabled.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "checkbox-with-text",
+      "type": "registry:example",
+      "title": "Checkbox With Text",
+      "registryDependencies": ["https://seamui.dev/r/checkbox.json"],
+      "files": [
+        { "path": "registry/seam/examples/checkbox-with-text.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "radio-group-disabled",
+      "type": "registry:example",
+      "title": "Radio Group Disabled",
+      "registryDependencies": ["https://seamui.dev/r/radio-group.json"],
+      "files": [
+        { "path": "registry/seam/examples/radio-group-disabled.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "radio-group-descriptions",
+      "type": "registry:example",
+      "title": "Radio Group Descriptions",
+      "registryDependencies": ["https://seamui.dev/r/radio-group.json"],
+      "files": [
+        { "path": "registry/seam/examples/radio-group-descriptions.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "slider-steps",
+      "type": "registry:example",
+      "title": "Slider Steps",
+      "registryDependencies": ["https://seamui.dev/r/slider.json"],
+      "files": [
+        { "path": "registry/seam/examples/slider-steps.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "slider-disabled",
+      "type": "registry:example",
+      "title": "Slider Disabled",
+      "registryDependencies": ["https://seamui.dev/r/slider.json"],
+      "files": [
+        { "path": "registry/seam/examples/slider-disabled.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "select-groups",
+      "type": "registry:example",
+      "title": "Select Groups",
+      "registryDependencies": ["https://seamui.dev/r/select.json"],
+      "files": [
+        { "path": "registry/seam/examples/select-groups.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "select-disabled",
+      "type": "registry:example",
+      "title": "Select Disabled",
+      "registryDependencies": ["https://seamui.dev/r/select.json"],
+      "files": [
+        { "path": "registry/seam/examples/select-disabled.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "number-field-format",
+      "type": "registry:example",
+      "title": "Number Field Format",
+      "registryDependencies": ["https://seamui.dev/r/number-field.json"],
+      "files": [
+        { "path": "registry/seam/examples/number-field-format.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "number-field-disabled",
+      "type": "registry:example",
+      "title": "Number Field Disabled",
+      "registryDependencies": ["https://seamui.dev/r/number-field.json"],
+      "files": [
+        { "path": "registry/seam/examples/number-field-disabled.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "otp-field-four",
+      "type": "registry:example",
+      "title": "OTP Field Four",
+      "registryDependencies": ["https://seamui.dev/r/otp-field.json"],
+      "files": [
+        { "path": "registry/seam/examples/otp-field-four.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "otp-field-disabled",
+      "type": "registry:example",
+      "title": "OTP Field Disabled",
+      "registryDependencies": ["https://seamui.dev/r/otp-field.json"],
+      "files": [
+        { "path": "registry/seam/examples/otp-field-disabled.tsx", "type": "registry:example" }
+      ]
     }
   ]
 }

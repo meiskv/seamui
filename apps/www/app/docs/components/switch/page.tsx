@@ -1,9 +1,11 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
+import { VariantPreview } from "@/components/docs/variant-preview"
 import { Section, CodeBlock, Install } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import SwitchDemo from "@/registry/seam/examples/switch-demo"
+import SwitchSettings from "@/registry/seam/examples/switch-settings"
+import SwitchDisabled from "@/registry/seam/examples/switch-disabled"
 
 export const metadata: Metadata = {
   title: "Switch — seamui",
@@ -19,9 +21,13 @@ export default function SwitchDocs() {
         track with real physics.
       </p>
 
-      <ComponentPreview code={exampleSource("switch-demo")}>
-        <SwitchDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          { key: "default", title: "Default", component: <SwitchDemo />, code: exampleSource("switch-demo") },
+          { key: "settings", title: "Settings list", component: <SwitchSettings />, code: exampleSource("switch-settings") },
+          { key: "disabled", title: "Disabled", component: <SwitchDisabled />, code: exampleSource("switch-disabled") },
+        ]}
+      />
 
       <Install name="switch" />
 

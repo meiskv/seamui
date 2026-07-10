@@ -1,9 +1,11 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
+import { VariantPreview } from "@/components/docs/variant-preview"
 import { Section, CodeBlock, Install } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import OTPFieldDemo from "@/registry/seam/examples/otp-field-demo"
+import OTPFieldFour from "@/registry/seam/examples/otp-field-four"
+import OTPFieldDisabled from "@/registry/seam/examples/otp-field-disabled"
 
 export const metadata: Metadata = {
   title: "OTP Field — seamui",
@@ -19,9 +21,13 @@ export default function OTPFieldDocs() {
         focus handled by Base UI.
       </p>
 
-      <ComponentPreview code={exampleSource("otp-field-demo")}>
-        <OTPFieldDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          { key: "default", title: "Six digits", component: <OTPFieldDemo />, code: exampleSource("otp-field-demo") },
+          { key: "four", title: "Four digits", component: <OTPFieldFour />, code: exampleSource("otp-field-four") },
+          { key: "disabled", title: "Disabled", component: <OTPFieldDisabled />, code: exampleSource("otp-field-disabled") },
+        ]}
+      />
 
       <Install name="otp-field" />
 

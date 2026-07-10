@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "number-field-format",
+  "type": "registry:example",
+  "title": "Number Field Format",
+  "registryDependencies": [
+    "https://seamui.dev/r/number-field.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/number-field-format.tsx",
+      "content": "import { NumberField } from \"@/registry/seam/ui/number-field\"\n\nexport default function NumberFieldFormat() {\n  return (\n    <NumberField\n      defaultValue={9}\n      min={0}\n      step={1}\n      format={{ style: \"currency\", currency: \"USD\" }}\n    />\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "otp-field-four",
+  "type": "registry:example",
+  "title": "OTP Field Four",
+  "registryDependencies": [
+    "https://seamui.dev/r/otp-field.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/otp-field-four.tsx",
+      "content": "import { OTPField } from \"@/registry/seam/ui/otp-field\"\n\nexport default function OTPFieldFour() {\n  return <OTPField length={4} defaultValue=\"12\" />\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

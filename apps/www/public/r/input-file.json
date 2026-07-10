@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-file",
+  "type": "registry:example",
+  "title": "Input File",
+  "registryDependencies": [
+    "https://seamui.dev/r/input.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/input-file.tsx",
+      "content": "import { Input } from \"@/registry/seam/ui/input\"\n\nexport default function InputFile() {\n  return (\n    <Input\n      type=\"file\"\n      aria-label=\"Upload file\"\n      className=\"max-w-xs file:mr-3 file:text-muted-foreground\"\n    />\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

@@ -1,9 +1,12 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
+import { VariantPreview } from "@/components/docs/variant-preview"
 import { Section, CodeBlock, Install } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import InputDemo from "@/registry/seam/examples/input-demo"
+import InputDisabled from "@/registry/seam/examples/input-disabled"
+import InputInvalid from "@/registry/seam/examples/input-invalid"
+import InputFile from "@/registry/seam/examples/input-file"
 
 export const metadata: Metadata = {
   title: "Input — seamui",
@@ -19,9 +22,14 @@ export default function InputDocs() {
         for labels, validation, and messages.
       </p>
 
-      <ComponentPreview code={exampleSource("input-demo")}>
-        <InputDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          { key: "default", title: "Default", component: <InputDemo />, code: exampleSource("input-demo") },
+          { key: "disabled", title: "Disabled", component: <InputDisabled />, code: exampleSource("input-disabled") },
+          { key: "invalid", title: "Invalid", component: <InputInvalid />, code: exampleSource("input-invalid") },
+          { key: "file", title: "File", component: <InputFile />, code: exampleSource("input-file") },
+        ]}
+      />
 
       <Install name="input" />
 

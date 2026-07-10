@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox-with-text",
+  "type": "registry:example",
+  "title": "Checkbox With Text",
+  "registryDependencies": [
+    "https://seamui.dev/r/checkbox.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/checkbox-with-text.tsx",
+      "content": "import { Checkbox } from \"@/registry/seam/ui/checkbox\"\n\nexport default function CheckboxWithText() {\n  return (\n    <label className=\"flex max-w-xs items-start gap-2.5\">\n      <Checkbox defaultChecked className=\"mt-0.5\" />\n      <div className=\"grid gap-1 text-sm leading-none\">\n        <span className=\"font-medium\">Email notifications</span>\n        <span className=\"text-muted-foreground\">\n          Get notified when someone replies to your thread.\n        </span>\n      </div>\n    </label>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

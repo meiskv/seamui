@@ -1,9 +1,11 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
+import { VariantPreview } from "@/components/docs/variant-preview"
 import { Section, CodeBlock, Install } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import SelectDemo from "@/registry/seam/examples/select-demo"
+import SelectGroups from "@/registry/seam/examples/select-groups"
+import SelectDisabled from "@/registry/seam/examples/select-disabled"
 
 export const metadata: Metadata = {
   title: "Select — seamui",
@@ -19,9 +21,13 @@ export default function SelectDocs() {
         overlay depth; the selected item shows a check.
       </p>
 
-      <ComponentPreview code={exampleSource("select-demo")}>
-        <SelectDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          { key: "default", title: "Default", component: <SelectDemo />, code: exampleSource("select-demo") },
+          { key: "groups", title: "Groups", component: <SelectGroups />, code: exampleSource("select-groups") },
+          { key: "disabled", title: "Disabled", component: <SelectDisabled />, code: exampleSource("select-disabled") },
+        ]}
+      />
 
       <Install name="select" />
 
