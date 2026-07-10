@@ -60,7 +60,15 @@ function SelectContent({
 
   return (
     <BaseSelect.Portal>
-      <BaseSelect.Positioner sideOffset={sideOffset} className="z-50">
+      {/* alignItemWithTrigger={false}: drop the list *below* the trigger like a
+          combobox/dropdown, instead of Base UI's default native-style behavior
+          that overlays the selected item on top of the trigger. */}
+      <BaseSelect.Positioner
+        sideOffset={sideOffset}
+        align="start"
+        alignItemWithTrigger={false}
+        className="z-50"
+      >
         <BaseSelect.Popup
           data-slot="select-content"
           className={cn(

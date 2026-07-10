@@ -1698,6 +1698,43 @@
       "files": [
         { "path": "registry/seam/examples/meter-levels.tsx", "type": "registry:example" }
       ]
+    },
+    {
+      "name": "dropdown-menu-checkboxes",
+      "type": "registry:example",
+      "title": "Dropdown Menu Checkboxes",
+      "registryDependencies": ["https://seamui.dev/r/dropdown-menu.json", "https://seamui.dev/r/button.json"],
+      "files": [
+        { "path": "registry/seam/examples/dropdown-menu-checkboxes.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "dropdown-menu-radio",
+      "type": "registry:example",
+      "title": "Dropdown Menu Radio",
+      "registryDependencies": ["https://seamui.dev/r/dropdown-menu.json", "https://seamui.dev/r/button.json"],
+      "files": [
+        { "path": "registry/seam/examples/dropdown-menu-radio.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "dropdown-menu-submenu",
+      "type": "registry:example",
+      "title": "Dropdown Menu Submenu",
+      "registryDependencies": ["https://seamui.dev/r/dropdown-menu.json", "https://seamui.dev/r/button.json"],
+      "files": [
+        { "path": "registry/seam/examples/dropdown-menu-submenu.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "dropdown-menu-shortcuts",
+      "type": "registry:example",
+      "title": "Dropdown Menu Shortcuts",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["https://seamui.dev/r/dropdown-menu.json", "https://seamui.dev/r/button.json"],
+      "files": [
+        { "path": "registry/seam/examples/dropdown-menu-shortcuts.tsx", "type": "registry:example" }
+      ]
     }
   ]
 }
