@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "inline-citation-demo",
+  "type": "registry:example",
+  "title": "Inline Citation Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/sources.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/inline-citation-demo.tsx",
+      "content": "import { InlineCitation } from \"@/registry/seam/ui/sources\"\n\n// Hover or focus a citation to preview its source at overlay depth.\nexport default function InlineCitationDemo() {\n  return (\n    <div className=\"w-full max-w-md\">\n      <p className=\"text-sm leading-relaxed\">\n        Springs carry velocity, so an interrupted animation redirects smoothly\n        <InlineCitation\n          index={1}\n          title=\"motion.dev — Springs\"\n          href=\"https://motion.dev/docs/react-transitions\"\n        />\n        , while durations run a fixed clock you have to fight\n        <InlineCitation\n          index={2}\n          title=\"seamui — CLAUDE.md\"\n          href=\"https://seamui.dev/docs\"\n        />\n        . That is why every transform in seamui is a spring.\n      </p>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

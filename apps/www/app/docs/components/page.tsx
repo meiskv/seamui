@@ -48,6 +48,9 @@ const COMPONENTS = [
   { name: "code-block", title: "Code Block", desc: "Highlighted code well with copy." },
   { name: "tool", title: "Tool", desc: "Agentic step + reasoning disclosure." },
   { name: "typing-indicator", title: "Typing Indicator", desc: "Pre-first-token dots." },
+  { name: "suggestions", title: "Suggestions", desc: "Scrollable prompt chips." },
+  { name: "sources", title: "Sources", desc: "Grounding + inline citations." },
+  { name: "chat-timeline", title: "Chat Timeline", desc: "Grouped, dated history." },
 ]
 
 export default function ComponentsIndex() {

@@ -81,6 +81,9 @@ export const NAV: NavGroup[] = [
       c("code-block", "Code Block"),
       c("tool", "Tool"),
       c("typing-indicator", "Typing Indicator"),
+      c("suggestions", "Suggestions"),
+      c("sources", "Sources"),
+      c("chat-timeline", "Chat Timeline"),
     ],
   },
 ]
