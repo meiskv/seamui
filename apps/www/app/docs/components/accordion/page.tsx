@@ -1,9 +1,11 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
+import { VariantPreview } from "@/components/docs/variant-preview"
 import { Section, CodeBlock, Install } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import AccordionDemo from "@/registry/seam/examples/accordion-demo"
+import AccordionSingle from "@/registry/seam/examples/accordion-single"
+import AccordionDisabled from "@/registry/seam/examples/accordion-disabled"
 
 export const metadata: Metadata = {
   title: "Accordion — seamui",
@@ -19,9 +21,13 @@ export default function AccordionDocs() {
         with a measured height animation.
       </p>
 
-      <ComponentPreview code={exampleSource("accordion-demo")}>
-        <AccordionDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          { key: "default", title: "Default", component: <AccordionDemo />, code: exampleSource("accordion-demo") },
+          { key: "single", title: "Single", component: <AccordionSingle />, code: exampleSource("accordion-single") },
+          { key: "disabled", title: "Disabled item", component: <AccordionDisabled />, code: exampleSource("accordion-disabled") },
+        ]}
+      />
 
       <Install name="accordion" />
 

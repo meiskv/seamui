@@ -1,9 +1,13 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
+import { VariantPreview } from "@/components/docs/variant-preview"
 import { Section, CodeBlock, Install } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import DropdownMenuDemo from "@/registry/seam/examples/dropdown-menu-demo"
+import DropdownMenuCheckboxes from "@/registry/seam/examples/dropdown-menu-checkboxes"
+import DropdownMenuRadio from "@/registry/seam/examples/dropdown-menu-radio"
+import DropdownMenuSubmenu from "@/registry/seam/examples/dropdown-menu-submenu"
+import DropdownMenuShortcuts from "@/registry/seam/examples/dropdown-menu-shortcuts"
 
 export const metadata: Metadata = {
   title: "Dropdown Menu — seamui",
@@ -19,9 +23,15 @@ export default function DropdownMenuDocs() {
         highlight on hover and keyboard navigation.
       </p>
 
-      <ComponentPreview code={exampleSource("dropdown-menu-demo")}>
-        <DropdownMenuDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          { key: "default", title: "Default", component: <DropdownMenuDemo />, code: exampleSource("dropdown-menu-demo") },
+          { key: "checkboxes", title: "Checkboxes", component: <DropdownMenuCheckboxes />, code: exampleSource("dropdown-menu-checkboxes") },
+          { key: "radio", title: "Radio group", component: <DropdownMenuRadio />, code: exampleSource("dropdown-menu-radio") },
+          { key: "submenu", title: "Submenu", component: <DropdownMenuSubmenu />, code: exampleSource("dropdown-menu-submenu") },
+          { key: "shortcuts", title: "Shortcuts", component: <DropdownMenuShortcuts />, code: exampleSource("dropdown-menu-shortcuts") },
+        ]}
+      />
 
       <Install name="dropdown-menu" />
 

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dropdown-menu-shortcuts",
+  "type": "registry:example",
+  "title": "Dropdown Menu Shortcuts",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "https://seamui.dev/r/dropdown-menu.json",
+    "https://seamui.dev/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/dropdown-menu-shortcuts.tsx",
+      "content": "import { LogOut, Settings, User } from \"lucide-react\"\n\nimport { Button } from \"@/registry/seam/ui/button\"\nimport {\n  DropdownMenu,\n  DropdownMenuContent,\n  DropdownMenuItem,\n  DropdownMenuLabel,\n  DropdownMenuSeparator,\n  DropdownMenuShortcut,\n  DropdownMenuTrigger,\n} from \"@/registry/seam/ui/dropdown-menu\"\n\nexport default function DropdownMenuShortcuts() {\n  return (\n    <DropdownMenu>\n      <DropdownMenuTrigger render={<Button variant=\"outline\">My Account</Button>} />\n      <DropdownMenuContent className=\"w-52\">\n        <DropdownMenuLabel>Signed in as m@example.com</DropdownMenuLabel>\n        <DropdownMenuSeparator />\n        <DropdownMenuItem>\n          <User />\n          Profile\n          <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>\n        </DropdownMenuItem>\n        <DropdownMenuItem>\n          <Settings />\n          Settings\n          <DropdownMenuShortcut>⌘,</DropdownMenuShortcut>\n        </DropdownMenuItem>\n        <DropdownMenuSeparator />\n        <DropdownMenuItem className=\"text-destructive [&_svg]:text-destructive\">\n          <LogOut />\n          Log out\n          <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>\n        </DropdownMenuItem>\n      </DropdownMenuContent>\n    </DropdownMenu>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

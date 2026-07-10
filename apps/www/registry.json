@@ -1596,6 +1596,145 @@
       "files": [
         { "path": "registry/seam/examples/otp-field-disabled.tsx", "type": "registry:example" }
       ]
+    },
+    {
+      "name": "avatar-sizes",
+      "type": "registry:example",
+      "title": "Avatar Sizes",
+      "registryDependencies": ["https://seamui.dev/r/avatar.json"],
+      "files": [
+        { "path": "registry/seam/examples/avatar-sizes.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "avatar-group",
+      "type": "registry:example",
+      "title": "Avatar Group",
+      "registryDependencies": ["https://seamui.dev/r/avatar.json"],
+      "files": [
+        { "path": "registry/seam/examples/avatar-group.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "tabs-small",
+      "type": "registry:example",
+      "title": "Tabs Small",
+      "registryDependencies": ["https://seamui.dev/r/tabs.json"],
+      "files": [
+        { "path": "registry/seam/examples/tabs-small.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "tabs-icons",
+      "type": "registry:example",
+      "title": "Tabs Icons",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["https://seamui.dev/r/tabs.json"],
+      "files": [
+        { "path": "registry/seam/examples/tabs-icons.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "accordion-single",
+      "type": "registry:example",
+      "title": "Accordion Single",
+      "registryDependencies": ["https://seamui.dev/r/accordion.json"],
+      "files": [
+        { "path": "registry/seam/examples/accordion-single.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "accordion-disabled",
+      "type": "registry:example",
+      "title": "Accordion Disabled",
+      "registryDependencies": ["https://seamui.dev/r/accordion.json"],
+      "files": [
+        { "path": "registry/seam/examples/accordion-disabled.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "separator-label",
+      "type": "registry:example",
+      "title": "Separator Label",
+      "registryDependencies": ["https://seamui.dev/r/separator.json"],
+      "files": [
+        { "path": "registry/seam/examples/separator-label.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "card-stats",
+      "type": "registry:example",
+      "title": "Card Stats",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["https://seamui.dev/r/card.json"],
+      "files": [
+        { "path": "registry/seam/examples/card-stats.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "card-notification",
+      "type": "registry:example",
+      "title": "Card Notification",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["https://seamui.dev/r/card.json", "https://seamui.dev/r/button.json", "https://seamui.dev/r/switch.json"],
+      "files": [
+        { "path": "registry/seam/examples/card-notification.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "progress-labeled",
+      "type": "registry:example",
+      "title": "Progress Labeled",
+      "registryDependencies": ["https://seamui.dev/r/progress.json"],
+      "files": [
+        { "path": "registry/seam/examples/progress-labeled.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "meter-levels",
+      "type": "registry:example",
+      "title": "Meter Levels",
+      "registryDependencies": ["https://seamui.dev/r/meter.json"],
+      "files": [
+        { "path": "registry/seam/examples/meter-levels.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "dropdown-menu-checkboxes",
+      "type": "registry:example",
+      "title": "Dropdown Menu Checkboxes",
+      "registryDependencies": ["https://seamui.dev/r/dropdown-menu.json", "https://seamui.dev/r/button.json"],
+      "files": [
+        { "path": "registry/seam/examples/dropdown-menu-checkboxes.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "dropdown-menu-radio",
+      "type": "registry:example",
+      "title": "Dropdown Menu Radio",
+      "registryDependencies": ["https://seamui.dev/r/dropdown-menu.json", "https://seamui.dev/r/button.json"],
+      "files": [
+        { "path": "registry/seam/examples/dropdown-menu-radio.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "dropdown-menu-submenu",
+      "type": "registry:example",
+      "title": "Dropdown Menu Submenu",
+      "registryDependencies": ["https://seamui.dev/r/dropdown-menu.json", "https://seamui.dev/r/button.json"],
+      "files": [
+        { "path": "registry/seam/examples/dropdown-menu-submenu.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "dropdown-menu-shortcuts",
+      "type": "registry:example",
+      "title": "Dropdown Menu Shortcuts",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["https://seamui.dev/r/dropdown-menu.json", "https://seamui.dev/r/button.json"],
+      "files": [
+        { "path": "registry/seam/examples/dropdown-menu-shortcuts.tsx", "type": "registry:example" }
+      ]
     }
   ]
 }

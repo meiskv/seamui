@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "meter-levels",
+  "type": "registry:example",
+  "title": "Meter Levels",
+  "registryDependencies": [
+    "https://seamui.dev/r/meter.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/meter-levels.tsx",
+      "content": "import { Meter, MeterLabel, MeterValue } from \"@/registry/seam/ui/meter\"\n\nconst LEVELS = [\n  { label: \"CPU\", value: 28 },\n  { label: \"Memory\", value: 61 },\n  { label: \"Disk\", value: 92 },\n]\n\nexport default function MeterLevels() {\n  return (\n    <div className=\"w-64 space-y-4\">\n      {LEVELS.map((l) => (\n        <Meter key={l.label} value={l.value}>\n          <div className=\"flex items-center justify-between\">\n            <MeterLabel>{l.label}</MeterLabel>\n            <MeterValue />\n          </div>\n        </Meter>\n      ))}\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}
