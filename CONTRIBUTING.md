@@ -73,11 +73,12 @@ Every component gets `apps/www/app/docs/components/<name>/page.tsx` with this
 exact section order (copy an existing page, e.g. `button`):
 
 1. **Title + one-line description** — what it is, in seam terms.
-2. **`VariantPreview`** — the single persistent preview panel. Pass every
-   meaningful example as a variant (the `<name>-demo` first); the switcher swaps
-   the live example *and* its source in place, so the whole examples set lives
-   in one panel instead of a long scroll. Use `ComponentPreview` only for a
-   truly single-example component.
+2. **`VariantPreview`** — the single persistent preview. Pass every meaningful
+   example as a variant (the `<name>-demo` first). The live example shows on
+   top; the variant keys sit in a row **below** it; and the selected variant's
+   source is **always visible** in its own highlighted block underneath — no
+   click to reveal the code, no long scroll of stacked examples. Use
+   `ComponentPreview` only for a truly single-example component.
 3. **Installation** — `<Install name="<name>" />`.
 4. **Usage** — import + minimal JSX snippet.
 5. **Motion** — what animates, at which depth, with which tokens, *and what the
@@ -90,10 +91,12 @@ exact section order (copy an existing page, e.g. `button`):
 takes `variants: { key, title, component, code, description? }[]`. `key` is a
 URL-hash-safe slug (the selected variant is reflected in the hash, so
 `…/button#loading` deep-links). `code` is `exampleSource("<example-name>")` so it
-never drifts from what ships. The switcher and the Preview/Code toggle both
-dogfood the seamui `Tabs`; the panel swap is opacity-only (identical under
-reduced motion). Don't reintroduce a stacked "Examples" section below it — the
-switcher *is* the examples.
+never drifts from what ships. The variant keys dogfood the seamui `Button` at
+its smallest size (active = a raised `secondary` key, `aria-pressed`); the code
+block dogfoods the seamui `CodeBlock`, so it comes syntax-highlighted with a
+copy key for free. The example swap is opacity-only (identical under reduced
+motion). Don't reintroduce a stacked "Examples" section below it — the switcher
+*is* the examples.
 
 Then add the component to **both** hand-maintained indexes:
 - `components/site/nav-items.ts` (sidebar group)
