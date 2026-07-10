@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "textarea",
+  "type": "registry:ui",
+  "title": "Textarea",
+  "description": "Auto-growing multiline text field styled as a seam entry well.",
+  "registryDependencies": [
+    "https://seamui.dev/r/utils.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/ui/textarea.tsx",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\n// Base UI has no Textarea part, so this renders a native <textarea> styled as\n// a seam entry well. Inside a Base UI Field, use\n// <Field.Control render={<Textarea />} /> to get label/validation wiring.\nfunction Textarea({\n  className,\n  ...props\n}: React.ComponentProps<\"textarea\">) {\n  return (\n    <textarea\n      data-slot=\"textarea\"\n      className={cn(\n        // debossed — the field is carved into the surface (inset well shadow).\n        // field-sizing-content lets the well grow with its content.\n        \"flex field-sizing-content min-h-20 w-full min-w-0 resize-none rounded-md squircle border border-border/60 bg-muted px-3.5 py-2.5 text-sm shadow-well outline-none\",\n        \"placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground\",\n        \"focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:border-ring\",\n        \"disabled:pointer-events-none disabled:opacity-50\",\n        \"aria-invalid:border-destructive aria-invalid:ring-destructive/30 data-[invalid]:border-destructive data-[invalid]:ring-destructive/30\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { Textarea }\n",
+      "type": "registry:ui",
+      "target": "components/ui/textarea.tsx"
+    }
+  ]
+}

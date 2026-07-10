@@ -1,11 +1,10 @@
-import { Loader2 } from "lucide-react"
-
 import { Button } from "@/registry/seam/ui/button"
+import { Spinner } from "@/registry/seam/ui/spinner"
 
 export default function ButtonLoading() {
   return (
     <Button disabled>
-      <Loader2 className="animate-spin" />
+      <Spinner />
       Please wait
     </Button>
   )

@@ -8,7 +8,9 @@ export const metadata: Metadata = {
 const COMPONENTS = [
   { name: "button", title: "Button", desc: "Pressable action with depth motion." },
   { name: "toggle", title: "Toggle", desc: "Two-state button." },
+  { name: "toggle-group", title: "Toggle Group", desc: "Keys rise from a shared well." },
   { name: "input", title: "Input", desc: "Field-aware text input." },
+  { name: "textarea", title: "Textarea", desc: "Auto-growing entry well." },
   { name: "avatar", title: "Avatar", desc: "Image with fade-in and fallback." },
   { name: "separator", title: "Separator", desc: "Divider in any orientation." },
   { name: "switch", title: "Switch", desc: "Thumb springs between states." },
@@ -23,6 +25,7 @@ const COMPONENTS = [
   { name: "drawer", title: "Drawer", desc: "Swipe-to-dismiss bottom sheet." },
   { name: "dropdown-menu", title: "Dropdown Menu", desc: "Actions menu, overlay depth." },
   { name: "select", title: "Select", desc: "Choose one from a listbox." },
+  { name: "combobox", title: "Combobox", desc: "Filterable option picker." },
   { name: "context-menu", title: "Context Menu", desc: "Right-click menu." },
   { name: "tabs", title: "Tabs", desc: "Indicator springs to active tab." },
   { name: "accordion", title: "Accordion", desc: "Height-animated sections." },
@@ -33,6 +36,11 @@ const COMPONENTS = [
   { name: "otp-field", title: "OTP Field", desc: "One-time-code input." },
   { name: "scroll-area", title: "Scroll Area", desc: "Fading custom scrollbar." },
   { name: "toast", title: "Toast", desc: "Bouncy stacked notifications." },
+  { name: "skeleton", title: "Skeleton", desc: "Pulsing loading placeholder." },
+  { name: "spinner", title: "Spinner", desc: "Loading indicator, motion-safe." },
+  { name: "badge", title: "Badge", desc: "Miniature embossed status chip." },
+  { name: "card", title: "Card", desc: "Raised surface with sections." },
+  { name: "kbd", title: "Kbd", desc: "Shortcut as an embossed keycap." },
 ]
 
 export default function ComponentsIndex() {

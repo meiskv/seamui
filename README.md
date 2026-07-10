@@ -68,3 +68,12 @@ bun run registry:build   # compile registry/ → apps/www/public/r/*.json
 > placeholder host. Publishing (deploying `apps/www` + the `seamui` npm
 > package) is Phase 3a and is not done yet, so the `bunx seamui@latest` /
 > `shadcn add @seamui/button` commands go live once that host exists.
+
+### Contributing
+
+Read [`CONTRIBUTING.md`](./CONTRIBUTING.md) for the component checklist, the
+docs-page template, and the four verification gates. The full design/motion
+contract lives in [`CLAUDE.md`](./CLAUDE.md). New components start as a
+[component request](.github/ISSUE_TEMPLATE/component-request.yml) specced in
+the seam language — debossed/embossed mapping, motion tokens, and the
+reduced-motion variant — before any code.

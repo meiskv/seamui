@@ -18,6 +18,7 @@ export const NAV: NavGroup[] = [
       c("toggle", "Toggle"),
       c("toggle-group", "Toggle Group"),
       c("input", "Input"),
+      c("textarea", "Textarea"),
       c("checkbox", "Checkbox"),
       c("radio-group", "Radio Group"),
       c("switch", "Switch"),
@@ -57,10 +58,17 @@ export const NAV: NavGroup[] = [
       c("progress", "Progress"),
       c("meter", "Meter"),
       c("toast", "Toast"),
+      c("skeleton", "Skeleton"),
+      c("spinner", "Spinner"),
     ],
   },
   {
     title: "Display",
-    items: [c("avatar", "Avatar")],
+    items: [
+      c("avatar", "Avatar"),
+      c("badge", "Badge"),
+      c("card", "Card"),
+      c("kbd", "Kbd"),
+    ],
   },
 ]

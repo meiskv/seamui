@@ -1,0 +1,83 @@
+name: New component
+description: Propose a new seamui component. Spec it in the seam language before any code.
+title: "[component]: "
+labels: ["component"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A seamui component is specced in the seam language **before** implementation:
+        which parts are debossed wells vs embossed keys, what moves at which depth,
+        and what the reduced-motion variant does. See CONTRIBUTING.md.
+  - type: input
+    id: name
+    attributes:
+      label: Component name
+      description: shadcn-style, kebab-case (this becomes `ui/<name>.tsx` and the registry item).
+      placeholder: e.g. composer
+    validations:
+      required: true
+  - type: input
+    id: base-ui
+    attributes:
+      label: Base UI primitive
+      description: Which Base UI part(s) it builds on (base-ui.com/react/components/…), or "none — native elements".
+      placeholder: e.g. none — composes textarea + button
+    validations:
+      required: true
+  - type: textarea
+    id: anatomy
+    attributes:
+      label: Anatomy & exports
+      description: The exported wrappers (shadcn-style names) and what each renders.
+      placeholder: |
+        Composer — the debossed well (form)
+        ComposerInput — auto-growing textarea
+        ComposerToolbar — embossed action row
+        ComposerSubmit — Button (dogfooded)
+    validations:
+      required: true
+  - type: textarea
+    id: seam-language
+    attributes:
+      label: Debossed / embossed mapping
+      description: "For every visual part: is it the slot (debossed well) or the token (embossed key)?"
+      placeholder: |
+        The message well the user types into → debossed (bg-muted + shadow-well)
+        The send button → embossed key (Button, shadow-resting)
+    validations:
+      required: true
+  - type: textarea
+    id: motion
+    attributes:
+      label: Motion spec
+      description: What animates, at which depth level, with which `@/lib/motion` tokens — and the reduced-motion variant for each. "Static by design" is a valid spec.
+      placeholder: |
+        Press on send → depth.pressed / springs.press (via Button)
+        Attachment chip enter → depth.overlay initial/animate, springs.surface
+        Reduced motion → reduced.pressed / reduced.fadeIn
+    validations:
+      required: true
+  - type: textarea
+    id: dogfood
+    attributes:
+      label: Foundation dogfooding
+      description: Which existing seamui components/variants this reuses (Button, Input well, Badge, …) and which new foundations it needs, if any.
+      placeholder: Reuses Button (icon), Textarea, Kbd. Needs nothing new.
+    validations:
+      required: true
+  - type: textarea
+    id: examples
+    attributes:
+      label: Examples to ship
+      description: "`<name>-demo` plus one per meaningful variant (aim for ≥3 where it makes sense)."
+      placeholder: composer-demo, composer-with-attachments, composer-disabled
+    validations:
+      required: true
+  - type: textarea
+    id: a11y
+    attributes:
+      label: Accessibility notes
+      description: Semantics, keyboard behavior, focus management, announcements.
+    validations:
+      required: false

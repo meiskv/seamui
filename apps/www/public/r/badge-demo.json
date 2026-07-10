@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "badge-demo",
+  "type": "registry:example",
+  "title": "Badge Demo",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "https://seamui.dev/r/badge.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/badge-demo.tsx",
+      "content": "import { BadgeCheck } from \"lucide-react\"\n\nimport { Badge } from \"@/registry/seam/ui/badge\"\n\nexport default function BadgeDemo() {\n  return (\n    <div className=\"flex flex-wrap items-center gap-2\">\n      <Badge>Badge</Badge>\n      <Badge variant=\"secondary\">Secondary</Badge>\n      <Badge variant=\"destructive\">Destructive</Badge>\n      <Badge variant=\"outline\">Outline</Badge>\n      <Badge variant=\"muted\">Muted</Badge>\n      <Badge variant=\"secondary\">\n        <BadgeCheck />\n        Verified\n      </Badge>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}
