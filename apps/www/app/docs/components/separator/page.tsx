@@ -1,9 +1,10 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
+import { VariantPreview } from "@/components/docs/variant-preview"
 import { Section, CodeBlock, Install } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import SeparatorDemo from "@/registry/seam/examples/separator-demo"
+import SeparatorLabel from "@/registry/seam/examples/separator-label"
 
 export const metadata: Metadata = {
   title: "Separator — seamui",
@@ -18,9 +19,12 @@ export default function SeparatorDocs() {
         Visually or semantically separates content, in either orientation.
       </p>
 
-      <ComponentPreview code={exampleSource("separator-demo")}>
-        <SeparatorDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          { key: "default", title: "Default", component: <SeparatorDemo />, code: exampleSource("separator-demo") },
+          { key: "label", title: "With label", component: <SeparatorLabel />, code: exampleSource("separator-label") },
+        ]}
+      />
 
       <Install name="separator" />
 

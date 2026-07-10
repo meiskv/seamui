@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tabs-icons",
+  "type": "registry:example",
+  "title": "Tabs Icons",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "https://seamui.dev/r/tabs.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/tabs-icons.tsx",
+      "content": "import { Bell, CreditCard, User } from \"lucide-react\"\n\nimport {\n  Tabs,\n  TabsContent,\n  TabsList,\n  TabsTrigger,\n} from \"@/registry/seam/ui/tabs\"\n\nexport default function TabsIcons() {\n  return (\n    <Tabs defaultValue=\"profile\" className=\"w-80\">\n      <TabsList>\n        <TabsTrigger value=\"profile\">\n          <User />\n          Profile\n        </TabsTrigger>\n        <TabsTrigger value=\"billing\">\n          <CreditCard />\n          Billing\n        </TabsTrigger>\n        <TabsTrigger value=\"alerts\">\n          <Bell />\n          Alerts\n        </TabsTrigger>\n      </TabsList>\n      <TabsContent value=\"profile\" className=\"text-muted-foreground pt-2 text-sm\">\n        Your public profile.\n      </TabsContent>\n      <TabsContent value=\"billing\" className=\"text-muted-foreground pt-2 text-sm\">\n        Manage billing and invoices.\n      </TabsContent>\n      <TabsContent value=\"alerts\" className=\"text-muted-foreground pt-2 text-sm\">\n        Notification preferences.\n      </TabsContent>\n    </Tabs>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

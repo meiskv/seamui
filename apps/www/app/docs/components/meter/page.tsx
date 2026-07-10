@@ -1,9 +1,10 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
+import { VariantPreview } from "@/components/docs/variant-preview"
 import { Section, CodeBlock, Install } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import MeterDemo from "@/registry/seam/examples/meter-demo"
+import MeterLevels from "@/registry/seam/examples/meter-levels"
 
 export const metadata: Metadata = {
   title: "Meter — seamui",
@@ -19,9 +20,12 @@ export default function MeterDocs() {
         score. Unlike Progress, it represents a static value, not task progress.
       </p>
 
-      <ComponentPreview code={exampleSource("meter-demo")}>
-        <MeterDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          { key: "default", title: "Default", component: <MeterDemo />, code: exampleSource("meter-demo") },
+          { key: "levels", title: "Levels", component: <MeterLevels />, code: exampleSource("meter-levels") },
+        ]}
+      />
 
       <Install name="meter" />
 

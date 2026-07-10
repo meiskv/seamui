@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "accordion-single",
+  "type": "registry:example",
+  "title": "Accordion Single",
+  "registryDependencies": [
+    "https://seamui.dev/r/accordion.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/accordion-single.tsx",
+      "content": "import {\n  Accordion,\n  AccordionContent,\n  AccordionItem,\n  AccordionTrigger,\n} from \"@/registry/seam/ui/accordion\"\n\n// multiple={false} — opening one item closes the others.\nexport default function AccordionSingle() {\n  return (\n    <Accordion multiple={false} defaultValue={[\"item-1\"]} className=\"w-80\">\n      <AccordionItem value=\"item-1\">\n        <AccordionTrigger>What are springs?</AccordionTrigger>\n        <AccordionContent className=\"text-muted-foreground\">\n          Physics-based motion that reacts to velocity, not a fixed clock.\n        </AccordionContent>\n      </AccordionItem>\n      <AccordionItem value=\"item-2\">\n        <AccordionTrigger>What is depth?</AccordionTrigger>\n        <AccordionContent className=\"text-muted-foreground\">\n          A virtual z-axis: presses recede, overlays rise.\n        </AccordionContent>\n      </AccordionItem>\n      <AccordionItem value=\"item-3\">\n        <AccordionTrigger>What is touch feedback?</AccordionTrigger>\n        <AccordionContent className=\"text-muted-foreground\">\n          Every control reacts to press within a frame and settles springy.\n        </AccordionContent>\n      </AccordionItem>\n    </Accordion>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

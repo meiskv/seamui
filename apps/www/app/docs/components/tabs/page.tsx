@@ -1,9 +1,11 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
+import { VariantPreview } from "@/components/docs/variant-preview"
 import { Section, CodeBlock, Install } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import TabsDemo from "@/registry/seam/examples/tabs-demo"
+import TabsSmall from "@/registry/seam/examples/tabs-small"
+import TabsIcons from "@/registry/seam/examples/tabs-icons"
 
 export const metadata: Metadata = {
   title: "Tabs — seamui",
@@ -19,9 +21,13 @@ export default function TabsDocs() {
         slides between tabs — seamui&apos;s layout-animation pattern.
       </p>
 
-      <ComponentPreview code={exampleSource("tabs-demo")}>
-        <TabsDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          { key: "default", title: "Default", component: <TabsDemo />, code: exampleSource("tabs-demo") },
+          { key: "icons", title: "With icons", component: <TabsIcons />, code: exampleSource("tabs-icons") },
+          { key: "small", title: "Small", component: <TabsSmall />, code: exampleSource("tabs-small") },
+        ]}
+      />
 
       <Install name="tabs" />
 

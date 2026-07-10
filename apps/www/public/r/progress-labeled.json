@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "progress-labeled",
+  "type": "registry:example",
+  "title": "Progress Labeled",
+  "registryDependencies": [
+    "https://seamui.dev/r/progress.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/progress-labeled.tsx",
+      "content": "import { Progress } from \"@/registry/seam/ui/progress\"\n\nexport default function ProgressLabeled() {\n  return (\n    <div className=\"w-64 space-y-2\">\n      <div className=\"flex items-center justify-between text-sm\">\n        <span className=\"font-medium\">Uploading…</span>\n        <span className=\"text-muted-foreground tabular-nums\">66%</span>\n      </div>\n      <Progress value={66} />\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

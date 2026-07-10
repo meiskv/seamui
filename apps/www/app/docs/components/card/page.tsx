@@ -1,9 +1,11 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
+import { VariantPreview } from "@/components/docs/variant-preview"
 import { Section, CodeBlock, Install } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import CardDemo from "@/registry/seam/examples/card-demo"
+import CardStats from "@/registry/seam/examples/card-stats"
+import CardNotification from "@/registry/seam/examples/card-notification"
 
 export const metadata: Metadata = {
   title: "Card — seamui",
@@ -19,9 +21,13 @@ export default function CardDocs() {
         header, content, and footer sections.
       </p>
 
-      <ComponentPreview code={exampleSource("card-demo")}>
-        <CardDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          { key: "default", title: "Sign in", component: <CardDemo />, code: exampleSource("card-demo") },
+          { key: "stats", title: "Stat", component: <CardStats />, code: exampleSource("card-stats") },
+          { key: "notification", title: "Notification", component: <CardNotification />, code: exampleSource("card-notification") },
+        ]}
+      />
 
       <Install name="card" />
 

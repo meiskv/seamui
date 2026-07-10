@@ -1,9 +1,11 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
+import { VariantPreview } from "@/components/docs/variant-preview"
 import { Section, CodeBlock, Install } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import AvatarDemo from "@/registry/seam/examples/avatar-demo"
+import AvatarSizes from "@/registry/seam/examples/avatar-sizes"
+import AvatarGroup from "@/registry/seam/examples/avatar-group"
 
 export const metadata: Metadata = {
   title: "Avatar — seamui",
@@ -19,9 +21,13 @@ export default function AvatarDocs() {
         gentle fade — no layout shift, no flash of the fallback.
       </p>
 
-      <ComponentPreview code={exampleSource("avatar-demo")}>
-        <AvatarDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          { key: "default", title: "Default", component: <AvatarDemo />, code: exampleSource("avatar-demo") },
+          { key: "sizes", title: "Sizes", component: <AvatarSizes />, code: exampleSource("avatar-sizes") },
+          { key: "group", title: "Group", component: <AvatarGroup />, code: exampleSource("avatar-group") },
+        ]}
+      />
 
       <Install name="avatar" />
 

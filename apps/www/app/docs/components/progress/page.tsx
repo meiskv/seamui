@@ -1,9 +1,10 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
+import { VariantPreview } from "@/components/docs/variant-preview"
 import { Section, CodeBlock, Install } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import ProgressDemo from "@/registry/seam/examples/progress-demo"
+import ProgressLabeled from "@/registry/seam/examples/progress-labeled"
 
 export const metadata: Metadata = {
   title: "Progress — seamui",
@@ -19,9 +20,12 @@ export default function ProgressDocs() {
         changes.
       </p>
 
-      <ComponentPreview code={exampleSource("progress-demo")}>
-        <ProgressDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          { key: "default", title: "Animated", component: <ProgressDemo />, code: exampleSource("progress-demo") },
+          { key: "labeled", title: "Labeled", component: <ProgressLabeled />, code: exampleSource("progress-labeled") },
+        ]}
+      />
 
       <Install name="progress" />
 
