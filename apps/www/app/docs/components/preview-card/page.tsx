@@ -45,10 +45,13 @@ export default function PreviewCardDocs() {
 
       <Section title="Motion">
         <p className="text-muted-foreground text-sm">
-          Overlay-depth entrance from <code>depth.overlay.initial</code> with{" "}
-          <code>springs.surface</code>. Opens on hover with a delay; Base UI
-          handles positioning and dismissal. Honors{" "}
-          <code>prefers-reduced-motion</code>.
+          Overlay condense via the shared <code>condense</code> token from{" "}
+          <code>@/lib/motion</code> — CSS keyed to Base UI&apos;s{" "}
+          <code>data-starting-style</code> / <code>data-ending-style</code> so
+          the exit is awaited. The card grows from its trigger origin and fades
+          in, then falls back and fades on dismiss. Opens on hover with a delay;
+          Base UI handles positioning and dismissal. Under{" "}
+          <code>prefers-reduced-motion</code> it fades only.
         </p>
       </Section>
 

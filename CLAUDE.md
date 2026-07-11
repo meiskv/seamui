@@ -131,7 +131,8 @@ file *in the registry* so every future install gets it.
 - **`personalities`** — the one-line feel dial: `seam` / `brisk` / `relaxed` / `playful`, each defining the four spring roles. `springs` just picks one (`export const springs = personalities.seam`), so consumers retune the whole library by swapping the pick. New springs go in a personality, never inline.
 - **`springs`** — `press` (stiff, instant), `snappy` (release/settle), `surface` (overlays), `bouncy` (toasts/accents, sparingly).
 - **`fades`** — `fast` / `normal`, opacity-only durations.
-- **`depth`** — `pressed` / `resting` / `raised` scalars + `overlay` / `modal` enter/exit objects.
+- **`depth`** — `pressed` / `resting` / `raised` scalars + `overlay` / `modal` enter/exit objects. **Only for elements motion.dev controls end to end** (AI list entries, chips, the scroll-to-bottom button — AnimatePresence owns their unmount, so `exit` runs). Base UI popups do **not** use `depth` — see `condense`.
+- **`condense`** — the overlay motion, in **CSS** (`surface` / `backdrop` / `sheet`), keyed to Base UI's `data-starting-style` / `data-ending-style`. Base UI keeps a popup mounted through its exit and awaits **CSS transitions** (never motion's rAF springs) before unmounting — a spring exit gets cut off instantly, which is *the* reason overlays use CSS here, not motion. Enter = rise/grow + fade (popups scale from `--transform-origin` via the standalone `scale` property, since Base UI owns `transform` for positioning; modals pop from center; sheets slide on the standalone `translate` property). Exit falls back + fades, slightly quicker. Backdrops dim on the same clock. Reduced motion drops the scale/slide → opacity-only, still both ways.
 - **`shake`** — error feedback (brief x-axis shake); pair with `reduced.flash` under reduced motion.
 - **`reduced`** — the reduced-motion fallbacks (see §5). `pressed` (dim, no move), `fadeIn` (opacity-only enter), `instant` (zero-duration layout jump), `flash` (opacity error pulse).
 
@@ -257,17 +258,34 @@ the part.
 > `onAnimationStart` as CSS-animation events, which collide with motion's
 > lifecycle callbacks of the same name.
 
-### Overlay entrance pattern (Base UI keeps parts mounted through exit)
+### Overlay entrance/exit pattern — use `condense` (CSS), NOT motion.dev
+
+Base UI keeps a popup mounted through its exit and **awaits CSS transitions**
+before unmounting — it can't await motion's rAF springs, so a `motion.div`
+exit gets cut off instantly (dead dismiss). So Base UI overlays animate in
+**CSS**, via the `condense` token, keyed to `data-starting-style` /
+`data-ending-style`. No `motion.div` render, no `depth.*` on the popup:
 
 ```tsx
-render={
-  <motion.div
-    initial={reduceMotion ? reduced.fadeIn.initial : depth.overlay.initial}
-    animate={depth.overlay.animate}
-    transition={reduceMotion ? fades.normal : springs.surface}
-  />
-}
+// popover / dropdown / select / tooltip / context-menu / preview-card / combobox
+<BasePart.Popup
+  data-slot="…"
+  className={cn("…surface classes…", condense.surface, className)}
+  {...props}
+/>
+
+// dialog / alert-dialog — popup gets condense.surface, backdrop gets condense.backdrop
+<BasePart.Backdrop className={cn("fixed inset-0 z-50 bg-black/50", condense.backdrop)} />
+<BasePart.Popup className={cn("…centered modal classes…", condense.surface, className)} {...props} />
+
+// drawer — the sheet slides on the standalone translate property
+<BaseDrawer.Popup className={cn("…sheet classes…", condense.sheet, className)} {...props} />
 ```
+
+`depth.overlay` / `depth.modal` stay ONLY for elements motion.dev owns end to
+end (AI list entries, chips, scroll-to-bottom button under `AnimatePresence`).
+If you catch yourself putting a `render={<motion.div initial={depth…}/>}` on a
+Base UI popup, stop — that's the instant-exit bug; use `condense`.
 
 ---
 

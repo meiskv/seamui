@@ -2,10 +2,9 @@
 
 import * as React from "react"
 import { Popover as BasePopover } from "@base-ui/react/popover"
-import { motion, useReducedMotion } from "motion/react"
 
 import { cn } from "@/lib/utils"
-import { springs, fades, depth, reduced } from "@/lib/motion"
+import { condense } from "@/lib/motion"
 
 function Popover(props: React.ComponentProps<typeof BasePopover.Root>) {
   return <BasePopover.Root {...props} />
@@ -27,25 +26,18 @@ function PopoverContent({
   sideOffset?: number
   align?: "start" | "center" | "end"
 }) {
-  const reduceMotion = useReducedMotion()
-
   return (
     <BasePopover.Portal>
       <BasePopover.Positioner sideOffset={sideOffset} align={align}>
         <BasePopover.Popup
           data-slot="popover-content"
+          // seam condense: the surface rises out of its anchor and fades in;
+          // on dismiss it falls back and fades (Base UI awaits the CSS exit).
           className={cn(
             "bg-popover text-popover-foreground z-50 w-72 rounded-lg border p-4 shadow-overlay outline-none",
+            condense.surface,
             className
           )}
-          // seam motion: floating surface rises with overlay depth.
-          render={
-            <motion.div
-              initial={reduceMotion ? reduced.fadeIn.initial : depth.overlay.initial}
-              animate={depth.overlay.animate}
-              transition={reduceMotion ? fades.normal : springs.surface}
-            />
-          }
           {...props}
         >
           {children}

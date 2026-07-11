@@ -61,9 +61,13 @@ export default function AlertDialogDocs() {
 
       <Section title="Motion">
         <p className="text-muted-foreground text-sm">
-          Identical to Dialog — <code>depth.modal</code> entrance with{" "}
-          <code>springs.surface</code> and a fading backdrop. Honors{" "}
-          <code>prefers-reduced-motion</code>.
+          Identical to Dialog — the shared <code>condense</code> token from{" "}
+          <code>@/lib/motion</code>, CSS keyed to Base UI&apos;s{" "}
+          <code>data-starting-style</code> / <code>data-ending-style</code> so
+          the exit is awaited rather than cut off. It pops from center and fades
+          in on a spring-shaped bezier, then falls back and fades on dismiss,
+          with the backdrop dimming on the same clock. Under{" "}
+          <code>prefers-reduced-motion</code> only the opacity animates.
         </p>
       </Section>
 

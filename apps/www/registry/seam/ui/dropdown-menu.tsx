@@ -2,11 +2,10 @@
 
 import * as React from "react"
 import { Menu as BaseMenu } from "@base-ui/react/menu"
-import { motion, useReducedMotion } from "motion/react"
 import { Check, ChevronRight, Circle } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { springs, fades, depth, reduced } from "@/lib/motion"
+import { condense } from "@/lib/motion"
 
 // Shared item shape so Item / CheckboxItem / RadioItem / SubTrigger stay in sync.
 const menuItemClass =
@@ -32,8 +31,6 @@ function DropdownMenuContent({
   sideOffset?: number
   align?: "start" | "center" | "end"
 }) {
-  const reduceMotion = useReducedMotion()
-
   return (
     <BaseMenu.Portal>
       <BaseMenu.Positioner sideOffset={sideOffset} align={align}>
@@ -41,15 +38,9 @@ function DropdownMenuContent({
           data-slot="dropdown-menu-content"
           className={cn(
             "bg-popover text-popover-foreground z-50 min-w-40 rounded-lg border p-1 shadow-overlay outline-none",
+            condense.surface,
             className
           )}
-          render={
-            <motion.div
-              initial={reduceMotion ? reduced.fadeIn.initial : depth.overlay.initial}
-              animate={depth.overlay.animate}
-              transition={reduceMotion ? fades.normal : springs.surface}
-            />
-          }
           {...props}
         >
           {children}
@@ -188,7 +179,6 @@ function DropdownMenuSubContent({
   children,
   ...props
 }: React.ComponentProps<typeof BaseMenu.Popup> & { sideOffset?: number }) {
-  const reduceMotion = useReducedMotion()
   return (
     <BaseMenu.Portal>
       <BaseMenu.Positioner sideOffset={sideOffset} align="start">
@@ -196,15 +186,9 @@ function DropdownMenuSubContent({
           data-slot="dropdown-menu-sub-content"
           className={cn(
             "bg-popover text-popover-foreground z-50 min-w-40 rounded-lg border p-1 shadow-overlay outline-none",
+            condense.surface,
             className
           )}
-          render={
-            <motion.div
-              initial={reduceMotion ? reduced.fadeIn.initial : depth.overlay.initial}
-              animate={depth.overlay.animate}
-              transition={reduceMotion ? fades.normal : springs.surface}
-            />
-          }
           {...props}
         >
           {children}

@@ -4,10 +4,12 @@ import * as React from "react"
 import { Drawer as BaseDrawer } from "@base-ui/react/drawer"
 
 import { cn } from "@/lib/utils"
+import { condense } from "@/lib/motion"
 
-// The Drawer leans entirely on Base UI's native drawer engine: spring-based
-// open, swipe-to-dismiss, and a backdrop that dims as you drag. That physics
-// IS the seam mobile-depth philosophy, so we style it and stay out of its way.
+// The Drawer leans on Base UI's native drawer engine for swipe-to-dismiss and
+// the backdrop that dims as you drag — that physics IS the seam mobile-depth
+// philosophy. The non-gesture open/close was the one gap: seam adds the sheet
+// condense (translate + fade) for it, self-suppressed while dragging.
 
 function Drawer(props: React.ComponentProps<typeof BaseDrawer.Root>) {
   return <BaseDrawer.Root {...props} />
@@ -26,12 +28,15 @@ function DrawerContent({
     <BaseDrawer.Portal>
       <BaseDrawer.Backdrop
         data-slot="drawer-backdrop"
-        className="fixed inset-0 z-50 bg-black/50"
+        className={cn("fixed inset-0 z-50 bg-black/50", condense.backdrop)}
       />
       <BaseDrawer.Popup
         data-slot="drawer-content"
         className={cn(
           "bg-popover text-popover-foreground fixed inset-x-0 bottom-0 z-50 mx-auto flex max-h-[90vh] w-full max-w-md flex-col gap-4 rounded-t-2xl squircle border-t p-6 shadow-modal outline-none",
+          // seam condense: the sheet slides up and fades in, falls back on
+          // dismiss (Base UI awaits it); suppressed mid-swipe so drag is 1:1.
+          condense.sheet,
           className
         )}
         {...props}

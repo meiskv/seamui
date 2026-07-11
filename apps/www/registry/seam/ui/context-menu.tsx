@@ -2,10 +2,9 @@
 
 import * as React from "react"
 import { ContextMenu as BaseContextMenu } from "@base-ui/react/context-menu"
-import { motion, useReducedMotion } from "motion/react"
 
 import { cn } from "@/lib/utils"
-import { springs, fades, depth, reduced } from "@/lib/motion"
+import { condense } from "@/lib/motion"
 
 function ContextMenu(
   props: React.ComponentProps<typeof BaseContextMenu.Root>
@@ -31,8 +30,6 @@ function ContextMenuContent({
   children,
   ...props
 }: React.ComponentProps<typeof BaseContextMenu.Popup>) {
-  const reduceMotion = useReducedMotion()
-
   return (
     <BaseContextMenu.Portal>
       <BaseContextMenu.Positioner className="z-50">
@@ -40,15 +37,9 @@ function ContextMenuContent({
           data-slot="context-menu-content"
           className={cn(
             "bg-popover text-popover-foreground z-50 min-w-40 rounded-lg border p-1 shadow-overlay outline-none",
+            condense.surface,
             className
           )}
-          render={
-            <motion.div
-              initial={reduceMotion ? reduced.fadeIn.initial : depth.overlay.initial}
-              animate={depth.overlay.animate}
-              transition={reduceMotion ? fades.normal : springs.surface}
-            />
-          }
           {...props}
         >
           {children}

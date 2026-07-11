@@ -2,10 +2,9 @@
 
 import * as React from "react"
 import { PreviewCard as BasePreviewCard } from "@base-ui/react/preview-card"
-import { motion, useReducedMotion } from "motion/react"
 
 import { cn } from "@/lib/utils"
-import { springs, fades, depth, reduced } from "@/lib/motion"
+import { condense } from "@/lib/motion"
 
 function PreviewCard(
   props: React.ComponentProps<typeof BasePreviewCard.Root>
@@ -27,8 +26,6 @@ function PreviewCardContent({
 }: React.ComponentProps<typeof BasePreviewCard.Popup> & {
   sideOffset?: number
 }) {
-  const reduceMotion = useReducedMotion()
-
   return (
     <BasePreviewCard.Portal>
       <BasePreviewCard.Positioner sideOffset={sideOffset}>
@@ -36,16 +33,10 @@ function PreviewCardContent({
           data-slot="preview-card-content"
           className={cn(
             "bg-popover text-popover-foreground z-50 w-80 rounded-lg border p-4 shadow-overlay outline-none",
+            // seam motion: floating surface rises with overlay depth, falls back on close.
+            condense.surface,
             className
           )}
-          // seam motion: floating surface rises with overlay depth.
-          render={
-            <motion.div
-              initial={reduceMotion ? reduced.fadeIn.initial : depth.overlay.initial}
-              animate={depth.overlay.animate}
-              transition={reduceMotion ? fades.normal : springs.surface}
-            />
-          }
           {...props}
         >
           {children}

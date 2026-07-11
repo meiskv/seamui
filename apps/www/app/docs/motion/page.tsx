@@ -46,10 +46,32 @@ export const springs = personalities.playful  // more life everywhere`}</CodeBlo
         <ul className="text-muted-foreground mt-2 list-disc space-y-1 pl-5 text-sm">
           <li><code>springs</code> — the four spring roles above.</li>
           <li><code>fades</code> — opacity-only durations (<code>fast</code>/<code>normal</code>), the one sanctioned duration case besides layout dimensions.</li>
-          <li><code>depth</code> — the virtual z-axis: <code>pressed</code>/<code>resting</code>/<code>raised</code> scalars plus <code>overlay</code>/<code>modal</code> enter–exit objects.</li>
+          <li><code>depth</code> — the virtual z-axis: <code>pressed</code>/<code>resting</code>/<code>raised</code> scalars plus <code>overlay</code>/<code>modal</code> enter–exit objects (for elements motion.dev controls end to end).</li>
+          <li><code>condense</code> — the overlay CSS motion (below): <code>surface</code>, <code>backdrop</code>, <code>sheet</code>.</li>
           <li><code>shake</code> — error feedback, a brief horizontal shake.</li>
           <li><code>reduced</code> — the reduced-motion swaps (below).</li>
         </ul>
+      </Section>
+
+      <Section title="Overlays — the condense">
+        <p className="text-muted-foreground text-sm">
+          Every overlay (dialog, popover, dropdown, select, tooltip, sheet…)
+          shares one motion: <strong>rise fast, settle alive; fall back
+          quicker than you rose</strong>, with the backdrop dimming on the same
+          clock. This one lives in CSS — the <code>condense</code> token — not
+          a spring, because Base UI keeps a popup mounted through its exit and
+          awaits CSS transitions before unmounting. It can&apos;t await
+          motion&apos;s rAF springs, so a spring exit gets cut off instantly
+          (the bug this fixes).
+        </p>
+        <p className="text-muted-foreground text-sm">
+          Popups grow out of their trigger (scale from Base UI&apos;s{" "}
+          <code>--transform-origin</code>), modals pop from center, sheets
+          slide up; all fade in, and reverse — a touch quicker — on dismiss. A
+          spring-shaped bezier keeps the seam bounce. Under reduced motion the
+          scale/slide is dropped and it&apos;s an opacity fade both ways, never
+          dead.
+        </p>
       </Section>
 
       <Section title="Reduced motion is a variant, not a kill switch">

@@ -89,11 +89,14 @@ export default function ComboboxDocs() {
 
       <Section title="Motion">
         <p className="text-muted-foreground text-sm">
-          The popup rises with <code>depth.overlay</code> on{" "}
-          <code>springs.surface</code>; highlighted items shift with{" "}
+          The popup grows from its trigger origin and fades in via the shared{" "}
+          <code>condense</code> token from <code>@/lib/motion</code> — CSS keyed
+          to Base UI&apos;s <code>data-starting-style</code> /{" "}
+          <code>data-ending-style</code> so the exit is awaited, then falls back
+          and fades on dismiss; highlighted items shift with{" "}
           <code>data-[highlighted]</code>. Under{" "}
-          <code>prefers-reduced-motion</code> the popup fades in with{" "}
-          <code>fades.normal</code> instead of rising.
+          <code>prefers-reduced-motion</code> the scale is dropped and the popup
+          fades only.
         </p>
       </Section>
 

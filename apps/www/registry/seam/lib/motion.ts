@@ -62,8 +62,14 @@ export const fades = {
  * pressed  : element pushed into the surface
  * resting  : neutral
  * raised   : hover/lifted state
- * overlay  : floating surfaces (popover, dropdown)
- * modal    : top-of-stack surfaces (dialog, sheet)
+ * overlay  : floating surfaces rising with overlay depth
+ * modal    : top-of-stack surfaces
+ *
+ * overlay/modal are for elements **motion.dev controls end to end** — list
+ * entries, chips, a scroll-to-bottom button (AnimatePresence owns their
+ * mount/unmount, so `exit` runs). Base UI popups do NOT use these: Base UI
+ * owns their lifecycle and awaits CSS—not motion's rAF springs—before
+ * unmounting, so those use `condense` below instead.
  */
 export const depth = {
   pressed: { scale: 0.97 },
@@ -79,6 +85,35 @@ export const depth = {
     animate: { opacity: 1, scale: 1, y: 0 },
     exit: { opacity: 0, scale: 0.97, y: 6 },
   },
+} as const
+
+/**
+ * The seam "condense" — how every Base UI overlay animates: rise + fade in,
+ * fall back + fade out, backdrop dimming on the same clock. In CSS (keyed to
+ * Base UI's `data-starting-style` / `data-ending-style`) because Base UI keeps
+ * a popup mounted through its exit and awaits CSS transitions before
+ * unmounting — it can't await motion's rAF springs, which is why exits used to
+ * cut instantly. Scale rides the standalone `scale` property (Base UI owns
+ * `transform` for positioning, so a transform-based scale would be clobbered);
+ * a spring-shaped bezier keeps the seam bounce. The one place seam expresses
+ * motion as classes — because Base UI's lifecycle is CSS-native.
+ */
+export const condense = {
+  /** Popup surfaces: rise + fade from the trigger, fall back quicker on exit.
+   *  Scale originates from Base UI's `--transform-origin` (the trigger side),
+   *  so overlay-depth popups grow toward the user out of their anchor. */
+  surface:
+    "origin-[var(--transform-origin)] transition-[opacity,scale] duration-200 ease-[cubic-bezier(0.22,1.3,0.36,1)] data-[starting-style]:opacity-0 data-[starting-style]:[scale:0.95] data-[ending-style]:opacity-0 data-[ending-style]:[scale:0.96] data-[ending-style]:duration-150 data-[ending-style]:ease-out motion-reduce:transition-opacity motion-reduce:data-[starting-style]:[scale:1] motion-reduce:data-[ending-style]:[scale:1]",
+  /** Backdrops / scrims: same clock as the panel, no transform. */
+  backdrop:
+    "transition-opacity duration-200 ease-out data-[starting-style]:opacity-0 data-[ending-style]:opacity-0 data-[ending-style]:duration-150",
+  /** Bottom sheet: slides up from off-screen and fades in, falls back down on
+   *  dismiss (Base UI awaits it). The slide rides the standalone `translate`
+   *  property because Base UI owns `transform` for the swipe — keyed to
+   *  `data-starting-style`/`data-ending-style`, and self-suppressed mid-drag so
+   *  the gesture stays 1:1. */
+  sheet:
+    "transition-[translate,opacity] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] data-[starting-style]:translate-y-full data-[starting-style]:opacity-0 data-[ending-style]:translate-y-full data-[ending-style]:opacity-0 data-[dragging]:transition-none motion-reduce:transition-opacity motion-reduce:data-[starting-style]:translate-y-0 motion-reduce:data-[ending-style]:translate-y-0",
 } as const
 
 /**
