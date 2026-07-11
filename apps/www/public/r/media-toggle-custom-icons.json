@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "media-toggle-custom-icons",
+  "type": "registry:example",
+  "title": "Media Toggle Custom Icons",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "https://seamui.dev/r/media-toggle.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/media-toggle-custom-icons.tsx",
+      "content": "import { Volume2, VolumeX } from \"lucide-react\"\n\nimport { MediaToggle } from \"@/registry/seam/ui/media-toggle\"\n\n// Pass iconOn / iconOff for controls beyond the mic/camera/screen presets.\nexport default function MediaToggleCustomIcons() {\n  return (\n    <MediaToggle\n      iconOn={Volume2}\n      iconOff={VolumeX}\n      aria-label=\"Speaker\"\n      defaultPressed\n    />\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

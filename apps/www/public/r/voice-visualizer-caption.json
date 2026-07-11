@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "voice-visualizer-caption",
+  "type": "registry:example",
+  "title": "Voice Visualizer Caption",
+  "registryDependencies": [
+    "https://seamui.dev/r/voice-visualizer.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/voice-visualizer-caption.tsx",
+      "content": "import {\n  VoiceVisualizer,\n  VoiceVisualizerCaption,\n} from \"@/registry/seam/ui/voice-visualizer\"\n\nexport default function VoiceVisualizerCaptionExample() {\n  return (\n    <div className=\"flex flex-col items-center gap-4\">\n      <VoiceVisualizer state=\"listening\" level={0.4} size=\"lg\" />\n      <VoiceVisualizerCaption>\n        Agent is listening, ask it a question\n      </VoiceVisualizerCaption>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

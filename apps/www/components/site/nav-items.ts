@@ -86,4 +86,11 @@ export const NAV: NavGroup[] = [
       c("chat-timeline", "Chat Timeline"),
     ],
   },
+  {
+    title: "Voice",
+    items: [
+      c("media-toggle", "Media Toggle"),
+      c("voice-visualizer", "Voice Visualizer"),
+    ],
+  },
 ]
