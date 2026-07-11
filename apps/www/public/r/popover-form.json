@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "popover-form",
+  "type": "registry:example",
+  "title": "Popover Form",
+  "registryDependencies": [
+    "https://seamui.dev/r/popover.json",
+    "https://seamui.dev/r/input.json",
+    "https://seamui.dev/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/popover-form.tsx",
+      "content": "import { Button } from \"@/registry/seam/ui/button\"\nimport { Input } from \"@/registry/seam/ui/input\"\nimport {\n  Popover,\n  PopoverContent,\n  PopoverTrigger,\n} from \"@/registry/seam/ui/popover\"\n\nexport default function PopoverForm() {\n  return (\n    <Popover>\n      <PopoverTrigger render={<Button variant=\"outline\">Settings</Button>} />\n      <PopoverContent>\n        <div className=\"space-y-3\">\n          <div className=\"space-y-1\">\n            <h4 className=\"text-sm font-medium\">Dimensions</h4>\n            <p className=\"text-muted-foreground text-sm\">\n              Set the dimensions for the surface.\n            </p>\n          </div>\n          <div className=\"grid gap-2\">\n            <div className=\"grid grid-cols-3 items-center gap-2\">\n              <label htmlFor=\"width\" className=\"text-sm\">\n                Width\n              </label>\n              <Input\n                id=\"width\"\n                defaultValue=\"100%\"\n                className=\"col-span-2 h-8\"\n              />\n            </div>\n            <div className=\"grid grid-cols-3 items-center gap-2\">\n              <label htmlFor=\"maxWidth\" className=\"text-sm\">\n                Max. width\n              </label>\n              <Input\n                id=\"maxWidth\"\n                defaultValue=\"300px\"\n                className=\"col-span-2 h-8\"\n              />\n            </div>\n            <div className=\"grid grid-cols-3 items-center gap-2\">\n              <label htmlFor=\"height\" className=\"text-sm\">\n                Height\n              </label>\n              <Input\n                id=\"height\"\n                defaultValue=\"25px\"\n                className=\"col-span-2 h-8\"\n              />\n            </div>\n          </div>\n        </div>\n      </PopoverContent>\n    </Popover>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

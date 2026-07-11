@@ -1,9 +1,11 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
+import { VariantPreview } from "@/components/docs/variant-preview"
 import { Section, CodeBlock, Install } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import AlertDialogDemo from "@/registry/seam/examples/alert-dialog-demo"
+import AlertDialogDiscard from "@/registry/seam/examples/alert-dialog-discard"
+import AlertDialogSignout from "@/registry/seam/examples/alert-dialog-signout"
 
 export const metadata: Metadata = {
   title: "Alert Dialog — seamui",
@@ -20,9 +22,13 @@ export default function AlertDialogDocs() {
         choice.
       </p>
 
-      <ComponentPreview code={exampleSource("alert-dialog-demo")}>
-        <AlertDialogDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          { key: "default", title: "Destructive", component: <AlertDialogDemo />, code: exampleSource("alert-dialog-demo"), description: "The high-stakes case — a destructive action you must confirm." },
+          { key: "discard", title: "Discard", component: <AlertDialogDiscard />, code: exampleSource("alert-dialog-discard"), description: "A softer confirm; the action is primary, not destructive." },
+          { key: "signout", title: "Sign out", component: <AlertDialogSignout />, code: exampleSource("alert-dialog-signout") },
+        ]}
+      />
 
       <Install name="alert-dialog" />
 

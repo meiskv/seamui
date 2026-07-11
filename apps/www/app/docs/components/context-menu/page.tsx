@@ -1,9 +1,11 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
+import { VariantPreview } from "@/components/docs/variant-preview"
 import { Section, CodeBlock, Install } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import ContextMenuDemo from "@/registry/seam/examples/context-menu-demo"
+import ContextMenuLabelled from "@/registry/seam/examples/context-menu-labelled"
+import ContextMenuDestructive from "@/registry/seam/examples/context-menu-destructive"
 
 export const metadata: Metadata = {
   title: "Context Menu — seamui",
@@ -19,9 +21,13 @@ export default function ContextMenuDocs() {
         Same overlay depth as the dropdown menu.
       </p>
 
-      <ComponentPreview code={exampleSource("context-menu-demo")}>
-        <ContextMenuDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          { key: "default", title: "Default", component: <ContextMenuDemo />, code: exampleSource("context-menu-demo") },
+          { key: "labelled", title: "Grouped", component: <ContextMenuLabelled />, code: exampleSource("context-menu-labelled"), description: "Label + separator group related actions." },
+          { key: "destructive", title: "Destructive", component: <ContextMenuDestructive />, code: exampleSource("context-menu-destructive"), description: "A destructive action set apart at the bottom." },
+        ]}
+      />
 
       <Install name="context-menu" />
 

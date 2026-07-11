@@ -1,9 +1,11 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
+import { VariantPreview } from "@/components/docs/variant-preview"
 import { Section, CodeBlock, Install } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import TooltipDemo from "@/registry/seam/examples/tooltip-demo"
+import TooltipIcon from "@/registry/seam/examples/tooltip-icon"
+import TooltipShortcut from "@/registry/seam/examples/tooltip-shortcut"
 
 export const metadata: Metadata = {
   title: "Tooltip — seamui",
@@ -19,9 +21,13 @@ export default function TooltipDocs() {
         depth — the canonical seam pattern for floating surfaces.
       </p>
 
-      <ComponentPreview code={exampleSource("tooltip-demo")}>
-        <TooltipDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          { key: "default", title: "Default", component: <TooltipDemo />, code: exampleSource("tooltip-demo") },
+          { key: "icon", title: "Icon button", component: <TooltipIcon />, code: exampleSource("tooltip-icon"), description: "The most common case — a label for an icon-only control." },
+          { key: "shortcut", title: "With shortcut", component: <TooltipShortcut />, code: exampleSource("tooltip-shortcut"), description: "Pair the hint with its keyboard shortcut via Kbd." },
+        ]}
+      />
 
       <Install name="tooltip" />
 

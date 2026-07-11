@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dialog-form",
+  "type": "registry:example",
+  "title": "Dialog Form",
+  "registryDependencies": [
+    "https://seamui.dev/r/dialog.json",
+    "https://seamui.dev/r/input.json",
+    "https://seamui.dev/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/dialog-form.tsx",
+      "content": "import { Button } from \"@/registry/seam/ui/button\"\nimport { Input } from \"@/registry/seam/ui/input\"\nimport {\n  Dialog,\n  DialogContent,\n  DialogDescription,\n  DialogFooter,\n  DialogHeader,\n  DialogTitle,\n  DialogTrigger,\n  DialogClose,\n} from \"@/registry/seam/ui/dialog\"\n\nexport default function DialogForm() {\n  return (\n    <Dialog>\n      <DialogTrigger render={<Button variant=\"outline\">Edit profile</Button>} />\n      <DialogContent>\n        <DialogHeader>\n          <DialogTitle>Edit profile</DialogTitle>\n          <DialogDescription>\n            Update your details. The surface rises to the top of the stack; the\n            page dims behind it.\n          </DialogDescription>\n        </DialogHeader>\n        <form className=\"grid gap-4\">\n          <div className=\"grid gap-2\">\n            <label htmlFor=\"dialog-form-name\" className=\"text-sm font-medium\">\n              Name\n            </label>\n            <Input id=\"dialog-form-name\" defaultValue=\"Ada Lovelace\" />\n          </div>\n          <div className=\"grid gap-2\">\n            <label\n              htmlFor=\"dialog-form-username\"\n              className=\"text-sm font-medium\"\n            >\n              Username\n            </label>\n            <Input id=\"dialog-form-username\" defaultValue=\"@ada\" />\n          </div>\n          <DialogFooter>\n            <DialogClose render={<Button variant=\"ghost\">Cancel</Button>} />\n            <DialogClose render={<Button type=\"submit\">Save</Button>} />\n          </DialogFooter>\n        </form>\n      </DialogContent>\n    </Dialog>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

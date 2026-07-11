@@ -2969,6 +2969,217 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "dialog-form",
+      "type": "registry:example",
+      "title": "Dialog Form",
+      "registryDependencies": [
+        "https://seamui.dev/r/dialog.json",
+        "https://seamui.dev/r/input.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/dialog-form.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "dialog-scroll",
+      "type": "registry:example",
+      "title": "Dialog Scroll",
+      "registryDependencies": [
+        "https://seamui.dev/r/dialog.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/dialog-scroll.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "alert-dialog-discard",
+      "type": "registry:example",
+      "title": "Alert Dialog Discard",
+      "registryDependencies": [
+        "https://seamui.dev/r/alert-dialog.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/alert-dialog-discard.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "alert-dialog-signout",
+      "type": "registry:example",
+      "title": "Alert Dialog Signout",
+      "registryDependencies": [
+        "https://seamui.dev/r/alert-dialog.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/alert-dialog-signout.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "drawer-menu",
+      "type": "registry:example",
+      "title": "Drawer Menu",
+      "registryDependencies": [
+        "https://seamui.dev/r/drawer.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/drawer-menu.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "drawer-form",
+      "type": "registry:example",
+      "title": "Drawer Form",
+      "registryDependencies": [
+        "https://seamui.dev/r/drawer.json",
+        "https://seamui.dev/r/input.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/drawer-form.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "popover-form",
+      "type": "registry:example",
+      "title": "Popover Form",
+      "registryDependencies": [
+        "https://seamui.dev/r/popover.json",
+        "https://seamui.dev/r/input.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/popover-form.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "popover-align",
+      "type": "registry:example",
+      "title": "Popover Align",
+      "registryDependencies": [
+        "https://seamui.dev/r/popover.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/popover-align.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "tooltip-icon",
+      "type": "registry:example",
+      "title": "Tooltip Icon",
+      "registryDependencies": [
+        "https://seamui.dev/r/tooltip.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/tooltip-icon.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "tooltip-shortcut",
+      "type": "registry:example",
+      "title": "Tooltip Shortcut",
+      "registryDependencies": [
+        "https://seamui.dev/r/tooltip.json",
+        "https://seamui.dev/r/button.json",
+        "https://seamui.dev/r/kbd.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/tooltip-shortcut.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "context-menu-labelled",
+      "type": "registry:example",
+      "title": "Context Menu Labelled",
+      "registryDependencies": [
+        "https://seamui.dev/r/context-menu.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/context-menu-labelled.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "context-menu-destructive",
+      "type": "registry:example",
+      "title": "Context Menu Destructive",
+      "registryDependencies": [
+        "https://seamui.dev/r/context-menu.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/context-menu-destructive.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "preview-card-user",
+      "type": "registry:example",
+      "title": "Preview Card User",
+      "registryDependencies": [
+        "https://seamui.dev/r/preview-card.json",
+        "https://seamui.dev/r/avatar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/preview-card-user.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "preview-card-image",
+      "type": "registry:example",
+      "title": "Preview Card Image",
+      "registryDependencies": [
+        "https://seamui.dev/r/preview-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/preview-card-image.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }
