@@ -24,5 +24,6 @@
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "//": "registry/seam-native holds the React Native variant — RN/Reanimated/expo imports are typechecked by the Expo app's own tsconfig, not the web app's.",
+  "exclude": ["node_modules", "registry/seam-native"]
 }

@@ -1,0 +1,61 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "seamui-native",
+  "homepage": "https://seamui.dev",
+  "items": [
+    {
+      "name": "theme",
+      "type": "registry:lib",
+      "title": "seam native theme tokens",
+      "description": "Platform-neutral design tokens for React Native: colors (precomputed from the canonical oklch), radii (px), and depth shadows as boxShadow strings, with light and dark sets.",
+      "files": [
+        {
+          "path": "registry/seam-native/theme/theme.ts",
+          "type": "registry:lib",
+          "target": "lib/theme.ts"
+        }
+      ]
+    },
+    {
+      "name": "utils",
+      "type": "registry:lib",
+      "title": "cn utility",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/seam-native/lib/utils.ts",
+          "type": "registry:lib",
+          "target": "lib/utils.ts"
+        }
+      ]
+    },
+    {
+      "name": "motion",
+      "type": "registry:lib",
+      "title": "seam native motion tokens",
+      "description": "Spring presets and the depth (z-axis) scale that power every seamui native animation, on react-native-reanimated. Personality numbers are identical to the web tokens.",
+      "dependencies": ["react-native-reanimated"],
+      "files": [
+        {
+          "path": "registry/seam-native/lib/motion.ts",
+          "type": "registry:lib",
+          "target": "lib/motion.ts"
+        }
+      ]
+    },
+    {
+      "name": "haptics",
+      "type": "registry:lib",
+      "title": "seam native haptics",
+      "description": "Haptic feedback layer for React Native: HapticsProvider and the useHaptics hook every interactive control fires through, powered by expo-haptics. Same contract as the web haptics lib.",
+      "dependencies": ["expo-haptics"],
+      "files": [
+        {
+          "path": "registry/seam-native/lib/haptics.tsx",
+          "type": "registry:lib",
+          "target": "lib/haptics.tsx"
+        }
+      ]
+    }
+  ]
+}
