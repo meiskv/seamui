@@ -5,6 +5,12 @@ extending **seamui**. Read it before touching a component. It supersedes the
 prose in `PLAN.md` wherever the two disagree — `PLAN.md` is the original build
 spec; this file is how the library actually works now.
 
+> **Expo / React Native:** a native variant is planned (epic
+> [#52](https://github.com/meiskv/seamui/issues/52)). Its porting contract is
+> [`NATIVE.md`](./NATIVE.md) — read it before touching anything under
+> `registry/seam-native/**` or making cross-platform token changes. This file
+> stays the web contract; NATIVE.md defines where the rules translate or invert.
+
 ---
 
 ## 0. What seamui is (in one breath)
