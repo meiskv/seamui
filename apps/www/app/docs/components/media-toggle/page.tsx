@@ -24,8 +24,18 @@ export default function MediaToggleDocs() {
 
       <VariantPreview
         variants={[
-          { key: "default", title: "Controls", component: <MediaToggleDemo />, code: exampleSource("media-toggle-demo") },
-          { key: "custom-icons", title: "Custom icons", component: <MediaToggleCustomIcons />, code: exampleSource("media-toggle-custom-icons") },
+          {
+            key: "default",
+            title: "Controls",
+            component: <MediaToggleDemo />,
+            code: exampleSource("media-toggle-demo"),
+          },
+          {
+            key: "custom-icons",
+            title: "Custom icons",
+            component: <MediaToggleCustomIcons />,
+            code: exampleSource("media-toggle-custom-icons"),
+          },
         ]}
       />
 
@@ -33,25 +43,51 @@ export default function MediaToggleDocs() {
 
       <ApiTable
         rows={[
-          { prop: "kind", type: `"mic" | "camera" | "screen-share"`, default: `"mic"`, desc: "Picks the icon pair and the default aria-label." },
-          { prop: "iconOn", type: "LucideIcon", desc: "Override the enabled icon for a custom control." },
-          { prop: "iconOff", type: "LucideIcon", desc: "Override the muted icon." },
-          { prop: "pressed", type: "boolean", desc: "Controlled state — pressed means the track is enabled; unpressed is muted. Uncontrolled it starts enabled." },
-          { prop: "haptic", type: `boolean | "tap" | "tick" | "success" | "error"`, default: "true", desc: "Via Toggle — haptic on press when a HapticsProvider is mounted; false opts out." },
+          {
+            prop: "kind",
+            type: `"mic" | "camera" | "screen-share"`,
+            default: `"mic"`,
+            desc: "Picks the icon pair and the default aria-label.",
+          },
+          {
+            prop: "iconOn",
+            type: "LucideIcon",
+            desc: "Override the enabled icon for a custom control.",
+          },
+          {
+            prop: "iconOff",
+            type: "LucideIcon",
+            desc: "Override the muted icon.",
+          },
+          {
+            prop: "pressed",
+            type: "boolean",
+            desc: "Controlled state — pressed means the track is enabled; unpressed is muted. Uncontrolled it starts enabled.",
+          },
+          {
+            prop: "haptic",
+            type: `boolean | "tap" | "tick" | "success" | "error"`,
+            default: "true",
+            desc: "Via Toggle — haptic on press when a HapticsProvider is mounted; false opts out.",
+          },
         ]}
         footer={
-          <>Plus all Toggle props (<code>onPressedChange</code>, <code>defaultPressed</code>, <code>variant</code>, <code>size</code>, …).</>
+          <>
+            Plus all Toggle props (<code>onPressedChange</code>,{" "}
+            <code>defaultPressed</code>, <code>variant</code>, <code>size</code>
+            , …).
+          </>
         }
       />
 
       <Notes>
         <li>
-          The prop shape maps onto the AI/LiveKit <code>TrackToggle</code>{" "}
-          (<code>useTrackToggle</code>) shape with no runtime dependency.
+          The prop shape maps onto the AI/LiveKit <code>TrackToggle</code> (
+          <code>useTrackToggle</code>) shape with no runtime dependency.
         </li>
         <li>
-          Muted is destructive-tinted <em>and</em> slash-iconed — color is
-          never the only signal.
+          Muted is destructive-tinted <em>and</em> slash-iconed — color is never
+          the only signal.
         </li>
         <li>
           Toggling crossfades the tint and the on/off icon on opacity only, so

@@ -25,9 +25,28 @@ export default function DeviceSelectorDocs() {
 
       <VariantPreview
         variants={[
-          { key: "default", title: "Default", component: <DeviceSelectorDemo />, code: exampleSource("device-selector-demo") },
-          { key: "split", title: "Split control", component: <DeviceSelectorSplit />, code: exampleSource("device-selector-split"), description: "Mute is one press; picking the device is the small key beside it." },
-          { key: "live", title: "Live devices", component: <DeviceSelectorLive />, code: exampleSource("device-selector-live"), description: "Enumerates real hardware — click to grant permission." },
+          {
+            key: "default",
+            title: "Default",
+            component: <DeviceSelectorDemo />,
+            code: exampleSource("device-selector-demo"),
+          },
+          {
+            key: "split",
+            title: "Split control",
+            component: <DeviceSelectorSplit />,
+            code: exampleSource("device-selector-split"),
+            description:
+              "Mute is one press; picking the device is the small key beside it.",
+          },
+          {
+            key: "live",
+            title: "Live devices",
+            component: <DeviceSelectorLive />,
+            code: exampleSource("device-selector-live"),
+            description:
+              "Enumerates real hardware — click to grant permission.",
+          },
         ]}
       />
 
@@ -42,9 +61,8 @@ export default function DeviceSelectorDocs() {
           dependency.
         </li>
         <li>
-          Device labels are empty until mic/camera permission is granted, so
-          the hook falls back to &ldquo;Microphone 2&rdquo;-style names until
-          then.
+          Device labels are empty until mic/camera permission is granted, so the
+          hook falls back to &ldquo;Microphone 2&rdquo;-style names until then.
         </li>
         <li>
           No new motion — the trigger presses via the dogfooded Button and the

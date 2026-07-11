@@ -29,8 +29,8 @@ export default function PreviewCardUser() {
               </div>
             </div>
             <p className="text-sm">
-              Tactile, spring-driven UI components you own — built on Base UI and
-              motion.dev.
+              Tactile, spring-driven UI components you own — built on Base UI
+              and motion.dev.
             </p>
             <div className="text-muted-foreground text-sm">
               128 Following · 2.4k Followers

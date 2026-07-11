@@ -11,7 +11,8 @@ import ToggleDisabled from "@/registry/seam/examples/toggle-disabled"
 
 export const metadata: Metadata = {
   title: "Toggle — seamui",
-  description: "Two-state button built on Base UI with seam press-depth motion.",
+  description:
+    "Two-state button built on Base UI with seam press-depth motion.",
 }
 
 export default function ToggleDocs() {
@@ -25,11 +26,36 @@ export default function ToggleDocs() {
 
       <VariantPreview
         variants={[
-          { key: "default", title: "Default", component: <ToggleDemo />, code: exampleSource("toggle-demo") },
-          { key: "with-text", title: "With text", component: <ToggleWithText />, code: exampleSource("toggle-with-text") },
-          { key: "outline", title: "Outline", component: <ToggleOutline />, code: exampleSource("toggle-outline") },
-          { key: "sizes", title: "Sizes", component: <ToggleSizes />, code: exampleSource("toggle-sizes") },
-          { key: "disabled", title: "Disabled", component: <ToggleDisabled />, code: exampleSource("toggle-disabled") },
+          {
+            key: "default",
+            title: "Default",
+            component: <ToggleDemo />,
+            code: exampleSource("toggle-demo"),
+          },
+          {
+            key: "with-text",
+            title: "With text",
+            component: <ToggleWithText />,
+            code: exampleSource("toggle-with-text"),
+          },
+          {
+            key: "outline",
+            title: "Outline",
+            component: <ToggleOutline />,
+            code: exampleSource("toggle-outline"),
+          },
+          {
+            key: "sizes",
+            title: "Sizes",
+            component: <ToggleSizes />,
+            code: exampleSource("toggle-sizes"),
+          },
+          {
+            key: "disabled",
+            title: "Disabled",
+            component: <ToggleDisabled />,
+            code: exampleSource("toggle-disabled"),
+          },
         ]}
       />
 

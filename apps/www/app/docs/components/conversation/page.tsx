@@ -24,8 +24,18 @@ export default function ConversationDocs() {
 
       <VariantPreview
         variants={[
-          { key: "default", title: "Default", component: <ConversationDemo />, code: exampleSource("conversation-demo") },
-          { key: "scroll-button", title: "Scroll to latest", component: <ConversationScrollButton />, code: exampleSource("conversation-scroll-button") },
+          {
+            key: "default",
+            title: "Default",
+            component: <ConversationDemo />,
+            code: exampleSource("conversation-demo"),
+          },
+          {
+            key: "scroll-button",
+            title: "Scroll to latest",
+            component: <ConversationScrollButton />,
+            code: exampleSource("conversation-scroll-button"),
+          },
         ]}
       />
 
@@ -33,9 +43,21 @@ export default function ConversationDocs() {
 
       <ApiTable
         rows={[
-          { prop: "children", type: "ReactNode", desc: "Viewport content — typically ConversationContent (messages) plus ConversationScrollButton." },
-          { prop: "useConversation().isAtBottom", type: "boolean", desc: "True while the viewport is pinned to the bottom; the scroll key shows when it flips false." },
-          { prop: "useConversation().scrollToBottom", type: "(behavior?: ScrollBehavior) => void", desc: "Jump to the latest message — smooth by default, instant under reduced motion." },
+          {
+            prop: "children",
+            type: "ReactNode",
+            desc: "Viewport content — typically ConversationContent (messages) plus ConversationScrollButton.",
+          },
+          {
+            prop: "useConversation().isAtBottom",
+            type: "boolean",
+            desc: "True while the viewport is pinned to the bottom; the scroll key shows when it flips false.",
+          },
+          {
+            prop: "useConversation().scrollToBottom",
+            type: "(behavior?: ScrollBehavior) => void",
+            desc: "Jump to the latest message — smooth by default, instant under reduced motion.",
+          },
         ]}
         footer={
           <>
@@ -56,17 +78,17 @@ export default function ConversationDocs() {
         <li>
           While pinned, the viewport follows streamed content instantly — an
           animated follow would lag behind the tokens. Under reduced motion{" "}
-          <em>all</em> scrolling is instant (<code>behavior: &quot;auto&quot;</code>).
+          <em>all</em> scrolling is instant (
+          <code>behavior: &quot;auto&quot;</code>).
         </li>
         <li>
-          The scroll-to-latest key rises at overlay depth
-          (<code>springs.surface</code>) and falls away at the bottom; under
+          The scroll-to-latest key rises at overlay depth (
+          <code>springs.surface</code>) and falls away at the bottom; under
           reduced motion it fades rather than rising. It carries an{" "}
           <code>aria-label</code>.
         </li>
         <li>
-          The stick-to-bottom logic ships in the component file — no
-          dependency.
+          The stick-to-bottom logic ships in the component file — no dependency.
         </li>
       </Notes>
     </main>

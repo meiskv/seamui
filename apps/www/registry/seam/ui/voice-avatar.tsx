@@ -1,6 +1,6 @@
 "use client"
 
-import * as React from "react"
+import type * as React from "react"
 import { motion, useReducedMotion, type Transition } from "motion/react"
 
 import { cn } from "@/lib/utils"
@@ -74,7 +74,7 @@ function VoiceAvatar({
         animate={animate}
         transition={transition}
       />
-      <Avatar className={cn("size-11 shadow-resting", className)}>
+      <Avatar className={cn("size-11 shadow-resting", className)} {...props}>
         {src ? <AvatarImage src={src} alt={name ?? ""} /> : null}
         <AvatarFallback>{children ?? initials(name)}</AvatarFallback>
       </Avatar>

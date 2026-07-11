@@ -23,9 +23,24 @@ export default function SliderDocs() {
 
       <VariantPreview
         variants={[
-          { key: "default", title: "Default", component: <SliderDemo />, code: exampleSource("slider-demo") },
-          { key: "steps", title: "Steps", component: <SliderSteps />, code: exampleSource("slider-steps") },
-          { key: "disabled", title: "Disabled", component: <SliderDisabled />, code: exampleSource("slider-disabled") },
+          {
+            key: "default",
+            title: "Default",
+            component: <SliderDemo />,
+            code: exampleSource("slider-demo"),
+          },
+          {
+            key: "steps",
+            title: "Steps",
+            component: <SliderSteps />,
+            code: exampleSource("slider-steps"),
+          },
+          {
+            key: "disabled",
+            title: "Disabled",
+            component: <SliderDisabled />,
+            code: exampleSource("slider-disabled"),
+          },
         ]}
       />
 
@@ -34,8 +49,8 @@ export default function SliderDocs() {
       <Notes>
         <li>
           On press/drag the thumb rises to <code>depth.raised</code> — a
-          physical &ldquo;grab&rdquo; cue that settles on release (most
-          controls recede; the slider thumb lifts).
+          physical &ldquo;grab&rdquo; cue that settles on release (most controls
+          recede; the slider thumb lifts).
         </li>
         <li>
           Controlled via <code>value</code> / <code>onValueChange</code>,

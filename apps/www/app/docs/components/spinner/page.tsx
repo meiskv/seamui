@@ -23,8 +23,18 @@ export default function SpinnerDocs() {
 
       <VariantPreview
         variants={[
-          { key: "default", title: "Default", component: <SpinnerDemo />, code: exampleSource("spinner-demo") },
-          { key: "button", title: "In a button", component: <ButtonLoading />, code: exampleSource("button-loading") },
+          {
+            key: "default",
+            title: "Default",
+            component: <SpinnerDemo />,
+            code: exampleSource("spinner-demo"),
+          },
+          {
+            key: "button",
+            title: "In a button",
+            component: <ButtonLoading />,
+            code: exampleSource("button-loading"),
+          },
         ]}
       />
 

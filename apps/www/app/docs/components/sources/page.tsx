@@ -8,8 +8,7 @@ import InlineCitationDemo from "@/registry/seam/examples/inline-citation-demo"
 
 export const metadata: Metadata = {
   title: "Sources — seamui",
-  description:
-    "Grounded-answer sources list and hoverable inline citations.",
+  description: "Grounded-answer sources list and hoverable inline citations.",
 }
 
 export default function SourcesDocs() {
@@ -24,8 +23,18 @@ export default function SourcesDocs() {
 
       <VariantPreview
         variants={[
-          { key: "default", title: "Default", component: <SourcesDemo />, code: exampleSource("sources-demo") },
-          { key: "inline-citations", title: "Inline citations", component: <InlineCitationDemo />, code: exampleSource("inline-citation-demo") },
+          {
+            key: "default",
+            title: "Default",
+            component: <SourcesDemo />,
+            code: exampleSource("sources-demo"),
+          },
+          {
+            key: "inline-citations",
+            title: "Inline citations",
+            component: <InlineCitationDemo />,
+            code: exampleSource("inline-citation-demo"),
+          },
         ]}
       />
 
@@ -33,8 +42,8 @@ export default function SourcesDocs() {
 
       <Notes>
         <li>
-          The citation preview rises at overlay depth
-          (<code>springs.surface</code>, inherited from Preview Card) and fades
+          The citation preview rises at overlay depth (
+          <code>springs.surface</code>, inherited from Preview Card) and fades
           in instead of rising under reduced motion; the sources list eases its
           height open and snaps under reduced motion.
         </li>

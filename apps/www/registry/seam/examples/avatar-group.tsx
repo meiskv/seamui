@@ -1,8 +1,4 @@
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/registry/seam/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/registry/seam/ui/avatar"
 
 const PEOPLE = [
   { src: "https://i.pravatar.cc/64?img=1", fallback: "AL" },

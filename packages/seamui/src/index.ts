@@ -24,7 +24,11 @@ type Framework = "next" | "vite" | "remix"
 function run(cmd: string, args: string[], cwd: string): number {
   const printable = [cmd, ...args].join(" ")
   console.log(pc.dim(`$ ${printable}`))
-  const res = spawnSync(cmd, args, { cwd, stdio: "inherit", shell: process.platform === "win32" })
+  const res = spawnSync(cmd, args, {
+    cwd,
+    stdio: "inherit",
+    shell: process.platform === "win32",
+  })
   if (res.error) {
     console.error(pc.red(`Failed to run: ${printable}`))
     console.error(pc.red(String(res.error)))
@@ -47,7 +51,9 @@ function ensureNamespace(cwd: string): void {
   if (json.registries[REGISTRY_NAMESPACE] !== REGISTRY_URL) {
     json.registries[REGISTRY_NAMESPACE] = REGISTRY_URL
     writeFileSync(file, JSON.stringify(json, null, 2) + "\n")
-    console.log(pc.green(`✔ Registered ${REGISTRY_NAMESPACE} in components.json`))
+    console.log(
+      pc.green(`✔ Registered ${REGISTRY_NAMESPACE} in components.json`)
+    )
   }
 }
 
@@ -56,9 +62,27 @@ function scaffold(framework: Framework, cwd: string): number {
   console.log(pc.cyan(`Scaffolding a ${framework} app…`))
   switch (framework) {
     case "next":
-      return run("bunx", ["--bun", "create-next-app@latest", ".", "--ts", "--tailwind", "--app", "--eslint", "--use-bun", "--yes"], cwd)
+      return run(
+        "bunx",
+        [
+          "--bun",
+          "create-next-app@latest",
+          ".",
+          "--ts",
+          "--tailwind",
+          "--app",
+          "--eslint",
+          "--use-bun",
+          "--yes",
+        ],
+        cwd
+      )
     case "vite":
-      return run("bunx", ["--bun", "create-vite@latest", ".", "--template", "react-ts"], cwd)
+      return run(
+        "bunx",
+        ["--bun", "create-vite@latest", ".", "--template", "react-ts"],
+        cwd
+      )
     case "remix":
       return run("bunx", ["--bun", "create-remix@latest", ".", "--yes"], cwd)
   }
@@ -68,13 +92,19 @@ const program = new Command()
 
 program
   .name("seamui")
-  .description("Beautifully animated components you own — Base UI + motion.dev.")
+  .description(
+    "Beautifully animated components you own — Base UI + motion.dev."
+  )
   .version("0.1.0")
 
 program
   .command("init")
   .description("Set up seamui in a new or existing project")
-  .option("-t, --template <framework>", "framework: next | vite | remix", "next")
+  .option(
+    "-t, --template <framework>",
+    "framework: next | vite | remix",
+    "next"
+  )
   .option("--cwd <dir>", "working directory", process.cwd())
   .option("-y, --yes", "skip confirmation prompts", false)
   .allowUnknownOption(true)
@@ -82,14 +112,21 @@ program
     const cwd = resolve(opts.cwd)
     const framework = opts.template as Framework
     if (!["next", "vite", "remix"].includes(framework)) {
-      console.error(pc.red(`Unknown framework "${framework}". Use next | vite | remix.`))
+      console.error(
+        pc.red(`Unknown framework "${framework}". Use next | vite | remix.`)
+      )
       process.exit(1)
     }
 
     if (scaffold(framework, cwd) !== 0) process.exit(1)
     if (shadcn(["init", "-y", "-b", "neutral"], cwd) !== 0) process.exit(1)
     ensureNamespace(cwd)
-    if (shadcn(["add", ...FOUNDATION.map((n) => `${REGISTRY_NAMESPACE}/${n}`)], cwd) !== 0) {
+    if (
+      shadcn(
+        ["add", ...FOUNDATION.map((n) => `${REGISTRY_NAMESPACE}/${n}`)],
+        cwd
+      ) !== 0
+    ) {
       process.exit(1)
     }
 
@@ -108,7 +145,9 @@ program
   .action((components: string[], opts) => {
     const cwd = resolve(opts.cwd)
     if (!components.length) {
-      console.error(pc.red("Specify at least one component, e.g. `seamui add button`."))
+      console.error(
+        pc.red("Specify at least one component, e.g. `seamui add button`.")
+      )
       process.exit(1)
     }
     ensureNamespace(cwd)

@@ -23,9 +23,24 @@ export default function NumberFieldDocs() {
 
       <VariantPreview
         variants={[
-          { key: "default", title: "Default", component: <NumberFieldDemo />, code: exampleSource("number-field-demo") },
-          { key: "format", title: "Currency", component: <NumberFieldFormat />, code: exampleSource("number-field-format") },
-          { key: "disabled", title: "Disabled", component: <NumberFieldDisabled />, code: exampleSource("number-field-disabled") },
+          {
+            key: "default",
+            title: "Default",
+            component: <NumberFieldDemo />,
+            code: exampleSource("number-field-demo"),
+          },
+          {
+            key: "format",
+            title: "Currency",
+            component: <NumberFieldFormat />,
+            code: exampleSource("number-field-format"),
+          },
+          {
+            key: "disabled",
+            title: "Disabled",
+            component: <NumberFieldDisabled />,
+            code: exampleSource("number-field-disabled"),
+          },
         ]}
       />
 

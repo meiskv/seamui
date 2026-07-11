@@ -9,7 +9,8 @@
   "files": ["dist"],
   "scripts": {
     "build": "bun build ./src/index.ts --target=node --outfile=dist/index.js",
-    "dev": "bun run ./src/index.ts"
+    "dev": "bun run ./src/index.ts",
+    "typecheck": "tsc --noEmit"
   },
   "keywords": ["shadcn", "base-ui", "motion", "components", "react", "cli"],
   "license": "MIT",

@@ -1,14 +1,12 @@
 "use client"
 
-import * as React from "react"
+import type * as React from "react"
 import { PreviewCard as BasePreviewCard } from "@base-ui/react/preview-card"
 
 import { cn } from "@/lib/utils"
 import { condense } from "@/lib/motion"
 
-function PreviewCard(
-  props: React.ComponentProps<typeof BasePreviewCard.Root>
-) {
+function PreviewCard(props: React.ComponentProps<typeof BasePreviewCard.Root>) {
   return <BasePreviewCard.Root {...props} />
 }
 

@@ -24,11 +24,36 @@ export default function ButtonDocs() {
 
       <VariantPreview
         variants={[
-          { key: "default", title: "Default", component: <ButtonDemo />, code: exampleSource("button-demo") },
-          { key: "variants", title: "Variants", component: <ButtonVariants />, code: exampleSource("button-variants") },
-          { key: "sizes", title: "Sizes", component: <ButtonSizes />, code: exampleSource("button-sizes") },
-          { key: "loading", title: "Loading", component: <ButtonLoading />, code: exampleSource("button-loading") },
-          { key: "link", title: "As a link", component: <ButtonLink />, code: exampleSource("button-link") },
+          {
+            key: "default",
+            title: "Default",
+            component: <ButtonDemo />,
+            code: exampleSource("button-demo"),
+          },
+          {
+            key: "variants",
+            title: "Variants",
+            component: <ButtonVariants />,
+            code: exampleSource("button-variants"),
+          },
+          {
+            key: "sizes",
+            title: "Sizes",
+            component: <ButtonSizes />,
+            code: exampleSource("button-sizes"),
+          },
+          {
+            key: "loading",
+            title: "Loading",
+            component: <ButtonLoading />,
+            code: exampleSource("button-loading"),
+          },
+          {
+            key: "link",
+            title: "As a link",
+            component: <ButtonLink />,
+            code: exampleSource("button-link"),
+          },
         ]}
       />
 
@@ -36,14 +61,40 @@ export default function ButtonDocs() {
 
       <ApiTable
         rows={[
-          { prop: "variant", type: `"default" | "destructive" | "outline" | "secondary" | "ghost" | "link"`, default: `"default"`, desc: "Visual style." },
-          { prop: "size", type: `"default" | "sm" | "lg" | "icon"`, default: `"default"`, desc: "Dimensions." },
-          { prop: "render", type: "ReactElement | (props, state) => ReactElement", desc: "Render a different element (e.g. an <a>) — Base UI's replacement for asChild." },
-          { prop: "haptic", type: `boolean | "tap" | "tick" | "success" | "error"`, default: "true", desc: "Haptic on press when a HapticsProvider is mounted; false opts out." },
-          { prop: "disabled", type: "boolean", default: "false", desc: "Also accepts Base UI's focusableWhenDisabled." },
+          {
+            prop: "variant",
+            type: `"default" | "destructive" | "outline" | "secondary" | "ghost" | "link"`,
+            default: `"default"`,
+            desc: "Visual style.",
+          },
+          {
+            prop: "size",
+            type: `"default" | "sm" | "lg" | "icon"`,
+            default: `"default"`,
+            desc: "Dimensions.",
+          },
+          {
+            prop: "render",
+            type: "ReactElement | (props, state) => ReactElement",
+            desc: "Render a different element (e.g. an <a>) — Base UI's replacement for asChild.",
+          },
+          {
+            prop: "haptic",
+            type: `boolean | "tap" | "tick" | "success" | "error"`,
+            default: "true",
+            desc: "Haptic on press when a HapticsProvider is mounted; false opts out.",
+          },
+          {
+            prop: "disabled",
+            type: "boolean",
+            default: "false",
+            desc: "Also accepts Base UI's focusableWhenDisabled.",
+          },
         ]}
         footer={
-          <>Plus all native <code>&lt;button&gt;</code> props.</>
+          <>
+            Plus all native <code>&lt;button&gt;</code> props.
+          </>
         }
       />
 

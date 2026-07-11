@@ -15,10 +15,9 @@ export default function MessageDemo() {
       <Message from="assistant">
         <MessageAvatar name="Seam UI" />
         <MessageContent>
-          Springs are physics-based — they react to velocity, so a press
-          settles naturally instead of running a fixed clock. Durations are
-          reserved for opacity fades and layout dimensions that can&apos;t
-          spring cleanly.
+          Springs are physics-based — they react to velocity, so a press settles
+          naturally instead of running a fixed clock. Durations are reserved for
+          opacity fades and layout dimensions that can&apos;t spring cleanly.
         </MessageContent>
       </Message>
     </div>

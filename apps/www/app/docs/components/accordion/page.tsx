@@ -23,9 +23,24 @@ export default function AccordionDocs() {
 
       <VariantPreview
         variants={[
-          { key: "default", title: "Default", component: <AccordionDemo />, code: exampleSource("accordion-demo") },
-          { key: "single", title: "Single", component: <AccordionSingle />, code: exampleSource("accordion-single") },
-          { key: "disabled", title: "Disabled item", component: <AccordionDisabled />, code: exampleSource("accordion-disabled") },
+          {
+            key: "default",
+            title: "Default",
+            component: <AccordionDemo />,
+            code: exampleSource("accordion-demo"),
+          },
+          {
+            key: "single",
+            title: "Single",
+            component: <AccordionSingle />,
+            code: exampleSource("accordion-single"),
+          },
+          {
+            key: "disabled",
+            title: "Disabled item",
+            component: <AccordionDisabled />,
+            code: exampleSource("accordion-disabled"),
+          },
         ]}
       />
 

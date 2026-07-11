@@ -25,10 +25,7 @@ export function CodeBlock({
         showHeader={false}
         className="[&_[data-slot=code-block-content]]:pr-11"
       />
-      <CodeBlockCopyButton
-        code={children}
-        className="absolute top-1 right-1"
-      />
+      <CodeBlockCopyButton code={children} className="absolute top-1 right-1" />
     </div>
   )
 }

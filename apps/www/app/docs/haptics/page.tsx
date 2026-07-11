@@ -33,10 +33,10 @@ export default function HapticsDocs() {
   <App />
 </HapticsProvider>`}</CodeBlock>
         <p className="text-muted-foreground text-sm">
-          That&apos;s it — Button, Toggle (and everything dogfooding them,
-          like Media Toggle and the voice suite), Switch, Checkbox, Radio,
-          Slider, and OTP Field all fire through the ambient provider. Without
-          one, every trigger is a silent no-op, so components work unchanged.
+          That&apos;s it — Button, Toggle (and everything dogfooding them, like
+          Media Toggle and the voice suite), Switch, Checkbox, Radio, Slider,
+          and OTP Field all fire through the ambient provider. Without one,
+          every trigger is a silent no-op, so components work unchanged.
         </p>
         <CodeBlock>{`<HapticsProvider sound={false}>  // buzz only, no click audio
 <HapticsProvider enabled={false}> // everything off (e.g. a user setting)`}</CodeBlock>
@@ -63,14 +63,13 @@ trigger("tick") // safe anywhere — no-op without a provider`}</CodeBlock>
 
       <Section title="Platform support">
         <p className="text-muted-foreground text-sm">
-          Powered by <code>web-haptics</code>: the Vibration API on Android,
-          its taptic <code>&lt;input switch&gt;</code> trick on iOS Safari,
-          and click audio everywhere when <code>sound</code> is on. Where
-          nothing is available it degrades silently — feedback never blocks
-          the interaction or throws. Haptics are orthogonal to{" "}
+          Powered by <code>web-haptics</code>: the Vibration API on Android, its
+          taptic <code>&lt;input switch&gt;</code> trick on iOS Safari, and
+          click audio everywhere when <code>sound</code> is on. Where nothing is
+          available it degrades silently — feedback never blocks the interaction
+          or throws. Haptics are orthogonal to{" "}
           <code>prefers-reduced-motion</code>; expose the provider&apos;s{" "}
-          <code>enabled</code> prop as a user setting if you want an off
-          switch.
+          <code>enabled</code> prop as a user setting if you want an off switch.
         </p>
       </Section>
     </main>

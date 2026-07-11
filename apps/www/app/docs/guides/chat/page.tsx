@@ -34,10 +34,22 @@ export default function ChatGuide() {
 
       <Section title="The pieces">
         <ul className="text-muted-foreground list-disc space-y-1 pl-5 text-sm">
-          <li><strong>Conversation</strong> — the scroll viewport; sticks to the bottom while tokens stream, releases when you scroll up.</li>
-          <li><strong>Message</strong> — one row: an assistant avatar + content, or a right-aligned user key.</li>
-          <li><strong>Response</strong> — renders assistant markdown safely mid-stream (no broken fences while a code block is half-typed).</li>
-          <li><strong>Composer</strong> — the debossed prompt well; its <code>status</code> swaps send ⇄ stop.</li>
+          <li>
+            <strong>Conversation</strong> — the scroll viewport; sticks to the
+            bottom while tokens stream, releases when you scroll up.
+          </li>
+          <li>
+            <strong>Message</strong> — one row: an assistant avatar + content,
+            or a right-aligned user key.
+          </li>
+          <li>
+            <strong>Response</strong> — renders assistant markdown safely
+            mid-stream (no broken fences while a code block is half-typed).
+          </li>
+          <li>
+            <strong>Composer</strong> — the debossed prompt well; its{" "}
+            <code>status</code> swaps send ⇄ stop.
+          </li>
         </ul>
         <CodeBlock
           language="bash"
@@ -68,8 +80,8 @@ export default function ChatGuide() {
         <p className="text-muted-foreground text-sm">
           A <code>Message</code>&apos;s <code>from</code> decides its side. The
           user&apos;s text is a raised key; the assistant sits flat on the
-          canvas with an avatar, its markdown going through <code>Response</code>
-          {" "}so it stays intact while streaming.
+          canvas with an avatar, its markdown going through{" "}
+          <code>Response</code> so it stays intact while streaming.
         </p>
         <CodeBlock
           language="tsx"
@@ -130,10 +142,45 @@ export default function ChatGuide() {
 
       <Section title="Next steps">
         <ul className="text-muted-foreground list-disc space-y-1 pl-5 text-sm">
-          <li>Render fenced code with <Link className="underline" href="/docs/components/code-block">Code Block</Link>, and agent steps with <Link className="underline" href="/docs/components/tool">Tool</Link>.</li>
-          <li>Ground answers using <Link className="underline" href="/docs/components/sources">Sources</Link> and inline citations.</li>
-          <li>Add a pre-first-token <Link className="underline" href="/docs/components/typing-indicator">Typing Indicator</Link>, then prompt <Link className="underline" href="/docs/components/suggestions">Suggestions</Link>.</li>
-          <li>Give history temporal structure with <Link className="underline" href="/docs/components/chat-timeline">Chat Timeline</Link>.</li>
+          <li>
+            Render fenced code with{" "}
+            <Link className="underline" href="/docs/components/code-block">
+              Code Block
+            </Link>
+            , and agent steps with{" "}
+            <Link className="underline" href="/docs/components/tool">
+              Tool
+            </Link>
+            .
+          </li>
+          <li>
+            Ground answers using{" "}
+            <Link className="underline" href="/docs/components/sources">
+              Sources
+            </Link>{" "}
+            and inline citations.
+          </li>
+          <li>
+            Add a pre-first-token{" "}
+            <Link
+              className="underline"
+              href="/docs/components/typing-indicator"
+            >
+              Typing Indicator
+            </Link>
+            , then prompt{" "}
+            <Link className="underline" href="/docs/components/suggestions">
+              Suggestions
+            </Link>
+            .
+          </li>
+          <li>
+            Give history temporal structure with{" "}
+            <Link className="underline" href="/docs/components/chat-timeline">
+              Chat Timeline
+            </Link>
+            .
+          </li>
         </ul>
       </Section>
     </main>

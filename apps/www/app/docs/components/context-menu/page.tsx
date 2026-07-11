@@ -9,7 +9,8 @@ import ContextMenuDestructive from "@/registry/seam/examples/context-menu-destru
 
 export const metadata: Metadata = {
   title: "Context Menu — seamui",
-  description: "Right-click menu built on Base UI with seam overlay-depth entrance.",
+  description:
+    "Right-click menu built on Base UI with seam overlay-depth entrance.",
 }
 
 export default function ContextMenuDocs() {
@@ -23,9 +24,26 @@ export default function ContextMenuDocs() {
 
       <VariantPreview
         variants={[
-          { key: "default", title: "Default", component: <ContextMenuDemo />, code: exampleSource("context-menu-demo") },
-          { key: "labelled", title: "Grouped", component: <ContextMenuLabelled />, code: exampleSource("context-menu-labelled"), description: "Label + separator group related actions." },
-          { key: "destructive", title: "Destructive", component: <ContextMenuDestructive />, code: exampleSource("context-menu-destructive"), description: "A destructive action set apart at the bottom." },
+          {
+            key: "default",
+            title: "Default",
+            component: <ContextMenuDemo />,
+            code: exampleSource("context-menu-demo"),
+          },
+          {
+            key: "labelled",
+            title: "Grouped",
+            component: <ContextMenuLabelled />,
+            code: exampleSource("context-menu-labelled"),
+            description: "Label + separator group related actions.",
+          },
+          {
+            key: "destructive",
+            title: "Destructive",
+            component: <ContextMenuDestructive />,
+            code: exampleSource("context-menu-destructive"),
+            description: "A destructive action set apart at the bottom.",
+          },
         ]}
       />
 

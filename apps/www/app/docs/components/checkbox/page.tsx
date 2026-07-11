@@ -24,10 +24,30 @@ export default function CheckboxDocs() {
 
       <VariantPreview
         variants={[
-          { key: "default", title: "Default", component: <CheckboxDemo />, code: exampleSource("checkbox-demo") },
-          { key: "with-text", title: "With text", component: <CheckboxWithText />, code: exampleSource("checkbox-with-text") },
-          { key: "indeterminate", title: "Indeterminate", component: <CheckboxIndeterminate />, code: exampleSource("checkbox-indeterminate") },
-          { key: "disabled", title: "Disabled", component: <CheckboxDisabled />, code: exampleSource("checkbox-disabled") },
+          {
+            key: "default",
+            title: "Default",
+            component: <CheckboxDemo />,
+            code: exampleSource("checkbox-demo"),
+          },
+          {
+            key: "with-text",
+            title: "With text",
+            component: <CheckboxWithText />,
+            code: exampleSource("checkbox-with-text"),
+          },
+          {
+            key: "indeterminate",
+            title: "Indeterminate",
+            component: <CheckboxIndeterminate />,
+            code: exampleSource("checkbox-indeterminate"),
+          },
+          {
+            key: "disabled",
+            title: "Disabled",
+            component: <CheckboxDisabled />,
+            code: exampleSource("checkbox-disabled"),
+          },
         ]}
       />
 
@@ -35,14 +55,14 @@ export default function CheckboxDocs() {
 
       <Notes>
         <li>
-          The check mark scales in from 0 on check; the indeterminate dash
-          swaps in via a <code>data-[indeterminate]</code> CSS toggle instead
-          of the spring.
+          The check mark scales in from 0 on check; the indeterminate dash swaps
+          in via a <code>data-[indeterminate]</code> CSS toggle instead of the
+          spring.
         </li>
         <li>
           Supports <code>checked</code>, <code>defaultChecked</code>, and{" "}
-          <code>indeterminate</code>; pair with a <code>&lt;label&gt;</code>{" "}
-          for a clickable target.
+          <code>indeterminate</code>; pair with a <code>&lt;label&gt;</code> for
+          a clickable target.
         </li>
       </Notes>
     </main>

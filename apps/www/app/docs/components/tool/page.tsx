@@ -20,15 +20,30 @@ export default function ToolDocs() {
       <p className="text-muted-foreground mt-1.5 text-[0.9375rem]">
         A disclosure for what the model is doing — a tool call or a step of
         reasoning. The row is telemetry, not a key: a quiet debossed strip with
-        a status chip; the result opens in the well below. <code>Reasoning</code>{" "}
-        is the same shape for chain-of-thought.
+        a status chip; the result opens in the well below.{" "}
+        <code>Reasoning</code> is the same shape for chain-of-thought.
       </p>
 
       <VariantPreview
         variants={[
-          { key: "default", title: "Default", component: <ToolDemo />, code: exampleSource("tool-demo") },
-          { key: "error", title: "Error", component: <ToolError />, code: exampleSource("tool-error") },
-          { key: "reasoning", title: "Reasoning", component: <ReasoningDemo />, code: exampleSource("reasoning-demo") },
+          {
+            key: "default",
+            title: "Default",
+            component: <ToolDemo />,
+            code: exampleSource("tool-demo"),
+          },
+          {
+            key: "error",
+            title: "Error",
+            component: <ToolError />,
+            code: exampleSource("tool-error"),
+          },
+          {
+            key: "reasoning",
+            title: "Reasoning",
+            component: <ReasoningDemo />,
+            code: exampleSource("reasoning-demo"),
+          },
         ]}
       />
 
@@ -42,9 +57,9 @@ export default function ToolDocs() {
           them.
         </li>
         <li>
-          Expanding eases the panel height (the one thing seamui animates with
-          a duration, like opacity) and snaps instantly under reduced motion;
-          the status <code>Spinner</code> carries its own reduced-motion pulse.
+          Expanding eases the panel height (the one thing seamui animates with a
+          duration, like opacity) and snaps instantly under reduced motion; the
+          status <code>Spinner</code> carries its own reduced-motion pulse.
         </li>
         <li>
           The trigger presses with <code>depth.pressed</code> — dogfooded via{" "}

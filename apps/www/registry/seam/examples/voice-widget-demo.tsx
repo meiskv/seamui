@@ -54,9 +54,7 @@ function useFakeAgent() {
     const tick = () => {
       t += 0.08
       setLevel(
-        stateRef.current === "speaking"
-          ? 0.4 + Math.abs(Math.sin(t)) * 0.5
-          : 0
+        stateRef.current === "speaking" ? 0.4 + Math.abs(Math.sin(t)) * 0.5 : 0
       )
       raf = requestAnimationFrame(tick)
     }

@@ -23,9 +23,24 @@ export default function RadioGroupDocs() {
 
       <VariantPreview
         variants={[
-          { key: "default", title: "Default", component: <RadioGroupDemo />, code: exampleSource("radio-group-demo") },
-          { key: "descriptions", title: "With descriptions", component: <RadioGroupDescriptions />, code: exampleSource("radio-group-descriptions") },
-          { key: "disabled", title: "Disabled", component: <RadioGroupDisabled />, code: exampleSource("radio-group-disabled") },
+          {
+            key: "default",
+            title: "Default",
+            component: <RadioGroupDemo />,
+            code: exampleSource("radio-group-demo"),
+          },
+          {
+            key: "descriptions",
+            title: "With descriptions",
+            component: <RadioGroupDescriptions />,
+            code: exampleSource("radio-group-descriptions"),
+          },
+          {
+            key: "disabled",
+            title: "Disabled",
+            component: <RadioGroupDisabled />,
+            code: exampleSource("radio-group-disabled"),
+          },
         ]}
       />
 

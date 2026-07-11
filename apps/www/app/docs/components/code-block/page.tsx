@@ -25,9 +25,24 @@ export default function CodeBlockDocs() {
 
       <VariantPreview
         variants={[
-          { key: "default", title: "Default", component: <CodeBlockDemo />, code: exampleSource("code-block-demo") },
-          { key: "copy", title: "Copy", component: <CodeBlockCopy />, code: exampleSource("code-block-copy") },
-          { key: "long-lines", title: "Long lines", component: <CodeBlockLongLines />, code: exampleSource("code-block-long-lines") },
+          {
+            key: "default",
+            title: "Default",
+            component: <CodeBlockDemo />,
+            code: exampleSource("code-block-demo"),
+          },
+          {
+            key: "copy",
+            title: "Copy",
+            component: <CodeBlockCopy />,
+            code: exampleSource("code-block-copy"),
+          },
+          {
+            key: "long-lines",
+            title: "Long lines",
+            component: <CodeBlockLongLines />,
+            code: exampleSource("code-block-long-lines"),
+          },
         ]}
       />
 

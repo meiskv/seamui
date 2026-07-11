@@ -9,7 +9,8 @@ import TabsIcons from "@/registry/seam/examples/tabs-icons"
 
 export const metadata: Metadata = {
   title: "Tabs — seamui",
-  description: "Tabs built on Base UI; a motion indicator springs to the active tab.",
+  description:
+    "Tabs built on Base UI; a motion indicator springs to the active tab.",
 }
 
 export default function TabsDocs() {
@@ -23,9 +24,24 @@ export default function TabsDocs() {
 
       <VariantPreview
         variants={[
-          { key: "default", title: "Default", component: <TabsDemo />, code: exampleSource("tabs-demo") },
-          { key: "icons", title: "With icons", component: <TabsIcons />, code: exampleSource("tabs-icons") },
-          { key: "small", title: "Small", component: <TabsSmall />, code: exampleSource("tabs-small") },
+          {
+            key: "default",
+            title: "Default",
+            component: <TabsDemo />,
+            code: exampleSource("tabs-demo"),
+          },
+          {
+            key: "icons",
+            title: "With icons",
+            component: <TabsIcons />,
+            code: exampleSource("tabs-icons"),
+          },
+          {
+            key: "small",
+            title: "Small",
+            component: <TabsSmall />,
+            code: exampleSource("tabs-small"),
+          },
         ]}
       />
 

@@ -13,7 +13,9 @@ import {
 export default function DialogScroll() {
   return (
     <Dialog>
-      <DialogTrigger render={<Button variant="outline">Terms of Service</Button>} />
+      <DialogTrigger
+        render={<Button variant="outline">Terms of Service</Button>}
+      />
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Terms of Service</DialogTitle>

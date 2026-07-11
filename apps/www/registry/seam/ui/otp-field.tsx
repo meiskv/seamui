@@ -46,7 +46,9 @@ function OTPField({
       length={length}
       value={value}
       defaultValue={defaultValue}
-      onValueChange={(...args: Parameters<NonNullable<typeof onValueChange>>) => {
+      onValueChange={(
+        ...args: Parameters<NonNullable<typeof onValueChange>>
+      ) => {
         // tactile feedback: a tick per digit landed (not on delete).
         if (args[0].length > filledRef.current) trigger("tick")
         setInternalLen(args[0].length)
@@ -61,7 +63,9 @@ function OTPField({
                 : shake.animate
               : undefined
           }
-          transition={reduceMotion ? reduced.flash.transition : shake.transition}
+          transition={
+            reduceMotion ? reduced.flash.transition : shake.transition
+          }
         />
       }
       className={cn("flex items-center gap-2", className)}

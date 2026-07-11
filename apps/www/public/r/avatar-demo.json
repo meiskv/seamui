@@ -9,7 +9,7 @@
   "files": [
     {
       "path": "registry/seam/examples/avatar-demo.tsx",
-      "content": "import {\n  Avatar,\n  AvatarFallback,\n  AvatarImage,\n} from \"@/registry/seam/ui/avatar\"\n\nexport default function AvatarDemo() {\n  return (\n    <div className=\"flex items-center gap-3\">\n      <Avatar>\n        <AvatarImage src=\"https://github.com/shadcn.png\" alt=\"@shadcn\" />\n        <AvatarFallback>CN</AvatarFallback>\n      </Avatar>\n      <Avatar>\n        <AvatarFallback>SU</AvatarFallback>\n      </Avatar>\n    </div>\n  )\n}\n",
+      "content": "import { Avatar, AvatarFallback, AvatarImage } from \"@/registry/seam/ui/avatar\"\n\nexport default function AvatarDemo() {\n  return (\n    <div className=\"flex items-center gap-3\">\n      <Avatar>\n        <AvatarImage src=\"https://github.com/shadcn.png\" alt=\"@shadcn\" />\n        <AvatarFallback>CN</AvatarFallback>\n      </Avatar>\n      <Avatar>\n        <AvatarFallback>SU</AvatarFallback>\n      </Avatar>\n    </div>\n  )\n}\n",
       "type": "registry:example"
     }
   ]

@@ -15,7 +15,10 @@ export default function VoiceAvatarGroup() {
   const [active, setActive] = React.useState(0)
 
   React.useEffect(() => {
-    const id = setInterval(() => setActive((i) => (i + 1) % PEOPLE.length), 1600)
+    const id = setInterval(
+      () => setActive((i) => (i + 1) % PEOPLE.length),
+      1600
+    )
     return () => clearInterval(id)
   }, [])
 

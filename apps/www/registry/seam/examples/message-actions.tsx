@@ -19,7 +19,12 @@ export default function MessageActionsExample() {
             appear on keyboard focus, and stay visible under reduced motion.
           </MessageContent>
           <MessageActions>
-            <Button variant="ghost" size="icon" className="size-8" aria-label="Copy">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="size-8"
+              aria-label="Copy"
+            >
               <Copy />
             </Button>
             <Button

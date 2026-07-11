@@ -26,8 +26,18 @@ export default function TypingIndicatorDocs() {
 
       <VariantPreview
         variants={[
-          { key: "default", title: "Default", component: <TypingIndicatorDemo />, code: exampleSource("typing-indicator-demo") },
-          { key: "in-message", title: "In a message", component: <TypingIndicatorInMessage />, code: exampleSource("typing-indicator-in-message") },
+          {
+            key: "default",
+            title: "Default",
+            component: <TypingIndicatorDemo />,
+            code: exampleSource("typing-indicator-demo"),
+          },
+          {
+            key: "in-message",
+            title: "In a message",
+            component: <TypingIndicatorInMessage />,
+            code: exampleSource("typing-indicator-in-message"),
+          },
         ]}
       />
 
@@ -38,8 +48,8 @@ export default function TypingIndicatorDocs() {
           seamui&apos;s reference case for reduced motion as a <em>variant</em>:
           the dots bounce on a staggered <code>springs.bouncy</code> loop (the
           one sanctioned use), and under reduced motion the bounce becomes a
-          staggered opacity pulse — the feedback is never removed, it just
-          stops traveling.
+          staggered opacity pulse — the feedback is never removed, it just stops
+          traveling.
         </li>
         <li>
           Render it while awaiting the first token (e.g.{" "}

@@ -9,7 +9,7 @@
   "files": [
     {
       "path": "registry/seam/examples/tabs-small.tsx",
-      "content": "import {\n  Tabs,\n  TabsContent,\n  TabsList,\n  TabsTrigger,\n} from \"@/registry/seam/ui/tabs\"\n\nexport default function TabsSmall() {\n  return (\n    <Tabs defaultValue=\"preview\" size=\"sm\" className=\"w-72\">\n      <TabsList>\n        <TabsTrigger value=\"preview\">Preview</TabsTrigger>\n        <TabsTrigger value=\"code\">Code</TabsTrigger>\n      </TabsList>\n      <TabsContent value=\"preview\" className=\"text-muted-foreground pt-2 text-sm\">\n        A compact tab set — the well and keys shrink with size=&quot;sm&quot;.\n      </TabsContent>\n      <TabsContent value=\"code\" className=\"text-muted-foreground pt-2 text-sm\">\n        Same spring indicator, tighter footprint.\n      </TabsContent>\n    </Tabs>\n  )\n}\n",
+      "content": "import {\n  Tabs,\n  TabsContent,\n  TabsList,\n  TabsTrigger,\n} from \"@/registry/seam/ui/tabs\"\n\nexport default function TabsSmall() {\n  return (\n    <Tabs defaultValue=\"preview\" size=\"sm\" className=\"w-72\">\n      <TabsList>\n        <TabsTrigger value=\"preview\">Preview</TabsTrigger>\n        <TabsTrigger value=\"code\">Code</TabsTrigger>\n      </TabsList>\n      <TabsContent\n        value=\"preview\"\n        className=\"text-muted-foreground pt-2 text-sm\"\n      >\n        A compact tab set — the well and keys shrink with size=&quot;sm&quot;.\n      </TabsContent>\n      <TabsContent value=\"code\" className=\"text-muted-foreground pt-2 text-sm\">\n        Same spring indicator, tighter footprint.\n      </TabsContent>\n    </Tabs>\n  )\n}\n",
       "type": "registry:example"
     }
   ]

@@ -37,10 +37,23 @@ export default function VoiceGuide() {
 
       <Section title="The pieces">
         <ul className="text-muted-foreground list-disc space-y-1 pl-5 text-sm">
-          <li><strong>Voice Visualizer</strong> — the &ldquo;is it live?&rdquo; signal: dots driven by the agent <code>state</code> and audio <code>level</code>.</li>
-          <li><strong>Voice Control Bar</strong> — the floating pill that holds the call keys and morphs open into a chat panel.</li>
-          <li><strong>Media Toggle</strong> + <strong>Device Selector</strong> — the mic/camera keys and the device split control.</li>
-          <li><strong>Composer</strong> — reused from the chat suite for the type-instead panel.</li>
+          <li>
+            <strong>Voice Visualizer</strong> — the &ldquo;is it live?&rdquo;
+            signal: dots driven by the agent <code>state</code> and audio{" "}
+            <code>level</code>.
+          </li>
+          <li>
+            <strong>Voice Control Bar</strong> — the floating pill that holds
+            the call keys and morphs open into a chat panel.
+          </li>
+          <li>
+            <strong>Media Toggle</strong> + <strong>Device Selector</strong> —
+            the mic/camera keys and the device split control.
+          </li>
+          <li>
+            <strong>Composer</strong> — reused from the chat suite for the
+            type-instead panel.
+          </li>
         </ul>
         <CodeBlock
           language="bash"
@@ -50,10 +63,10 @@ export default function VoiceGuide() {
 
       <Section title="1. Agent presence">
         <p className="text-muted-foreground text-sm">
-          <code>VoiceVisualizer</code> takes a <code>state</code>{" "}
-          (<code>listening</code> / <code>thinking</code> /{" "}
-          <code>speaking</code>…) and either a numeric <code>level</code> (0–1)
-          or a <code>track</code> that its owned <code>useAudioLevel</code> hook
+          <code>VoiceVisualizer</code> takes a <code>state</code> (
+          <code>listening</code> / <code>thinking</code> / <code>speaking</code>
+          …) and either a numeric <code>level</code> (0–1) or a{" "}
+          <code>track</code> that its owned <code>useAudioLevel</code> hook
           analyses. Each state has its own motion, and every channel maps to
           opacity under reduced motion — a liveness signal must never freeze.
         </p>
@@ -128,18 +141,41 @@ export default function VoiceGuide() {
         <p className="text-muted-foreground text-sm">
           The visualizer is a <code>role=&quot;status&quot;</code> labelled from
           its state; the caption is the visible equivalent. Off/ending states —
-          muted mic, camera off, END — are destructive-tinted{" "}
-          <em>and</em> carry a non-color signal (a slashed icon, a label), never
-          color alone. Under reduced motion every animated channel becomes
-          opacity, so the &ldquo;is it live?&rdquo; signal stays alive.
+          muted mic, camera off, END — are destructive-tinted <em>and</em> carry
+          a non-color signal (a slashed icon, a label), never color alone. Under
+          reduced motion every animated channel becomes opacity, so the
+          &ldquo;is it live?&rdquo; signal stays alive.
         </p>
       </Section>
 
       <Section title="Next steps">
         <ul className="text-muted-foreground list-disc space-y-1 pl-5 text-sm">
-          <li>Swap the fake agent for a real transport (LiveKit, or your own WebRTC) — only the <code>state</code>/<code>level</code>/<code>devices</code> sources change.</li>
-          <li>Feed a live mic <code>track</code> into the <Link className="underline" href="/docs/components/voice-visualizer">Voice Visualizer</Link> and <Link className="underline" href="/docs/components/voice-avatar">Voice Avatar</Link>.</li>
-          <li>Enumerate real hardware with the <Link className="underline" href="/docs/components/device-selector">Device Selector</Link>&apos;s owned <code>useMediaDevices</code> hook.</li>
+          <li>
+            Swap the fake agent for a real transport (LiveKit, or your own
+            WebRTC) — only the <code>state</code>/<code>level</code>/
+            <code>devices</code> sources change.
+          </li>
+          <li>
+            Feed a live mic <code>track</code> into the{" "}
+            <Link
+              className="underline"
+              href="/docs/components/voice-visualizer"
+            >
+              Voice Visualizer
+            </Link>{" "}
+            and{" "}
+            <Link className="underline" href="/docs/components/voice-avatar">
+              Voice Avatar
+            </Link>
+            .
+          </li>
+          <li>
+            Enumerate real hardware with the{" "}
+            <Link className="underline" href="/docs/components/device-selector">
+              Device Selector
+            </Link>
+            &apos;s owned <code>useMediaDevices</code> hook.
+          </li>
         </ul>
       </Section>
     </main>

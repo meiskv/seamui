@@ -16,13 +16,17 @@ export default function SkeletonDocs() {
       <h1 className="text-2xl font-semibold tracking-tight">Skeleton</h1>
       <p className="text-muted-foreground mt-1.5 text-[0.9375rem]">
         A placeholder for loading content — a shallow well carved into the
-        surface where the real element will land, pulsing gently while it
-        waits.
+        surface where the real element will land, pulsing gently while it waits.
       </p>
 
       <VariantPreview
         variants={[
-          { key: "default", title: "Default", component: <SkeletonDemo />, code: exampleSource("skeleton-demo") },
+          {
+            key: "default",
+            title: "Default",
+            component: <SkeletonDemo />,
+            code: exampleSource("skeleton-demo"),
+          },
         ]}
       />
 

@@ -21,8 +21,18 @@ export default function SeparatorDocs() {
 
       <VariantPreview
         variants={[
-          { key: "default", title: "Default", component: <SeparatorDemo />, code: exampleSource("separator-demo") },
-          { key: "label", title: "With label", component: <SeparatorLabel />, code: exampleSource("separator-label") },
+          {
+            key: "default",
+            title: "Default",
+            component: <SeparatorDemo />,
+            code: exampleSource("separator-demo"),
+          },
+          {
+            key: "label",
+            title: "With label",
+            component: <SeparatorLabel />,
+            code: exampleSource("separator-label"),
+          },
         ]}
       />
 

@@ -23,9 +23,28 @@ export default function DialogDocs() {
 
       <VariantPreview
         variants={[
-          { key: "default", title: "Default", component: <DialogDemo />, code: exampleSource("dialog-demo") },
-          { key: "form", title: "Form", component: <DialogForm />, code: exampleSource("dialog-form"), description: "A real form inside — the surface still rises to the top of the stack." },
-          { key: "scroll", title: "Scrollable", component: <DialogScroll />, code: exampleSource("dialog-scroll"), description: "Long content scrolls inside the modal; the header and footer stay put." },
+          {
+            key: "default",
+            title: "Default",
+            component: <DialogDemo />,
+            code: exampleSource("dialog-demo"),
+          },
+          {
+            key: "form",
+            title: "Form",
+            component: <DialogForm />,
+            code: exampleSource("dialog-form"),
+            description:
+              "A real form inside — the surface still rises to the top of the stack.",
+          },
+          {
+            key: "scroll",
+            title: "Scrollable",
+            component: <DialogScroll />,
+            code: exampleSource("dialog-scroll"),
+            description:
+              "Long content scrolls inside the modal; the header and footer stay put.",
+          },
         ]}
       />
 
@@ -33,10 +52,28 @@ export default function DialogDocs() {
 
       <ApiTable
         rows={[
-          { prop: "showClose", type: "boolean", default: "true", desc: "Renders the corner close button inside DialogContent; false removes it." },
-          { prop: "open", type: "boolean", desc: "Controlled open state, forwarded to Base UI's Root." },
-          { prop: "defaultOpen", type: "boolean", default: "false", desc: "Uncontrolled initial open state." },
-          { prop: "onOpenChange", type: "(open, eventDetails) => void", desc: "Called when the open state changes." },
+          {
+            prop: "showClose",
+            type: "boolean",
+            default: "true",
+            desc: "Renders the corner close button inside DialogContent; false removes it.",
+          },
+          {
+            prop: "open",
+            type: "boolean",
+            desc: "Controlled open state, forwarded to Base UI's Root.",
+          },
+          {
+            prop: "defaultOpen",
+            type: "boolean",
+            default: "false",
+            desc: "Uncontrolled initial open state.",
+          },
+          {
+            prop: "onOpenChange",
+            type: "(open, eventDetails) => void",
+            desc: "Called when the open state changes.",
+          },
         ]}
         footer={
           <>
@@ -50,9 +87,7 @@ export default function DialogDocs() {
         <li>
           Traps focus while open, restores it on close, and locks page scroll.
         </li>
-        <li>
-          Dismisses on Escape and backdrop click.
-        </li>
+        <li>Dismisses on Escape and backdrop click.</li>
         <li>
           <code>aria-labelledby</code> / <code>aria-describedby</code> are wired
           from <code>DialogTitle</code> / <code>DialogDescription</code>.

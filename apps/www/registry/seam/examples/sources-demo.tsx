@@ -6,9 +6,18 @@ import {
 } from "@/registry/seam/ui/sources"
 
 const SOURCES = [
-  { title: "Base UI — Collapsible", href: "https://base-ui.com/react/components/collapsible" },
-  { title: "motion.dev — Springs", href: "https://motion.dev/docs/react-transitions" },
-  { title: "Tailwind CSS v4", href: "https://tailwindcss.com/blog/tailwindcss-v4" },
+  {
+    title: "Base UI — Collapsible",
+    href: "https://base-ui.com/react/components/collapsible",
+  },
+  {
+    title: "motion.dev — Springs",
+    href: "https://motion.dev/docs/react-transitions",
+  },
+  {
+    title: "Tailwind CSS v4",
+    href: "https://tailwindcss.com/blog/tailwindcss-v4",
+  },
 ]
 
 export default function SourcesDemo() {

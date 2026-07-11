@@ -48,7 +48,7 @@ function useAudioLevel(track?: MediaStreamTrack | null): number {
         analyser.getByteFrequencyData(data)
         let sum = 0
         for (let i = 0; i < data.length; i++) sum += data[i]
-        if (!stopped) setLevel(Math.min(1, sum / data.length / 255 * 1.8))
+        if (!stopped) setLevel(Math.min(1, (sum / data.length / 255) * 1.8))
         raf = requestAnimationFrame(tick)
       }
       tick()
@@ -103,19 +103,39 @@ function dotAnimation(
 
   switch (state) {
     case "connecting":
-      return { animate: { opacity: 0.85 }, initial: { opacity: 0.25 }, transition: shimmer(i) }
+      return {
+        animate: { opacity: 0.85 },
+        initial: { opacity: 0.25 },
+        transition: shimmer(i),
+      }
     case "thinking":
-      return { animate: { opacity: 1 }, initial: { opacity: 0.25 }, transition: sweep(i) }
+      return {
+        animate: { opacity: 1 },
+        initial: { opacity: 0.25 },
+        transition: sweep(i),
+      }
     case "listening":
     case "speaking": {
       const floor = state === "listening" ? 0.5 : 0.35
-      const mag = Math.max(floor, floor + level * weight * (state === "speaking" ? 1.7 : 1))
+      const mag = Math.max(
+        floor,
+        floor + level * weight * (state === "speaking" ? 1.7 : 1)
+      )
       return reduce
-        ? { animate: { opacity: 0.35 + level * weight * 0.65 }, transition: fades.fast }
-        : { animate: { [scaleKey]: mag, opacity: 1 }, transition: springs.snappy }
+        ? {
+            animate: { opacity: 0.35 + level * weight * 0.65 },
+            transition: fades.fast,
+          }
+        : {
+            animate: { [scaleKey]: mag, opacity: 1 },
+            transition: springs.snappy,
+          }
     }
     default: // disconnected
-      return { animate: { opacity: 0.25, [scaleKey]: bars ? 0.5 : 1 }, transition: fades.normal }
+      return {
+        animate: { opacity: 0.25, [scaleKey]: bars ? 0.5 : 1 },
+        transition: fades.normal,
+      }
   }
 }
 
@@ -149,7 +169,12 @@ function VoiceVisualizer({
       data-state={state}
       role="status"
       aria-label={ariaLabel ?? STATE_LABEL[state]}
-      className={cn("flex items-center justify-center", s.gap, bars && s.h, className)}
+      className={cn(
+        "flex items-center justify-center",
+        s.gap,
+        bars && s.h,
+        className
+      )}
       {...props}
     >
       {Array.from({ length: count }).map((_, i) => {
@@ -160,7 +185,9 @@ function VoiceVisualizer({
             aria-hidden
             className={cn(
               "bg-muted-foreground/60 shrink-0",
-              bars ? cn(s.bar, "h-full origin-center rounded-full") : cn(s.dot, "rounded-full")
+              bars
+                ? cn(s.bar, "h-full origin-center rounded-full")
+                : cn(s.dot, "rounded-full")
             )}
             initial={a.initial}
             animate={a.animate}

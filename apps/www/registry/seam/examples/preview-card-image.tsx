@@ -22,8 +22,8 @@ export default function PreviewCardImage() {
                 Introducing Base UI
               </div>
               <p className="text-muted-foreground text-sm">
-                Unstyled, accessible React components from the creators of Radix,
-                Floating UI, and Material UI.
+                Unstyled, accessible React components from the creators of
+                Radix, Floating UI, and Material UI.
               </p>
             </div>
           </div>

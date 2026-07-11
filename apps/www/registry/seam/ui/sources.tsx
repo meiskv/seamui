@@ -1,6 +1,6 @@
 "use client"
 
-import * as React from "react"
+import type * as React from "react"
 import { motion, useReducedMotion } from "motion/react"
 import { ChevronDown, ExternalLink } from "lucide-react"
 
@@ -21,9 +21,16 @@ import {
 } from "./preview-card"
 
 // The "used N sources" disclosure that grounds an answer.
-function Sources({ className, ...props }: React.ComponentProps<typeof Collapsible>) {
+function Sources({
+  className,
+  ...props
+}: React.ComponentProps<typeof Collapsible>) {
   return (
-    <Collapsible data-slot="sources" className={cn("w-full", className)} {...props} />
+    <Collapsible
+      data-slot="sources"
+      className={cn("w-full", className)}
+      {...props}
+    />
   )
 }
 
@@ -71,7 +78,9 @@ function SourcesContent({
 }: React.ComponentProps<typeof CollapsibleContent>) {
   return (
     <CollapsibleContent data-slot="sources-content" {...props}>
-      <div className={cn("flex flex-col gap-0.5 pt-1", className)}>{children}</div>
+      <div className={cn("flex flex-col gap-0.5 pt-1", className)}>
+        {children}
+      </div>
     </CollapsibleContent>
   )
 }
@@ -170,10 +179,4 @@ function InlineCitation({
   )
 }
 
-export {
-  Sources,
-  SourcesTrigger,
-  SourcesContent,
-  Source,
-  InlineCitation,
-}
+export { Sources, SourcesTrigger, SourcesContent, Source, InlineCitation }

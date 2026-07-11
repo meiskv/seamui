@@ -17,7 +17,9 @@ export const metadata: Metadata = {
 export default function VoiceVisualizerDocs() {
   return (
     <main className="mx-auto max-w-3xl px-6 py-10">
-      <h1 className="text-2xl font-semibold tracking-tight">Voice Visualizer</h1>
+      <h1 className="text-2xl font-semibold tracking-tight">
+        Voice Visualizer
+      </h1>
       <p className="text-muted-foreground mt-1.5 text-[0.9375rem]">
         The agent-presence indicator for a voice UI — dots (or bars) that move
         with the agent&apos;s state and audio level. It&apos;s the &ldquo;is
@@ -26,10 +28,34 @@ export default function VoiceVisualizerDocs() {
 
       <VariantPreview
         variants={[
-          { key: "default", title: "States", component: <VoiceVisualizerDemo />, code: exampleSource("voice-visualizer-demo"), description: "Cycle through connecting → listening → thinking → speaking." },
-          { key: "caption", title: "Caption", component: <VoiceVisualizerCaptionExample />, code: exampleSource("voice-visualizer-caption") },
-          { key: "bars", title: "Bars", component: <VoiceVisualizerBars />, code: exampleSource("voice-visualizer-bars") },
-          { key: "mic", title: "Live mic", component: <VoiceVisualizerMic />, code: exampleSource("voice-visualizer-mic"), description: "Feeds a real microphone track in — click to grant permission." },
+          {
+            key: "default",
+            title: "States",
+            component: <VoiceVisualizerDemo />,
+            code: exampleSource("voice-visualizer-demo"),
+            description:
+              "Cycle through connecting → listening → thinking → speaking.",
+          },
+          {
+            key: "caption",
+            title: "Caption",
+            component: <VoiceVisualizerCaptionExample />,
+            code: exampleSource("voice-visualizer-caption"),
+          },
+          {
+            key: "bars",
+            title: "Bars",
+            component: <VoiceVisualizerBars />,
+            code: exampleSource("voice-visualizer-bars"),
+          },
+          {
+            key: "mic",
+            title: "Live mic",
+            component: <VoiceVisualizerMic />,
+            code: exampleSource("voice-visualizer-mic"),
+            description:
+              "Feeds a real microphone track in — click to grant permission.",
+          },
         ]}
       />
 
@@ -37,12 +63,40 @@ export default function VoiceVisualizerDocs() {
 
       <ApiTable
         rows={[
-          { prop: "state", type: `"disconnected" | "connecting" | "listening" | "thinking" | "speaking"`, default: `"listening"`, desc: "Drives the motion and the accessible label." },
-          { prop: "level", type: "number", desc: "Audio level 0–1; takes precedence over track analysis." },
-          { prop: "track", type: "MediaStreamTrack | null", desc: "Analysed via Web Audio by the owned useAudioLevel hook." },
-          { prop: "count", type: "number", default: "5", desc: "Number of dots or bars." },
-          { prop: "size", type: `"sm" | "default" | "lg"`, default: `"default"`, desc: "Dot/bar dimensions." },
-          { prop: "variant", type: `"dots" | "bars"`, default: `"dots"`, desc: "Dots scale uniformly; bars stretch vertically." },
+          {
+            prop: "state",
+            type: `"disconnected" | "connecting" | "listening" | "thinking" | "speaking"`,
+            default: `"listening"`,
+            desc: "Drives the motion and the accessible label.",
+          },
+          {
+            prop: "level",
+            type: "number",
+            desc: "Audio level 0–1; takes precedence over track analysis.",
+          },
+          {
+            prop: "track",
+            type: "MediaStreamTrack | null",
+            desc: "Analysed via Web Audio by the owned useAudioLevel hook.",
+          },
+          {
+            prop: "count",
+            type: "number",
+            default: "5",
+            desc: "Number of dots or bars.",
+          },
+          {
+            prop: "size",
+            type: `"sm" | "default" | "lg"`,
+            default: `"default"`,
+            desc: "Dot/bar dimensions.",
+          },
+          {
+            prop: "variant",
+            type: `"dots" | "bars"`,
+            default: `"dots"`,
+            desc: "Dots scale uniformly; bars stretch vertically.",
+          },
         ]}
       />
 
@@ -56,8 +110,8 @@ export default function VoiceVisualizerDocs() {
           the agent&apos;s output level, weighted so the center moves most.
         </li>
         <li>
-          Every channel maps to opacity under reduced motion — a call
-          UI&apos;s liveness signal must never freeze.
+          Every channel maps to opacity under reduced motion — a call UI&apos;s
+          liveness signal must never freeze.
         </li>
         <li>
           Transport-agnostic: pass a numeric <code>level</code> or a{" "}

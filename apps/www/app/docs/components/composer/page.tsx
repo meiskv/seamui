@@ -25,9 +25,24 @@ export default function ComposerDocs() {
 
       <VariantPreview
         variants={[
-          { key: "default", title: "Default", component: <ComposerDemo />, code: exampleSource("composer-demo") },
-          { key: "streaming", title: "Streaming", component: <ComposerStreaming />, code: exampleSource("composer-streaming") },
-          { key: "attachments", title: "Attachments", component: <ComposerAttachments />, code: exampleSource("composer-attachments") },
+          {
+            key: "default",
+            title: "Default",
+            component: <ComposerDemo />,
+            code: exampleSource("composer-demo"),
+          },
+          {
+            key: "streaming",
+            title: "Streaming",
+            component: <ComposerStreaming />,
+            code: exampleSource("composer-streaming"),
+          },
+          {
+            key: "attachments",
+            title: "Attachments",
+            component: <ComposerAttachments />,
+            code: exampleSource("composer-attachments"),
+          },
         ]}
       />
 
@@ -35,11 +50,32 @@ export default function ComposerDocs() {
 
       <ApiTable
         rows={[
-          { prop: "status", type: `"ready" | "streaming"`, default: `"ready"`, desc: "While streaming, the submit key becomes a stop control (its type switches to button)." },
-          { prop: "onStop", type: "() => void", desc: "Fired by the stop key while status is streaming." },
-          { prop: "onSubmit", type: "FormEventHandler", desc: "Composer renders a real <form>; Enter in the textarea submits it." },
-          { prop: "value / onChange", type: "Textarea props", desc: "On ComposerTextarea — the controlled text; you own the string." },
-          { prop: "onRemove", type: "() => void", desc: "On ComposerAttachment — renders a ghost remove key inside the chip." },
+          {
+            prop: "status",
+            type: `"ready" | "streaming"`,
+            default: `"ready"`,
+            desc: "While streaming, the submit key becomes a stop control (its type switches to button).",
+          },
+          {
+            prop: "onStop",
+            type: "() => void",
+            desc: "Fired by the stop key while status is streaming.",
+          },
+          {
+            prop: "onSubmit",
+            type: "FormEventHandler",
+            desc: "Composer renders a real <form>; Enter in the textarea submits it.",
+          },
+          {
+            prop: "value / onChange",
+            type: "Textarea props",
+            desc: "On ComposerTextarea — the controlled text; you own the string.",
+          },
+          {
+            prop: "onRemove",
+            type: "() => void",
+            desc: "On ComposerAttachment — renders a ghost remove key inside the chip.",
+          },
         ]}
         footer={
           <>
@@ -65,8 +101,8 @@ export default function ComposerDocs() {
         <li>
           The send/stop icon crossfades on opacity — identical under reduced
           motion. Attachment chips rise in and fall out on{" "}
-          <code>springs.snappy</code>, collapsing to opacity fades under
-          reduced motion.
+          <code>springs.snappy</code>, collapsing to opacity fades under reduced
+          motion.
         </li>
         <li>
           The well itself stays still — text entry is calm, with only a focus

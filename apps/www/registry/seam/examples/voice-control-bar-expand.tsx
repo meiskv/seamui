@@ -31,10 +31,7 @@ export default function VoiceControlBarExpand() {
       className="w-full max-w-sm"
     >
       <VoiceControlBarPanel>
-        <Composer
-          onSubmit={(e) => e.preventDefault()}
-          className="shadow-none"
-        >
+        <Composer onSubmit={(e) => e.preventDefault()} className="shadow-none">
           <ComposerTextarea placeholder="Message the agent…" />
           <ComposerToolbar>
             <ComposerSubmit />

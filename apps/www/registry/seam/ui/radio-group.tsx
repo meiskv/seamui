@@ -1,6 +1,6 @@
 "use client"
 
-import * as React from "react"
+import type * as React from "react"
 import { RadioGroup as BaseRadioGroup } from "@base-ui/react/radio-group"
 import { Radio as BaseRadio } from "@base-ui/react/radio"
 import { motion, useReducedMotion } from "motion/react"
@@ -20,7 +20,9 @@ function RadioGroup({
       data-slot="radio-group"
       className={cn("grid gap-2.5", className)}
       // tactile feedback: a tick as the selection commits (no-op sans provider).
-      onValueChange={(...args: Parameters<NonNullable<typeof onValueChange>>) => {
+      onValueChange={(
+        ...args: Parameters<NonNullable<typeof onValueChange>>
+      ) => {
         trigger("tick")
         onValueChange?.(...args)
       }}

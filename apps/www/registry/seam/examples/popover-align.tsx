@@ -17,9 +17,7 @@ export default function PopoverAlign() {
         </PopoverContent>
       </Popover>
       <Popover>
-        <PopoverTrigger
-          render={<Button variant="outline">Align end</Button>}
-        />
+        <PopoverTrigger render={<Button variant="outline">Align end</Button>} />
         <PopoverContent align="end">
           <p className="text-sm">Aligned to the end edge of the trigger.</p>
         </PopoverContent>

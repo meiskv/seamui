@@ -1,0 +1,89 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# One run per ref; a new push cancels the previous run.
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  format-lint-typecheck:
+    name: Format, Lint, Typecheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+      - name: Format + lint (Biome)
+        run: bun run lint
+      - name: Typecheck (docs app + CLI)
+        run: bun run typecheck
+      - name: Motion contract (CLAUDE.md §3/§5)
+        run: bun run motion:check
+
+  unit-test:
+    name: Unit Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+      - name: Vitest
+        run: bun run test
+
+  coverage:
+    name: Test Coverage Gate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+      - name: Vitest coverage (thresholds enforced)
+        run: bun run test:coverage
+      - name: Upload coverage report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: apps/www/coverage
+          if-no-files-found: ignore
+          retention-days: 7
+
+  release-smoke:
+    name: Release Smoke
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+      - name: Registry & theme drift
+        run: bun run drift:check
+      - name: CLI runs under node + registry JSON valid
+        run: bun run smoke
+      - name: Docs site production build
+        run: bun run build
+
+  browser-smoke:
+    name: Browser Smoke
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+      - name: Install Playwright Chromium
+        run: bunx playwright install --with-deps chromium
+        working-directory: apps/www
+      - name: Build docs site
+        run: bun run build
+      - name: Playwright motion gates
+        run: bun run test:e2e
+      - name: Upload Playwright report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: apps/www/playwright-report
+          if-no-files-found: ignore
+          retention-days: 7

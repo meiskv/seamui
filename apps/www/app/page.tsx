@@ -67,7 +67,10 @@ export default function HomePage() {
         </section>
 
         {/* specimens — every one is live; press them */}
-        <section aria-label="Live specimens" className="grid gap-4 md:grid-cols-3">
+        <section
+          aria-label="Live specimens"
+          className="grid gap-4 md:grid-cols-3"
+        >
           <Fig
             n="01"
             label="Touch feedback"
@@ -119,13 +122,23 @@ export default function HomePage() {
             Wherever your stack lives.
           </h2>
           <div className="mt-6 border-t">
-            <InstallRow label="seamui" cmd="bunx --bun seamui@latest add button" />
-            <InstallRow label="shadcn" cmd="bunx --bun shadcn@latest add @seamui/button" />
-            <InstallRow label="registry" cmd="https://seamui.dev/r/button.json" />
+            <InstallRow
+              label="seamui"
+              cmd="bunx --bun seamui@latest add button"
+            />
+            <InstallRow
+              label="shadcn"
+              cmd="bunx --bun shadcn@latest add @seamui/button"
+            />
+            <InstallRow
+              label="registry"
+              cmd="https://seamui.dev/r/button.json"
+            />
           </div>
           <p className="text-muted-foreground mt-5 text-sm">
-            Then open <code className="text-foreground">components/ui/button.tsx</code>{" "}
-            — it&apos;s yours. Retune every spring from one line in{" "}
+            Then open{" "}
+            <code className="text-foreground">components/ui/button.tsx</code> —
+            it&apos;s yours. Retune every spring from one line in{" "}
             <Link className="underline underline-offset-4" href="/docs/motion">
               lib/motion.ts
             </Link>

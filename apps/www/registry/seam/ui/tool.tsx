@@ -1,6 +1,6 @@
 "use client"
 
-import * as React from "react"
+import type * as React from "react"
 import { motion, useReducedMotion } from "motion/react"
 import { Brain, Check, ChevronDown, Wrench, X } from "lucide-react"
 
@@ -19,7 +19,10 @@ type ToolState = "pending" | "running" | "done" | "error"
 
 // A step row is telemetry, not a key — a quiet debossed strip carved into the
 // surface (bg-muted + shadow-well). The result sits in the well when expanded.
-function Tool({ className, ...props }: React.ComponentProps<typeof Collapsible>) {
+function Tool({
+  className,
+  ...props
+}: React.ComponentProps<typeof Collapsible>) {
   return (
     <Collapsible
       data-slot="tool"
@@ -40,10 +43,26 @@ const STATUS: Record<
     icon: React.ReactNode
   }
 > = {
-  pending: { variant: "muted", label: "Pending", icon: <Spinner className="size-3" /> },
-  running: { variant: "secondary", label: "Running", icon: <Spinner className="size-3" /> },
-  done: { variant: "secondary", label: "Done", icon: <Check className="size-3" /> },
-  error: { variant: "destructive", label: "Error", icon: <X className="size-3" /> },
+  pending: {
+    variant: "muted",
+    label: "Pending",
+    icon: <Spinner className="size-3" />,
+  },
+  running: {
+    variant: "secondary",
+    label: "Running",
+    icon: <Spinner className="size-3" />,
+  },
+  done: {
+    variant: "secondary",
+    label: "Done",
+    icon: <Check className="size-3" />,
+  },
+  error: {
+    variant: "destructive",
+    label: "Error",
+    icon: <X className="size-3" />,
+  },
 }
 
 // State chip. Pending/running spin; done/error resolve to an icon. Announced
@@ -122,7 +141,11 @@ function ToolContent({
   ...props
 }: React.ComponentProps<typeof CollapsibleContent>) {
   return (
-    <CollapsibleContent data-slot="tool-content" className={className} {...props}>
+    <CollapsibleContent
+      data-slot="tool-content"
+      className={className}
+      {...props}
+    >
       <div className="space-y-2 px-3 pb-3 pt-0.5 text-sm">{children}</div>
     </CollapsibleContent>
   )
@@ -134,9 +157,7 @@ function Reasoning({
   className,
   ...props
 }: React.ComponentProps<typeof Collapsible>) {
-  return (
-    <Tool data-slot="reasoning" className={className} {...props} />
-  )
+  return <Tool data-slot="reasoning" className={className} {...props} />
 }
 
 function ReasoningTrigger({

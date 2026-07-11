@@ -1,14 +1,12 @@
 "use client"
 
-import * as React from "react"
+import type * as React from "react"
 import { ContextMenu as BaseContextMenu } from "@base-ui/react/context-menu"
 
 import { cn } from "@/lib/utils"
 import { condense } from "@/lib/motion"
 
-function ContextMenu(
-  props: React.ComponentProps<typeof BaseContextMenu.Root>
-) {
+function ContextMenu(props: React.ComponentProps<typeof BaseContextMenu.Root>) {
   return <BaseContextMenu.Root {...props} />
 }
 
@@ -78,7 +76,10 @@ function ContextMenuLabel({
   return (
     <div
       data-slot="context-menu-label"
-      className={cn("px-2 py-1.5 text-xs font-medium text-muted-foreground", className)}
+      className={cn(
+        "px-2 py-1.5 text-xs font-medium text-muted-foreground",
+        className
+      )}
       {...props}
     />
   )

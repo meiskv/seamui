@@ -24,9 +24,25 @@ export default function VoiceAvatarDocs() {
 
       <VariantPreview
         variants={[
-          { key: "default", title: "Speaking", component: <VoiceAvatarDemo />, code: exampleSource("voice-avatar-demo") },
-          { key: "group", title: "Roster", component: <VoiceAvatarGroup />, code: exampleSource("voice-avatar-group"), description: "The active speaker's halo lights up as it rotates." },
-          { key: "fallback", title: "Fallback", component: <VoiceAvatarFallback />, code: exampleSource("voice-avatar-fallback") },
+          {
+            key: "default",
+            title: "Speaking",
+            component: <VoiceAvatarDemo />,
+            code: exampleSource("voice-avatar-demo"),
+          },
+          {
+            key: "group",
+            title: "Roster",
+            component: <VoiceAvatarGroup />,
+            code: exampleSource("voice-avatar-group"),
+            description: "The active speaker's halo lights up as it rotates.",
+          },
+          {
+            key: "fallback",
+            title: "Fallback",
+            component: <VoiceAvatarFallback />,
+            code: exampleSource("voice-avatar-fallback"),
+          },
         ]}
       />
 

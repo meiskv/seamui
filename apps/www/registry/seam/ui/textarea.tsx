@@ -1,14 +1,11 @@
-import * as React from "react"
+import type * as React from "react"
 
 import { cn } from "@/lib/utils"
 
 // Base UI has no Textarea part, so this renders a native <textarea> styled as
 // a seam entry well. Inside a Base UI Field, use
 // <Field.Control render={<Textarea />} /> to get label/validation wiring.
-function Textarea({
-  className,
-  ...props
-}: React.ComponentProps<"textarea">) {
+function Textarea({ className, ...props }: React.ComponentProps<"textarea">) {
   return (
     <textarea
       data-slot="textarea"

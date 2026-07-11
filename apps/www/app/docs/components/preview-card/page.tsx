@@ -9,7 +9,8 @@ import PreviewCardImage from "@/registry/seam/examples/preview-card-image"
 
 export const metadata: Metadata = {
   title: "Preview Card — seamui",
-  description: "Preview card built on Base UI with seam overlay-depth entrance.",
+  description:
+    "Preview card built on Base UI with seam overlay-depth entrance.",
 }
 
 export default function PreviewCardDocs() {
@@ -23,9 +24,27 @@ export default function PreviewCardDocs() {
 
       <VariantPreview
         variants={[
-          { key: "default", title: "Default", component: <PreviewCardDemo />, code: exampleSource("preview-card-demo") },
-          { key: "user", title: "Profile", component: <PreviewCardUser />, code: exampleSource("preview-card-user"), description: "The classic hovercard — a user profile on link hover." },
-          { key: "image", title: "Link preview", component: <PreviewCardImage />, code: exampleSource("preview-card-image"), description: "A richer preview with a thumbnail." },
+          {
+            key: "default",
+            title: "Default",
+            component: <PreviewCardDemo />,
+            code: exampleSource("preview-card-demo"),
+          },
+          {
+            key: "user",
+            title: "Profile",
+            component: <PreviewCardUser />,
+            code: exampleSource("preview-card-user"),
+            description:
+              "The classic hovercard — a user profile on link hover.",
+          },
+          {
+            key: "image",
+            title: "Link preview",
+            component: <PreviewCardImage />,
+            code: exampleSource("preview-card-image"),
+            description: "A richer preview with a thumbnail.",
+          },
         ]}
       />
 

@@ -6,11 +6,7 @@ import { usePathname } from "next/navigation"
 import { Menu } from "lucide-react"
 
 import { Button } from "@/registry/seam/ui/button"
-import {
-  Drawer,
-  DrawerContent,
-  DrawerTrigger,
-} from "@/registry/seam/ui/drawer"
+import { Drawer, DrawerContent, DrawerTrigger } from "@/registry/seam/ui/drawer"
 import { NavList } from "./nav-list"
 import { ReducedMotionNotice } from "./reduced-motion-notice"
 import { ThemeToggle } from "./theme-toggle"

@@ -1,6 +1,6 @@
 "use client"
 
-import * as React from "react"
+import type * as React from "react"
 import { Meter as BaseMeter } from "@base-ui/react/meter"
 
 import { cn } from "@/lib/utils"
@@ -11,7 +11,11 @@ function Meter({
   ...props
 }: React.ComponentProps<typeof BaseMeter.Root>) {
   return (
-    <BaseMeter.Root data-slot="meter" className={cn("grid gap-1.5", className)} {...props}>
+    <BaseMeter.Root
+      data-slot="meter"
+      className={cn("grid gap-1.5", className)}
+      {...props}
+    >
       {children}
       <BaseMeter.Track
         data-slot="meter-track"

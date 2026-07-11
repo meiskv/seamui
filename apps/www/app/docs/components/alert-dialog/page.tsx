@@ -17,16 +17,34 @@ export default function AlertDialogDocs() {
     <main className="mx-auto max-w-3xl px-6 py-10">
       <h1 className="text-2xl font-semibold tracking-tight">Alert Dialog</h1>
       <p className="text-muted-foreground mt-1.5 text-[0.9375rem]">
-        A modal that interrupts the user to confirm a consequential action.
-        Same modal depth as Dialog, but it must be dismissed with an explicit
-        choice.
+        A modal that interrupts the user to confirm a consequential action. Same
+        modal depth as Dialog, but it must be dismissed with an explicit choice.
       </p>
 
       <VariantPreview
         variants={[
-          { key: "default", title: "Destructive", component: <AlertDialogDemo />, code: exampleSource("alert-dialog-demo"), description: "The high-stakes case — a destructive action you must confirm." },
-          { key: "discard", title: "Discard", component: <AlertDialogDiscard />, code: exampleSource("alert-dialog-discard"), description: "A softer confirm; the action is primary, not destructive." },
-          { key: "signout", title: "Sign out", component: <AlertDialogSignout />, code: exampleSource("alert-dialog-signout") },
+          {
+            key: "default",
+            title: "Destructive",
+            component: <AlertDialogDemo />,
+            code: exampleSource("alert-dialog-demo"),
+            description:
+              "The high-stakes case — a destructive action you must confirm.",
+          },
+          {
+            key: "discard",
+            title: "Discard",
+            component: <AlertDialogDiscard />,
+            code: exampleSource("alert-dialog-discard"),
+            description:
+              "A softer confirm; the action is primary, not destructive.",
+          },
+          {
+            key: "signout",
+            title: "Sign out",
+            component: <AlertDialogSignout />,
+            code: exampleSource("alert-dialog-signout"),
+          },
         ]}
       />
 
