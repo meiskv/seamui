@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 
 import { Section, CodeBlock } from "@/components/docs/section"
+import { MotionPlayground } from "@/components/site/motion-playground"
 
 export const metadata: Metadata = {
   title: "Motion — seamui",
@@ -33,9 +34,13 @@ export const springs = personalities.playful  // more life everywhere`}</CodeBlo
           Each personality defines the same four roles —{" "}
           <code>press</code> (press-down feedback), <code>snappy</code>{" "}
           (release/settle), <code>surface</code> (overlays entering), and{" "}
-          <code>bouncy</code> (accents). Want a custom feel? Edit the numbers
-          or add your own personality to the table; every component picks it
-          up automatically.
+          <code>bouncy</code> (accents). Pick one below and feel all four
+          retune at once — that&apos;s the whole dial:
+        </p>
+        <MotionPlayground />
+        <p className="text-muted-foreground text-sm">
+          Want a custom feel? Edit the numbers or add your own personality to
+          the table; every component picks it up automatically.
         </p>
       </Section>
 
