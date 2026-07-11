@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "voice-visualizer-mic",
+  "type": "registry:example",
+  "title": "Voice Visualizer Mic",
+  "registryDependencies": [
+    "https://seamui.dev/r/voice-visualizer.json",
+    "https://seamui.dev/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/voice-visualizer-mic.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport { Button } from \"@/registry/seam/ui/button\"\nimport {\n  VoiceVisualizer,\n  VoiceVisualizerCaption,\n} from \"@/registry/seam/ui/voice-visualizer\"\n\n// Feeds a real microphone track into the visualizer. Gated behind a click so\n// the permission prompt is intentional; falls back gracefully if denied.\nexport default function VoiceVisualizerMic() {\n  const [track, setTrack] = React.useState<MediaStreamTrack | null>(null)\n\n  React.useEffect(() => () => track?.stop(), [track])\n\n  const enable = async () => {\n    try {\n      const stream = await navigator.mediaDevices.getUserMedia({ audio: true })\n      setTrack(stream.getAudioTracks()[0] ?? null)\n    } catch {\n      // denied / unavailable — leave the visualizer idle\n    }\n  }\n\n  return (\n    <div className=\"flex flex-col items-center gap-4\">\n      <VoiceVisualizer state=\"listening\" track={track} size=\"lg\" />\n      {track ? (\n        <VoiceVisualizerCaption>Speak — the dots follow your voice.</VoiceVisualizerCaption>\n      ) : (\n        <Button variant=\"secondary\" size=\"sm\" onClick={enable}>\n          Enable microphone\n        </Button>\n      )}\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

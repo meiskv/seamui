@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "voice-visualizer-demo",
+  "type": "registry:example",
+  "title": "Voice Visualizer Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/voice-visualizer.json",
+    "https://seamui.dev/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/voice-visualizer-demo.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport { Button } from \"@/registry/seam/ui/button\"\nimport { VoiceVisualizer } from \"@/registry/seam/ui/voice-visualizer\"\n\nconst STATES = [\"connecting\", \"listening\", \"thinking\", \"speaking\"] as const\n\nexport default function VoiceVisualizerDemo() {\n  const [i, setI] = React.useState(1)\n  const state = STATES[i]\n  // \"listening\"/\"speaking\" react to a live level; fake one when there's no mic.\n  const [level, setLevel] = React.useState(0)\n\n  React.useEffect(() => {\n    if (state !== \"listening\" && state !== \"speaking\") return\n    const id = setInterval(() => setLevel(0.2 + Math.abs(Math.sin(performance.now() / 300)) * 0.8), 80)\n    return () => clearInterval(id)\n  }, [state])\n\n  return (\n    <div className=\"flex flex-col items-center gap-5\">\n      <VoiceVisualizer state={state} level={level} size=\"lg\" />\n      <Button\n        variant=\"secondary\"\n        size=\"sm\"\n        onClick={() => setI((n) => (n + 1) % STATES.length)}\n      >\n        State: {state}\n      </Button>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

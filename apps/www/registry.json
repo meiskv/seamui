@@ -687,6 +687,28 @@
       ]
     },
     {
+      "name": "media-toggle",
+      "type": "registry:ui",
+      "title": "Media Toggle",
+      "description": "Round mic/camera/screen-share key; muted goes destructive-tinted.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["https://seamui.dev/r/utils.json", "https://seamui.dev/r/toggle.json"],
+      "files": [
+        { "path": "registry/seam/ui/media-toggle.tsx", "type": "registry:ui", "target": "components/ui/media-toggle.tsx" }
+      ]
+    },
+    {
+      "name": "voice-visualizer",
+      "type": "registry:ui",
+      "title": "Voice Visualizer",
+      "description": "Agent-state dots driven by audio level, with an owned useAudioLevel hook.",
+      "dependencies": ["motion"],
+      "registryDependencies": ["https://seamui.dev/r/utils.json", "https://seamui.dev/r/motion.json"],
+      "files": [
+        { "path": "registry/seam/ui/voice-visualizer.tsx", "type": "registry:ui", "target": "components/ui/voice-visualizer.tsx" }
+      ]
+    },
+    {
       "name": "button-demo",
       "type": "registry:example",
       "title": "Button Demo",
@@ -1734,6 +1756,61 @@
       "registryDependencies": ["https://seamui.dev/r/dropdown-menu.json", "https://seamui.dev/r/button.json"],
       "files": [
         { "path": "registry/seam/examples/dropdown-menu-shortcuts.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "media-toggle-demo",
+      "type": "registry:example",
+      "title": "Media Toggle Demo",
+      "registryDependencies": ["https://seamui.dev/r/media-toggle.json"],
+      "files": [
+        { "path": "registry/seam/examples/media-toggle-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "media-toggle-custom-icons",
+      "type": "registry:example",
+      "title": "Media Toggle Custom Icons",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["https://seamui.dev/r/media-toggle.json"],
+      "files": [
+        { "path": "registry/seam/examples/media-toggle-custom-icons.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "voice-visualizer-demo",
+      "type": "registry:example",
+      "title": "Voice Visualizer Demo",
+      "registryDependencies": ["https://seamui.dev/r/voice-visualizer.json", "https://seamui.dev/r/button.json"],
+      "files": [
+        { "path": "registry/seam/examples/voice-visualizer-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "voice-visualizer-caption",
+      "type": "registry:example",
+      "title": "Voice Visualizer Caption",
+      "registryDependencies": ["https://seamui.dev/r/voice-visualizer.json"],
+      "files": [
+        { "path": "registry/seam/examples/voice-visualizer-caption.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "voice-visualizer-bars",
+      "type": "registry:example",
+      "title": "Voice Visualizer Bars",
+      "registryDependencies": ["https://seamui.dev/r/voice-visualizer.json"],
+      "files": [
+        { "path": "registry/seam/examples/voice-visualizer-bars.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "voice-visualizer-mic",
+      "type": "registry:example",
+      "title": "Voice Visualizer Mic",
+      "registryDependencies": ["https://seamui.dev/r/voice-visualizer.json", "https://seamui.dev/r/button.json"],
+      "files": [
+        { "path": "registry/seam/examples/voice-visualizer-mic.tsx", "type": "registry:example" }
       ]
     }
   ]

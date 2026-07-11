@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "media-toggle",
+  "type": "registry:ui",
+  "title": "Media Toggle",
+  "description": "Round mic/camera/screen-share key; muted goes destructive-tinted.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "https://seamui.dev/r/utils.json",
+    "https://seamui.dev/r/toggle.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/ui/media-toggle.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport {\n  Mic,\n  MicOff,\n  Monitor,\n  MonitorOff,\n  Video,\n  VideoOff,\n  type LucideIcon,\n} from \"lucide-react\"\n\nimport { cn } from \"@/lib/utils\"\nimport { Toggle } from \"./toggle\"\n\ntype MediaKind = \"mic\" | \"camera\" | \"screen-share\"\n\nconst ICONS: Record<MediaKind, { on: LucideIcon; off: LucideIcon; label: string }> = {\n  mic: { on: Mic, off: MicOff, label: \"Microphone\" },\n  camera: { on: Video, off: VideoOff, label: \"Camera\" },\n  \"screen-share\": { on: Monitor, off: MonitorOff, label: \"Share screen\" },\n}\n\n// A round call-control key that dogfoods Toggle. `pressed` means the track is\n// *enabled* (on); unpressed means muted/off. The two states read very\n// differently on purpose: enabled is a neutral embossed key, muted is a\n// destructive-tinted key with a slashed icon — muting is a state you should\n// notice, not an absence. Circles stay rounded-full (never squircle).\nfunction MediaToggle({\n  kind = \"mic\",\n  iconOn,\n  iconOff,\n  className,\n  \"aria-label\": ariaLabel,\n  ...props\n}: React.ComponentProps<typeof Toggle> & {\n  kind?: MediaKind\n  iconOn?: LucideIcon\n  iconOff?: LucideIcon\n}) {\n  const preset = ICONS[kind]\n  const OnIcon = iconOn ?? preset.on\n  const OffIcon = iconOff ?? preset.off\n\n  return (\n    <Toggle\n      data-slot=\"media-toggle\"\n      aria-label={ariaLabel ?? preset.label}\n      defaultPressed\n      className={cn(\n        \"group/media size-10 rounded-full p-0\",\n        // muted (unpressed) → destructive-tinted key + slashed icon\n        \"bg-destructive/15 text-destructive shadow-resting hover:bg-destructive/20 hover:text-destructive\",\n        // enabled (pressed) → neutral embossed key\n        \"data-[pressed]:bg-secondary data-[pressed]:text-secondary-foreground data-[pressed]:shadow-resting data-[pressed]:hover:bg-secondary\",\n        className\n      )}\n      {...props}\n    >\n      {/* Both icons share a cell; the tint + which icon is visible crossfade on\n          toggle (opacity only, so identical under reduced motion). */}\n      <span className=\"relative grid place-items-center [&>svg]:col-start-1 [&>svg]:row-start-1\">\n        <OnIcon className=\"opacity-0 transition-opacity duration-150 group-data-[pressed]/media:opacity-100 motion-reduce:transition-none\" />\n        <OffIcon className=\"opacity-100 transition-opacity duration-150 group-data-[pressed]/media:opacity-0 motion-reduce:transition-none\" />\n      </span>\n    </Toggle>\n  )\n}\n\nexport { MediaToggle }\n",
+      "type": "registry:ui",
+      "target": "components/ui/media-toggle.tsx"
+    }
+  ]
+}

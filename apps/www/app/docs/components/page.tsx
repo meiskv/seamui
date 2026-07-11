@@ -51,6 +51,8 @@ const COMPONENTS = [
   { name: "suggestions", title: "Suggestions", desc: "Scrollable prompt chips." },
   { name: "sources", title: "Sources", desc: "Grounding + inline citations." },
   { name: "chat-timeline", title: "Chat Timeline", desc: "Grouped, dated history." },
+  { name: "media-toggle", title: "Media Toggle", desc: "Mic/camera/screen call key." },
+  { name: "voice-visualizer", title: "Voice Visualizer", desc: "Agent-state audio dots." },
 ]
 
 export default function ComponentsIndex() {
