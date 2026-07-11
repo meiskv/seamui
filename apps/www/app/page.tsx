@@ -124,7 +124,7 @@ export default function HomePage() {
           <div className="mt-6 border-t">
             <InstallRow
               label="seamui"
-              cmd="bunx --bun seamui@latest add button"
+              cmd="bunx --bun @seamui/cli@latest add button"
             />
             <InstallRow
               label="shadcn"

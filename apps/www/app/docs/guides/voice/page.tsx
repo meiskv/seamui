@@ -57,7 +57,7 @@ export default function VoiceGuide() {
         </ul>
         <CodeBlock
           language="bash"
-          code={`bunx --bun seamui@latest add voice-control-bar voice-visualizer media-toggle device-selector composer`}
+          code={`bunx --bun @seamui/cli@latest add voice-control-bar voice-visualizer media-toggle device-selector composer`}
         />
       </Section>
 

@@ -53,7 +53,7 @@ export default function ChatGuide() {
         </ul>
         <CodeBlock
           language="bash"
-          code={`bunx --bun seamui@latest add composer conversation message response`}
+          code={`bunx --bun @seamui/cli@latest add composer conversation message response`}
         />
       </Section>
 
