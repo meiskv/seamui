@@ -7,13 +7,29 @@
     "seamui": "dist/index.js"
   },
   "files": ["dist"],
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "build": "bun build ./src/index.ts --target=node --outfile=dist/index.js",
     "dev": "bun run ./src/index.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "bun run build"
   },
   "keywords": ["shadcn", "base-ui", "motion", "components", "react", "cli"],
   "license": "MIT",
+  "homepage": "https://seamui.dev",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meiskv/seamui.git",
+    "directory": "packages/seamui"
+  },
+  "bugs": {
+    "url": "https://github.com/meiskv/seamui/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "commander": "^13.0.0",
     "picocolors": "^1.1.1"
