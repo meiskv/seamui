@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radio-group-descriptions",
+  "type": "registry:example",
+  "title": "Radio Group Descriptions",
+  "registryDependencies": [
+    "https://seamui.dev/r/radio-group.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/radio-group-descriptions.tsx",
+      "content": "import { RadioGroup, RadioGroupItem } from \"@/registry/seam/ui/radio-group\"\n\nconst PLANS = [\n  {\n    value: \"spring\",\n    title: \"Springs\",\n    desc: \"Physics-based, reacts to velocity.\",\n  },\n  {\n    value: \"duration\",\n    title: \"Durations\",\n    desc: \"A fixed clock; opacity only.\",\n  },\n]\n\nexport default function RadioGroupDescriptions() {\n  return (\n    <RadioGroup defaultValue=\"spring\" className=\"max-w-xs gap-2\">\n      {PLANS.map((p) => (\n        <label\n          key={p.value}\n          className=\"has-data-[checked]:border-primary has-data-[checked]:bg-secondary flex cursor-pointer items-start gap-2.5 rounded-lg squircle border p-3 shadow-resting\"\n        >\n          <RadioGroupItem value={p.value} className=\"mt-0.5\" />\n          <div className=\"grid gap-0.5 text-sm leading-none\">\n            <span className=\"font-medium\">{p.title}</span>\n            <span className=\"text-muted-foreground\">{p.desc}</span>\n          </div>\n        </label>\n      ))}\n    </RadioGroup>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

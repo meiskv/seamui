@@ -1,15 +1,12 @@
 "use client"
 
-import * as React from "react"
+import type * as React from "react"
 import { ContextMenu as BaseContextMenu } from "@base-ui/react/context-menu"
-import { motion, useReducedMotion } from "motion/react"
 
 import { cn } from "@/lib/utils"
-import { springs, fades, depth, reduced } from "@/lib/motion"
+import { condense } from "@/lib/motion"
 
-function ContextMenu(
-  props: React.ComponentProps<typeof BaseContextMenu.Root>
-) {
+function ContextMenu(props: React.ComponentProps<typeof BaseContextMenu.Root>) {
   return <BaseContextMenu.Root {...props} />
 }
 
@@ -31,8 +28,6 @@ function ContextMenuContent({
   children,
   ...props
 }: React.ComponentProps<typeof BaseContextMenu.Popup>) {
-  const reduceMotion = useReducedMotion()
-
   return (
     <BaseContextMenu.Portal>
       <BaseContextMenu.Positioner className="z-50">
@@ -40,15 +35,9 @@ function ContextMenuContent({
           data-slot="context-menu-content"
           className={cn(
             "bg-popover text-popover-foreground z-50 min-w-40 rounded-lg border p-1 shadow-overlay outline-none",
+            condense.surface,
             className
           )}
-          render={
-            <motion.div
-              initial={reduceMotion ? reduced.fadeIn.initial : depth.overlay.initial}
-              animate={depth.overlay.animate}
-              transition={reduceMotion ? fades.normal : springs.surface}
-            />
-          }
           {...props}
         >
           {children}
@@ -77,14 +66,20 @@ function ContextMenuItem({
   )
 }
 
+// Plain styled label so it works standalone (matching the shadcn API); Base
+// UI's GroupLabel requires a wrapping Menu.Group. Use ContextMenuGroup for a
+// labelled group.
 function ContextMenuLabel({
   className,
   ...props
-}: React.ComponentProps<typeof BaseContextMenu.GroupLabel>) {
+}: React.ComponentProps<"div">) {
   return (
-    <BaseContextMenu.GroupLabel
+    <div
       data-slot="context-menu-label"
-      className={cn("px-2 py-1.5 text-xs font-medium text-muted-foreground", className)}
+      className={cn(
+        "px-2 py-1.5 text-xs font-medium text-muted-foreground",
+        className
+      )}
       {...props}
     />
   )

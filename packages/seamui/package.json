@@ -1,18 +1,35 @@
 {
-  "name": "seamui",
-  "version": "0.1.0",
+  "name": "@seamui/cli",
+  "version": "0.1.1",
   "description": "CLI for seamui — beautifully animated components you own, built on Base UI + motion.dev.",
   "type": "module",
   "bin": {
     "seamui": "dist/index.js"
   },
   "files": ["dist"],
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "build": "bun build ./src/index.ts --target=node --outfile=dist/index.js",
-    "dev": "bun run ./src/index.ts"
+    "dev": "bun run ./src/index.ts",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "bun run build"
   },
   "keywords": ["shadcn", "base-ui", "motion", "components", "react", "cli"],
   "license": "MIT",
+  "homepage": "https://seamui.dev",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meiskv/seamui.git",
+    "directory": "packages/seamui"
+  },
+  "bugs": {
+    "url": "https://github.com/meiskv/seamui/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "commander": "^13.0.0",
     "picocolors": "^1.1.1"

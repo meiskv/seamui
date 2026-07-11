@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "switch-settings",
+  "type": "registry:example",
+  "title": "Switch Settings",
+  "registryDependencies": [
+    "https://seamui.dev/r/switch.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/switch-settings.tsx",
+      "content": "import { Switch } from \"@/registry/seam/ui/switch\"\n\nconst SETTINGS = [\n  { label: \"Wi-Fi\", on: true },\n  { label: \"Bluetooth\", on: true },\n  { label: \"Airplane mode\", on: false },\n]\n\nexport default function SwitchSettings() {\n  return (\n    <div className=\"w-full max-w-xs divide-y rounded-xl squircle border\">\n      {SETTINGS.map((s) => (\n        <label\n          key={s.label}\n          className=\"flex items-center justify-between px-4 py-3 text-sm\"\n        >\n          {s.label}\n          <Switch defaultChecked={s.on} />\n        </label>\n      ))}\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

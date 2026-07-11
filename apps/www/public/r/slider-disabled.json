@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "slider-disabled",
+  "type": "registry:example",
+  "title": "Slider Disabled",
+  "registryDependencies": [
+    "https://seamui.dev/r/slider.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/slider-disabled.tsx",
+      "content": "import { Slider } from \"@/registry/seam/ui/slider\"\n\nexport default function SliderDisabled() {\n  return (\n    <div className=\"w-full max-w-xs opacity-50\">\n      <Slider defaultValue={30} max={100} step={1} disabled />\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

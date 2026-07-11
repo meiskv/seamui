@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "chat-timeline-unread",
+  "type": "registry:example",
+  "title": "Chat Timeline Unread",
+  "registryDependencies": [
+    "https://seamui.dev/r/chat-timeline.json",
+    "https://seamui.dev/r/conversation.json",
+    "https://seamui.dev/r/message.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/chat-timeline-unread.tsx",
+      "content": "import {\n  Conversation,\n  ConversationContent,\n} from \"@/registry/seam/ui/conversation\"\nimport {\n  Message,\n  MessageAvatar,\n  MessageContent,\n} from \"@/registry/seam/ui/message\"\nimport {\n  ChatTimeline,\n  ChatTimelineDivider,\n  ChatTimelineGroup,\n} from \"@/registry/seam/ui/chat-timeline\"\n\nexport default function ChatTimelineUnread() {\n  return (\n    <div className=\"bg-card flex h-72 w-full max-w-md rounded-xl squircle border shadow-resting\">\n      <Conversation>\n        <ConversationContent>\n          <ChatTimeline>\n            <ChatTimelineGroup>\n              <Message from=\"user\">\n                <MessageContent>Did the deploy finish?</MessageContent>\n              </Message>\n              <Message from=\"assistant\">\n                <MessageAvatar name=\"Seam UI\" />\n                <MessageContent>Yes, an hour ago.</MessageContent>\n              </Message>\n              <ChatTimelineDivider>New messages</ChatTimelineDivider>\n              <Message from=\"assistant\">\n                <MessageAvatar name=\"Seam UI\" />\n                <MessageContent>\n                  And the follow-up job just went green too.\n                </MessageContent>\n              </Message>\n            </ChatTimelineGroup>\n          </ChatTimeline>\n        </ConversationContent>\n      </Conversation>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

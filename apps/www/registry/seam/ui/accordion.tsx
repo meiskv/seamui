@@ -1,10 +1,12 @@
 "use client"
 
-import * as React from "react"
+import type * as React from "react"
 import { Accordion as BaseAccordion } from "@base-ui/react/accordion"
+import { motion, useReducedMotion } from "motion/react"
 import { ChevronDown } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+import { springs, fades, depth, reduced } from "@/lib/motion"
 
 function Accordion({
   className,
@@ -35,12 +37,31 @@ function AccordionItem({
 function AccordionTrigger({
   className,
   children,
+  disabled,
   ...props
 }: React.ComponentProps<typeof BaseAccordion.Trigger>) {
+  const reduceMotion = useReducedMotion()
+
   return (
     <BaseAccordion.Header className="flex">
       <BaseAccordion.Trigger
         data-slot="accordion-trigger"
+        disabled={disabled}
+        // seam touch feedback: the row recedes on press like every other
+        // button-shaped control. motion.button keeps the native element (and
+        // its ref), so Base UI's keyboard handling is untouched.
+        render={
+          <motion.button
+            whileTap={
+              disabled
+                ? undefined
+                : reduceMotion
+                  ? reduced.pressed
+                  : depth.pressed
+            }
+            transition={reduceMotion ? fades.fast : springs.press}
+          />
+        }
         className={cn(
           "group/acc flex flex-1 items-center justify-between gap-4 py-4 text-left text-sm font-medium outline-none",
           "focus-visible:ring-2 focus-visible:ring-ring/50",
@@ -49,9 +70,7 @@ function AccordionTrigger({
         {...props}
       >
         {children}
-        <ChevronDown
-          className="text-muted-foreground size-4 shrink-0 transition-transform duration-200 group-data-[panel-open]/acc:rotate-180 motion-reduce:transition-none"
-        />
+        <ChevronDown className="text-muted-foreground size-4 shrink-0 transition-transform duration-200 group-data-[panel-open]/acc:rotate-180 motion-reduce:transition-none" />
       </BaseAccordion.Trigger>
     </BaseAccordion.Header>
   )

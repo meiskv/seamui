@@ -1,12 +1,11 @@
 "use client"
 
-import * as React from "react"
+import type * as React from "react"
 import { Combobox as BaseCombobox } from "@base-ui/react/combobox"
-import { motion, useReducedMotion } from "motion/react"
 import { Check, ChevronsUpDown, Search, X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { springs, fades, depth, reduced } from "@/lib/motion"
+import { condense } from "@/lib/motion"
 import { buttonVariants } from "./button"
 
 /**
@@ -80,8 +79,6 @@ function ComboboxContent({
   sideOffset = 6,
   ...props
 }: React.ComponentProps<typeof BaseCombobox.Popup> & { sideOffset?: number }) {
-  const reduceMotion = useReducedMotion()
-
   return (
     <BaseCombobox.Portal>
       <BaseCombobox.Positioner sideOffset={sideOffset} className="z-50">
@@ -89,16 +86,9 @@ function ComboboxContent({
           data-slot="combobox-content"
           className={cn(
             "bg-popover text-popover-foreground z-50 max-h-[min(24rem,var(--available-height))] w-[var(--anchor-width)] overflow-y-auto overscroll-contain rounded-lg squircle border p-1 shadow-overlay outline-none",
+            condense.surface,
             className
           )}
-          // seam motion: floating surface rises with overlay depth.
-          render={
-            <motion.div
-              initial={reduceMotion ? reduced.fadeIn.initial : depth.overlay.initial}
-              animate={depth.overlay.animate}
-              transition={reduceMotion ? fades.normal : springs.surface}
-            />
-          }
           {...props}
         >
           {children}

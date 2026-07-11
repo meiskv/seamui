@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "device-selector-live",
+  "type": "registry:example",
+  "title": "Device Selector Live",
+  "registryDependencies": [
+    "https://seamui.dev/r/device-selector.json",
+    "https://seamui.dev/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/device-selector-live.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport { Button } from \"@/registry/seam/ui/button\"\nimport {\n  DeviceSelector,\n  DeviceSelectorContent,\n  DeviceSelectorTrigger,\n} from \"@/registry/seam/ui/device-selector\"\n\n// With no `devices` prop the selector enumerates real hardware. Labels are\n// empty until permission is granted, so it's gated behind a click.\nexport default function DeviceSelectorLive() {\n  const [enabled, setEnabled] = React.useState(false)\n  const [value, setValue] = React.useState(\"\")\n\n  const enable = async () => {\n    try {\n      const stream = await navigator.mediaDevices.getUserMedia({ audio: true })\n      stream.getTracks().forEach((t) => {\n        t.stop()\n      })\n      setEnabled(true)\n    } catch {\n      // denied / unavailable\n    }\n  }\n\n  if (!enabled) {\n    return (\n      <Button variant=\"secondary\" size=\"sm\" onClick={enable}>\n        Enable microphone\n      </Button>\n    )\n  }\n\n  return (\n    <DeviceSelector kind=\"audioinput\" value={value} onValueChange={setValue}>\n      <DeviceSelectorTrigger />\n      <DeviceSelectorContent />\n    </DeviceSelector>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

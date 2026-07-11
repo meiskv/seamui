@@ -1,13 +1,14 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { VariantPreview } from "@/components/docs/variant-preview"
+import { Install, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import ToastDemo from "@/registry/seam/examples/toast-demo"
 
 export const metadata: Metadata = {
   title: "Toast — seamui",
-  description: "Toast notifications built on Base UI with a bouncy seam entrance.",
+  description:
+    "Toast notifications built on Base UI with a bouncy seam entrance.",
 }
 
 export default function ToastDocs() {
@@ -19,40 +20,34 @@ export default function ToastDocs() {
         with a spring-shaped entrance and swipe away.
       </p>
 
-      <ComponentPreview code={exampleSource("toast-demo")}>
-        <ToastDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          {
+            key: "default",
+            title: "Default",
+            component: <ToastDemo />,
+            code: exampleSource("toast-demo"),
+          },
+        ]}
+      />
 
       <Install name="toast" />
 
-      <Section title="Usage">
-        <CodeBlock>{`// 1. Wrap your app once:
-import { ToastProvider } from "@/components/ui/toast"
-
-<ToastProvider>{children}</ToastProvider>`}</CodeBlock>
-        <CodeBlock>{`// 2. Show a toast from anywhere inside it:
-import { useToast } from "@/components/ui/toast"
-
-const toast = useToast()
-toast.add({ title: "Saved", description: "All set." })`}</CodeBlock>
-      </Section>
-
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
+      <Notes>
+        <li>
+          Mount <code>ToastProvider</code> once at the app root; call{" "}
+          <code>useToast().add(&#123;…&#125;)</code> from anywhere inside it.
+        </li>
+        <li>
           Toasts enter with an overshooting cubic-bezier (a{" "}
-          <code>springs.bouncy</code>-shaped curve) on opacity and offset, while
-          Base UI owns the stacking transforms and native swipe-to-dismiss —
-          the same &ldquo;let the platform physics lead&rdquo; approach as the
-          Drawer.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
+          <code>springs.bouncy</code>-shaped curve) on opacity and offset; Base
+          UI owns the stacking transforms and native swipe-to-dismiss.
+        </li>
+        <li>
           Announced via an ARIA live region, focusable for keyboard dismissal,
           and pause-on-hover so toasts don&apos;t vanish while being read.
-        </p>
-      </Section>
+        </li>
+      </Notes>
     </main>
   )
 }

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "select-disabled",
+  "type": "registry:example",
+  "title": "Select Disabled",
+  "registryDependencies": [
+    "https://seamui.dev/r/select.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/select-disabled.tsx",
+      "content": "import {\n  Select,\n  SelectContent,\n  SelectItem,\n  SelectTrigger,\n  SelectValue,\n} from \"@/registry/seam/ui/select\"\n\nexport default function SelectDisabled() {\n  return (\n    <Select defaultValue=\"spring\" disabled>\n      <SelectTrigger className=\"w-52\">\n        <SelectValue placeholder=\"Choose a transition\" />\n      </SelectTrigger>\n      <SelectContent>\n        <SelectItem value=\"spring\">Spring</SelectItem>\n        <SelectItem value=\"snappy\">Snappy</SelectItem>\n      </SelectContent>\n    </Select>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

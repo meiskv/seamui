@@ -1,22 +1,18 @@
 "use client"
 
-import * as React from "react"
+import type * as React from "react"
 import { Collapsible as BaseCollapsible } from "@base-ui/react/collapsible"
 
 import { cn } from "@/lib/utils"
 
-function Collapsible(
-  props: React.ComponentProps<typeof BaseCollapsible.Root>
-) {
+function Collapsible(props: React.ComponentProps<typeof BaseCollapsible.Root>) {
   return <BaseCollapsible.Root data-slot="collapsible" {...props} />
 }
 
 function CollapsibleTrigger(
   props: React.ComponentProps<typeof BaseCollapsible.Trigger>
 ) {
-  return (
-    <BaseCollapsible.Trigger data-slot="collapsible-trigger" {...props} />
-  )
+  return <BaseCollapsible.Trigger data-slot="collapsible-trigger" {...props} />
 }
 
 function CollapsibleContent({

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "skeleton",
+  "type": "registry:ui",
+  "title": "Skeleton",
+  "description": "Loading placeholder well with an opacity-only pulse.",
+  "registryDependencies": [
+    "https://seamui.dev/r/utils.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/ui/skeleton.tsx",
+      "content": "import type * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\n// The pulse is opacity-only, which is the one animation seamui allows as a\n// plain duration (see lib/motion fades) — it stays on under reduced motion\n// because it doesn't travel. Loading feedback never goes dead.\nfunction Skeleton({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"skeleton\"\n      className={cn(\n        \"bg-muted animate-pulse rounded-md squircle shadow-well\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { Skeleton }\n",
+      "type": "registry:ui",
+      "target": "components/ui/skeleton.tsx"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "message-demo",
+  "type": "registry:example",
+  "title": "Message Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/message.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/message-demo.tsx",
+      "content": "import {\n  Message,\n  MessageAvatar,\n  MessageContent,\n} from \"@/registry/seam/ui/message\"\n\nexport default function MessageDemo() {\n  return (\n    <div className=\"flex w-full max-w-md flex-col gap-2\">\n      <Message from=\"user\">\n        <MessageContent>\n          How do springs differ from durations in seamui?\n        </MessageContent>\n      </Message>\n      <Message from=\"assistant\">\n        <MessageAvatar name=\"Seam UI\" />\n        <MessageContent>\n          Springs are physics-based — they react to velocity, so a press settles\n          naturally instead of running a fixed clock. Durations are reserved for\n          opacity fades and layout dimensions that can&apos;t spring cleanly.\n        </MessageContent>\n      </Message>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

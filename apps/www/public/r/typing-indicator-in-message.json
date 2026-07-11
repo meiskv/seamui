@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "typing-indicator-in-message",
+  "type": "registry:example",
+  "title": "Typing Indicator In Message",
+  "registryDependencies": [
+    "https://seamui.dev/r/typing-indicator.json",
+    "https://seamui.dev/r/message.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/typing-indicator-in-message.tsx",
+      "content": "import {\n  Message,\n  MessageAvatar,\n  MessageContent,\n} from \"@/registry/seam/ui/message\"\nimport { TypingIndicator } from \"@/registry/seam/ui/typing-indicator\"\n\n// Drop it where the assistant's reply will land, before the first token.\nexport default function TypingIndicatorInMessage() {\n  return (\n    <div className=\"w-full max-w-md\">\n      <Message from=\"assistant\">\n        <MessageAvatar name=\"Seam UI\" />\n        <MessageContent>\n          <TypingIndicator />\n        </MessageContent>\n      </Message>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

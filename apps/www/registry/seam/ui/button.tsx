@@ -7,6 +7,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
 import { springs, fades, depth, reduced } from "@/lib/motion"
+import { useHaptics, type HapticPreset } from "@/lib/haptics"
 
 const buttonVariants = cva(
   // base — no CSS transition classes; motion.dev owns transform/shadow.
@@ -55,7 +56,11 @@ function asMotion(type: React.ElementType): React.ElementType {
 
 export interface ButtonProps
   extends React.ComponentProps<typeof BaseButton>,
-    VariantProps<typeof buttonVariants> {}
+    VariantProps<typeof buttonVariants> {
+  /** Haptic on press when a HapticsProvider is mounted: `true` = "tap",
+   *  a preset name to override, `false` to opt out. */
+  haptic?: boolean | HapticPreset
+}
 
 function Button({
   className,
@@ -63,9 +68,12 @@ function Button({
   size,
   disabled,
   render,
+  haptic = true,
+  onPointerDown,
   ...props
 }: ButtonProps) {
   const reduceMotion = useReducedMotion()
+  const { trigger } = useHaptics()
   const flat = FLAT_VARIANTS.has(variant ?? "default")
 
   // Base UI keeps native semantics (real <button>, or the caller's render
@@ -87,9 +95,7 @@ function Button({
     motionRender = <motion.button {...motionProps} />
   } else if (React.isValidElement(render)) {
     const MotionEl = asMotion(render.type as React.ElementType)
-    motionRender = (
-      <MotionEl {...(render.props as object)} {...motionProps} />
-    )
+    motionRender = <MotionEl {...(render.props as object)} {...motionProps} />
   } else {
     // function-form render: pass through untouched (no press motion).
     motionRender = render
@@ -108,6 +114,14 @@ function Button({
       disabled={disabled}
       nativeButton={nativeButton}
       render={motionRender}
+      // seam touch feedback, tactile half: a haptic tap the moment the
+      // pointer lands (primary button/touch only). No-op without a provider.
+      onPointerDown={(e) => {
+        onPointerDown?.(e)
+        if (haptic && !disabled && e.button === 0) {
+          trigger(haptic === true ? "tap" : haptic)
+        }
+      }}
       {...props}
     />
   )

@@ -3,8 +3,8 @@
 Beautifully animated components you own. shadcn/ui's distribution model, rebuilt on [Base UI](https://base-ui.com) primitives with a [motion.dev](https://motion.dev) animation layer designed around mobile principles — springs, touch feedback, and depth.
 
 ```bash
-bunx --bun seamui@latest init -t next
-bunx --bun seamui@latest add button
+bunx --bun @seamui/cli@latest init -t next
+bunx --bun @seamui/cli@latest add button
 ```
 
 Or with the shadcn CLI directly:
@@ -53,8 +53,9 @@ page; and the `seamui` CLI builds. Flagship interactions (press, switch, slider,
 popover, dialog, select, tabs, toast, OTP) were each driven in a headless
 browser to confirm behavior — not just compiled.
 
-**Remaining:** Phase 3a — deploy `apps/www` and publish the `seamui` npm package
-so the `@seamui` namespace resolves to a live host.
+**Live:** the registry is deployed at [`https://seamui.dev`](https://seamui.dev)
+— `shadcn add @seamui/<name>` and the `@seamui/cli` installer both resolve
+against it.
 
 ### Local development
 
@@ -64,7 +65,15 @@ bun run dev              # docs site at http://localhost:3000
 bun run registry:build   # compile registry/ → apps/www/public/r/*.json
 ```
 
-> Note: the `@seamui` registry currently points at the `https://seamui.dev`
-> placeholder host. Publishing (deploying `apps/www` + the `seamui` npm
-> package) is Phase 3a and is not done yet, so the `bunx seamui@latest` /
-> `shadcn add @seamui/button` commands go live once that host exists.
+> The `@seamui` registry is served from `https://seamui.dev` (the built
+> `public/r/*.json`), so `bunx --bun @seamui/cli@latest add button` and
+> `shadcn add @seamui/button` work against the live host.
+
+### Contributing
+
+Read [`CONTRIBUTING.md`](./CONTRIBUTING.md) for the component checklist, the
+docs-page template, and the four verification gates. The full design/motion
+contract lives in [`CLAUDE.md`](./CLAUDE.md). New components start as a
+[component request](.github/ISSUE_TEMPLATE/component-request.yml) specced in
+the seam language — debossed/embossed mapping, motion tokens, and the
+reduced-motion variant — before any code.

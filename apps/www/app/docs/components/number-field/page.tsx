@@ -1,9 +1,11 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { VariantPreview } from "@/components/docs/variant-preview"
+import { Install, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import NumberFieldDemo from "@/registry/seam/examples/number-field-demo"
+import NumberFieldFormat from "@/registry/seam/examples/number-field-format"
+import NumberFieldDisabled from "@/registry/seam/examples/number-field-disabled"
 
 export const metadata: Metadata = {
   title: "Number Field — seamui",
@@ -19,31 +21,41 @@ export default function NumberFieldDocs() {
         scrubbing from Base UI. The steppers press with seam depth.
       </p>
 
-      <ComponentPreview code={exampleSource("number-field-demo")}>
-        <NumberFieldDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          {
+            key: "default",
+            title: "Default",
+            component: <NumberFieldDemo />,
+            code: exampleSource("number-field-demo"),
+          },
+          {
+            key: "format",
+            title: "Currency",
+            component: <NumberFieldFormat />,
+            code: exampleSource("number-field-format"),
+          },
+          {
+            key: "disabled",
+            title: "Disabled",
+            component: <NumberFieldDisabled />,
+            code: exampleSource("number-field-disabled"),
+          },
+        ]}
+      />
 
       <Install name="number-field" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import { NumberField } from "@/components/ui/number-field"`}</CodeBlock>
-        <CodeBlock>{`<NumberField defaultValue={1} min={0} max={10} />`}</CodeBlock>
-      </Section>
-
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
-          The +/- steppers reuse the Button press pattern: they recede to{" "}
-          <code>depth.pressed</code> with <code>springs.press</code>. Honors{" "}
-          <code>prefers-reduced-motion</code>.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
-          Full keyboard support (arrows, Page Up/Down, Home/End) and a labelled
-          spinbutton. Base UI also enables click-and-drag scrubbing on the input.
-        </p>
-      </Section>
+      <Notes>
+        <li>
+          Base UI enables click-and-drag <em>scrubbing</em> on the input — drag
+          horizontally to change the value without the steppers.
+        </li>
+        <li>
+          A labelled spinbutton with extended keyboard stepping: arrows plus
+          Page Up/Down for larger jumps and Home/End for min/max.
+        </li>
+      </Notes>
     </main>
   )
 }

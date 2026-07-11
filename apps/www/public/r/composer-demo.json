@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "composer-demo",
+  "type": "registry:example",
+  "title": "Composer Demo",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "https://seamui.dev/r/composer.json",
+    "https://seamui.dev/r/button.json",
+    "https://seamui.dev/r/kbd.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/composer-demo.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { Paperclip } from \"lucide-react\"\n\nimport { Button } from \"@/registry/seam/ui/button\"\nimport {\n  Composer,\n  ComposerSubmit,\n  ComposerTextarea,\n  ComposerToolbar,\n  ComposerTools,\n} from \"@/registry/seam/ui/composer\"\nimport { Kbd } from \"@/registry/seam/ui/kbd\"\n\nexport default function ComposerDemo() {\n  const [value, setValue] = React.useState(\"\")\n\n  const submit = (e: React.FormEvent) => {\n    e.preventDefault()\n    if (!value.trim()) return\n    setValue(\"\")\n  }\n\n  return (\n    <div className=\"w-full max-w-md\">\n      <Composer onSubmit={submit}>\n        <ComposerTextarea\n          value={value}\n          onChange={(e) => setValue(e.target.value)}\n          placeholder=\"Ask anything…\"\n        />\n        <ComposerToolbar>\n          <ComposerTools>\n            <Button\n              type=\"button\"\n              variant=\"ghost\"\n              size=\"icon\"\n              className=\"size-8\"\n              aria-label=\"Attach file\"\n            >\n              <Paperclip />\n            </Button>\n          </ComposerTools>\n          <ComposerSubmit disabled={!value.trim()} />\n        </ComposerToolbar>\n      </Composer>\n      <p className=\"text-muted-foreground mt-2 text-center text-xs\">\n        <Kbd>Enter</Kbd> to send · <Kbd>⇧</Kbd> <Kbd>Enter</Kbd> for a new line\n      </p>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

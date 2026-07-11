@@ -1,9 +1,11 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { VariantPreview } from "@/components/docs/variant-preview"
+import { Install, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import DrawerDemo from "@/registry/seam/examples/drawer-demo"
+import DrawerMenu from "@/registry/seam/examples/drawer-menu"
+import DrawerForm from "@/registry/seam/examples/drawer-form"
 
 export const metadata: Metadata = {
   title: "Drawer — seamui",
@@ -19,51 +21,48 @@ export default function DrawerDocs() {
         most mobile-native surface in seamui.
       </p>
 
-      <ComponentPreview code={exampleSource("drawer-demo")}>
-        <DrawerDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          {
+            key: "default",
+            title: "Default",
+            component: <DrawerDemo />,
+            code: exampleSource("drawer-demo"),
+          },
+          {
+            key: "menu",
+            title: "Action sheet",
+            component: <DrawerMenu />,
+            code: exampleSource("drawer-menu"),
+            description: "A list of actions — the mobile share-sheet pattern.",
+          },
+          {
+            key: "form",
+            title: "Form",
+            component: <DrawerForm />,
+            code: exampleSource("drawer-form"),
+            description: "Collect input without leaving the sheet.",
+          },
+        ]}
+      />
 
       <Install name="drawer" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import {
-  Drawer,
-  DrawerTrigger,
-  DrawerContent,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerClose,
-} from "@/components/ui/drawer"`}</CodeBlock>
-        <CodeBlock>{`<Drawer>
-  <DrawerTrigger render={<Button>Open</Button>} />
-  <DrawerContent>
-    <DrawerHeader>
-      <DrawerTitle>Title</DrawerTitle>
-      <DrawerDescription>Description</DrawerDescription>
-    </DrawerHeader>
-  </DrawerContent>
-</Drawer>`}</CodeBlock>
-      </Section>
-
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
-          Unlike the other overlays, the Drawer defers entirely to Base UI&apos;s
-          native drawer engine: a spring-based slide-up, drag-to-dismiss from the
-          grab handle, and a backdrop that dims in proportion to the drag. That
-          physics <em>is</em> the seam mobile-depth philosophy, so seamui styles
-          it and stays out of the way — no <code>motion</code> wrapper needed.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
-          Traps focus and locks scroll like Dialog. Fully keyboard operable;
-          swipe is an enhancement, not the only way to dismiss (Escape and
-          backdrop click work too).
-        </p>
-      </Section>
+      <Notes>
+        <li>
+          Swipe-to-dismiss stays Base UI&apos;s native drag — a 1:1 gesture from
+          the grab handle, with the backdrop dimming in proportion to the drag.
+        </li>
+        <li>
+          The non-gesture slide rides the standalone <code>translate</code>{" "}
+          property (Base UI owns <code>transform</code> for the drag) and
+          self-suppresses mid-swipe so the gesture stays 1:1.
+        </li>
+        <li>
+          Swipe is an enhancement, not the only way out — Escape and backdrop
+          click dismiss too. Focus trap and scroll lock work like Dialog.
+        </li>
+      </Notes>
     </main>
   )
 }

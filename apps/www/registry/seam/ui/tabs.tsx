@@ -84,7 +84,10 @@ function TabsTrigger({
             {...rest}
             className={cn(
               baseClassName,
-              buttonVariants({ variant: "ghost", size: size === "sm" ? "sm" : "default" }),
+              buttonVariants({
+                variant: "ghost",
+                size: size === "sm" ? "sm" : "default",
+              }),
               "relative hover:bg-transparent",
               state.active
                 ? "text-foreground"

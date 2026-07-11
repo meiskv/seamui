@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "chat-timeline",
+  "type": "registry:ui",
+  "title": "Chat Timeline",
+  "description": "Grouped, timestamped conversation history with sticky day headers.",
+  "registryDependencies": [
+    "https://seamui.dev/r/utils.json",
+    "https://seamui.dev/r/badge.json",
+    "https://seamui.dev/r/separator.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/ui/chat-timeline.tsx",
+      "content": "import type * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\nimport { Badge } from \"./badge\"\nimport { Separator } from \"./separator\"\n\n// A conversation with temporal structure. Grouping is presentational: the\n// consumer passes ordered messages and decides the day boundaries and which\n// consecutive-sender runs collapse their avatar. Place a ChatTimeline inside a\n// Conversation so the sticky date headers pin as history scrolls.\nfunction ChatTimeline({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"chat-timeline\"\n      role=\"list\"\n      className={cn(\"flex flex-col gap-2\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction ChatTimelineGroup({\n  className,\n  ...props\n}: React.ComponentProps<\"section\">) {\n  return (\n    <section\n      data-slot=\"chat-timeline-group\"\n      className={cn(\"flex flex-col gap-1\", className)}\n      {...props}\n    />\n  )\n}\n\n// Sticky centered date chip — a debossed muted Badge, temporal metadata carved\n// in rather than competing with the message keys. A constant subtle backdrop\n// keeps it legible over content scrolling beneath; nothing translates, so it\n// reads the same under reduced motion.\nfunction ChatTimelineHeader({\n  className,\n  children,\n  ...props\n}: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"chat-timeline-header\"\n      className={cn(\"sticky top-0 z-10 flex justify-center py-1.5\", className)}\n      {...props}\n    >\n      <Badge\n        variant=\"muted\"\n        className=\"bg-muted/85 shadow-none backdrop-blur-sm\"\n      >\n        {children}\n      </Badge>\n    </div>\n  )\n}\n\n// The new-messages rule: a hairline separator with a muted label. Announced\n// once via the wrapper's role/label; the flanking rules are decorative.\nfunction ChatTimelineDivider({\n  className,\n  children = \"New\",\n  ...props\n}: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"chat-timeline-divider\"\n      role=\"separator\"\n      aria-label={typeof children === \"string\" ? children : \"New messages\"}\n      className={cn(\"flex items-center gap-2 py-1\", className)}\n      {...props}\n    >\n      <Separator aria-hidden className=\"flex-1\" />\n      <Badge variant=\"muted\" className=\"shadow-none text-[0.625rem]\">\n        {children}\n      </Badge>\n      <Separator aria-hidden className=\"flex-1\" />\n    </div>\n  )\n}\n\nexport {\n  ChatTimeline,\n  ChatTimelineGroup,\n  ChatTimelineHeader,\n  ChatTimelineDivider,\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/chat-timeline.tsx"
+    }
+  ]
+}

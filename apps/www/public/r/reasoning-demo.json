@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "reasoning-demo",
+  "type": "registry:example",
+  "title": "Reasoning Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/tool.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/reasoning-demo.tsx",
+      "content": "import {\n  Reasoning,\n  ReasoningContent,\n  ReasoningTrigger,\n} from \"@/registry/seam/ui/tool\"\n\nexport default function ReasoningDemo() {\n  return (\n    <div className=\"w-full max-w-md\">\n      <Reasoning defaultOpen>\n        <ReasoningTrigger title=\"Reasoning\" status=\"done\" />\n        <ReasoningContent>\n          <p className=\"text-muted-foreground\">\n            The user asked why springs beat durations. Key points: springs carry\n            velocity, so interruptions redirect smoothly; durations run a fixed\n            clock that has to be fought. I&apos;ll lead with velocity.\n          </p>\n        </ReasoningContent>\n      </Reasoning>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

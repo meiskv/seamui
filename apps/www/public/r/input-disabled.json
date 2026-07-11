@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-disabled",
+  "type": "registry:example",
+  "title": "Input Disabled",
+  "registryDependencies": [
+    "https://seamui.dev/r/input.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/input-disabled.tsx",
+      "content": "import { Input } from \"@/registry/seam/ui/input\"\n\nexport default function InputDisabled() {\n  return (\n    <Input\n      type=\"email\"\n      placeholder=\"Email\"\n      defaultValue=\"m@example.com\"\n      disabled\n      className=\"max-w-xs\"\n    />\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

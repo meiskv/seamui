@@ -1,13 +1,16 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { VariantPreview } from "@/components/docs/variant-preview"
+import { Install, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import TabsDemo from "@/registry/seam/examples/tabs-demo"
+import TabsSmall from "@/registry/seam/examples/tabs-small"
+import TabsIcons from "@/registry/seam/examples/tabs-icons"
 
 export const metadata: Metadata = {
   title: "Tabs — seamui",
-  description: "Tabs built on Base UI; a motion indicator springs to the active tab.",
+  description:
+    "Tabs built on Base UI; a motion indicator springs to the active tab.",
 }
 
 export default function TabsDocs() {
@@ -19,48 +22,51 @@ export default function TabsDocs() {
         slides between tabs — seamui&apos;s layout-animation pattern.
       </p>
 
-      <ComponentPreview code={exampleSource("tabs-demo")}>
-        <TabsDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          {
+            key: "default",
+            title: "Default",
+            component: <TabsDemo />,
+            code: exampleSource("tabs-demo"),
+          },
+          {
+            key: "icons",
+            title: "With icons",
+            component: <TabsIcons />,
+            code: exampleSource("tabs-icons"),
+          },
+          {
+            key: "small",
+            title: "Small",
+            component: <TabsSmall />,
+            code: exampleSource("tabs-small"),
+          },
+        ]}
+      />
 
       <Install name="tabs" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import {
-  Tabs,
-  TabsList,
-  TabsTrigger,
-  TabsContent,
-} from "@/components/ui/tabs"`}</CodeBlock>
-        <CodeBlock>{`<Tabs defaultValue="a">
-  <TabsList>
-    <TabsTrigger value="a">A</TabsTrigger>
-    <TabsTrigger value="b">B</TabsTrigger>
-  </TabsList>
-  <TabsContent value="a">…</TabsContent>
-  <TabsContent value="b">…</TabsContent>
-</Tabs>`}</CodeBlock>
-      </Section>
-
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
+      <Notes>
+        <li>
           The indicator is a shared-layout <code>motion.span</code> (
-          <code>layoutId</code>) rendered inside the active tab. When selection
-          changes, motion springs it to the new tab with{" "}
-          <code>springs.snappy</code> — no CSS transitions, fully interruptible.
-          Each Tabs instance scopes its own <code>layoutId</code> so multiple
-          groups never fight. Honors <code>prefers-reduced-motion</code>.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
+          <code>layoutId</code>) inside the active tab — selection change
+          springs it to the new tab with <code>springs.snappy</code>, fully
+          interruptible. Each Tabs instance scopes its own <code>layoutId</code>{" "}
+          so multiple groups never fight.
+        </li>
+        <li>
+          Triggers reuse <code>buttonVariants</code> classes on the
+          composite-safe element (no <code>Button</code> wrapper) so Base
+          UI&apos;s roving arrow-key focus keeps working.
+        </li>
+        <li>
           Full <code>role="tablist"</code> semantics with arrow-key navigation
-          and automatic activation. Controlled via <code>value</code> /{" "}
+          and automatic activation; controlled via <code>value</code> /{" "}
           <code>onValueChange</code>, or uncontrolled via{" "}
           <code>defaultValue</code>.
-        </p>
-      </Section>
+        </li>
+      </Notes>
     </main>
   )
 }

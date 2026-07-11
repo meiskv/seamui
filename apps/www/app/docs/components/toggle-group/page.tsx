@@ -1,9 +1,11 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { VariantPreview } from "@/components/docs/variant-preview"
+import { Install, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import ToggleGroupDemo from "@/registry/seam/examples/toggle-group-demo"
+import ToggleGroupText from "@/registry/seam/examples/toggle-group-text"
+import ToggleGroupDisabled from "@/registry/seam/examples/toggle-group-disabled"
 
 export const metadata: Metadata = {
   title: "Toggle Group — seamui",
@@ -20,44 +22,43 @@ export default function ToggleGroupDocs() {
         out of it as an embossed white key.
       </p>
 
-      <ComponentPreview code={exampleSource("toggle-group-demo")}>
-        <ToggleGroupDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          {
+            key: "default",
+            title: "Alignment",
+            component: <ToggleGroupDemo />,
+            code: exampleSource("toggle-group-demo"),
+          },
+          {
+            key: "text",
+            title: "Formatting",
+            component: <ToggleGroupText />,
+            code: exampleSource("toggle-group-text"),
+          },
+          {
+            key: "disabled",
+            title: "Disabled",
+            component: <ToggleGroupDisabled />,
+            code: exampleSource("toggle-group-disabled"),
+          },
+        ]}
+      />
 
       <Install name="toggle-group" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import { Toggle } from "@/components/ui/toggle"
-import { ToggleGroup } from "@/components/ui/toggle-group"`}</CodeBlock>
-        <CodeBlock>{`<ToggleGroup defaultValue={["left"]}>
-  <Toggle value="left" aria-label="Align left"><AlignLeft /></Toggle>
-  <Toggle value="center" aria-label="Align center"><AlignCenter /></Toggle>
-  <Toggle value="right" aria-label="Align right"><AlignRight /></Toggle>
-</ToggleGroup>`}</CodeBlock>
-        <p className="text-muted-foreground text-sm">
-          Pass <code>toggleMultiple</code> to allow more than one pressed
-          toggle at a time. Control with <code>value</code> /{" "}
-          <code>onValueChange</code>.
-        </p>
-      </Section>
-
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
+      <Notes>
+        <li>
+          Pass <code>multiple</code> to allow more than one pressed toggle at a
+          time. Control with <code>value</code> / <code>onValueChange</code> (an
+          array of pressed values).
+        </li>
+        <li>
           The well itself is static — depth comes from the{" "}
           <code>shadow-well</code> deboss and each Toggle&apos;s embossed
-          pressed state (<code>bg-secondary</code> + <code>shadow-resting</code>
-          ). Presses recede with <code>springs.press</code>; honors{" "}
-          <code>prefers-reduced-motion</code> by dimming instead of moving.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
-          Renders a <code>role=&quot;group&quot;</code> of native{" "}
-          <code>&lt;button&gt;</code>s with <code>aria-pressed</code>, with
-          arrow-key focus movement between toggles handled by Base UI.
-        </p>
-      </Section>
+          pressed state.
+        </li>
+      </Notes>
     </main>
   )
 }

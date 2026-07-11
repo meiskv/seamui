@@ -1,13 +1,18 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { VariantPreview } from "@/components/docs/variant-preview"
+import { Install, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import ToggleDemo from "@/registry/seam/examples/toggle-demo"
+import ToggleWithText from "@/registry/seam/examples/toggle-with-text"
+import ToggleOutline from "@/registry/seam/examples/toggle-outline"
+import ToggleSizes from "@/registry/seam/examples/toggle-sizes"
+import ToggleDisabled from "@/registry/seam/examples/toggle-disabled"
 
 export const metadata: Metadata = {
   title: "Toggle — seamui",
-  description: "Two-state button built on Base UI with seam press-depth motion.",
+  description:
+    "Two-state button built on Base UI with seam press-depth motion.",
 }
 
 export default function ToggleDocs() {
@@ -19,36 +24,54 @@ export default function ToggleDocs() {
         surface with seam depth motion.
       </p>
 
-      <ComponentPreview code={exampleSource("toggle-demo")}>
-        <ToggleDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          {
+            key: "default",
+            title: "Default",
+            component: <ToggleDemo />,
+            code: exampleSource("toggle-demo"),
+          },
+          {
+            key: "with-text",
+            title: "With text",
+            component: <ToggleWithText />,
+            code: exampleSource("toggle-with-text"),
+          },
+          {
+            key: "outline",
+            title: "Outline",
+            component: <ToggleOutline />,
+            code: exampleSource("toggle-outline"),
+          },
+          {
+            key: "sizes",
+            title: "Sizes",
+            component: <ToggleSizes />,
+            code: exampleSource("toggle-sizes"),
+          },
+          {
+            key: "disabled",
+            title: "Disabled",
+            component: <ToggleDisabled />,
+            code: exampleSource("toggle-disabled"),
+          },
+        ]}
+      />
 
       <Install name="toggle" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import { Toggle } from "@/components/ui/toggle"`}</CodeBlock>
-        <CodeBlock>{`<Toggle aria-label="Toggle bold" defaultPressed>
-  <Bold />
-</Toggle>`}</CodeBlock>
-      </Section>
-
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
-          Press recedes to <code>depth.pressed</code> with{" "}
-          <code>springs.press</code>; the on-state is styled via Base UI&apos;s{" "}
-          <code>data-[pressed]</code> attribute. Honors{" "}
-          <code>prefers-reduced-motion</code>.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
+      <Notes>
+        <li>
+          Controlled via <code>pressed</code> / <code>onPressedChange</code>,
+          uncontrolled via <code>defaultPressed</code>.
+        </li>
+        <li>
           Renders a native <code>&lt;button&gt;</code> with{" "}
-          <code>aria-pressed</code>. Controlled via <code>pressed</code> /
-          <code>onPressedChange</code>, or uncontrolled via{" "}
-          <code>defaultPressed</code>.
-        </p>
-      </Section>
+          <code>aria-pressed</code>; the on-state is styled via Base UI&apos;s{" "}
+          <code>data-[pressed]</code> attribute.
+        </li>
+      </Notes>
     </main>
   )
 }

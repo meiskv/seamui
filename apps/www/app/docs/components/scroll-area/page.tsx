@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { VariantPreview } from "@/components/docs/variant-preview"
+import { Install, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import ScrollAreaDemo from "@/registry/seam/examples/scroll-area-demo"
 
@@ -19,33 +19,29 @@ export default function ScrollAreaDocs() {
         and while scrolling.
       </p>
 
-      <ComponentPreview code={exampleSource("scroll-area-demo")}>
-        <ScrollAreaDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          {
+            key: "default",
+            title: "Default",
+            component: <ScrollAreaDemo />,
+            code: exampleSource("scroll-area-demo"),
+          },
+        ]}
+      />
 
       <Install name="scroll-area" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import { ScrollArea } from "@/components/ui/scroll-area"`}</CodeBlock>
-        <CodeBlock>{`<ScrollArea className="h-40 w-64 rounded-md border p-4">
-  {/* long content */}
-</ScrollArea>`}</CodeBlock>
-      </Section>
-
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
+      <Notes>
+        <li>
           The scrollbar fades in on <code>data-[hovering]</code> and{" "}
-          <code>data-[scrolling]</code> and fades back out after a short delay —
-          calm by default, present when you need it.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
-          Native scrolling is preserved (keyboard, wheel, touch); the custom
+          <code>data-[scrolling]</code> and fades back out after a short delay.
+        </li>
+        <li>
+          Native scrolling is preserved (keyboard, wheel, touch) — the custom
           scrollbar is a visual layer over it, not a replacement.
-        </p>
-      </Section>
+        </li>
+      </Notes>
     </main>
   )
 }

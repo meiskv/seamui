@@ -1,9 +1,11 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { VariantPreview } from "@/components/docs/variant-preview"
+import { Install, ApiTable, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import SelectDemo from "@/registry/seam/examples/select-demo"
+import SelectGroups from "@/registry/seam/examples/select-groups"
+import SelectDisabled from "@/registry/seam/examples/select-disabled"
 
 export const metadata: Metadata = {
   title: "Select — seamui",
@@ -19,48 +21,81 @@ export default function SelectDocs() {
         overlay depth; the selected item shows a check.
       </p>
 
-      <ComponentPreview code={exampleSource("select-demo")}>
-        <SelectDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          {
+            key: "default",
+            title: "Default",
+            component: <SelectDemo />,
+            code: exampleSource("select-demo"),
+          },
+          {
+            key: "groups",
+            title: "Groups",
+            component: <SelectGroups />,
+            code: exampleSource("select-groups"),
+          },
+          {
+            key: "disabled",
+            title: "Disabled",
+            component: <SelectDisabled />,
+            code: exampleSource("select-disabled"),
+          },
+        ]}
+      />
 
       <Install name="select" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectItem,
-} from "@/components/ui/select"`}</CodeBlock>
-        <CodeBlock>{`<Select defaultValue="a">
-  <SelectTrigger>
-    <SelectValue placeholder="Choose…" />
-  </SelectTrigger>
-  <SelectContent>
-    <SelectItem value="a">Option A</SelectItem>
-    <SelectItem value="b">Option B</SelectItem>
-  </SelectContent>
-</Select>`}</CodeBlock>
-      </Section>
+      <ApiTable
+        rows={[
+          {
+            prop: "value / onValueChange",
+            type: "Value, (value, eventDetails) => void",
+            desc: "Controlled selection on <Select>.",
+          },
+          {
+            prop: "defaultValue",
+            type: "Value",
+            desc: "Initial selection when uncontrolled.",
+          },
+          {
+            prop: "variant",
+            type: `"default" | "ghost"`,
+            default: `"default"`,
+            desc: "On <SelectTrigger> — recessed muted well, or naked text + chevron for inline dropdowns.",
+          },
+          {
+            prop: "sideOffset",
+            type: "number",
+            default: "6",
+            desc: "On <SelectContent> — gap between trigger and popup.",
+          },
+        ]}
+        footer={
+          <>
+            <code>&lt;Select&gt;</code> forwards all Base UI{" "}
+            <code>Select.Root</code> props.
+          </>
+        }
+      />
 
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
-          The popup animates in with <code>depth.overlay</code> and{" "}
-          <code>springs.surface</code>. Base UI aligns the list to the trigger
-          width via <code>--anchor-width</code> and handles keyboard selection.
-          Honors <code>prefers-reduced-motion</code>.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
-          Native <code>role="listbox"</code> semantics, typeahead, and full
-          keyboard control. Controlled via <code>value</code> /{" "}
-          <code>onValueChange</code>, or uncontrolled via{" "}
-          <code>defaultValue</code>.
-        </p>
-      </Section>
+      <Notes>
+        <li>
+          <code>alignItemWithTrigger</code> is disabled, so the list drops{" "}
+          <em>below</em> the trigger like a dropdown instead of Base UI&apos;s
+          native-style overlay of the selected item on top of it.
+        </li>
+        <li>
+          The popup condenses in/out via CSS keyed to Base UI&apos;s{" "}
+          <code>data-starting-style</code> / <code>data-ending-style</code>, so
+          the exit is awaited before unmount.
+        </li>
+        <li>
+          The list matches the trigger&apos;s width via{" "}
+          <code>--anchor-width</code> and caps its height to the available
+          viewport space.
+        </li>
+      </Notes>
     </main>
   )
 }

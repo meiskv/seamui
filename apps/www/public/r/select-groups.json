@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "select-groups",
+  "type": "registry:example",
+  "title": "Select Groups",
+  "registryDependencies": [
+    "https://seamui.dev/r/select.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/select-groups.tsx",
+      "content": "import {\n  Select,\n  SelectContent,\n  SelectGroup,\n  SelectItem,\n  SelectLabel,\n  SelectSeparator,\n  SelectTrigger,\n  SelectValue,\n} from \"@/registry/seam/ui/select\"\n\nexport default function SelectGroups() {\n  return (\n    <Select defaultValue=\"press\">\n      <SelectTrigger className=\"w-56\">\n        <SelectValue placeholder=\"Choose a spring\" />\n      </SelectTrigger>\n      <SelectContent>\n        <SelectGroup>\n          <SelectLabel>Interaction</SelectLabel>\n          <SelectItem value=\"press\">Press</SelectItem>\n          <SelectItem value=\"snappy\">Snappy</SelectItem>\n        </SelectGroup>\n        <SelectSeparator />\n        <SelectGroup>\n          <SelectLabel>Surfaces</SelectLabel>\n          <SelectItem value=\"surface\">Surface</SelectItem>\n          <SelectItem value=\"bouncy\">Bouncy</SelectItem>\n        </SelectGroup>\n      </SelectContent>\n    </Select>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

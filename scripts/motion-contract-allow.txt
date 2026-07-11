@@ -1,0 +1,13 @@
+# Motion-contract allowlist.
+#
+# Files listed here may use an inline `duration:` in a transition. This is
+# reserved for AMBIENT, infinite-repeat animations (visualizers, idle pulses)
+# that loop forever and never spring — CLAUDE.md §3 permits durations for
+# motion that "can't spring cleanly." Everything else must use a token from
+# `@/lib/motion`.
+#
+# Format: one repo-relative path per line. Inline `#` comments are the required
+# justification. Adding a file here is a deliberate, reviewed exception.
+
+apps/www/registry/seam/ui/voice-visualizer.tsx  # ambient bar shimmer/sweep loops (repeat: Infinity)
+apps/www/registry/seam/ui/voice-avatar.tsx      # ambient "speaking with no level" opacity pulse (repeat: Infinity)

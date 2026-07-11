@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox-indeterminate",
+  "type": "registry:example",
+  "title": "Checkbox Indeterminate",
+  "registryDependencies": [
+    "https://seamui.dev/r/checkbox.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/checkbox-indeterminate.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport { Checkbox } from \"@/registry/seam/ui/checkbox\"\n\nconst ITEMS = [\"Springs\", \"Depth\", \"Touch feedback\"]\n\nexport default function CheckboxIndeterminate() {\n  const [checked, setChecked] = React.useState([true, false, false])\n  const all = checked.every(Boolean)\n  const some = checked.some(Boolean)\n\n  return (\n    <div className=\"grid gap-2.5 text-sm\">\n      <label className=\"flex items-center gap-2 font-medium\">\n        <Checkbox\n          checked={all}\n          indeterminate={some && !all}\n          onCheckedChange={(v) => setChecked(checked.map(() => v))}\n        />\n        Select all\n      </label>\n      <div className=\"ml-6 grid gap-2.5\">\n        {ITEMS.map((item, i) => (\n          <label key={item} className=\"flex items-center gap-2\">\n            <Checkbox\n              checked={checked[i]}\n              onCheckedChange={(v) =>\n                setChecked(checked.map((c, j) => (j === i ? v : c)))\n              }\n            />\n            {item}\n          </label>\n        ))}\n      </div>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

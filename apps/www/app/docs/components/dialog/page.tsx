@@ -1,9 +1,11 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { VariantPreview } from "@/components/docs/variant-preview"
+import { Install, ApiTable, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import DialogDemo from "@/registry/seam/examples/dialog-demo"
+import DialogForm from "@/registry/seam/examples/dialog-form"
+import DialogScroll from "@/registry/seam/examples/dialog-scroll"
 
 export const metadata: Metadata = {
   title: "Dialog — seamui",
@@ -19,54 +21,78 @@ export default function DialogDocs() {
         stack while a backdrop dims everything below.
       </p>
 
-      <ComponentPreview code={exampleSource("dialog-demo")}>
-        <DialogDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          {
+            key: "default",
+            title: "Default",
+            component: <DialogDemo />,
+            code: exampleSource("dialog-demo"),
+          },
+          {
+            key: "form",
+            title: "Form",
+            component: <DialogForm />,
+            code: exampleSource("dialog-form"),
+            description:
+              "A real form inside — the surface still rises to the top of the stack.",
+          },
+          {
+            key: "scroll",
+            title: "Scrollable",
+            component: <DialogScroll />,
+            code: exampleSource("dialog-scroll"),
+            description:
+              "Long content scrolls inside the modal; the header and footer stay put.",
+          },
+        ]}
+      />
 
       <Install name="dialog" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import {
-  Dialog,
-  DialogTrigger,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-  DialogFooter,
-  DialogClose,
-} from "@/components/ui/dialog"`}</CodeBlock>
-        <CodeBlock>{`<Dialog>
-  <DialogTrigger render={<Button>Open</Button>} />
-  <DialogContent>
-    <DialogHeader>
-      <DialogTitle>Title</DialogTitle>
-      <DialogDescription>Description</DialogDescription>
-    </DialogHeader>
-    <DialogFooter>
-      <DialogClose render={<Button>Save</Button>} />
-    </DialogFooter>
-  </DialogContent>
-</Dialog>`}</CodeBlock>
-      </Section>
+      <ApiTable
+        rows={[
+          {
+            prop: "showClose",
+            type: "boolean",
+            default: "true",
+            desc: "Renders the corner close button inside DialogContent; false removes it.",
+          },
+          {
+            prop: "open",
+            type: "boolean",
+            desc: "Controlled open state, forwarded to Base UI's Root.",
+          },
+          {
+            prop: "defaultOpen",
+            type: "boolean",
+            default: "false",
+            desc: "Uncontrolled initial open state.",
+          },
+          {
+            prop: "onOpenChange",
+            type: "(open, eventDetails) => void",
+            desc: "Called when the open state changes.",
+          },
+        ]}
+        footer={
+          <>
+            <code>Dialog</code> forwards all other Base UI Root props;{" "}
+            <code>DialogContent</code> forwards Popup props.
+          </>
+        }
+      />
 
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
-          The popup animates from <code>depth.modal.initial</code> to rest with{" "}
-          <code>springs.surface</code> — top-of-stack depth. The backdrop fades
-          in with <code>fades.normal</code>, reading as the page receding
-          beneath. Honors <code>prefers-reduced-motion</code>.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
-          Traps focus, restores it on close, locks page scroll, and wires{" "}
-          <code>aria-labelledby</code> / <code>aria-describedby</code> from{" "}
-          <code>DialogTitle</code> / <code>DialogDescription</code>. Dismisses on
-          Escape and backdrop click.
-        </p>
-      </Section>
+      <Notes>
+        <li>
+          Traps focus while open, restores it on close, and locks page scroll.
+        </li>
+        <li>Dismisses on Escape and backdrop click.</li>
+        <li>
+          <code>aria-labelledby</code> / <code>aria-describedby</code> are wired
+          from <code>DialogTitle</code> / <code>DialogDescription</code>.
+        </li>
+      </Notes>
     </main>
   )
 }

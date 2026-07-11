@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { VariantPreview } from "@/components/docs/variant-preview"
+import { Install, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import CollapsibleDemo from "@/registry/seam/examples/collapsible-demo"
 
@@ -19,39 +19,31 @@ export default function CollapsibleDocs() {
         Height animates between 0 and its measured value.
       </p>
 
-      <ComponentPreview code={exampleSource("collapsible-demo")}>
-        <CollapsibleDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          {
+            key: "default",
+            title: "Default",
+            component: <CollapsibleDemo />,
+            code: exampleSource("collapsible-demo"),
+          },
+        ]}
+      />
 
       <Install name="collapsible" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import {
-  Collapsible,
-  CollapsibleTrigger,
-  CollapsibleContent,
-} from "@/components/ui/collapsible"`}</CodeBlock>
-        <CodeBlock>{`<Collapsible>
-  <CollapsibleTrigger render={<Button>Toggle</Button>} />
-  <CollapsibleContent>…</CollapsibleContent>
-</Collapsible>`}</CodeBlock>
-      </Section>
-
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
-          Same height technique as Accordion:{" "}
-          <code>--collapsible-panel-height</code> is measured by Base UI and the
-          height is eased between 0 and that value.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
+      <Notes>
+        <li>
+          Same height technique as Accordion: Base UI measures{" "}
+          <code>--collapsible-panel-height</code> and the height eases between 0
+          and that value.
+        </li>
+        <li>
           The trigger exposes <code>aria-expanded</code> and controls the
-          region. Controlled via <code>open</code> / <code>onOpenChange</code>,
+          region; controlled via <code>open</code> / <code>onOpenChange</code>,
           or uncontrolled via <code>defaultOpen</code>.
-        </p>
-      </Section>
+        </li>
+      </Notes>
     </main>
   )
 }

@@ -1,24 +1,34 @@
 "use client"
 
-import * as React from "react"
+import type * as React from "react"
 import { Slider as BaseSlider } from "@base-ui/react/slider"
 import { motion, useReducedMotion } from "motion/react"
 
 import { cn } from "@/lib/utils"
 import { springs, fades, depth, reduced } from "@/lib/motion"
+import { useHaptics } from "@/lib/haptics"
 
 const MotionThumb = motion.create(BaseSlider.Thumb)
 
 function Slider({
   className,
+  onValueCommitted,
   ...props
 }: React.ComponentProps<typeof BaseSlider.Root>) {
   const reduceMotion = useReducedMotion()
+  const { trigger } = useHaptics()
 
   return (
     <BaseSlider.Root
       data-slot="slider"
       className={cn("relative w-full touch-none select-none", className)}
+      // tactile feedback: a tick as the value lands (no-op sans provider).
+      onValueCommitted={(
+        ...args: Parameters<NonNullable<typeof onValueCommitted>>
+      ) => {
+        trigger("tick")
+        onValueCommitted?.(...args)
+      }}
       {...props}
     >
       <BaseSlider.Control className="flex w-full items-center py-2">

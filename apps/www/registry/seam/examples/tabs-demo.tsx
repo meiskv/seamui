@@ -13,10 +13,16 @@ export default function TabsDemo() {
         <TabsTrigger value="password">Password</TabsTrigger>
         <TabsTrigger value="team">Team</TabsTrigger>
       </TabsList>
-      <TabsContent value="account" className="text-muted-foreground pt-2 text-sm">
+      <TabsContent
+        value="account"
+        className="text-muted-foreground pt-2 text-sm"
+      >
         Manage your account. The indicator springs between tabs.
       </TabsContent>
-      <TabsContent value="password" className="text-muted-foreground pt-2 text-sm">
+      <TabsContent
+        value="password"
+        className="text-muted-foreground pt-2 text-sm"
+      >
         Change your password here.
       </TabsContent>
       <TabsContent value="team" className="text-muted-foreground pt-2 text-sm">

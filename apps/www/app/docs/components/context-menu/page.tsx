@@ -1,13 +1,16 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { VariantPreview } from "@/components/docs/variant-preview"
+import { Install, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import ContextMenuDemo from "@/registry/seam/examples/context-menu-demo"
+import ContextMenuLabelled from "@/registry/seam/examples/context-menu-labelled"
+import ContextMenuDestructive from "@/registry/seam/examples/context-menu-destructive"
 
 export const metadata: Metadata = {
   title: "Context Menu — seamui",
-  description: "Right-click menu built on Base UI with seam overlay-depth entrance.",
+  description:
+    "Right-click menu built on Base UI with seam overlay-depth entrance.",
 }
 
 export default function ContextMenuDocs() {
@@ -19,42 +22,43 @@ export default function ContextMenuDocs() {
         Same overlay depth as the dropdown menu.
       </p>
 
-      <ComponentPreview code={exampleSource("context-menu-demo")}>
-        <ContextMenuDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          {
+            key: "default",
+            title: "Default",
+            component: <ContextMenuDemo />,
+            code: exampleSource("context-menu-demo"),
+          },
+          {
+            key: "labelled",
+            title: "Grouped",
+            component: <ContextMenuLabelled />,
+            code: exampleSource("context-menu-labelled"),
+            description: "Label + separator group related actions.",
+          },
+          {
+            key: "destructive",
+            title: "Destructive",
+            component: <ContextMenuDestructive />,
+            code: exampleSource("context-menu-destructive"),
+            description: "A destructive action set apart at the bottom.",
+          },
+        ]}
+      />
 
       <Install name="context-menu" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import {
-  ContextMenu,
-  ContextMenuTrigger,
-  ContextMenuContent,
-  ContextMenuItem,
-  ContextMenuSeparator,
-} from "@/components/ui/context-menu"`}</CodeBlock>
-        <CodeBlock>{`<ContextMenu>
-  <ContextMenuTrigger>Right-click me</ContextMenuTrigger>
-  <ContextMenuContent>
-    <ContextMenuItem>Reload</ContextMenuItem>
-  </ContextMenuContent>
-</ContextMenu>`}</CodeBlock>
-      </Section>
-
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
-          Shares the menu&apos;s overlay entrance: <code>depth.overlay</code>{" "}
-          with <code>springs.surface</code>, anchored to the cursor position by
-          Base UI. Honors <code>prefers-reduced-motion</code>.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
-          Opens on <code>contextmenu</code> and long-press; full keyboard
-          navigation once open; dismisses on Escape and outside interaction.
-        </p>
-      </Section>
+      <Notes>
+        <li>
+          Opens on <code>contextmenu</code> (right-click) and long-press,
+          anchored to the cursor position rather than the trigger element.
+        </li>
+        <li>
+          Full keyboard navigation once open; dismisses on Escape and outside
+          interaction.
+        </li>
+      </Notes>
     </main>
   )
 }

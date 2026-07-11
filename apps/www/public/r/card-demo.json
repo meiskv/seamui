@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "card-demo",
+  "type": "registry:example",
+  "title": "Card Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/card.json",
+    "https://seamui.dev/r/button.json",
+    "https://seamui.dev/r/input.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/card-demo.tsx",
+      "content": "import { Button } from \"@/registry/seam/ui/button\"\nimport {\n  Card,\n  CardAction,\n  CardContent,\n  CardDescription,\n  CardFooter,\n  CardHeader,\n  CardTitle,\n} from \"@/registry/seam/ui/card\"\nimport { Input } from \"@/registry/seam/ui/input\"\n\nexport default function CardDemo() {\n  return (\n    <Card className=\"w-full max-w-sm\">\n      <CardHeader>\n        <CardTitle>Sign in to seamui</CardTitle>\n        <CardDescription>\n          Enter your email below to sign in to your account.\n        </CardDescription>\n        <CardAction>\n          <Button variant=\"link\" className=\"px-0\">\n            Sign up\n          </Button>\n        </CardAction>\n      </CardHeader>\n      <CardContent className=\"grid gap-2.5\">\n        <Input type=\"email\" placeholder=\"m@example.com\" />\n        <Input type=\"password\" placeholder=\"Password\" />\n      </CardContent>\n      <CardFooter className=\"flex-col gap-2\">\n        <Button className=\"w-full\">Sign in</Button>\n        <Button variant=\"ghost\" className=\"w-full\">\n          Continue with Google\n        </Button>\n      </CardFooter>\n    </Card>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

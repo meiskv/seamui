@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "avatar-sizes",
+  "type": "registry:example",
+  "title": "Avatar Sizes",
+  "registryDependencies": [
+    "https://seamui.dev/r/avatar.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/avatar-sizes.tsx",
+      "content": "import { Avatar, AvatarFallback, AvatarImage } from \"@/registry/seam/ui/avatar\"\n\nexport default function AvatarSizes() {\n  return (\n    <div className=\"flex items-center gap-3\">\n      <Avatar className=\"size-6\">\n        <AvatarImage src=\"https://github.com/shadcn.png\" alt=\"@shadcn\" />\n        <AvatarFallback className=\"text-[0.625rem]\">CN</AvatarFallback>\n      </Avatar>\n      <Avatar className=\"size-9\">\n        <AvatarImage src=\"https://github.com/shadcn.png\" alt=\"@shadcn\" />\n        <AvatarFallback>CN</AvatarFallback>\n      </Avatar>\n      <Avatar className=\"size-14\">\n        <AvatarImage src=\"https://github.com/shadcn.png\" alt=\"@shadcn\" />\n        <AvatarFallback>CN</AvatarFallback>\n      </Avatar>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

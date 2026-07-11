@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "alert-dialog-signout",
+  "type": "registry:example",
+  "title": "Alert Dialog Signout",
+  "registryDependencies": [
+    "https://seamui.dev/r/alert-dialog.json",
+    "https://seamui.dev/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/alert-dialog-signout.tsx",
+      "content": "import { Button } from \"@/registry/seam/ui/button\"\nimport {\n  AlertDialog,\n  AlertDialogAction,\n  AlertDialogCancel,\n  AlertDialogContent,\n  AlertDialogDescription,\n  AlertDialogFooter,\n  AlertDialogHeader,\n  AlertDialogTitle,\n  AlertDialogTrigger,\n} from \"@/registry/seam/ui/alert-dialog\"\n\nexport default function AlertDialogSignout() {\n  return (\n    <AlertDialog>\n      <AlertDialogTrigger render={<Button variant=\"ghost\">Sign out</Button>} />\n      <AlertDialogContent>\n        <AlertDialogHeader>\n          <AlertDialogTitle>Sign out of this device?</AlertDialogTitle>\n          <AlertDialogDescription>\n            You will need to sign in again to pick up where you left off.\n          </AlertDialogDescription>\n        </AlertDialogHeader>\n        <AlertDialogFooter>\n          <AlertDialogCancel render={<Button variant=\"ghost\">Cancel</Button>} />\n          <AlertDialogAction\n            render={<Button variant=\"secondary\">Sign out</Button>}\n          />\n        </AlertDialogFooter>\n      </AlertDialogContent>\n    </AlertDialog>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

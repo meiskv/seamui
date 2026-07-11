@@ -1,13 +1,16 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { VariantPreview } from "@/components/docs/variant-preview"
+import { Install, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import TooltipDemo from "@/registry/seam/examples/tooltip-demo"
+import TooltipIcon from "@/registry/seam/examples/tooltip-icon"
+import TooltipShortcut from "@/registry/seam/examples/tooltip-shortcut"
 
 export const metadata: Metadata = {
   title: "Tooltip — seamui",
-  description: "Tooltip built on Base UI; the surface rises with overlay depth.",
+  description:
+    "Tooltip built on Base UI; the surface rises with overlay depth.",
 }
 
 export default function TooltipDocs() {
@@ -19,44 +22,44 @@ export default function TooltipDocs() {
         depth — the canonical seam pattern for floating surfaces.
       </p>
 
-      <ComponentPreview code={exampleSource("tooltip-demo")}>
-        <TooltipDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          {
+            key: "default",
+            title: "Default",
+            component: <TooltipDemo />,
+            code: exampleSource("tooltip-demo"),
+          },
+          {
+            key: "icon",
+            title: "Icon button",
+            component: <TooltipIcon />,
+            code: exampleSource("tooltip-icon"),
+            description:
+              "The most common case — a label for an icon-only control.",
+          },
+          {
+            key: "shortcut",
+            title: "With shortcut",
+            component: <TooltipShortcut />,
+            code: exampleSource("tooltip-shortcut"),
+            description: "Pair the hint with its keyboard shortcut via Kbd.",
+          },
+        ]}
+      />
 
       <Install name="tooltip" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import {
-  Tooltip,
-  TooltipTrigger,
-  TooltipContent,
-  TooltipProvider,
-} from "@/components/ui/tooltip"`}</CodeBlock>
-        <CodeBlock>{`<TooltipProvider>
-  <Tooltip>
-    <TooltipTrigger render={<Button>Hover</Button>} />
-    <TooltipContent>Label</TooltipContent>
-  </Tooltip>
-</TooltipProvider>`}</CodeBlock>
-      </Section>
-
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
-          On open the popup animates from <code>depth.overlay.initial</code>{" "}
-          (opacity 0, scale 0.96, offset) to rest with{" "}
-          <code>springs.surface</code> — the surface rising toward the user.
-          Base UI owns positioning and mount; motion owns the entrance. Honors{" "}
-          <code>prefers-reduced-motion</code>.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
+      <Notes>
+        <li>
           Wrap your app (or a subtree) in <code>TooltipProvider</code> to share
-          delay and coordinate open state. Shows on hover and keyboard focus;
-          dismisses on blur and Escape.
-        </p>
-      </Section>
+          the open delay (200ms by default) and coordinate open state across
+          tooltips.
+        </li>
+        <li>
+          Shows on hover and keyboard focus; dismisses on blur and Escape.
+        </li>
+      </Notes>
     </main>
   )
 }

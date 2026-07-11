@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { VariantPreview } from "@/components/docs/variant-preview"
+import { Install, ApiTable, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import ComboboxDemo from "@/registry/seam/examples/combobox-demo"
 import ComboboxMultiple from "@/registry/seam/examples/combobox-multiple"
@@ -27,137 +27,132 @@ export default function ComboboxDocs() {
         selection; seamui adds the well/key depth and overlay motion.
       </p>
 
-      <ComponentPreview code={exampleSource("combobox-demo")}>
-        <ComboboxDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          {
+            key: "basic",
+            title: "Basic",
+            component: <ComboboxDemo />,
+            code: exampleSource("combobox-demo"),
+            description:
+              "A single-select filter — type to narrow, pick one option.",
+          },
+          {
+            key: "multiple",
+            title: "Multiple",
+            component: <ComboboxMultiple />,
+            code: exampleSource("combobox-multiple"),
+            description:
+              "Set multiple and render selected values as chips in a ComboboxChips well.",
+          },
+          {
+            key: "clear",
+            title: "Clear",
+            component: <ComboboxClear />,
+            code: exampleSource("combobox-clear"),
+            description:
+              "With a value selected, the trailing × resets the field.",
+          },
+          {
+            key: "groups",
+            title: "Groups",
+            component: <ComboboxGroups />,
+            code: exampleSource("combobox-groups"),
+            description:
+              "Grouped items with labels, filtered across groups via ComboboxCollection.",
+          },
+          {
+            key: "custom",
+            title: "Custom items",
+            component: <ComboboxCustom />,
+            code: exampleSource("combobox-custom"),
+            description:
+              "Items can render arbitrary content — here an avatar, name, and role.",
+          },
+          {
+            key: "invalid",
+            title: "Invalid",
+            component: <ComboboxInvalid />,
+            code: exampleSource("combobox-invalid"),
+            description:
+              "aria-invalid on the input paints the destructive border and ring.",
+          },
+          {
+            key: "disabled",
+            title: "Disabled",
+            component: <ComboboxDisabled />,
+            code: exampleSource("combobox-disabled"),
+            description:
+              "Pass disabled on the root to freeze the whole control.",
+          },
+        ]}
+      />
 
       <Install name="combobox" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import {
-  Combobox,
-  ComboboxContent,
-  ComboboxEmpty,
-  ComboboxInput,
-  ComboboxItem,
-  ComboboxList,
-} from "@/components/ui/combobox"`}</CodeBlock>
-        <CodeBlock>{`const frameworks = [
-  { value: "next", label: "Next.js" },
-  { value: "astro", label: "Astro" },
-]
+      <ApiTable
+        rows={[
+          {
+            prop: "items",
+            type: "Value[]",
+            desc: "On <Combobox> — the option objects Base UI filters as you type.",
+          },
+          {
+            prop: "itemToStringLabel",
+            type: "(item) => string",
+            desc: "On <Combobox> — how an item echoes into the input as text.",
+          },
+          {
+            prop: "multiple",
+            type: "boolean",
+            default: "false",
+            desc: "On <Combobox> — select several values; compose ComboboxChips for the token UI.",
+          },
+          {
+            prop: "value / onValueChange",
+            type: "Value | Value[], (value, eventDetails) => void",
+            desc: "Controlled selection on <Combobox>.",
+          },
+          {
+            prop: "showClear",
+            type: "boolean",
+            default: "true",
+            desc: "On <ComboboxInput> — hides the trailing × button when false.",
+          },
+          {
+            prop: "sideOffset",
+            type: "number",
+            default: "6",
+            desc: "On <ComboboxContent> — gap between field and popup.",
+          },
+        ]}
+        footer={
+          <>
+            <code>&lt;Combobox&gt;</code> is Base UI&apos;s{" "}
+            <code>Combobox.Root</code> aliased directly, so its full generic
+            prop surface passes through.
+          </>
+        }
+      />
 
-<Combobox items={frameworks} itemToStringLabel={(f) => f.label}>
-  <ComboboxInput placeholder="Search framework…" />
-  <ComboboxContent>
-    <ComboboxEmpty>No framework found.</ComboboxEmpty>
-    <ComboboxList>
-      {(f) => (
-        <ComboboxItem key={f.value} value={f}>{f.label}</ComboboxItem>
-      )}
-    </ComboboxList>
-  </ComboboxContent>
-</Combobox>`}</CodeBlock>
-        <p className="text-muted-foreground text-sm">
-          Pass the option objects to <code>items</code> and a{" "}
-          <code>itemToStringLabel</code> so Base UI can filter and echo the
-          selected label into the input. Add <code>multiple</code> on the root
-          to select several values (compose <code>Combobox.Chips</code> for the
-          token UI). Control with <code>value</code> /{" "}
-          <code>onValueChange</code>.
-        </p>
-      </Section>
-
-      <Section title="Examples">
-        <h3 className="mt-6 text-lg font-medium">Basic</h3>
-        <p className="text-muted-foreground text-sm">
-          A single-select filter — type to narrow, pick one option.
-        </p>
-        <ComponentPreview code={exampleSource("combobox-demo")}>
-          <ComboboxDemo />
-        </ComponentPreview>
-
-        <h3 className="mt-6 text-lg font-medium">Multiple</h3>
-        <p className="text-muted-foreground text-sm">
-          Set <code>multiple</code> and render selected values as chips in a{" "}
-          <code>ComboboxChips</code> well.
-        </p>
-        <ComponentPreview code={exampleSource("combobox-multiple")}>
-          <ComboboxMultiple />
-        </ComponentPreview>
-
-        <h3 className="mt-6 text-lg font-medium">Clear</h3>
-        <p className="text-muted-foreground text-sm">
-          With a value selected, the trailing <code>×</code> resets the field.
-        </p>
-        <ComponentPreview code={exampleSource("combobox-clear")}>
-          <ComboboxClear />
-        </ComponentPreview>
-
-        <h3 className="mt-6 text-lg font-medium">Groups</h3>
-        <p className="text-muted-foreground text-sm">
-          Grouped items with labels, filtered across groups via{" "}
-          <code>ComboboxCollection</code>.
-        </p>
-        <ComponentPreview code={exampleSource("combobox-groups")}>
-          <ComboboxGroups />
-        </ComponentPreview>
-
-        <h3 className="mt-6 text-lg font-medium">Custom items</h3>
-        <p className="text-muted-foreground text-sm">
-          Items can render arbitrary content — here an avatar, name, and role.
-        </p>
-        <ComponentPreview code={exampleSource("combobox-custom")}>
-          <ComboboxCustom />
-        </ComponentPreview>
-
-        <h3 className="mt-6 text-lg font-medium">Invalid</h3>
-        <p className="text-muted-foreground text-sm">
-          <code>aria-invalid</code> on the input paints the destructive
-          border and ring.
-        </p>
-        <ComponentPreview code={exampleSource("combobox-invalid")}>
-          <ComboboxInvalid />
-        </ComponentPreview>
-
-        <h3 className="mt-6 text-lg font-medium">Disabled</h3>
-        <p className="text-muted-foreground text-sm">
-          Pass <code>disabled</code> on the root to freeze the whole control.
-        </p>
-        <ComponentPreview code={exampleSource("combobox-disabled")}>
-          <ComboboxDisabled />
-        </ComponentPreview>
-      </Section>
-
-      <Section title="Anatomy">
-        <p className="text-muted-foreground text-sm">
-          <code>ComboboxInput</code> is the debossed entry field — it carries a
-          leading search icon, a trailing chevron, and a Clear (
-          <code>×</code>) button. <code>ComboboxContent</code> is the
-          overlay-depth popup; <code>ComboboxList</code> takes a render function
-          that maps the filtered items to <code>ComboboxItem</code>s.{" "}
-          <code>ComboboxEmpty</code> renders only when nothing matches.
-        </p>
-      </Section>
-
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
-          The popup rises with <code>depth.overlay</code> on{" "}
-          <code>springs.surface</code>; highlighted items shift with{" "}
-          <code>data-[highlighted]</code>. Under{" "}
-          <code>prefers-reduced-motion</code> the popup fades in with{" "}
-          <code>fades.normal</code> instead of rising.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
-          Base UI wires the <code>combobox</code> / <code>listbox</code> roles,
-          <code>aria-activedescendant</code>, and full keyboard support (type to
-          filter, arrows to move, Enter to select, Escape to close). The Clear
-          button is labelled; the empty state announces politely.
-        </p>
-      </Section>
+      <Notes>
+        <li>
+          <code>ComboboxList</code> takes a render function that maps the
+          filtered items to <code>ComboboxItem</code>s;{" "}
+          <code>ComboboxEmpty</code> stays mounted (for screen-reader
+          announcements) and only shows content when nothing matches.
+        </li>
+        <li>
+          In multi-select, <code>ComboboxChips</code> wraps the chips + input in
+          Base UI&apos;s <code>InputGroup</code> so the popup anchors to — and
+          matches the width of — the whole well, not the bare input.
+        </li>
+        <li>
+          The popup condenses in/out via CSS keyed to Base UI&apos;s{" "}
+          <code>data-starting-style</code> / <code>data-ending-style</code>, so
+          the exit is awaited before unmount.
+        </li>
+      </Notes>
     </main>
   )
 }

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "drawer-menu",
+  "type": "registry:example",
+  "title": "Drawer Menu",
+  "registryDependencies": [
+    "https://seamui.dev/r/drawer.json",
+    "https://seamui.dev/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/drawer-menu.tsx",
+      "content": "import { Copy, Star, Code, Flag } from \"lucide-react\"\n\nimport { Button } from \"@/registry/seam/ui/button\"\nimport {\n  Drawer,\n  DrawerContent,\n  DrawerHeader,\n  DrawerTitle,\n  DrawerTrigger,\n  DrawerClose,\n} from \"@/registry/seam/ui/drawer\"\n\nexport default function DrawerMenu() {\n  return (\n    <Drawer>\n      <DrawerTrigger render={<Button variant=\"outline\">Share</Button>} />\n      <DrawerContent>\n        <DrawerHeader>\n          <DrawerTitle>Share</DrawerTitle>\n        </DrawerHeader>\n        <div className=\"flex flex-col gap-1\">\n          <DrawerClose\n            render={\n              <Button variant=\"ghost\" className=\"w-full justify-start\">\n                <Copy />\n                Copy link\n              </Button>\n            }\n          />\n          <DrawerClose\n            render={\n              <Button variant=\"ghost\" className=\"w-full justify-start\">\n                <Star />\n                Add to favorites\n              </Button>\n            }\n          />\n          <DrawerClose\n            render={\n              <Button variant=\"ghost\" className=\"w-full justify-start\">\n                <Code />\n                Embed\n              </Button>\n            }\n          />\n          <DrawerClose\n            render={\n              <Button variant=\"ghost\" className=\"w-full justify-start\">\n                <Flag />\n                Report\n              </Button>\n            }\n          />\n        </div>\n      </DrawerContent>\n    </Drawer>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

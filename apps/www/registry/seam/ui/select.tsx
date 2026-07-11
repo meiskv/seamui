@@ -1,12 +1,11 @@
 "use client"
 
-import * as React from "react"
+import type * as React from "react"
 import { Select as BaseSelect } from "@base-ui/react/select"
-import { motion, useReducedMotion } from "motion/react"
 import { Check, ChevronDown } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { springs, fades, depth, reduced } from "@/lib/motion"
+import { condense } from "@/lib/motion"
 
 function Select(props: React.ComponentProps<typeof BaseSelect.Root>) {
   return <BaseSelect.Root {...props} />
@@ -35,7 +34,8 @@ function SelectTrigger({
         "flex h-10 items-center justify-between gap-2 rounded-md squircle text-sm outline-none",
         variant === "default" &&
           "w-full bg-muted shadow-well px-3.5 py-2 font-medium hover:bg-muted/80",
-        variant === "ghost" && "w-fit bg-transparent px-2 py-2 hover:text-foreground",
+        variant === "ghost" &&
+          "w-fit bg-transparent px-2 py-2 hover:text-foreground",
         "data-[popup-open]:ring-2 data-[popup-open]:ring-ring/50 focus-visible:ring-2 focus-visible:ring-ring/50",
         "disabled:pointer-events-none disabled:opacity-50",
         className
@@ -56,25 +56,24 @@ function SelectContent({
   sideOffset = 6,
   ...props
 }: React.ComponentProps<typeof BaseSelect.Popup> & { sideOffset?: number }) {
-  const reduceMotion = useReducedMotion()
-
   return (
     <BaseSelect.Portal>
-      <BaseSelect.Positioner sideOffset={sideOffset} className="z-50">
+      {/* alignItemWithTrigger={false}: drop the list *below* the trigger like a
+          combobox/dropdown, instead of Base UI's default native-style behavior
+          that overlays the selected item on top of the trigger. */}
+      <BaseSelect.Positioner
+        sideOffset={sideOffset}
+        align="start"
+        alignItemWithTrigger={false}
+        className="z-50"
+      >
         <BaseSelect.Popup
           data-slot="select-content"
           className={cn(
             "bg-popover text-popover-foreground z-50 max-h-[min(24rem,var(--available-height))] min-w-[var(--anchor-width)] overflow-y-auto rounded-lg border p-1 shadow-overlay outline-none",
+            condense.surface,
             className
           )}
-          render={
-            <motion.div
-              // reduced motion: opacity-only fade — never a dead pop-in.
-              initial={reduceMotion ? reduced.fadeIn.initial : depth.overlay.initial}
-              animate={depth.overlay.animate}
-              transition={reduceMotion ? fades.normal : springs.surface}
-            />
-          }
           {...props}
         >
           {children}
@@ -119,7 +118,10 @@ function SelectLabel({
   return (
     <BaseSelect.GroupLabel
       data-slot="select-label"
-      className={cn("px-2 py-1.5 text-xs font-medium text-muted-foreground", className)}
+      className={cn(
+        "px-2 py-1.5 text-xs font-medium text-muted-foreground",
+        className
+      )}
       {...props}
     />
   )

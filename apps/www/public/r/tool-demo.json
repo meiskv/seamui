@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tool-demo",
+  "type": "registry:example",
+  "title": "Tool Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/tool.json",
+    "https://seamui.dev/r/code-block.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/tool-demo.tsx",
+      "content": "import { CodeBlock } from \"@/registry/seam/ui/code-block\"\nimport { Tool, ToolContent, ToolHeader } from \"@/registry/seam/ui/tool\"\n\nexport default function ToolDemo() {\n  return (\n    <div className=\"flex w-full max-w-md flex-col gap-2\">\n      <Tool defaultOpen>\n        <ToolHeader title=\"search_docs\" status=\"done\" />\n        <ToolContent>\n          <p className=\"text-muted-foreground\">\n            Found 3 matches for &ldquo;spring config&rdquo;.\n          </p>\n          <CodeBlock\n            language=\"json\"\n            code={`{ \"query\": \"spring config\", \"results\": 3 }`}\n          />\n        </ToolContent>\n      </Tool>\n\n      <Tool>\n        <ToolHeader title=\"fetch_weather\" status=\"running\" />\n        <ToolContent>\n          <p className=\"text-muted-foreground\">Calling the weather API…</p>\n        </ToolContent>\n      </Tool>\n\n      <Tool>\n        <ToolHeader title=\"write_file\" status=\"pending\" />\n        <ToolContent>\n          <p className=\"text-muted-foreground\">Queued.</p>\n        </ToolContent>\n      </Tool>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

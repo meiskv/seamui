@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tool-error",
+  "type": "registry:example",
+  "title": "Tool Error",
+  "registryDependencies": [
+    "https://seamui.dev/r/tool.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/tool-error.tsx",
+      "content": "import { Tool, ToolContent, ToolHeader } from \"@/registry/seam/ui/tool\"\n\nexport default function ToolError() {\n  return (\n    <div className=\"w-full max-w-md\">\n      <Tool defaultOpen>\n        <ToolHeader title=\"charge_card\" status=\"error\" />\n        <ToolContent>\n          <p className=\"text-destructive\">\n            402 Payment Required — the card was declined. No retry attempted.\n          </p>\n        </ToolContent>\n      </Tool>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

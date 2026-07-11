@@ -1,9 +1,11 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { VariantPreview } from "@/components/docs/variant-preview"
+import { Install, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import SliderDemo from "@/registry/seam/examples/slider-demo"
+import SliderSteps from "@/registry/seam/examples/slider-steps"
+import SliderDisabled from "@/registry/seam/examples/slider-disabled"
 
 export const metadata: Metadata = {
   title: "Slider — seamui",
@@ -19,33 +21,43 @@ export default function SliderDocs() {
         when grabbed, so touch targets feel tactile.
       </p>
 
-      <ComponentPreview code={exampleSource("slider-demo")}>
-        <SliderDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          {
+            key: "default",
+            title: "Default",
+            component: <SliderDemo />,
+            code: exampleSource("slider-demo"),
+          },
+          {
+            key: "steps",
+            title: "Steps",
+            component: <SliderSteps />,
+            code: exampleSource("slider-steps"),
+          },
+          {
+            key: "disabled",
+            title: "Disabled",
+            component: <SliderDisabled />,
+            code: exampleSource("slider-disabled"),
+          },
+        ]}
+      />
 
       <Install name="slider" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import { Slider } from "@/components/ui/slider"`}</CodeBlock>
-        <CodeBlock>{`<Slider defaultValue={50} max={100} step={1} />`}</CodeBlock>
-      </Section>
-
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
-          On press/drag the thumb rises to <code>depth.raised</code> with{" "}
-          <code>springs.snappy</code> — a physical &ldquo;grab&rdquo; cue that
-          settles on release. Honors <code>prefers-reduced-motion</code>.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
-          Renders with <code>role="slider"</code> and full keyboard support
-          (arrows, Home/End). Controlled via <code>value</code> /{" "}
-          <code>onValueChange</code>, or uncontrolled via{" "}
-          <code>defaultValue</code>.
-        </p>
-      </Section>
+      <Notes>
+        <li>
+          On press/drag the thumb rises to <code>depth.raised</code> — a
+          physical &ldquo;grab&rdquo; cue that settles on release (most controls
+          recede; the slider thumb lifts).
+        </li>
+        <li>
+          Controlled via <code>value</code> / <code>onValueChange</code>,
+          uncontrolled via <code>defaultValue</code>; keyboard supports arrows
+          plus Home/End.
+        </li>
+      </Notes>
     </main>
   )
 }

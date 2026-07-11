@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "code-block-long-lines",
+  "type": "registry:example",
+  "title": "Code Block Long Lines",
+  "registryDependencies": [
+    "https://seamui.dev/r/code-block.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/code-block-long-lines.tsx",
+      "content": "import { CodeBlock } from \"@/registry/seam/ui/code-block\"\n\nconst CODE = `const springs = { press: { type: \"spring\", stiffness: 600, damping: 40, mass: 0.5 }, snappy: { type: \"spring\", stiffness: 420, damping: 30, mass: 0.7 } }`\n\n// A long line scrolls horizontally inside the well — the page never widens.\nexport default function CodeBlockLongLines() {\n  return (\n    <div className=\"w-full max-w-md\">\n      <CodeBlock code={CODE} language=\"ts\" />\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

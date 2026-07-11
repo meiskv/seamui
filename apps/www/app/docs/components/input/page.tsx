@@ -1,9 +1,12 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { VariantPreview } from "@/components/docs/variant-preview"
+import { Install, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import InputDemo from "@/registry/seam/examples/input-demo"
+import InputDisabled from "@/registry/seam/examples/input-disabled"
+import InputInvalid from "@/registry/seam/examples/input-invalid"
+import InputFile from "@/registry/seam/examples/input-file"
 
 export const metadata: Metadata = {
   title: "Input — seamui",
@@ -19,32 +22,48 @@ export default function InputDocs() {
         for labels, validation, and messages.
       </p>
 
-      <ComponentPreview code={exampleSource("input-demo")}>
-        <InputDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          {
+            key: "default",
+            title: "Default",
+            component: <InputDemo />,
+            code: exampleSource("input-demo"),
+          },
+          {
+            key: "disabled",
+            title: "Disabled",
+            component: <InputDisabled />,
+            code: exampleSource("input-disabled"),
+          },
+          {
+            key: "invalid",
+            title: "Invalid",
+            component: <InputInvalid />,
+            code: exampleSource("input-invalid"),
+          },
+          {
+            key: "file",
+            title: "File",
+            component: <InputFile />,
+            code: exampleSource("input-file"),
+          },
+        ]}
+      />
 
       <Install name="input" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import { Input } from "@/components/ui/input"`}</CodeBlock>
-        <CodeBlock>{`<Input type="email" placeholder="Email" />`}</CodeBlock>
-      </Section>
-
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
-          Inputs stay still by design — the focus ring provides feedback without
-          motion. This keeps text entry calm; depth animation is reserved for
-          pressable and floating surfaces.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
-          Renders a native <code>&lt;input&gt;</code>. Pair with Base UI{" "}
-          <code>Field</code> for accessible labels and error messages; invalid
-          state is exposed via <code>data-[invalid]</code>.
-        </p>
-      </Section>
+      <Notes>
+        <li>
+          Stays still by design — text entry is calm; the focus ring is the
+          feedback, and depth animation is reserved for pressable and floating
+          surfaces.
+        </li>
+        <li>
+          Pair with Base UI <code>Field</code> for accessible labels and error
+          messages; invalid state is exposed via <code>data-[invalid]</code>.
+        </li>
+      </Notes>
     </main>
   )
 }

@@ -6,7 +6,12 @@ out
 .DS_Store
 .env*
 !.env.example
-bun.lock
 
 # next
 next-env.d.ts
+
+# test / coverage
+coverage
+test-results
+playwright-report
+.playwright

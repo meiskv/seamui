@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "message-avatar-fallback",
+  "type": "registry:example",
+  "title": "Message Avatar Fallback",
+  "registryDependencies": [
+    "https://seamui.dev/r/message.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/message-avatar-fallback.tsx",
+      "content": "import {\n  Message,\n  MessageAvatar,\n  MessageContent,\n} from \"@/registry/seam/ui/message\"\n\nexport default function MessageAvatarFallback() {\n  return (\n    <div className=\"flex w-full max-w-md flex-col gap-2\">\n      <Message from=\"assistant\">\n        <MessageAvatar\n          name=\"Ada Lovelace\"\n          src=\"https://i.pravatar.cc/64?img=5\"\n        />\n        <MessageContent>An avatar image, when one is available.</MessageContent>\n      </Message>\n      <Message from=\"assistant\">\n        <MessageAvatar name=\"Ada Lovelace\" />\n        <MessageContent>\n          With no image, the fallback shows the initials — derived from the\n          name.\n        </MessageContent>\n      </Message>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

@@ -1,9 +1,10 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { VariantPreview } from "@/components/docs/variant-preview"
+import { Install, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import ProgressDemo from "@/registry/seam/examples/progress-demo"
+import ProgressLabeled from "@/registry/seam/examples/progress-labeled"
 
 export const metadata: Metadata = {
   title: "Progress — seamui",
@@ -19,32 +20,37 @@ export default function ProgressDocs() {
         changes.
       </p>
 
-      <ComponentPreview code={exampleSource("progress-demo")}>
-        <ProgressDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          {
+            key: "default",
+            title: "Animated",
+            component: <ProgressDemo />,
+            code: exampleSource("progress-demo"),
+          },
+          {
+            key: "labeled",
+            title: "Labeled",
+            component: <ProgressLabeled />,
+            code: exampleSource("progress-labeled"),
+          },
+        ]}
+      />
 
       <Install name="progress" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import { Progress } from "@/components/ui/progress"`}</CodeBlock>
-        <CodeBlock>{`<Progress value={66} />`}</CodeBlock>
-      </Section>
-
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
-          The indicator width eases with a duration (a layout dimension, like the
+      <Notes>
+        <li>
+          The indicator width eases with a duration (a layout dimension, like
           accordion height) so the fill glides between values rather than
           jumping.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
+        </li>
+        <li>
           Exposes <code>role="progressbar"</code> with{" "}
-          <code>aria-valuenow/min/max</code>. Set <code>value=&#123;null&#125;</code>{" "}
-          for an indeterminate state.
-        </p>
-      </Section>
+          <code>aria-valuenow/min/max</code>; set{" "}
+          <code>value=&#123;null&#125;</code> for an indeterminate state.
+        </li>
+      </Notes>
     </main>
   )
 }

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radio-group-disabled",
+  "type": "registry:example",
+  "title": "Radio Group Disabled",
+  "registryDependencies": [
+    "https://seamui.dev/r/radio-group.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/radio-group-disabled.tsx",
+      "content": "import { RadioGroup, RadioGroupItem } from \"@/registry/seam/ui/radio-group\"\n\nexport default function RadioGroupDisabled() {\n  return (\n    <RadioGroup defaultValue=\"spring\" disabled>\n      {[\"spring\", \"duration\"].map((v) => (\n        <label\n          key={v}\n          className=\"flex items-center gap-2 text-sm capitalize opacity-50\"\n        >\n          <RadioGroupItem value={v} />\n          {v}\n        </label>\n      ))}\n    </RadioGroup>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

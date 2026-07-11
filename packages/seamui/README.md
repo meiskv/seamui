@@ -8,10 +8,10 @@ It's a thin wrapper over the shadcn CLI: it scaffolds your project, wires the `@
 
 ```bash
 # Set up seamui in a new or existing project
-bunx --bun seamui@latest init -t next     # or: vite | remix
+bunx --bun @seamui/cli@latest init -t next     # or: vite | remix
 
 # Add components
-bunx --bun seamui@latest add button
+bunx --bun @seamui/cli@latest add button
 ```
 
 Prefer the shadcn CLI directly? Add the namespace to `components.json`:
@@ -27,6 +27,6 @@ then `bunx --bun shadcn@latest add @seamui/button`.
 | Command | Description |
 |---|---|
 | `init -t <framework>` | Scaffold (if empty), run `shadcn init`, register `@seamui`, install foundation (`theme`, `utils`, `motion`). |
-| `add <component…>` | Ensure the `@seamui` namespace, then `shadcn add @seamui/<name>`. |
+| `add <component…>` | Ensure the `@seamui` namespace, then `shadcn add @seamui/<name>`. Without a `components.json` it installs via direct registry URLs (shadcn bootstraps the project), then registers the namespace for next time. |
 
 All commands accept `--cwd <dir>` and `--yes`, and pass unknown flags through to shadcn.

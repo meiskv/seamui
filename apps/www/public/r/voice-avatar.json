@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "voice-avatar",
+  "type": "registry:ui",
+  "title": "Voice Avatar",
+  "description": "Avatar with a speaking halo that breathes with audio level.",
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [
+    "https://seamui.dev/r/utils.json",
+    "https://seamui.dev/r/motion.json",
+    "https://seamui.dev/r/avatar.json",
+    "https://seamui.dev/r/voice-visualizer.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/ui/voice-avatar.tsx",
+      "content": "\"use client\"\n\nimport type * as React from \"react\"\nimport { motion, useReducedMotion, type Transition } from \"motion/react\"\n\nimport { cn } from \"@/lib/utils\"\nimport { springs, fades } from \"@/lib/motion\"\nimport { Avatar, AvatarFallback, AvatarImage } from \"./avatar\"\nimport { useAudioLevel } from \"./voice-visualizer\"\n\nfunction initials(name?: string) {\n  if (!name) return \"\"\n  return name\n    .trim()\n    .split(/\\s+/)\n    .slice(0, 2)\n    .map((w) => w[0]?.toUpperCase() ?? \"\")\n    .join(\"\")\n}\n\n// A speaking avatar for a call roster. The photo is a raised circular key; the\n// speaking indicator is a halo *outside* it (a ring), so the face never\n// distorts. With a live level the halo breathes; with only `speaking` known it\n// pulses; under reduced motion it drops the scale and tracks level as opacity —\n// the indicator never disappears while someone is talking.\nfunction VoiceAvatar({\n  src,\n  name,\n  speaking,\n  level: levelProp,\n  track,\n  className,\n  children,\n  ...props\n}: React.ComponentProps<typeof Avatar> & {\n  src?: string\n  name?: string\n  speaking?: boolean\n  level?: number\n  track?: MediaStreamTrack | null\n}) {\n  const reduce = useReducedMotion() ?? false\n  const tracked = useAudioLevel(track)\n  const level = levelProp ?? tracked\n  const active = speaking ?? level > 0.05\n  const hasLevel = level > 0.02\n\n  let animate: Record<string, number | number[]>\n  let transition: Transition\n  if (!active) {\n    animate = { opacity: 0, scale: reduce ? 1 : 0.85 }\n    transition = reduce ? fades.fast : springs.snappy\n  } else if (hasLevel) {\n    animate = reduce\n      ? { opacity: 0.35 + level * 0.65, scale: 1 }\n      : { opacity: 1, scale: 1 + level * 0.18 }\n    transition = reduce ? fades.fast : springs.snappy\n  } else {\n    // speaking with no measured level → a gentle opacity pulse (reduced-safe).\n    animate = { opacity: [0.4, 1, 0.4], scale: 1 }\n    transition = { duration: 1.4, repeat: Infinity, ease: \"easeInOut\" }\n  }\n\n  return (\n    <div\n      data-slot=\"voice-avatar\"\n      data-speaking={active || undefined}\n      className=\"relative inline-flex\"\n    >\n      <motion.span\n        aria-hidden\n        className=\"ring-primary/40 pointer-events-none absolute -inset-1 rounded-full ring-2\"\n        initial={{ opacity: 0, scale: 0.85 }}\n        animate={animate}\n        transition={transition}\n      />\n      <Avatar className={cn(\"size-11 shadow-resting\", className)} {...props}>\n        {src ? <AvatarImage src={src} alt={name ?? \"\"} /> : null}\n        <AvatarFallback>{children ?? initials(name)}</AvatarFallback>\n      </Avatar>\n      <span role=\"status\" className=\"sr-only\">\n        {active && name ? `${name} is speaking` : \"\"}\n      </span>\n    </div>\n  )\n}\n\nexport { VoiceAvatar }\n",
+      "type": "registry:ui",
+      "target": "components/ui/voice-avatar.tsx"
+    }
+  ]
+}

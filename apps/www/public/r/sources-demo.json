@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sources-demo",
+  "type": "registry:example",
+  "title": "Sources Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/sources.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/sources-demo.tsx",
+      "content": "import {\n  Source,\n  Sources,\n  SourcesContent,\n  SourcesTrigger,\n} from \"@/registry/seam/ui/sources\"\n\nconst SOURCES = [\n  {\n    title: \"Base UI — Collapsible\",\n    href: \"https://base-ui.com/react/components/collapsible\",\n  },\n  {\n    title: \"motion.dev — Springs\",\n    href: \"https://motion.dev/docs/react-transitions\",\n  },\n  {\n    title: \"Tailwind CSS v4\",\n    href: \"https://tailwindcss.com/blog/tailwindcss-v4\",\n  },\n]\n\nexport default function SourcesDemo() {\n  return (\n    <div className=\"w-full max-w-md\">\n      <Sources>\n        <SourcesTrigger count={SOURCES.length} />\n        <SourcesContent>\n          {SOURCES.map((s, i) => (\n            <Source key={s.href} href={s.href} title={s.title} index={i + 1} />\n          ))}\n        </SourcesContent>\n      </Sources>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

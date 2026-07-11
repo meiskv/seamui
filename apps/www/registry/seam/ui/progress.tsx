@@ -1,6 +1,6 @@
 "use client"
 
-import * as React from "react"
+import type * as React from "react"
 import { Progress as BaseProgress } from "@base-ui/react/progress"
 
 import { cn } from "@/lib/utils"
@@ -23,7 +23,7 @@ function Progress({
           data-slot="progress-indicator"
           // Width is a layout dimension, so it eases with a duration (like the
           // accordion height) rather than a transform spring.
-          className="bg-primary h-full rounded-full transition-[width] duration-500 ease-out"
+          className="bg-primary h-full rounded-full transition-[width] duration-500 ease-out motion-reduce:transition-none"
         />
       </BaseProgress.Track>
     </BaseProgress.Root>

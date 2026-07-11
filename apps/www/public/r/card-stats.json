@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "card-stats",
+  "type": "registry:example",
+  "title": "Card Stats",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "https://seamui.dev/r/card.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/card-stats.tsx",
+      "content": "import { TrendingUp } from \"lucide-react\"\n\nimport {\n  Card,\n  CardContent,\n  CardDescription,\n  CardHeader,\n  CardTitle,\n} from \"@/registry/seam/ui/card\"\n\nexport default function CardStats() {\n  return (\n    <Card className=\"w-full max-w-xs\">\n      <CardHeader>\n        <CardDescription>Monthly active users</CardDescription>\n        <CardTitle className=\"text-3xl tabular-nums\">24,318</CardTitle>\n      </CardHeader>\n      <CardContent className=\"text-muted-foreground flex items-center gap-1 text-sm\">\n        <TrendingUp className=\"text-primary size-4\" />\n        <span className=\"text-primary font-medium\">+12.5%</span>\n        from last month\n      </CardContent>\n    </Card>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-invalid",
+  "type": "registry:example",
+  "title": "Input Invalid",
+  "registryDependencies": [
+    "https://seamui.dev/r/input.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/input-invalid.tsx",
+      "content": "import { Input } from \"@/registry/seam/ui/input\"\n\nexport default function InputInvalid() {\n  return (\n    <div className=\"grid max-w-xs gap-1.5\">\n      <Input\n        type=\"email\"\n        defaultValue=\"not-an-email\"\n        aria-invalid\n        aria-describedby=\"email-error\"\n        className=\"w-full\"\n      />\n      <p id=\"email-error\" className=\"text-destructive text-xs\">\n        Enter a valid email address.\n      </p>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

@@ -1,9 +1,11 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { VariantPreview } from "@/components/docs/variant-preview"
+import { Install, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import PopoverDemo from "@/registry/seam/examples/popover-demo"
+import PopoverForm from "@/registry/seam/examples/popover-form"
+import PopoverAlign from "@/registry/seam/examples/popover-align"
 
 export const metadata: Metadata = {
   title: "Popover — seamui",
@@ -19,41 +21,45 @@ export default function PopoverDocs() {
         on open with overlay depth.
       </p>
 
-      <ComponentPreview code={exampleSource("popover-demo")}>
-        <PopoverDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          {
+            key: "default",
+            title: "Default",
+            component: <PopoverDemo />,
+            code: exampleSource("popover-demo"),
+          },
+          {
+            key: "form",
+            title: "Form",
+            component: <PopoverForm />,
+            code: exampleSource("popover-form"),
+            description:
+              "A compact settings panel — inputs live right in the floating surface.",
+          },
+          {
+            key: "align",
+            title: "Alignment",
+            component: <PopoverAlign />,
+            code: exampleSource("popover-align"),
+            description:
+              "Align the panel to the start or end edge of the trigger.",
+          },
+        ]}
+      />
 
       <Install name="popover" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import {
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-} from "@/components/ui/popover"`}</CodeBlock>
-        <CodeBlock>{`<Popover>
-  <PopoverTrigger render={<Button>Open</Button>} />
-  <PopoverContent>…</PopoverContent>
-</Popover>`}</CodeBlock>
-      </Section>
-
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
-          Same overlay-depth entrance as Tooltip: from{" "}
-          <code>depth.overlay.initial</code> to rest with{" "}
-          <code>springs.surface</code>. Positioning (side, align, collision) is
-          handled by Base UI. Honors <code>prefers-reduced-motion</code>.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
-          Manages focus trapping and restoration, <code>aria</code> wiring, and
-          dismissal on outside-click and Escape. Compose{" "}
-          <code>PopoverTitle</code> / <code>PopoverDescription</code> for
-          labelled content and <code>PopoverClose</code> for a close button.
-        </p>
-      </Section>
+      <Notes>
+        <li>
+          Manages focus trapping and restoration; dismisses on outside click and
+          Escape.
+        </li>
+        <li>
+          Compose <code>PopoverTitle</code> / <code>PopoverDescription</code>{" "}
+          for labelled content and <code>PopoverClose</code> for a close button.
+        </li>
+      </Notes>
     </main>
   )
 }

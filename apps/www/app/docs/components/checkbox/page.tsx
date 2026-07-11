@@ -1,9 +1,12 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { VariantPreview } from "@/components/docs/variant-preview"
+import { Install, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import CheckboxDemo from "@/registry/seam/examples/checkbox-demo"
+import CheckboxWithText from "@/registry/seam/examples/checkbox-with-text"
+import CheckboxIndeterminate from "@/registry/seam/examples/checkbox-indeterminate"
+import CheckboxDisabled from "@/registry/seam/examples/checkbox-disabled"
 
 export const metadata: Metadata = {
   title: "Checkbox — seamui",
@@ -19,34 +22,49 @@ export default function CheckboxDocs() {
         pops in with a spring.
       </p>
 
-      <ComponentPreview code={exampleSource("checkbox-demo")}>
-        <CheckboxDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          {
+            key: "default",
+            title: "Default",
+            component: <CheckboxDemo />,
+            code: exampleSource("checkbox-demo"),
+          },
+          {
+            key: "with-text",
+            title: "With text",
+            component: <CheckboxWithText />,
+            code: exampleSource("checkbox-with-text"),
+          },
+          {
+            key: "indeterminate",
+            title: "Indeterminate",
+            component: <CheckboxIndeterminate />,
+            code: exampleSource("checkbox-indeterminate"),
+          },
+          {
+            key: "disabled",
+            title: "Disabled",
+            component: <CheckboxDisabled />,
+            code: exampleSource("checkbox-disabled"),
+          },
+        ]}
+      />
 
       <Install name="checkbox" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import { Checkbox } from "@/components/ui/checkbox"`}</CodeBlock>
-        <CodeBlock>{`<Checkbox defaultChecked />
-<Checkbox indeterminate />`}</CodeBlock>
-      </Section>
-
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
-          The indicator mounts on check and its mark scales in from 0 with{" "}
-          <code>springs.snappy</code>. The indeterminate dash swaps in via a{" "}
-          <code>data-[indeterminate]</code> CSS toggle. Honors{" "}
-          <code>prefers-reduced-motion</code>.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
-          Renders a native checkbox. Supports <code>checked</code>,{" "}
-          <code>defaultChecked</code>, and <code>indeterminate</code>; pair with
-          a <code>&lt;label&gt;</code> for a clickable target.
-        </p>
-      </Section>
+      <Notes>
+        <li>
+          The check mark scales in from 0 on check; the indeterminate dash swaps
+          in via a <code>data-[indeterminate]</code> CSS toggle instead of the
+          spring.
+        </li>
+        <li>
+          Supports <code>checked</code>, <code>defaultChecked</code>, and{" "}
+          <code>indeterminate</code>; pair with a <code>&lt;label&gt;</code> for
+          a clickable target.
+        </li>
+      </Notes>
     </main>
   )
 }

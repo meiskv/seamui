@@ -128,10 +128,27 @@ Concretely:
 Import from `@/lib/motion`. Never inline. Adding a preset means editing this
 file *in the registry* so every future install gets it.
 
+- **`personalities`** — the one-line feel dial: `seam` / `brisk` / `relaxed` / `playful`, each defining the four spring roles. `springs` just picks one (`export const springs = personalities.seam`), so consumers retune the whole library by swapping the pick. New springs go in a personality, never inline.
 - **`springs`** — `press` (stiff, instant), `snappy` (release/settle), `surface` (overlays), `bouncy` (toasts/accents, sparingly).
 - **`fades`** — `fast` / `normal`, opacity-only durations.
-- **`depth`** — `pressed` / `resting` / `raised` scalars + `overlay` / `modal` enter/exit objects.
-- **`reduced`** — the reduced-motion fallbacks (see §5). `pressed` (dim, no move), `fadeIn` (opacity-only enter), `instant` (zero-duration layout jump).
+- **`depth`** — `pressed` / `resting` / `raised` scalars + `overlay` / `modal` enter/exit objects. **Only for elements motion.dev controls end to end** (AI list entries, chips, the scroll-to-bottom button — AnimatePresence owns their unmount, so `exit` runs). Base UI popups do **not** use `depth` — see `condense`.
+- **`condense`** — the overlay motion, in **CSS** (`surface` / `backdrop` / `sheet`), keyed to Base UI's `data-starting-style` / `data-ending-style`. Base UI keeps a popup mounted through its exit and awaits **CSS transitions** (never motion's rAF springs) before unmounting — a spring exit gets cut off instantly, which is *the* reason overlays use CSS here, not motion. Enter = rise/grow + fade (popups scale from `--transform-origin` via the standalone `scale` property, since Base UI owns `transform` for positioning; modals pop from center; sheets slide on the standalone `translate` property). Exit falls back + fades, slightly quicker. Backdrops dim on the same clock. Reduced motion drops the scale/slide → opacity-only, still both ways.
+- **`shake`** — error feedback (brief x-axis shake); pair with `reduced.flash` under reduced motion.
+- **`reduced`** — the reduced-motion fallbacks (see §5). `pressed` (dim, no move), `fadeIn` (opacity-only enter), `instant` (zero-duration layout jump), `flash` (opacity error pulse).
+
+### 3b. The haptics layer — `lib/haptics.tsx`
+
+The tactile third of the touch-feedback pillar. `<HapticsProvider>` (mounted
+once, site-wide in the docs app) exposes `useHaptics()` → `trigger(preset)`
+with presets `tap` / `tick` / `success` / `error`, powered by `web-haptics`
+(Vibration API on Android, taptic trick on iOS, click audio when `sound` is
+on). Without a provider every trigger is a silent no-op — components always
+call the hook unconditionally. Wiring rules: `Button`/`Toggle` fire `tap` on
+pointerdown and take a `haptic` prop (`false` opts out, a preset name
+overrides); state controls (switch, checkbox, radio, slider, OTP) fire `tick`
+on commit; OTP fires `error` when `invalid` flips. Anything new that presses
+or commits state should follow the same shape. Haptics never block, throw, or
+gate on `prefers-reduced-motion`.
 
 ---
 
@@ -241,17 +258,34 @@ the part.
 > `onAnimationStart` as CSS-animation events, which collide with motion's
 > lifecycle callbacks of the same name.
 
-### Overlay entrance pattern (Base UI keeps parts mounted through exit)
+### Overlay entrance/exit pattern — use `condense` (CSS), NOT motion.dev
+
+Base UI keeps a popup mounted through its exit and **awaits CSS transitions**
+before unmounting — it can't await motion's rAF springs, so a `motion.div`
+exit gets cut off instantly (dead dismiss). So Base UI overlays animate in
+**CSS**, via the `condense` token, keyed to `data-starting-style` /
+`data-ending-style`. No `motion.div` render, no `depth.*` on the popup:
 
 ```tsx
-render={
-  <motion.div
-    initial={reduceMotion ? reduced.fadeIn.initial : depth.overlay.initial}
-    animate={depth.overlay.animate}
-    transition={reduceMotion ? fades.normal : springs.surface}
-  />
-}
+// popover / dropdown / select / tooltip / context-menu / preview-card / combobox
+<BasePart.Popup
+  data-slot="…"
+  className={cn("…surface classes…", condense.surface, className)}
+  {...props}
+/>
+
+// dialog / alert-dialog — popup gets condense.surface, backdrop gets condense.backdrop
+<BasePart.Backdrop className={cn("fixed inset-0 z-50 bg-black/50", condense.backdrop)} />
+<BasePart.Popup className={cn("…centered modal classes…", condense.surface, className)} {...props} />
+
+// drawer — the sheet slides on the standalone translate property
+<BaseDrawer.Popup className={cn("…sheet classes…", condense.sheet, className)} {...props} />
 ```
+
+`depth.overlay` / `depth.modal` stay ONLY for elements motion.dev owns end to
+end (AI list entries, chips, scroll-to-bottom button under `AnimatePresence`).
+If you catch yourself putting a `render={<motion.div initial={depth…}/>}` on a
+Base UI popup, stop — that's the instant-exit bug; use `condense`.
 
 ---
 
@@ -333,7 +367,7 @@ still reads).
 ```
 apps/www/
   registry/seam/            # THE PRODUCT — canonical component sources
-    lib/{utils,motion}.ts   # cn() + motion tokens (springs, depth, fades, reduced)
+    lib/{utils,motion,haptics}  # cn() + motion tokens (personalities, springs, depth, fades, reduced) + haptics provider
     theme/theme.css         # tokens + depth/well shadows (edit HERE, regen globals)
     ui/<name>.tsx           # one file per component
     examples/<name>-*.tsx   # live demos, shipped as registry examples
@@ -347,7 +381,9 @@ packages/seamui/            # the `seamui` CLI (thin wrapper over shadcn)
 
 - `bun run dev` — docs site.
 - `bun run registry:build` — compile `registry/` → `public/r/*.json`. **Run after every registry change; commit the JSON.**
-- `npx tsc --noEmit` (in `apps/www`) — typecheck before you claim done.
+- `bun run verify` — the fast CI gates in one shot: `lint` (Biome) + `typecheck` (app **and** CLI) + `motion:check` + `test` (Vitest) + `drift:check`.
+- Individual gates: `bun run lint`, `bun run typecheck`, `bun run motion:check`, `bun run test` / `test:coverage`, `bun run drift:check`, `bun run smoke`, `bun run test:e2e` (Playwright). All six CI jobs live in `.github/workflows/ci.yml`; see CONTRIBUTING.md → "Quality gates".
+- `bun run motion:check` mechanically enforces §3/§5 (no reduced-motion kill switches, no inline springs/durations). Ambient infinite-repeat exceptions go in `scripts/motion-contract-allow.txt` with a justification.
 
 ### Non-negotiables recap
 - Edit `registry/seam/**`, never `public/r/**` (generated).
