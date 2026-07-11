@@ -23,6 +23,9 @@ function Switch({
     <BaseSwitch.Root
       data-slot="switch"
       disabled={disabled}
+      // the render element below IS a native <button> — tell Base UI, since a
+      // custom render flips its default to "assume non-button".
+      nativeButton
       // tactile feedback: a tick as the state commits (no-op sans provider).
       onCheckedChange={(...args: Parameters<NonNullable<typeof onCheckedChange>>) => {
         trigger("tick")
