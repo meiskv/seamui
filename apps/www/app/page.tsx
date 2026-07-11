@@ -1,58 +1,185 @@
 import Link from "next/link"
 
 import { Button } from "@/registry/seam/ui/button"
-import ButtonVariants from "@/registry/seam/examples/button-variants"
-import { HapticButtons } from "@/components/site/haptic-buttons"
+import { Switch } from "@/registry/seam/ui/switch"
+import { Checkbox } from "@/registry/seam/ui/checkbox"
+import { MediaToggle } from "@/registry/seam/ui/media-toggle"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/registry/seam/ui/popover"
+import { Fig } from "@/components/site/fig"
+import { FigPresence } from "@/components/site/fig-presence"
 import { ThemeToggle } from "@/components/site/theme-toggle"
 
 export default function HomePage() {
   return (
     <>
-      <header className="mx-auto flex h-14 max-w-2xl items-center justify-end px-6">
-        <ThemeToggle />
-      </header>
-      <main className="mx-auto flex min-h-[calc(100vh-3.5rem)] max-w-2xl flex-col items-start justify-center gap-8 px-6 pb-24">
-      <div className="space-y-3">
-        <h1 className="text-4xl font-semibold tracking-tight">seamui</h1>
-        <p className="text-muted-foreground text-lg">
-          Beautifully animated components you own. shadcn&apos;s distribution
-          model, rebuilt on Base UI primitives with a motion.dev animation layer
-          designed around mobile principles — springs, touch feedback, and
-          depth.
-        </p>
-      </div>
-
-      <div className="squircle bg-muted/60 shadow-well w-full space-y-2 rounded-lg p-4">
-        <span className="bg-secondary text-secondary-foreground shadow-resting squircle inline-flex rounded-md px-2 py-0.5 text-[0.6875rem] font-semibold tracking-wide uppercase">
-          WIP
+      <header className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
+        <span className="text-sm font-semibold tracking-tight">
+          seamui<span className="text-primary">.</span>
         </span>
-        <p className="text-muted-foreground text-sm leading-relaxed">
-          Next: bringing seamui to <strong className="text-foreground font-medium">Expo / React Native</strong> —
-          porting the spring, touch-feedback, and depth system to native, with
-          real on-device haptics. In active development.
-        </p>
-      </div>
+        <nav className="flex items-center gap-1">
+          <Button
+            variant="ghost"
+            size="sm"
+            render={<Link href="/docs/components" />}
+          >
+            Docs
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            render={<Link href="/docs/guides/chat" />}
+          >
+            Guides
+          </Button>
+          <ThemeToggle />
+        </nav>
+      </header>
 
-      <div className="bg-card w-full rounded-xl border p-8 shadow-resting">
-        <ButtonVariants />
-      </div>
+      <main className="mx-auto max-w-5xl px-6 pb-20">
+        {/* hero */}
+        <section className="py-16 sm:py-20">
+          <p className="text-muted-foreground font-mono text-xs tracking-widest uppercase">
+            {"//"} components you own
+          </p>
+          <h1 className="mt-3 max-w-2xl text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
+            UI that feels physical.
+          </h1>
+          <p className="text-muted-foreground mt-4 max-w-xl text-lg text-pretty">
+            shadcn&apos;s distribution model, rebuilt on Base UI with a
+            motion.dev feel layer — springs, touch feedback, depth. The code
+            lands in your repo; edit it like you wrote it.
+          </p>
+          <div className="mt-7 flex flex-wrap items-center gap-3">
+            <Button render={<Link href="/docs/components" />}>
+              Browse components
+            </Button>
+            <Button
+              variant="secondary"
+              render={<Link href="/docs/guides/chat" />}
+            >
+              Building a chat app →
+            </Button>
+          </div>
+        </section>
 
-      <div className="squircle bg-card w-full space-y-4 rounded-xl border p-8 shadow-resting">
-        <div className="flex items-center gap-2">
-          <span className="bg-secondary text-secondary-foreground shadow-resting squircle inline-flex rounded-md px-2 py-0.5 text-[0.6875rem] font-semibold tracking-wide uppercase">
-            WIP
-          </span>
-          <h2 className="text-sm font-medium">Spring touch + haptics</h2>
-        </div>
-        <HapticButtons />
-      </div>
+        {/* specimens — every one is live; press them */}
+        <section aria-label="Live specimens" className="grid gap-4 md:grid-cols-3">
+          <Fig
+            n="01"
+            label="Touch feedback"
+            desc="Every control recedes into the surface on press and springs back — with a haptic click on devices that can."
+            prop={'whileTap = depth.pressed · haptic = "tap"'}
+            href="/docs/components/button"
+          >
+            <div className="flex flex-wrap items-center justify-center gap-4">
+              <Button variant="secondary">Press me</Button>
+              <Switch defaultChecked aria-label="Demo switch" />
+              <Checkbox defaultChecked aria-label="Demo checkbox" />
+              <MediaToggle kind="mic" defaultPressed />
+            </div>
+          </Fig>
 
-      <div className="flex items-center gap-3">
-        <Button render={<Link href="/docs/components/button" />}>
-          Get started
-        </Button>
-      </div>
+          <Fig
+            n="02"
+            label="Agent presence"
+            desc="State-driven motion for voice agents — dots that breathe with the audio level and never go dead."
+            prop={'state = "listening" · level = 0.42'}
+            href="/docs/components/voice-visualizer"
+          >
+            <FigPresence />
+          </Fig>
+
+          <Fig
+            n="03"
+            label="The condense"
+            desc="Overlays rise out of their trigger and fall back on dismiss — one motion, both directions, backdrop in sync."
+            prop="condense.surface"
+            href="/docs/motion"
+          >
+            <Popover>
+              <PopoverTrigger render={<Button variant="outline" />}>
+                Open overlay
+              </PopoverTrigger>
+              <PopoverContent className="w-52">
+                <p className="text-sm">
+                  Overlay depth — dismiss me and I fall back where I came from.
+                </p>
+              </PopoverContent>
+            </Popover>
+          </Fig>
+        </section>
+
+        {/* install — wherever your stack lives */}
+        <section className="mt-20">
+          <h2 className="text-2xl font-semibold tracking-tight">
+            Wherever your stack lives.
+          </h2>
+          <div className="mt-6 border-t">
+            <InstallRow label="seamui" cmd="bunx --bun seamui@latest add button" />
+            <InstallRow label="shadcn" cmd="bunx --bun shadcn@latest add @seamui/button" />
+            <InstallRow label="registry" cmd="https://seamui.dev/r/button.json" />
+          </div>
+          <p className="text-muted-foreground mt-5 text-sm">
+            Then open <code className="text-foreground">components/ui/button.tsx</code>{" "}
+            — it&apos;s yours. Retune every spring from one line in{" "}
+            <Link className="underline underline-offset-4" href="/docs/motion">
+              lib/motion.ts
+            </Link>
+            ; give it all a click and a buzz with{" "}
+            <Link className="underline underline-offset-4" href="/docs/haptics">
+              one provider
+            </Link>
+            .
+          </p>
+        </section>
+
+        {/* footer */}
+        <footer className="text-muted-foreground mt-20 flex flex-wrap items-center justify-between gap-4 border-t pt-6 text-sm">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+            <Link className="hover:text-foreground" href="/docs/guides/chat">
+              Guides
+            </Link>
+            <Link className="hover:text-foreground" href="/docs/motion">
+              Motion
+            </Link>
+            <Link className="hover:text-foreground" href="/docs/haptics">
+              Haptics
+            </Link>
+            <a
+              className="hover:text-foreground"
+              href="https://github.com/meiskv/seamui"
+            >
+              GitHub
+            </a>
+          </div>
+          <p className="font-mono text-xs">
+            <span className="bg-secondary text-secondary-foreground shadow-resting squircle mr-2 inline-flex rounded px-1.5 py-0.5 text-[0.625rem] font-semibold tracking-wide uppercase">
+              WIP
+            </span>
+            Expo / React Native port — the seam feel with on-device haptics
+          </p>
+        </footer>
       </main>
     </>
+  )
+}
+
+function InstallRow({ label, cmd }: { label: string; cmd: string }) {
+  return (
+    <div className="grid grid-cols-[6.5rem_1fr] items-baseline gap-4 border-b py-3.5 sm:grid-cols-[8rem_1fr]">
+      <span className="text-muted-foreground font-mono text-xs tracking-widest uppercase">
+        {label}
+      </span>
+      <code className="overflow-x-auto font-mono text-sm whitespace-nowrap">
+        <span aria-hidden className="text-primary">
+          ${" "}
+        </span>
+        {cmd}
+      </code>
+    </div>
   )
 }

@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 
 import { VariantPreview } from "@/components/docs/variant-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { Install, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import VoiceAvatarDemo from "@/registry/seam/examples/voice-avatar-demo"
 import VoiceAvatarGroup from "@/registry/seam/examples/voice-avatar-group"
@@ -32,38 +32,32 @@ export default function VoiceAvatarDocs() {
 
       <Install name="voice-avatar" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import { VoiceAvatar } from "@/components/ui/voice-avatar"`}</CodeBlock>
-        <CodeBlock>{`<VoiceAvatar name="Ada" src={url} speaking={isSpeaking} level={level} />`}</CodeBlock>
-        <p className="text-muted-foreground text-sm">
-          Dogfoods Avatar (image + initials fallback). Pass{" "}
+      <Notes>
+        <li>
+          Dogfoods Avatar (image + initials fallback). Drive it with{" "}
           <code>speaking</code>, a numeric <code>level</code> (0–1), or a{" "}
-          <code>track</code> that the shared <code>useAudioLevel</code> hook
-          analyses — the same hook as Voice Visualizer, so the analyser
-          isn&apos;t re-rolled.
-        </p>
-      </Section>
-
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
+          <code>track</code> — the shared <code>useAudioLevel</code> hook (the
+          same one as Voice Visualizer) analyses it, so the analyser isn&apos;t
+          re-rolled.
+        </li>
+        <li>
           With a live level the halo scales and brightens on{" "}
           <code>springs.snappy</code> (spring-smoothed so raw analyser values
           never jitter it); with only <code>speaking</code> known it settles
-          into a gentle opacity pulse. Under reduced motion the scale is dropped
-          and the halo&apos;s opacity tracks the level — the indicator never
-          disappears while someone is talking.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
-          The halo is decorative (<code>aria-hidden</code>). Speaking state is
-          exposed to assistive tech through a visually-hidden{" "}
-          <code>role=&quot;status&quot;</code> (&ldquo;Ada is speaking&rdquo;)
-          that only announces on change, and the avatar carries a real
-          accessible name via its image alt / fallback.
-        </p>
-      </Section>
+          into a gentle opacity pulse.
+        </li>
+        <li>
+          Under reduced motion the scale is dropped and the halo&apos;s opacity
+          tracks the level — the indicator never disappears while someone is
+          talking.
+        </li>
+        <li>
+          The halo is decorative (<code>aria-hidden</code>); speaking state is
+          exposed through a visually-hidden <code>role=&quot;status&quot;</code>{" "}
+          (&ldquo;Ada is speaking&rdquo;) that only announces on change, and the
+          avatar carries a real accessible name via its image alt / fallback.
+        </li>
+      </Notes>
     </main>
   )
 }

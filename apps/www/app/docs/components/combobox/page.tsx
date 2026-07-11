@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 
 import { VariantPreview } from "@/components/docs/variant-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { Install, ApiTable, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import ComboboxDemo from "@/registry/seam/examples/combobox-demo"
 import ComboboxMultiple from "@/registry/seam/examples/combobox-multiple"
@@ -41,73 +41,38 @@ export default function ComboboxDocs() {
 
       <Install name="combobox" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import {
-  Combobox,
-  ComboboxContent,
-  ComboboxEmpty,
-  ComboboxInput,
-  ComboboxItem,
-  ComboboxList,
-} from "@/components/ui/combobox"`}</CodeBlock>
-        <CodeBlock>{`const frameworks = [
-  { value: "next", label: "Next.js" },
-  { value: "astro", label: "Astro" },
-]
+      <ApiTable
+        rows={[
+          { prop: "items", type: "Value[]", desc: "On <Combobox> — the option objects Base UI filters as you type." },
+          { prop: "itemToStringLabel", type: "(item) => string", desc: "On <Combobox> — how an item echoes into the input as text." },
+          { prop: "multiple", type: "boolean", default: "false", desc: "On <Combobox> — select several values; compose ComboboxChips for the token UI." },
+          { prop: "value / onValueChange", type: "Value | Value[], (value, eventDetails) => void", desc: "Controlled selection on <Combobox>." },
+          { prop: "showClear", type: "boolean", default: "true", desc: "On <ComboboxInput> — hides the trailing × button when false." },
+          { prop: "sideOffset", type: "number", default: "6", desc: "On <ComboboxContent> — gap between field and popup." },
+        ]}
+        footer={
+          <><code>&lt;Combobox&gt;</code> is Base UI&apos;s <code>Combobox.Root</code> aliased directly, so its full generic prop surface passes through.</>
+        }
+      />
 
-<Combobox items={frameworks} itemToStringLabel={(f) => f.label}>
-  <ComboboxInput placeholder="Search framework…" />
-  <ComboboxContent>
-    <ComboboxEmpty>No framework found.</ComboboxEmpty>
-    <ComboboxList>
-      {(f) => (
-        <ComboboxItem key={f.value} value={f}>{f.label}</ComboboxItem>
-      )}
-    </ComboboxList>
-  </ComboboxContent>
-</Combobox>`}</CodeBlock>
-        <p className="text-muted-foreground text-sm">
-          Pass the option objects to <code>items</code> and a{" "}
-          <code>itemToStringLabel</code> so Base UI can filter and echo the
-          selected label into the input. Add <code>multiple</code> on the root
-          to select several values (compose <code>Combobox.Chips</code> for the
-          token UI). Control with <code>value</code> /{" "}
-          <code>onValueChange</code>.
-        </p>
-      </Section>
-
-      <Section title="Anatomy">
-        <p className="text-muted-foreground text-sm">
-          <code>ComboboxInput</code> is the debossed entry field — it carries a
-          leading search icon, a trailing chevron, and a Clear (
-          <code>×</code>) button. <code>ComboboxContent</code> is the
-          overlay-depth popup; <code>ComboboxList</code> takes a render function
-          that maps the filtered items to <code>ComboboxItem</code>s.{" "}
-          <code>ComboboxEmpty</code> renders only when nothing matches.
-        </p>
-      </Section>
-
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
-          The popup grows from its trigger origin and fades in via the shared{" "}
-          <code>condense</code> token from <code>@/lib/motion</code> — CSS keyed
-          to Base UI&apos;s <code>data-starting-style</code> /{" "}
-          <code>data-ending-style</code> so the exit is awaited, then falls back
-          and fades on dismiss; highlighted items shift with{" "}
-          <code>data-[highlighted]</code>. Under{" "}
-          <code>prefers-reduced-motion</code> the scale is dropped and the popup
-          fades only.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
-          Base UI wires the <code>combobox</code> / <code>listbox</code> roles,
-          <code>aria-activedescendant</code>, and full keyboard support (type to
-          filter, arrows to move, Enter to select, Escape to close). The Clear
-          button is labelled; the empty state announces politely.
-        </p>
-      </Section>
+      <Notes>
+        <li>
+          <code>ComboboxList</code> takes a render function that maps the
+          filtered items to <code>ComboboxItem</code>s;{" "}
+          <code>ComboboxEmpty</code> stays mounted (for screen-reader
+          announcements) and only shows content when nothing matches.
+        </li>
+        <li>
+          In multi-select, <code>ComboboxChips</code> wraps the chips + input
+          in Base UI&apos;s <code>InputGroup</code> so the popup anchors to —
+          and matches the width of — the whole well, not the bare input.
+        </li>
+        <li>
+          The popup condenses in/out via CSS keyed to Base UI&apos;s{" "}
+          <code>data-starting-style</code> / <code>data-ending-style</code>, so
+          the exit is awaited before unmount.
+        </li>
+      </Notes>
     </main>
   )
 }

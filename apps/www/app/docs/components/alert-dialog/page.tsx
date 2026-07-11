@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 
 import { VariantPreview } from "@/components/docs/variant-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { Install, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import AlertDialogDemo from "@/registry/seam/examples/alert-dialog-demo"
 import AlertDialogDiscard from "@/registry/seam/examples/alert-dialog-discard"
@@ -32,52 +32,14 @@ export default function AlertDialogDocs() {
 
       <Install name="alert-dialog" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import {
-  AlertDialog,
-  AlertDialogTrigger,
-  AlertDialogContent,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogCancel,
-  AlertDialogAction,
-} from "@/components/ui/alert-dialog"`}</CodeBlock>
-        <CodeBlock>{`<AlertDialog>
-  <AlertDialogTrigger render={<Button variant="destructive">Delete</Button>} />
-  <AlertDialogContent>
-    <AlertDialogHeader>
-      <AlertDialogTitle>Are you sure?</AlertDialogTitle>
-      <AlertDialogDescription>This cannot be undone.</AlertDialogDescription>
-    </AlertDialogHeader>
-    <AlertDialogFooter>
-      <AlertDialogCancel render={<Button variant="ghost">Cancel</Button>} />
-      <AlertDialogAction render={<Button variant="destructive">Delete</Button>} />
-    </AlertDialogFooter>
-  </AlertDialogContent>
-</AlertDialog>`}</CodeBlock>
-      </Section>
-
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
-          Identical to Dialog — the shared <code>condense</code> token from{" "}
-          <code>@/lib/motion</code>, CSS keyed to Base UI&apos;s{" "}
-          <code>data-starting-style</code> / <code>data-ending-style</code> so
-          the exit is awaited rather than cut off. It pops from center and fades
-          in on a spring-shaped bezier, then falls back and fades on dismiss,
-          with the backdrop dimming on the same clock. Under{" "}
-          <code>prefers-reduced-motion</code> only the opacity animates.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
-          Unlike Dialog, it does not dismiss on backdrop click or Escape by
-          accident-prone paths — the user must pick Cancel or the action. Focus
-          is trapped and restored.
-        </p>
-      </Section>
+      <Notes>
+        <li>
+          Unlike Dialog, backdrop click and Escape don&apos;t dismiss it — the
+          user must pick <code>AlertDialogCancel</code> or{" "}
+          <code>AlertDialogAction</code>.
+        </li>
+        <li>Focus is trapped while open and restored on close.</li>
+      </Notes>
     </main>
   )
 }

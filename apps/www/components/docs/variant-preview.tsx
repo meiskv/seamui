@@ -2,7 +2,9 @@
 
 import * as React from "react"
 import { AnimatePresence, motion } from "motion/react"
+import { Grid2x2, Grid2x2X } from "lucide-react"
 
+import { cn } from "@/lib/utils"
 import { fades } from "@/lib/motion"
 import { Button } from "@/registry/seam/ui/button"
 import { CodeBlock } from "@/registry/seam/ui/code-block"
@@ -20,15 +22,15 @@ export type PreviewVariant = {
   description?: React.ReactNode
 }
 
+const GRID_KEY = "seam-preview-grid"
+
 /**
- * The LiveKit-style detail-page preview: one live example with a variant
- * switcher **below** it, and the selected variant's source always visible in
- * its own highlighted block underneath — no long scroll of stacked examples,
- * no click to reveal the code. The variant keys dogfood the seamui Button at
- * its smallest size (active = a raised secondary key); the example swap is
- * opacity-only (fades.fast), identical under reduced motion. The code section
- * dogfoods the seamui CodeBlock, so it comes syntax-highlighted with a copy
- * key for free. The selected variant reflects in the URL hash, so a variant is
+ * The detail-page preview, styled as a specimen to echo the home page: the
+ * live example sits on drafting-dot paper (toggle it off with the grid key,
+ * remembered across pages), a variant switcher docks below, and the selected
+ * variant's source is always visible in its own highlighted block underneath.
+ * The variant keys dogfood the seamui Button; the example swap is opacity-only
+ * (fades.fast). The selected variant reflects in the URL hash, so a variant is
  * deep-linkable (e.g. `…/button#loading`).
  */
 export function VariantPreview({
@@ -44,13 +46,31 @@ export function VariantPreview({
   syncHash?: boolean
 }) {
   const [variant, setVariant] = React.useState(variants[0]?.key)
+  const [grid, setGrid] = React.useState(true)
 
-  // On mount, honor a deep link like `#loading`.
+  // On mount, honor a deep link like `#loading` and the saved grid choice.
   React.useEffect(() => {
+    try {
+      if (localStorage.getItem(GRID_KEY) === "off") setGrid(false)
+    } catch {
+      // storage unavailable — keep the default
+    }
     if (!syncHash) return
     const hash = window.location.hash.slice(1)
     if (hash && variants.some((v) => v.key === hash)) setVariant(hash)
   }, [syncHash, variants])
+
+  const toggleGrid = () => {
+    setGrid((on) => {
+      const next = !on
+      try {
+        localStorage.setItem(GRID_KEY, next ? "on" : "off")
+      } catch {
+        // ignore
+      }
+      return next
+    })
+  }
 
   const selectVariant = (key: string) => {
     setVariant(key)
@@ -65,27 +85,53 @@ export function VariantPreview({
 
   return (
     <div className="my-4 space-y-3">
-      {/* Preview: the live example, with the variant switcher docked below it. */}
-      <div className="squircle bg-card overflow-hidden rounded-xl border">
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.div
-            key={active?.key}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={fades.fast}
+      {/* Preview: the live example on drafting-dot paper, switcher docked below. */}
+      <div className="squircle bg-card overflow-hidden rounded-xl border shadow-resting">
+        <div className="relative">
+          {/* drafting dots — the specimen surface, toggleable */}
+          <div
+            aria-hidden
+            className={cn(
+              "text-border/70 pointer-events-none absolute inset-0 transition-opacity duration-200 [background-image:radial-gradient(currentColor_1px,transparent_1px)] [background-size:18px_18px]",
+              grid ? "opacity-100" : "opacity-0"
+            )}
+          />
+          <Button
+            variant="ghost"
+            size="icon"
+            haptic="tick"
+            aria-label={grid ? "Hide grid" : "Show grid"}
+            aria-pressed={grid}
+            onClick={toggleGrid}
+            className="text-muted-foreground absolute right-2 top-2 z-10 size-7"
           >
-            <div className="flex min-h-40 items-center justify-center p-6">
-              {active?.component}
-            </div>
-          </motion.div>
-        </AnimatePresence>
+            {grid ? (
+              <Grid2x2 className="size-4" />
+            ) : (
+              <Grid2x2X className="size-4" />
+            )}
+          </Button>
+
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={active?.key}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={fades.fast}
+            >
+              <div className="relative flex min-h-44 items-center justify-center p-6">
+                {active?.component}
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
 
         {multi ? (
           <div
             role="group"
             aria-label="Variant"
-            className="flex flex-wrap gap-1 border-t p-1.5"
+            className="bg-card relative flex flex-wrap gap-1 border-t p-1.5"
           >
             {variants.map((v) => (
               <Button

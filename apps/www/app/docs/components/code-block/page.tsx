@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { VariantPreview } from "@/components/docs/variant-preview"
+import { Install, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import CodeBlockDemo from "@/registry/seam/examples/code-block-demo"
 import CodeBlockCopy from "@/registry/seam/examples/code-block-copy"
@@ -23,56 +23,38 @@ export default function CodeBlockDocs() {
         fence is never blank and never breaks.
       </p>
 
-      <ComponentPreview code={exampleSource("code-block-demo")}>
-        <CodeBlockDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          { key: "default", title: "Default", component: <CodeBlockDemo />, code: exampleSource("code-block-demo") },
+          { key: "copy", title: "Copy", component: <CodeBlockCopy />, code: exampleSource("code-block-copy") },
+          { key: "long-lines", title: "Long lines", component: <CodeBlockLongLines />, code: exampleSource("code-block-long-lines") },
+        ]}
+      />
 
       <Install name="code-block" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import { CodeBlock } from "@/components/ui/code-block"`}</CodeBlock>
-        <CodeBlock>{`<CodeBlock code={source} language="tsx" />`}</CodeBlock>
-        <p className="text-muted-foreground text-sm">
+      <Notes>
+        <li>
           Highlighting uses Shiki in dual-theme mode, so the same markup adapts
           to light and dark without shipping a second payload. Pass{" "}
           <code>showHeader=&#123;false&#125;</code> for a bare block.
-        </p>
-      </Section>
-
-      <Section title="Examples">
-        <h3 className="text-muted-foreground/80 mt-4 text-xs font-medium">
-          Copy
-        </h3>
-        <ComponentPreview code={exampleSource("code-block-copy")}>
-          <CodeBlockCopy />
-        </ComponentPreview>
-
-        <h3 className="text-muted-foreground/80 mt-4 text-xs font-medium">
-          Long lines
-        </h3>
-        <ComponentPreview code={exampleSource("code-block-long-lines")}>
-          <CodeBlockLongLines />
-        </ComponentPreview>
-      </Section>
-
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
-          The block has no entrance of its own — it enters with its parent
-          message. The only motion is the copy confirmation: the icon crossfades
-          to a check and back on opacity, so it&apos;s identical under reduced
-          motion. Press feedback on the copy key is inherited from Button.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
+        </li>
+        <li>
+          No entrance of its own — it enters with its parent message. The only
+          motion is the copy confirmation, an opacity crossfade to a check and
+          back, so it&apos;s identical under reduced motion; press feedback on
+          the copy key is inherited from Button.
+        </li>
+        <li>
+          The copy key&apos;s <code>aria-label</code> flips to
+          &ldquo;Copied&rdquo; on success; copy falls back to a silent no-op in
+          insecure contexts where the clipboard API is unavailable.
+        </li>
+        <li>
           The scrollable code region is keyboard-focusable, so a wide block can
-          be scrolled without a mouse. The copy key carries an{" "}
-          <code>aria-label</code> that flips to &ldquo;Copied&rdquo; on success.
-          Copy falls back to a silent no-op in insecure contexts where the
-          clipboard API is unavailable.
-        </p>
-      </Section>
+          be scrolled without a mouse.
+        </li>
+      </Notes>
     </main>
   )
 }

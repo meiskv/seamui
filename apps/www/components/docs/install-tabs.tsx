@@ -16,10 +16,10 @@ export function InstallTabs({ name }: { name: string }) {
         <TabsTrigger value="shadcn">shadcn</TabsTrigger>
       </TabsList>
       <TabsContent value="seamui">
-        <CodeBlock>{`bunx --bun seamui@latest add ${name}`}</CodeBlock>
+        <CodeBlock language="bash">{`bunx --bun seamui@latest add ${name}`}</CodeBlock>
       </TabsContent>
       <TabsContent value="shadcn">
-        <CodeBlock>{`bunx --bun shadcn@latest add @seamui/${name}`}</CodeBlock>
+        <CodeBlock language="bash">{`bunx --bun shadcn@latest add @seamui/${name}`}</CodeBlock>
       </TabsContent>
     </Tabs>
   )

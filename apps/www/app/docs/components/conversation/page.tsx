@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { VariantPreview } from "@/components/docs/variant-preview"
+import { Install, ApiTable, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import ConversationDemo from "@/registry/seam/examples/conversation-demo"
 import ConversationScrollButton from "@/registry/seam/examples/conversation-scroll-button"
@@ -22,56 +22,53 @@ export default function ConversationDocs() {
         a floating key to jump back to the latest message.
       </p>
 
-      <ComponentPreview code={exampleSource("conversation-demo")}>
-        <ConversationDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          { key: "default", title: "Default", component: <ConversationDemo />, code: exampleSource("conversation-demo") },
+          { key: "scroll-button", title: "Scroll to latest", component: <ConversationScrollButton />, code: exampleSource("conversation-scroll-button") },
+        ]}
+      />
 
       <Install name="conversation" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import {
-  Conversation,
-  ConversationContent,
-  ConversationScrollButton,
-} from "@/components/ui/conversation"`}</CodeBlock>
-        <CodeBlock>{`<Conversation>
-  <ConversationContent>
-    {messages.map((m) => <Message key={m.id} … />)}
-  </ConversationContent>
-  <ConversationScrollButton />
-</Conversation>`}</CodeBlock>
-      </Section>
+      <ApiTable
+        rows={[
+          { prop: "children", type: "ReactNode", desc: "Viewport content — typically ConversationContent (messages) plus ConversationScrollButton." },
+          { prop: "useConversation().isAtBottom", type: "boolean", desc: "True while the viewport is pinned to the bottom; the scroll key shows when it flips false." },
+          { prop: "useConversation().scrollToBottom", type: "(behavior?: ScrollBehavior) => void", desc: "Jump to the latest message — smooth by default, instant under reduced motion." },
+        ]}
+        footer={
+          <>
+            <code>Conversation</code> and <code>ConversationContent</code>{" "}
+            accept all native <code>&lt;div&gt;</code> props;{" "}
+            <code>ConversationScrollButton</code> accepts all Button props.
+          </>
+        }
+      />
 
-      <Section title="Examples">
-        <h3 className="text-muted-foreground/80 mt-4 text-xs font-medium">
-          Scroll-to-latest key
-        </h3>
-        <ComponentPreview code={exampleSource("conversation-scroll-button")}>
-          <ConversationScrollButton />
-        </ComponentPreview>
-      </Section>
-
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
-          The scroll-to-latest key rises at overlay depth
-          (<code>springs.surface</code>) and falls away when you return to the
-          bottom. While pinned, the viewport follows streamed content
-          instantly, so it never lags behind the tokens. Explicit jumps scroll
-          smoothly — but under reduced motion all scrolling is instant
-          (<code>behavior: &quot;auto&quot;</code>) and the key fades rather than
-          rising.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
+      <Notes>
+        <li>
           The viewport is a <code>role=&quot;log&quot;</code> with{" "}
           <code>aria-live=&quot;polite&quot;</code>, so appended messages are
-          announced without interrupting. It is focusable and keyboard
-          scrollable; the scroll button carries an <code>aria-label</code>. The
-          stick-to-bottom logic ships in the component file — no dependency.
-        </p>
-      </Section>
+          announced without interrupting; it is focusable and keyboard
+          scrollable.
+        </li>
+        <li>
+          While pinned, the viewport follows streamed content instantly — an
+          animated follow would lag behind the tokens. Under reduced motion{" "}
+          <em>all</em> scrolling is instant (<code>behavior: &quot;auto&quot;</code>).
+        </li>
+        <li>
+          The scroll-to-latest key rises at overlay depth
+          (<code>springs.surface</code>) and falls away at the bottom; under
+          reduced motion it fades rather than rising. It carries an{" "}
+          <code>aria-label</code>.
+        </li>
+        <li>
+          The stick-to-bottom logic ships in the component file — no
+          dependency.
+        </li>
+      </Notes>
     </main>
   )
 }

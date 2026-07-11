@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 
 import { VariantPreview } from "@/components/docs/variant-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { Install, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import CheckboxDemo from "@/registry/seam/examples/checkbox-demo"
 import CheckboxWithText from "@/registry/seam/examples/checkbox-with-text"
@@ -33,28 +33,18 @@ export default function CheckboxDocs() {
 
       <Install name="checkbox" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import { Checkbox } from "@/components/ui/checkbox"`}</CodeBlock>
-        <CodeBlock>{`<Checkbox defaultChecked />
-<Checkbox indeterminate />`}</CodeBlock>
-      </Section>
-
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
-          The box recedes on press (<code>depth.pressed</code>, a dim under
-          reduced motion), and the indicator mounts on check with its mark
-          scaling in from 0 with <code>springs.snappy</code>. The indeterminate
-          dash swaps in via a <code>data-[indeterminate]</code> CSS toggle.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
-          Renders a native checkbox. Supports <code>checked</code>,{" "}
-          <code>defaultChecked</code>, and <code>indeterminate</code>; pair with
-          a <code>&lt;label&gt;</code> for a clickable target.
-        </p>
-      </Section>
+      <Notes>
+        <li>
+          The check mark scales in from 0 on check; the indeterminate dash
+          swaps in via a <code>data-[indeterminate]</code> CSS toggle instead
+          of the spring.
+        </li>
+        <li>
+          Supports <code>checked</code>, <code>defaultChecked</code>, and{" "}
+          <code>indeterminate</code>; pair with a <code>&lt;label&gt;</code>{" "}
+          for a clickable target.
+        </li>
+      </Notes>
     </main>
   )
 }

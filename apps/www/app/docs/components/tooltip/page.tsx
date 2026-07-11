@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 
 import { VariantPreview } from "@/components/docs/variant-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { Install, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import TooltipDemo from "@/registry/seam/examples/tooltip-demo"
 import TooltipIcon from "@/registry/seam/examples/tooltip-icon"
@@ -31,41 +31,16 @@ export default function TooltipDocs() {
 
       <Install name="tooltip" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import {
-  Tooltip,
-  TooltipTrigger,
-  TooltipContent,
-  TooltipProvider,
-} from "@/components/ui/tooltip"`}</CodeBlock>
-        <CodeBlock>{`<TooltipProvider>
-  <Tooltip>
-    <TooltipTrigger render={<Button>Hover</Button>} />
-    <TooltipContent>Label</TooltipContent>
-  </Tooltip>
-</TooltipProvider>`}</CodeBlock>
-      </Section>
-
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
-          On open the popup grows from its trigger and fades in via the shared{" "}
-          <code>condense</code> token from <code>@/lib/motion</code> — CSS keyed
-          to Base UI&apos;s <code>data-starting-style</code> /{" "}
-          <code>data-ending-style</code>, on a spring-shaped bezier. It rides the
-          standalone <code>scale</code> property (Base UI owns{" "}
-          <code>transform</code> for positioning) and falls back and fades on
-          dismiss, awaited by Base UI rather than cut. Under{" "}
-          <code>prefers-reduced-motion</code> it fades only.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
+      <Notes>
+        <li>
           Wrap your app (or a subtree) in <code>TooltipProvider</code> to share
-          delay and coordinate open state. Shows on hover and keyboard focus;
-          dismisses on blur and Escape.
-        </p>
-      </Section>
+          the open delay (200ms by default) and coordinate open state across
+          tooltips.
+        </li>
+        <li>
+          Shows on hover and keyboard focus; dismisses on blur and Escape.
+        </li>
+      </Notes>
     </main>
   )
 }

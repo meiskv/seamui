@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 
 import { VariantPreview } from "@/components/docs/variant-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { Install, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import SeparatorDemo from "@/registry/seam/examples/separator-demo"
 import SeparatorLabel from "@/registry/seam/examples/separator-label"
@@ -28,25 +28,16 @@ export default function SeparatorDocs() {
 
       <Install name="separator" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import { Separator } from "@/components/ui/separator"`}</CodeBlock>
-        <CodeBlock>{`<Separator />
-<Separator orientation="vertical" />`}</CodeBlock>
-      </Section>
-
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
+      <Notes>
+        <li>
           Static by design — a separator is structure, not interaction, so it
           carries no motion.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
-          Exposed to screen readers with the correct role and orientation. Set{" "}
+        </li>
+        <li>
+          Exposed to screen readers with the correct role and orientation; set{" "}
           <code>orientation=&quot;vertical&quot;</code> inside a flex row.
-        </p>
-      </Section>
+        </li>
+      </Notes>
     </main>
   )
 }

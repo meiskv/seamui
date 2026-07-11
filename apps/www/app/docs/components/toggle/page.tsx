@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 
 import { VariantPreview } from "@/components/docs/variant-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { Install, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import ToggleDemo from "@/registry/seam/examples/toggle-demo"
 import ToggleWithText from "@/registry/seam/examples/toggle-with-text"
@@ -35,30 +35,17 @@ export default function ToggleDocs() {
 
       <Install name="toggle" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import { Toggle } from "@/components/ui/toggle"`}</CodeBlock>
-        <CodeBlock>{`<Toggle aria-label="Toggle bold" defaultPressed>
-  <Bold />
-</Toggle>`}</CodeBlock>
-      </Section>
-
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
-          Press recedes to <code>depth.pressed</code> with{" "}
-          <code>springs.press</code>; the on-state is styled via Base UI&apos;s{" "}
-          <code>data-[pressed]</code> attribute. Honors{" "}
-          <code>prefers-reduced-motion</code>.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
+      <Notes>
+        <li>
+          Controlled via <code>pressed</code> / <code>onPressedChange</code>,
+          uncontrolled via <code>defaultPressed</code>.
+        </li>
+        <li>
           Renders a native <code>&lt;button&gt;</code> with{" "}
-          <code>aria-pressed</code>. Controlled via <code>pressed</code> /
-          <code>onPressedChange</code>, or uncontrolled via{" "}
-          <code>defaultPressed</code>.
-        </p>
-      </Section>
+          <code>aria-pressed</code>; the on-state is styled via Base UI&apos;s{" "}
+          <code>data-[pressed]</code> attribute.
+        </li>
+      </Notes>
     </main>
   )
 }

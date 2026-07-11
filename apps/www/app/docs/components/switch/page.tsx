@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 
 import { VariantPreview } from "@/components/docs/variant-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { Install, ApiTable, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import SwitchDemo from "@/registry/seam/examples/switch-demo"
 import SwitchSettings from "@/registry/seam/examples/switch-settings"
@@ -31,30 +31,28 @@ export default function SwitchDocs() {
 
       <Install name="switch" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import { Switch } from "@/components/ui/switch"`}</CodeBlock>
-        <CodeBlock>{`<Switch defaultChecked onCheckedChange={setEnabled} />`}</CodeBlock>
-      </Section>
+      <ApiTable
+        rows={[
+          { prop: "checked", type: "boolean", desc: "Controlled on/off state." },
+          { prop: "defaultChecked", type: "boolean", default: "false", desc: "Initial state when uncontrolled." },
+          { prop: "onCheckedChange", type: "(checked, eventDetails) => void", desc: "Fires as the state commits (also triggers the haptic tick)." },
+          { prop: "disabled", type: "boolean", default: "false", desc: "Disables the switch." },
+        ]}
+        footer={
+          <>Plus all Base UI <code>Switch.Root</code> props (e.g. <code>name</code>, <code>required</code> for forms).</>
+        }
+      />
 
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
-          The thumb is a <code>layout</code> element: toggling flips the
-          track&apos;s flex alignment, and motion springs the thumb to its new
-          position with <code>springs.snappy</code> — interruptible mid-flight.
+      <Notes>
+        <li>
           While pressed the thumb <em>stretches</em> toward the far side (the
-          iOS feel) and snaps across on release. Under reduced motion the press
-          dims instead and the thumb jumps states instantly.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
-          Renders a native switch with <code>role="switch"</code> and{" "}
-          <code>aria-checked</code>. Controlled via <code>checked</code> /
-          <code>onCheckedChange</code>, or uncontrolled via{" "}
-          <code>defaultChecked</code>.
-        </p>
-      </Section>
+          iOS feel) and snaps across on release.
+        </li>
+        <li>
+          The thumb is a <code>layout</code> element — the crossing spring is
+          interruptible mid-flight.
+        </li>
+      </Notes>
     </main>
   )
 }

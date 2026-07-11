@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { VariantPreview } from "@/components/docs/variant-preview"
+import { Install, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import BadgeDemo from "@/registry/seam/examples/badge-demo"
 
@@ -20,33 +20,25 @@ export default function BadgeDocs() {
         in for quiet, passive status.
       </p>
 
-      <ComponentPreview code={exampleSource("badge-demo")}>
-        <BadgeDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          { key: "default", title: "Default", component: <BadgeDemo />, code: exampleSource("badge-demo") },
+        ]}
+      />
 
       <Install name="badge" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import { Badge } from "@/components/ui/badge"`}</CodeBlock>
-        <CodeBlock>{`<Badge variant="secondary">Verified</Badge>`}</CodeBlock>
-      </Section>
-
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
-          Static by design. Badges are not pressable, so they carry no press
-          feedback — if you need a tappable chip, use a small{" "}
-          <code>Button</code> or <code>Toggle</code> instead.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
-          Renders a <code>&lt;span&gt;</code>. The label is the accessible
-          text; when a badge conveys meaning through color alone, include the
-          meaning in the text (e.g. &ldquo;Error&rdquo;) rather than relying on
-          the variant.
-        </p>
-      </Section>
+      <Notes>
+        <li>
+          Not pressable, so it carries no press feedback — for a tappable chip,
+          use a small <code>Button</code> or <code>Toggle</code> instead.
+        </li>
+        <li>
+          Renders a <code>&lt;span&gt;</code>; when a badge conveys meaning
+          through color alone, include the meaning in the text (e.g.
+          &ldquo;Error&rdquo;) rather than relying on the variant.
+        </li>
+      </Notes>
     </main>
   )
 }

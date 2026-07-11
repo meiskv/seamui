@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 
 import { VariantPreview } from "@/components/docs/variant-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { Install, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import MeterDemo from "@/registry/seam/examples/meter-demo"
 import MeterLevels from "@/registry/seam/examples/meter-levels"
@@ -29,22 +29,13 @@ export default function MeterDocs() {
 
       <Install name="meter" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import { Meter, MeterLabel, MeterValue } from "@/components/ui/meter"`}</CodeBlock>
-        <CodeBlock>{`<Meter value={72}>
-  <div className="flex justify-between">
-    <MeterLabel>Storage</MeterLabel>
-    <MeterValue />
-  </div>
-</Meter>`}</CodeBlock>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
-          Exposes <code>role="meter"</code> with value/min/max, and associates{" "}
+      <Notes>
+        <li>
+          Exposes <code>role="meter"</code> with value/min/max —
+          announced as a measurement, not task progress — and associates{" "}
           <code>MeterLabel</code> for a readable name.
-        </p>
-      </Section>
+        </li>
+      </Notes>
     </main>
   )
 }

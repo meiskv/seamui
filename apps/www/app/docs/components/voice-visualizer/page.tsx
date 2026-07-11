@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 
 import { VariantPreview } from "@/components/docs/variant-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { Install, ApiTable, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import VoiceVisualizerDemo from "@/registry/seam/examples/voice-visualizer-demo"
 import VoiceVisualizerCaptionExample from "@/registry/seam/examples/voice-visualizer-caption"
@@ -35,44 +35,43 @@ export default function VoiceVisualizerDocs() {
 
       <Install name="voice-visualizer" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import {
-  VoiceVisualizer,
-  VoiceVisualizerCaption,
-  useAudioLevel,
-} from "@/components/ui/voice-visualizer"`}</CodeBlock>
-        <CodeBlock>{`<VoiceVisualizer state={state} audioTrack={agentTrack} />`}</CodeBlock>
-        <p className="text-muted-foreground text-sm">
-          Transport-agnostic: pass a <code>state</code> and either a numeric{" "}
-          <code>level</code> (0–1) or a <code>track</code> that the owned{" "}
-          <code>useAudioLevel</code> hook analyses via Web Audio. The prop shape
-          maps 1:1 onto the AI SDK / LiveKit voice-assistant hooks with no
-          runtime dependency.
-        </p>
-      </Section>
+      <ApiTable
+        rows={[
+          { prop: "state", type: `"disconnected" | "connecting" | "listening" | "thinking" | "speaking"`, default: `"listening"`, desc: "Drives the motion and the accessible label." },
+          { prop: "level", type: "number", desc: "Audio level 0–1; takes precedence over track analysis." },
+          { prop: "track", type: "MediaStreamTrack | null", desc: "Analysed via Web Audio by the owned useAudioLevel hook." },
+          { prop: "count", type: "number", default: "5", desc: "Number of dots or bars." },
+          { prop: "size", type: `"sm" | "default" | "lg"`, default: `"default"`, desc: "Dot/bar dimensions." },
+          { prop: "variant", type: `"dots" | "bars"`, default: `"dots"`, desc: "Dots scale uniformly; bars stretch vertically." },
+        ]}
+      />
 
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
-          Each state has its own motion, and every channel maps to opacity under
-          reduced motion (a call UI&apos;s liveness signal must never freeze):
-        </p>
-        <ul className="text-muted-foreground mt-2 list-disc space-y-1 pl-5 text-sm">
-          <li><strong>connecting</strong> — a staggered opacity shimmer.</li>
-          <li><strong>listening</strong> — the dots breathe with the mic level, spring-smoothed (<code>springs.snappy</code>) so raw analyser values never jitter the UI.</li>
-          <li><strong>thinking</strong> — a sequential opacity sweep.</li>
-          <li><strong>speaking</strong> — dots scale with the agent&apos;s output level, weighted so the center moves most.</li>
-        </ul>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
+      <Notes>
+        <li>
+          Each state has its own motion: <strong>connecting</strong> is a
+          staggered opacity shimmer, <strong>listening</strong> breathes with
+          the mic level (spring-smoothed on <code>springs.snappy</code> so raw
+          analyser values never jitter the UI), <strong>thinking</strong> is a
+          sequential opacity sweep, and <strong>speaking</strong> scales with
+          the agent&apos;s output level, weighted so the center moves most.
+        </li>
+        <li>
+          Every channel maps to opacity under reduced motion — a call
+          UI&apos;s liveness signal must never freeze.
+        </li>
+        <li>
+          Transport-agnostic: pass a numeric <code>level</code> or a{" "}
+          <code>track</code> for the owned <code>useAudioLevel</code> hook. The
+          prop shape maps 1:1 onto the AI SDK / LiveKit{" "}
+          <code>useVoiceAssistant</code> hooks with no runtime dependency.
+        </li>
+        <li>
           A <code>role=&quot;status&quot;</code> labelled from the state
           (&ldquo;Agent is listening&rdquo;); the dots are{" "}
-          <code>aria-hidden</code>. When a{" "}
-          <code>VoiceVisualizerCaption</code> is present it&apos;s the visible
-          equivalent of that label.
-        </p>
-      </Section>
+          <code>aria-hidden</code>, and <code>VoiceVisualizerCaption</code> is
+          the visible equivalent of that label.
+        </li>
+      </Notes>
     </main>
   )
 }

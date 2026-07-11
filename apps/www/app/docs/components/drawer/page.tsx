@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 
 import { VariantPreview } from "@/components/docs/variant-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { Install, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import DrawerDemo from "@/registry/seam/examples/drawer-demo"
 import DrawerMenu from "@/registry/seam/examples/drawer-menu"
@@ -31,50 +31,21 @@ export default function DrawerDocs() {
 
       <Install name="drawer" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import {
-  Drawer,
-  DrawerTrigger,
-  DrawerContent,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerClose,
-} from "@/components/ui/drawer"`}</CodeBlock>
-        <CodeBlock>{`<Drawer>
-  <DrawerTrigger render={<Button>Open</Button>} />
-  <DrawerContent>
-    <DrawerHeader>
-      <DrawerTitle>Title</DrawerTitle>
-      <DrawerDescription>Description</DrawerDescription>
-    </DrawerHeader>
-  </DrawerContent>
-</Drawer>`}</CodeBlock>
-      </Section>
-
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
+      <Notes>
+        <li>
           Swipe-to-dismiss stays Base UI&apos;s native drag — a 1:1 gesture from
-          the grab handle with a backdrop that dims in proportion to the drag.
-          The non-gesture open and close now use the seam <code>condense</code>{" "}
-          sheet from <code>@/lib/motion</code>: keyed to Base UI&apos;s{" "}
-          <code>data-starting-style</code> / <code>data-ending-style</code>, it
-          slides up from off-screen and fades in, then falls back down and fades
-          on dismiss. The slide rides the standalone <code>translate</code>{" "}
-          property since Base UI owns <code>transform</code> for the drag, and it
-          self-suppresses mid-swipe so the gesture stays 1:1. Under{" "}
-          <code>prefers-reduced-motion</code> it fades only.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
-          Traps focus and locks scroll like Dialog. Fully keyboard operable;
-          swipe is an enhancement, not the only way to dismiss (Escape and
-          backdrop click work too).
-        </p>
-      </Section>
+          the grab handle, with the backdrop dimming in proportion to the drag.
+        </li>
+        <li>
+          The non-gesture slide rides the standalone <code>translate</code>{" "}
+          property (Base UI owns <code>transform</code> for the drag) and
+          self-suppresses mid-swipe so the gesture stays 1:1.
+        </li>
+        <li>
+          Swipe is an enhancement, not the only way out — Escape and backdrop
+          click dismiss too. Focus trap and scroll lock work like Dialog.
+        </li>
+      </Notes>
     </main>
   )
 }

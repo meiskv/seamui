@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 
 import { VariantPreview } from "@/components/docs/variant-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { Install, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import PreviewCardDemo from "@/registry/seam/examples/preview-card-demo"
 import PreviewCardUser from "@/registry/seam/examples/preview-card-user"
@@ -31,36 +31,16 @@ export default function PreviewCardDocs() {
 
       <Install name="preview-card" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import {
-  PreviewCard,
-  PreviewCardTrigger,
-  PreviewCardContent,
-} from "@/components/ui/preview-card"`}</CodeBlock>
-        <CodeBlock>{`<PreviewCard>
-  <PreviewCardTrigger render={<a href="…">Base UI</a>} />
-  <PreviewCardContent>…</PreviewCardContent>
-</PreviewCard>`}</CodeBlock>
-      </Section>
-
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
-          Overlay condense via the shared <code>condense</code> token from{" "}
-          <code>@/lib/motion</code> — CSS keyed to Base UI&apos;s{" "}
-          <code>data-starting-style</code> / <code>data-ending-style</code> so
-          the exit is awaited. The card grows from its trigger origin and fades
-          in, then falls back and fades on dismiss. Opens on hover with a delay;
-          Base UI handles positioning and dismissal. Under{" "}
-          <code>prefers-reduced-motion</code> it fades only.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
-          Opens on hover and focus of the trigger link; content is
-          non-interactive-safe and dismisses on blur and Escape.
-        </p>
-      </Section>
+      <Notes>
+        <li>
+          Opens on hover (after a delay) and on keyboard focus of the trigger
+          link; dismisses on blur and Escape.
+        </li>
+        <li>
+          Content is non-interactive-safe — the card is a supplement to the
+          link, not a replacement for visiting it.
+        </li>
+      </Notes>
     </main>
   )
 }
