@@ -41,9 +41,9 @@ export default function RadioGroupDocs() {
 
       <Section title="Motion">
         <p className="text-muted-foreground text-sm">
-          Selecting an item mounts its indicator and scales the dot in from 0
-          with <code>springs.snappy</code>. Honors{" "}
-          <code>prefers-reduced-motion</code>.
+          The ring recedes on press (<code>depth.pressed</code>, a dim under
+          reduced motion), and selecting an item mounts its indicator and
+          scales the dot in from 0 with <code>springs.snappy</code>.
         </p>
       </Section>
 

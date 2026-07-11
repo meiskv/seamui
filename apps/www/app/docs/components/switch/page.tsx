@@ -41,7 +41,9 @@ export default function SwitchDocs() {
           The thumb is a <code>layout</code> element: toggling flips the
           track&apos;s flex alignment, and motion springs the thumb to its new
           position with <code>springs.snappy</code> — interruptible mid-flight.
-          Honors <code>prefers-reduced-motion</code>.
+          While pressed the thumb <em>stretches</em> toward the far side (the
+          iOS feel) and snaps across on release. Under reduced motion the press
+          dims instead and the thumb jumps states instantly.
         </p>
       </Section>
 

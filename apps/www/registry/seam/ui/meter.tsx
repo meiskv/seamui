@@ -19,7 +19,7 @@ function Meter({
       >
         <BaseMeter.Indicator
           data-slot="meter-indicator"
-          className="bg-primary h-full rounded-full transition-[width] duration-500 ease-out"
+          className="bg-primary h-full rounded-full transition-[width] duration-500 ease-out motion-reduce:transition-none"
         />
       </BaseMeter.Track>
     </BaseMeter.Root>

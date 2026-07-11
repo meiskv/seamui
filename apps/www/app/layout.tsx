@@ -1,5 +1,7 @@
 import type { Metadata } from "next"
 
+import { HapticsProvider } from "@/lib/haptics"
+
 import "./globals.css"
 
 export const metadata: Metadata = {
@@ -23,7 +25,11 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-screen antialiased">{children}</body>
+      <body className="min-h-screen antialiased">
+        {/* Site-wide haptics + click audio — every component demo gives the
+            same tactile feedback as the landing page. */}
+        <HapticsProvider>{children}</HapticsProvider>
+      </body>
     </html>
   )
 }

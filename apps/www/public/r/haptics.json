@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "haptics",
+  "type": "registry:lib",
+  "title": "seam haptics",
+  "description": "Haptic + click-audio feedback layer: HapticsProvider and the useHaptics hook every interactive control fires through.",
+  "dependencies": [
+    "web-haptics"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/lib/haptics.tsx",
+      "content": "\"use client\"\n\n// seam haptics — the tactile third of the touch-feedback pillar.\n//\n// Mount <HapticsProvider> once around your app shell and every seamui\n// control clicks and buzzes as you use it: the Vibration API on Android,\n// web-haptics' taptic trick on iOS, plus an audible tick when `sound` is on\n// (the same feel as the seamui landing page). Without a provider every\n// trigger is a silent no-op, so components can always call the hook.\nimport * as React from \"react\"\nimport { useWebHaptics } from \"web-haptics/react\"\n\ntype HapticPreset = \"tap\" | \"tick\" | \"success\" | \"error\"\n\ntype HapticsContextValue = {\n  enabled: boolean\n  /** Fire a haptic (and its click, when sound is on). Never throws. */\n  trigger: (preset?: HapticPreset) => void\n}\n\nconst HapticsContext = React.createContext<HapticsContextValue>({\n  enabled: false,\n  trigger: () => {},\n})\n\n/** seam presets → web-haptics intensities. */\nconst INTENSITY: Record<HapticPreset, \"light\" | \"medium\" | \"heavy\"> = {\n  tap: \"light\",\n  tick: \"medium\",\n  success: \"medium\",\n  error: \"heavy\",\n}\n\nfunction HapticsProvider({\n  enabled = true,\n  sound = true,\n  children,\n}: {\n  enabled?: boolean\n  /** Also play the click audio on every device (web-haptics' debug mode). */\n  sound?: boolean\n  children: React.ReactNode\n}) {\n  const { trigger: fire } = useWebHaptics({ debug: sound })\n\n  const value = React.useMemo<HapticsContextValue>(\n    () => ({\n      enabled,\n      trigger: (preset = \"tap\") => {\n        if (!enabled) return\n        // fire-and-forget — feedback must never block or throw into the UI.\n        try {\n          void fire(INTENSITY[preset])\n        } catch {\n          // no haptics available — stay silent\n        }\n      },\n    }),\n    [enabled, fire]\n  )\n\n  return (\n    <HapticsContext.Provider value={value}>{children}</HapticsContext.Provider>\n  )\n}\n\n/** Read the ambient haptics channel. Safe without a provider (no-op). */\nfunction useHaptics() {\n  return React.useContext(HapticsContext)\n}\n\nexport { HapticsProvider, useHaptics, type HapticPreset }\n",
+      "type": "registry:lib",
+      "target": "lib/haptics.tsx"
+    }
+  ]
+}

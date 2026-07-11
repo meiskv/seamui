@@ -128,10 +128,26 @@ Concretely:
 Import from `@/lib/motion`. Never inline. Adding a preset means editing this
 file *in the registry* so every future install gets it.
 
+- **`personalities`** — the one-line feel dial: `seam` / `brisk` / `relaxed` / `playful`, each defining the four spring roles. `springs` just picks one (`export const springs = personalities.seam`), so consumers retune the whole library by swapping the pick. New springs go in a personality, never inline.
 - **`springs`** — `press` (stiff, instant), `snappy` (release/settle), `surface` (overlays), `bouncy` (toasts/accents, sparingly).
 - **`fades`** — `fast` / `normal`, opacity-only durations.
 - **`depth`** — `pressed` / `resting` / `raised` scalars + `overlay` / `modal` enter/exit objects.
-- **`reduced`** — the reduced-motion fallbacks (see §5). `pressed` (dim, no move), `fadeIn` (opacity-only enter), `instant` (zero-duration layout jump).
+- **`shake`** — error feedback (brief x-axis shake); pair with `reduced.flash` under reduced motion.
+- **`reduced`** — the reduced-motion fallbacks (see §5). `pressed` (dim, no move), `fadeIn` (opacity-only enter), `instant` (zero-duration layout jump), `flash` (opacity error pulse).
+
+### 3b. The haptics layer — `lib/haptics.tsx`
+
+The tactile third of the touch-feedback pillar. `<HapticsProvider>` (mounted
+once, site-wide in the docs app) exposes `useHaptics()` → `trigger(preset)`
+with presets `tap` / `tick` / `success` / `error`, powered by `web-haptics`
+(Vibration API on Android, taptic trick on iOS, click audio when `sound` is
+on). Without a provider every trigger is a silent no-op — components always
+call the hook unconditionally. Wiring rules: `Button`/`Toggle` fire `tap` on
+pointerdown and take a `haptic` prop (`false` opts out, a preset name
+overrides); state controls (switch, checkbox, radio, slider, OTP) fire `tick`
+on commit; OTP fires `error` when `invalid` flips. Anything new that presses
+or commits state should follow the same shape. Haptics never block, throw, or
+gate on `prefers-reduced-motion`.
 
 ---
 
@@ -333,7 +349,7 @@ still reads).
 ```
 apps/www/
   registry/seam/            # THE PRODUCT — canonical component sources
-    lib/{utils,motion}.ts   # cn() + motion tokens (springs, depth, fades, reduced)
+    lib/{utils,motion,haptics}  # cn() + motion tokens (personalities, springs, depth, fades, reduced) + haptics provider
     theme/theme.css         # tokens + depth/well shadows (edit HERE, regen globals)
     ui/<name>.tsx           # one file per component
     examples/<name>-*.tsx   # live demos, shipped as registry examples
