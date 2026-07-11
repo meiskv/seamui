@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "device-selector-split",
+  "type": "registry:example",
+  "title": "Device Selector Split",
+  "registryDependencies": [
+    "https://seamui.dev/r/device-selector.json",
+    "https://seamui.dev/r/media-toggle.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/device-selector-split.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport {\n  DeviceSelector,\n  DeviceSelectorContent,\n  DeviceSelectorTrigger,\n} from \"@/registry/seam/ui/device-selector\"\nimport { MediaToggle } from \"@/registry/seam/ui/media-toggle\"\n\nconst DEVICES = [\n  { deviceId: \"default\", label: \"MacBook Pro Microphone\" },\n  { deviceId: \"airpods\", label: \"AirPods Pro\" },\n]\n\n// The common call pattern: mute is one press; picking the device is the small\n// key docked beside it, both riding in a debossed well.\nexport default function DeviceSelectorSplit() {\n  const [value, setValue] = React.useState(\"default\")\n\n  return (\n    <div className=\"bg-muted flex w-fit items-center gap-1 rounded-full p-1 shadow-well\">\n      <MediaToggle kind=\"mic\" defaultPressed className=\"size-9\" />\n      <DeviceSelector devices={DEVICES} value={value} onValueChange={setValue}>\n        <DeviceSelectorTrigger />\n        <DeviceSelectorContent />\n      </DeviceSelector>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

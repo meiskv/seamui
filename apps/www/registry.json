@@ -709,6 +709,28 @@
       ]
     },
     {
+      "name": "voice-avatar",
+      "type": "registry:ui",
+      "title": "Voice Avatar",
+      "description": "Avatar with a speaking halo that breathes with audio level.",
+      "dependencies": ["motion"],
+      "registryDependencies": ["https://seamui.dev/r/utils.json", "https://seamui.dev/r/motion.json", "https://seamui.dev/r/avatar.json", "https://seamui.dev/r/voice-visualizer.json"],
+      "files": [
+        { "path": "registry/seam/ui/voice-avatar.tsx", "type": "registry:ui", "target": "components/ui/voice-avatar.tsx" }
+      ]
+    },
+    {
+      "name": "device-selector",
+      "type": "registry:ui",
+      "title": "Device Selector",
+      "description": "Mic/camera/output picker on DropdownMenu, with an owned useMediaDevices hook.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["https://seamui.dev/r/utils.json", "https://seamui.dev/r/button.json", "https://seamui.dev/r/dropdown-menu.json"],
+      "files": [
+        { "path": "registry/seam/ui/device-selector.tsx", "type": "registry:ui", "target": "components/ui/device-selector.tsx" }
+      ]
+    },
+    {
       "name": "button-demo",
       "type": "registry:example",
       "title": "Button Demo",
@@ -1811,6 +1833,60 @@
       "registryDependencies": ["https://seamui.dev/r/voice-visualizer.json", "https://seamui.dev/r/button.json"],
       "files": [
         { "path": "registry/seam/examples/voice-visualizer-mic.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "voice-avatar-demo",
+      "type": "registry:example",
+      "title": "Voice Avatar Demo",
+      "registryDependencies": ["https://seamui.dev/r/voice-avatar.json"],
+      "files": [
+        { "path": "registry/seam/examples/voice-avatar-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "voice-avatar-group",
+      "type": "registry:example",
+      "title": "Voice Avatar Group",
+      "registryDependencies": ["https://seamui.dev/r/voice-avatar.json"],
+      "files": [
+        { "path": "registry/seam/examples/voice-avatar-group.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "voice-avatar-fallback",
+      "type": "registry:example",
+      "title": "Voice Avatar Fallback",
+      "registryDependencies": ["https://seamui.dev/r/voice-avatar.json"],
+      "files": [
+        { "path": "registry/seam/examples/voice-avatar-fallback.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "device-selector-demo",
+      "type": "registry:example",
+      "title": "Device Selector Demo",
+      "registryDependencies": ["https://seamui.dev/r/device-selector.json"],
+      "files": [
+        { "path": "registry/seam/examples/device-selector-demo.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "device-selector-split",
+      "type": "registry:example",
+      "title": "Device Selector Split",
+      "registryDependencies": ["https://seamui.dev/r/device-selector.json", "https://seamui.dev/r/media-toggle.json"],
+      "files": [
+        { "path": "registry/seam/examples/device-selector-split.tsx", "type": "registry:example" }
+      ]
+    },
+    {
+      "name": "device-selector-live",
+      "type": "registry:example",
+      "title": "Device Selector Live",
+      "registryDependencies": ["https://seamui.dev/r/device-selector.json", "https://seamui.dev/r/button.json"],
+      "files": [
+        { "path": "registry/seam/examples/device-selector-live.tsx", "type": "registry:example" }
       ]
     }
   ]

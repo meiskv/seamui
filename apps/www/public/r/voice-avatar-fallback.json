@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "voice-avatar-fallback",
+  "type": "registry:example",
+  "title": "Voice Avatar Fallback",
+  "registryDependencies": [
+    "https://seamui.dev/r/voice-avatar.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/voice-avatar-fallback.tsx",
+      "content": "import { VoiceAvatar } from \"@/registry/seam/ui/voice-avatar\"\n\n// No image — the initials fallback shows, and the speaking halo still reads.\nexport default function VoiceAvatarFallback() {\n  return <VoiceAvatar name=\"Grace Hopper\" speaking className=\"size-16\" />\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

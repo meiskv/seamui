@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "device-selector-demo",
+  "type": "registry:example",
+  "title": "Device Selector Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/device-selector.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/device-selector-demo.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport {\n  DeviceSelector,\n  DeviceSelectorContent,\n  DeviceSelectorTrigger,\n} from \"@/registry/seam/ui/device-selector\"\n\nconst DEVICES = [\n  { deviceId: \"default\", label: \"MacBook Pro Microphone\" },\n  { deviceId: \"airpods\", label: \"AirPods Pro\" },\n  { deviceId: \"yeti\", label: \"Blue Yeti\" },\n]\n\nexport default function DeviceSelectorDemo() {\n  const [value, setValue] = React.useState(\"default\")\n\n  return (\n    <div className=\"flex flex-col items-center gap-3\">\n      <DeviceSelector devices={DEVICES} value={value} onValueChange={setValue}>\n        <DeviceSelectorTrigger />\n        <DeviceSelectorContent />\n      </DeviceSelector>\n      <p className=\"text-muted-foreground text-sm\">\n        Mic: {DEVICES.find((d) => d.deviceId === value)?.label}\n      </p>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

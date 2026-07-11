@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "voice-avatar-demo",
+  "type": "registry:example",
+  "title": "Voice Avatar Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/voice-avatar.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/voice-avatar-demo.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport { VoiceAvatar } from \"@/registry/seam/ui/voice-avatar\"\n\nexport default function VoiceAvatarDemo() {\n  const [level, setLevel] = React.useState(0)\n\n  React.useEffect(() => {\n    const id = setInterval(\n      () => setLevel(0.15 + Math.abs(Math.sin(performance.now() / 320)) * 0.85),\n      80\n    )\n    return () => clearInterval(id)\n  }, [])\n\n  return (\n    <VoiceAvatar\n      name=\"Ada Lovelace\"\n      src=\"https://i.pravatar.cc/96?img=5\"\n      level={level}\n      className=\"size-16\"\n    />\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}
