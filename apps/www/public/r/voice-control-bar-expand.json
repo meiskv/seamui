@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "voice-control-bar-expand",
+  "type": "registry:example",
+  "title": "Voice Control Bar Expand",
+  "registryDependencies": [
+    "https://seamui.dev/r/voice-control-bar.json",
+    "https://seamui.dev/r/media-toggle.json",
+    "https://seamui.dev/r/composer.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/voice-control-bar-expand.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { MessageSquare } from \"lucide-react\"\n\nimport {\n  VoiceControlBar,\n  VoiceControlBarActions,\n  VoiceControlBarPanel,\n  VoiceControlBarTrigger,\n  VoiceControlBarEnd,\n} from \"@/registry/seam/ui/voice-control-bar\"\nimport {\n  Composer,\n  ComposerTextarea,\n  ComposerToolbar,\n  ComposerSubmit,\n} from \"@/registry/seam/ui/composer\"\nimport { MediaToggle } from \"@/registry/seam/ui/media-toggle\"\n\n// Toggle the chat key and the pill morphs — the panel grows a composer while\n// the container squares off from a pill into a rounded card. It's controlled\n// here so the demo can start open; leave `expanded` off to self-manage.\nexport default function VoiceControlBarExpand() {\n  const [open, setOpen] = React.useState(true)\n\n  return (\n    <VoiceControlBar\n      expanded={open}\n      onExpandedChange={setOpen}\n      className=\"w-full max-w-sm\"\n    >\n      <VoiceControlBarPanel>\n        <Composer\n          onSubmit={(e) => e.preventDefault()}\n          className=\"shadow-none\"\n        >\n          <ComposerTextarea placeholder=\"Message the agent…\" />\n          <ComposerToolbar>\n            <ComposerSubmit />\n          </ComposerToolbar>\n        </Composer>\n      </VoiceControlBarPanel>\n      <VoiceControlBarActions className=\"justify-center\">\n        <MediaToggle kind=\"mic\" defaultPressed />\n        <MediaToggle kind=\"camera\" />\n        <VoiceControlBarTrigger>\n          <MessageSquare className=\"size-4\" />\n        </VoiceControlBarTrigger>\n        <VoiceControlBarEnd />\n      </VoiceControlBarActions>\n    </VoiceControlBar>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

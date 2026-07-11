@@ -93,6 +93,7 @@ export const NAV: NavGroup[] = [
       c("device-selector", "Device Selector"),
       c("voice-avatar", "Voice Avatar"),
       c("voice-visualizer", "Voice Visualizer"),
+      c("voice-control-bar", "Voice Control Bar"),
     ],
   },
 ]
