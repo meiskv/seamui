@@ -52,7 +52,9 @@ export default function AccordionDocs() {
           <code>--accordion-panel-height</code>; seamui eases the height between
           0 and that value. Height is the one property seamui animates with a
           duration rather than a transform spring (like opacity fades), because
-          it&apos;s a layout dimension. The chevron rotates in sync.
+          it&apos;s a layout dimension. The chevron rotates in sync, and the
+          trigger row recedes on press like every other button-shaped control
+          (<code>depth.pressed</code>; a dim under reduced motion).
         </p>
       </Section>
 

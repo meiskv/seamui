@@ -41,10 +41,10 @@ export default function CheckboxDocs() {
 
       <Section title="Motion">
         <p className="text-muted-foreground text-sm">
-          The indicator mounts on check and its mark scales in from 0 with{" "}
-          <code>springs.snappy</code>. The indeterminate dash swaps in via a{" "}
-          <code>data-[indeterminate]</code> CSS toggle. Honors{" "}
-          <code>prefers-reduced-motion</code>.
+          The box recedes on press (<code>depth.pressed</code>, a dim under
+          reduced motion), and the indicator mounts on check with its mark
+          scaling in from 0 with <code>springs.snappy</code>. The indeterminate
+          dash swaps in via a <code>data-[indeterminate]</code> CSS toggle.
         </p>
       </Section>
 

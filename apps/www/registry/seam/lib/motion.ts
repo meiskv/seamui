@@ -1,6 +1,6 @@
 // seamui motion tokens — the single source of truth for all animation.
 // Springs over durations; depth over flatness. See seamui docs → Motion.
-import type { Transition } from "motion/react"
+import type { TargetAndTransition, Transition } from "motion/react"
 
 /** Spring presets, tuned against 60fps mobile feel. */
 export const springs = {
@@ -45,6 +45,16 @@ export const depth = {
 } as const
 
 /**
+ * Error feedback — a brief horizontal shake. A keyframe sequence a spring
+ * can't express, so it carries its own duration (like fades). Movement, so
+ * it never runs under reduced motion — pair with `reduced.flash`.
+ */
+export const shake: { animate: TargetAndTransition; transition: Transition } = {
+  animate: { x: [0, -6, 6, -4, 4, 0] },
+  transition: { duration: 0.32, ease: "easeInOut" },
+}
+
+/**
  * Reduced-motion fallbacks — used when `useReducedMotion()` is true.
  * Policy: never go dead. Swap movement (scale/translate) for opacity so
  * every interaction still gives feedback; it just doesn't travel.
@@ -60,4 +70,9 @@ export const reduced = {
   },
   /** Layout / position changes jump instantly instead of springing. */
   instant: { duration: 0 } satisfies Transition,
+  /** Error/attention feedback without movement: a brief opacity pulse. */
+  flash: {
+    animate: { opacity: [1, 0.45, 1] },
+    transition: { duration: 0.32, ease: "easeInOut" },
+  } as { animate: TargetAndTransition; transition: Transition },
 } as const

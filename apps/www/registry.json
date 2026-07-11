@@ -3180,6 +3180,20 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "otp-field-invalid",
+      "type": "registry:example",
+      "title": "OTP Field Invalid",
+      "registryDependencies": [
+        "https://seamui.dev/r/otp-field.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/otp-field-invalid.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

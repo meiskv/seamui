@@ -6,10 +6,11 @@ import { motion, useReducedMotion } from "motion/react"
 import { Check, Minus } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { springs, fades, reduced } from "@/lib/motion"
+import { springs, fades, depth, reduced } from "@/lib/motion"
 
 function Checkbox({
   className,
+  disabled,
   ...props
 }: React.ComponentProps<typeof BaseCheckbox.Root>) {
   const reduceMotion = useReducedMotion()
@@ -17,6 +18,17 @@ function Checkbox({
   return (
     <BaseCheckbox.Root
       data-slot="checkbox"
+      disabled={disabled}
+      // seam touch feedback: the box itself recedes on press (the mark's pop
+      // is state motion, not press motion — a control needs both).
+      render={
+        <motion.button
+          whileTap={
+            disabled ? undefined : reduceMotion ? reduced.pressed : depth.pressed
+          }
+          transition={reduceMotion ? fades.fast : springs.press}
+        />
+      }
       className={cn(
         // debossed well unchecked → embossed primary key when checked.
         "group/cb peer flex size-4.5 shrink-0 items-center justify-center rounded-[5px] squircle border border-border/60 bg-muted shadow-well outline-none",

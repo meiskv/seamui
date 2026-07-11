@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "otp-field-invalid",
+  "type": "registry:example",
+  "title": "OTP Field Invalid",
+  "registryDependencies": [
+    "https://seamui.dev/r/otp-field.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/otp-field-invalid.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport { OTPField } from \"@/registry/seam/ui/otp-field\"\n\n// Completing the field with the wrong code flips `invalid`: the slots go\n// destructive and the group shakes (an opacity flash under reduced motion).\n// Editing again clears it.\nexport default function OTPFieldInvalid() {\n  const [value, setValue] = React.useState(\"\")\n  const [invalid, setInvalid] = React.useState(false)\n\n  return (\n    <div className=\"flex flex-col items-center gap-3\">\n      <OTPField\n        length={4}\n        value={value}\n        invalid={invalid}\n        onValueChange={(v) => {\n          setValue(v)\n          setInvalid(v.length === 4 && v !== \"1234\")\n        }}\n      />\n      <p className=\"text-muted-foreground text-xs\">\n        The code is <code>1234</code> — try a wrong one first.\n      </p>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}
