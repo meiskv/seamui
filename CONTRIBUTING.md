@@ -116,10 +116,35 @@ Notes/API don't match the code, should be filed and fixed like any other
 defect. So is bloat — a Usage block duplicating the variant source, or global
 policy restated per page.
 
+## Quality gates (CI)
+
+Every push and PR runs `.github/workflows/ci.yml`. Run the same gates locally
+before you push — `bun run verify` chains the fast ones:
+
+| Command | Gate | What it enforces |
+|---|---|---|
+| `bun run lint` | Format, Lint, Typecheck | Biome format + lint (`biome ci`) |
+| `bun run typecheck` | Format, Lint, Typecheck | `tsc --noEmit` in the docs app **and** the CLI |
+| `bun run motion:check` | Format, Lint, Typecheck | the motion contract: no reduced-motion kill switches, no inline springs/durations (§3/§5) |
+| `bun run test` | Unit Test | Vitest — motion tokens, `cn`, haptics, foundation components, CLI, registry integrity |
+| `bun run test:coverage` | Test Coverage Gate | Vitest coverage thresholds on `registry/seam/lib/**` |
+| `bun run drift:check` | Release Smoke | `public/r/**` rebuilt + `app/globals.css` regenerated (no hand-edits) |
+| `bun run smoke` | Release Smoke | the CLI runs under node; every `public/r/*.json` is valid |
+| `bun run build` | Release Smoke | the docs site builds |
+| `bun run test:e2e` | Browser Smoke | Playwright drives the four gates below in a real browser |
+
+`bun run verify` = lint + typecheck + motion:check + test + drift. The browser
+smoke (`test:e2e`) and `build` are heavier; run them when you touch motion or
+the build.
+
+Adding an ambient, infinite-repeat animation that legitimately needs an inline
+`duration`? Add its file to `scripts/motion-contract-allow.txt` with a one-line
+justification — that's a reviewed exception, not a workaround.
+
 ## Verifying — the four gates
 
-Compilation proves nothing about motion. Run the dev server (`bun run dev`) and
-check, in a real browser:
+Compilation proves nothing about motion. `bun run test:e2e` automates these, but
+also run the dev server (`bun run dev`) and check them by hand in a real browser:
 
 1. **Pointer** — press feedback fires in ≤1 frame, settles on a spring, never
    blocks the click.
@@ -128,8 +153,6 @@ check, in a real browser:
 3. **Reduced motion** — emulate `prefers-reduced-motion: reduce`; every
    interaction still gives (opacity) feedback. Nothing goes dead.
 4. **Dark mode** — tokens flip, depth still reads.
-
-Also run `npx tsc --noEmit` in `apps/www` before you claim done.
 
 ## Pull requests
 
