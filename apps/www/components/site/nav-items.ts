@@ -16,6 +16,13 @@ export const NAV: NavGroup[] = [
     ],
   },
   {
+    title: "Guides",
+    items: [
+      { title: "Building a chat app", href: "/docs/guides/chat" },
+      { title: "Building a voice agent", href: "/docs/guides/voice" },
+    ],
+  },
+  {
     title: "Forms",
     items: [
       c("button", "Button"),
