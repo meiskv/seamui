@@ -55,6 +55,7 @@ const COMPONENTS = [
   { name: "voice-visualizer", title: "Voice Visualizer", desc: "Agent-state audio dots." },
   { name: "voice-avatar", title: "Voice Avatar", desc: "Avatar with a speaking halo." },
   { name: "device-selector", title: "Device Selector", desc: "Mic/camera/output picker." },
+  { name: "voice-control-bar", title: "Voice Control Bar", desc: "Call pill that morphs into chat." },
 ]
 
 export default function ComponentsIndex() {

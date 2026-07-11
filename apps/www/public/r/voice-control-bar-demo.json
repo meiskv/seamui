@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "voice-control-bar-demo",
+  "type": "registry:example",
+  "title": "Voice Control Bar Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/voice-control-bar.json",
+    "https://seamui.dev/r/media-toggle.json",
+    "https://seamui.dev/r/device-selector.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/voice-control-bar-demo.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { MessageSquare } from \"lucide-react\"\n\nimport {\n  VoiceControlBar,\n  VoiceControlBarActions,\n  VoiceControlBarTrigger,\n  VoiceControlBarEnd,\n} from \"@/registry/seam/ui/voice-control-bar\"\nimport {\n  DeviceSelector,\n  DeviceSelectorContent,\n  DeviceSelectorTrigger,\n} from \"@/registry/seam/ui/device-selector\"\nimport { MediaToggle } from \"@/registry/seam/ui/media-toggle\"\n\nconst MICS = [\n  { deviceId: \"default\", label: \"MacBook Pro Microphone\" },\n  { deviceId: \"airpods\", label: \"AirPods Pro\" },\n]\n\n// The resting call pill: a split mic control, camera and screen keys, a chat\n// toggle, and the hang-up key — all riding in one raised, rounded pill.\nexport default function VoiceControlBarDemo() {\n  const [mic, setMic] = React.useState(\"default\")\n\n  return (\n    <VoiceControlBar>\n      <VoiceControlBarActions>\n        <div className=\"bg-muted flex items-center gap-1 rounded-full p-1 shadow-well\">\n          <MediaToggle kind=\"mic\" defaultPressed className=\"size-8\" />\n          <DeviceSelector devices={MICS} value={mic} onValueChange={setMic}>\n            <DeviceSelectorTrigger />\n            <DeviceSelectorContent />\n          </DeviceSelector>\n        </div>\n        <MediaToggle kind=\"camera\" />\n        <MediaToggle kind=\"screen-share\" />\n        <VoiceControlBarTrigger>\n          <MessageSquare className=\"size-4\" />\n        </VoiceControlBarTrigger>\n        <VoiceControlBarEnd />\n      </VoiceControlBarActions>\n    </VoiceControlBar>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}
