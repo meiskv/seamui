@@ -39,10 +39,24 @@ jobs:
             echo "::error::tag v$TAG does not match packages/seamui version $PKG"
             exit 1
           fi
-          echo "Publishing seamui@$PKG"
+      - name: Skip if this version is already on npm
+        id: check
+        working-directory: packages/seamui
+        run: |
+          NAME=$(node -p "require('./package.json').name")
+          VER=$(node -p "require('./package.json').version")
+          if npm view "$NAME@$VER" version >/dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+            echo "$NAME@$VER is already published — skipping publish."
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+            echo "Publishing $NAME@$VER"
+          fi
       - name: Build CLI
+        if: steps.check.outputs.exists != 'true'
         run: bun run --cwd packages/seamui build
       - name: Publish to npm (with provenance)
+        if: steps.check.outputs.exists != 'true'
         working-directory: packages/seamui
         run: npm publish --provenance --access public
         env:
