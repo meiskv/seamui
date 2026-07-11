@@ -8,10 +8,10 @@ It's a thin wrapper over the shadcn CLI: it scaffolds your project, wires the `@
 
 ```bash
 # Set up seamui in a new or existing project
-bunx --bun seamui@latest init -t next     # or: vite | remix
+bunx --bun @seamui/cli@latest init -t next     # or: vite | remix
 
 # Add components
-bunx --bun seamui@latest add button
+bunx --bun @seamui/cli@latest add button
 ```
 
 Prefer the shadcn CLI directly? Add the namespace to `components.json`:
