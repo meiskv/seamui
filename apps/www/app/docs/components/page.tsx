@@ -53,6 +53,8 @@ const COMPONENTS = [
   { name: "chat-timeline", title: "Chat Timeline", desc: "Grouped, dated history." },
   { name: "media-toggle", title: "Media Toggle", desc: "Mic/camera/screen call key." },
   { name: "voice-visualizer", title: "Voice Visualizer", desc: "Agent-state audio dots." },
+  { name: "voice-avatar", title: "Voice Avatar", desc: "Avatar with a speaking halo." },
+  { name: "device-selector", title: "Device Selector", desc: "Mic/camera/output picker." },
 ]
 
 export default function ComponentsIndex() {
