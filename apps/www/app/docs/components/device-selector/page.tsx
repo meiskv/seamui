@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 
 import { VariantPreview } from "@/components/docs/variant-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { Install, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import DeviceSelectorDemo from "@/registry/seam/examples/device-selector-demo"
 import DeviceSelectorSplit from "@/registry/seam/examples/device-selector-split"
@@ -33,42 +33,29 @@ export default function DeviceSelectorDocs() {
 
       <Install name="device-selector" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import {
-  DeviceSelector,
-  DeviceSelectorTrigger,
-  DeviceSelectorContent,
-} from "@/components/ui/device-selector"`}</CodeBlock>
-        <CodeBlock>{`<DeviceSelector kind="audioinput" value={id} onValueChange={setId}>
-  <DeviceSelectorTrigger />
-  <DeviceSelectorContent />
-</DeviceSelector>`}</CodeBlock>
-        <p className="text-muted-foreground text-sm">
+      <Notes>
+        <li>
           Pass a <code>devices</code> array to control the list, or omit it and
           the owned <code>useMediaDevices</code> hook enumerates real hardware
           and re-lists on <code>devicechange</code>. The shape maps onto the
-          LiveKit <code>useMediaDeviceSelect</code> hook with no dependency.
-        </p>
-      </Section>
-
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
-          No new motion — everything is inherited: the trigger presses via the
-          dogfooded Button, and the menu rises at overlay depth
-          (<code>springs.surface</code>, fading in under reduced motion) from
-          Dropdown Menu.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
-          Full menu semantics from Base UI (roving focus, typeahead, a checked
-          radio item for the active device). The trigger carries an{" "}
-          <code>aria-label</code>. Device labels are empty until mic/camera
-          permission is granted, so the hook falls back to
-          &ldquo;Microphone 2&rdquo;-style names until then.
-        </p>
-      </Section>
+          LiveKit <code>useMediaDeviceSelect</code> hook with no runtime
+          dependency.
+        </li>
+        <li>
+          Device labels are empty until mic/camera permission is granted, so
+          the hook falls back to &ldquo;Microphone 2&rdquo;-style names until
+          then.
+        </li>
+        <li>
+          No new motion — the trigger presses via the dogfooded Button and the
+          menu rises at overlay depth, all inherited from Dropdown Menu.
+        </li>
+        <li>
+          Full menu semantics from Base UI: roving focus, typeahead, and a
+          checked radio item for the active device. The trigger carries an{" "}
+          <code>aria-label</code>.
+        </li>
+      </Notes>
     </main>
   )
 }

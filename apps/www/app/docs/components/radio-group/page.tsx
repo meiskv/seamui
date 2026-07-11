@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 
 import { VariantPreview } from "@/components/docs/variant-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { Install, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import RadioGroupDemo from "@/registry/seam/examples/radio-group-demo"
 import RadioGroupDescriptions from "@/registry/seam/examples/radio-group-descriptions"
@@ -31,29 +31,16 @@ export default function RadioGroupDocs() {
 
       <Install name="radio-group" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"`}</CodeBlock>
-        <CodeBlock>{`<RadioGroup defaultValue="a">
-  <RadioGroupItem value="a" />
-  <RadioGroupItem value="b" />
-</RadioGroup>`}</CodeBlock>
-      </Section>
-
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
-          The ring recedes on press (<code>depth.pressed</code>, a dim under
-          reduced motion), and selecting an item mounts its indicator and
-          scales the dot in from 0 with <code>springs.snappy</code>.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
-          Renders with <code>role="radiogroup"</code>; arrow keys move between
-          items. Controlled via <code>value</code> / <code>onValueChange</code>,
-          or uncontrolled via <code>defaultValue</code>.
-        </p>
-      </Section>
+      <Notes>
+        <li>
+          Selecting an item mounts its indicator and scales the dot in from 0.
+        </li>
+        <li>
+          Controlled via <code>value</code> / <code>onValueChange</code>,
+          uncontrolled via <code>defaultValue</code>; arrow keys move the
+          selection between items.
+        </li>
+      </Notes>
     </main>
   )
 }

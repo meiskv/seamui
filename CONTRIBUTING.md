@@ -67,25 +67,34 @@ this the slot, or the token in the slot?* Slot → debossed. Token → embossed.
 6. Add the docs page and nav entry (below).
 7. Verify the four gates (below).
 
-## The docs page template
+## The docs page template (v2 — code-first)
 
 Every component gets `apps/www/app/docs/components/<name>/page.tsx` with this
-exact section order (copy an existing page, e.g. `button`):
+exact section order (copy the reference page, `button`). The page is
+**code-first and minimal**: the preview and its source carry the page;
+everything else earns its place or doesn't exist.
 
 1. **Title + one-line description** — what it is, in seam terms.
 2. **`VariantPreview`** — the single persistent preview. Pass every meaningful
    example as a variant (the `<name>-demo` first). The live example shows on
    top; the variant keys sit in a row **below** it; and the selected variant's
    source is **always visible** in its own highlighted block underneath — no
-   click to reveal the code, no long scroll of stacked examples. Use
-   `ComponentPreview` only for a truly single-example component.
-3. **Installation** — `<Install name="<name>" />`.
-4. **Usage** — import + minimal JSX snippet.
-5. **Motion** — what animates, at which depth, with which tokens, *and what the
-   reduced-motion variant does*. If the component is static, say that it's
-   static by design and why.
-6. **Accessibility** — what element renders, what Base UI provides, what the
-   consumer must still do.
+   click to reveal the code, no long scroll of stacked examples.
+3. **`<Install name="<name>" />`** — the compact command row (no heading).
+4. **`ApiTable`** (optional) — `{ prop, type, default?, desc }` rows for
+   components with meaningful props, derived from the component source. This
+   replaces prose that describes props in sentences.
+5. **`<Notes>`** — the ONLY prose section: 1–4 terse bullets of facts *unique
+   to this component* (a signature motion detail, a permission caveat, an a11y
+   quirk the consumer must know). It auto-appends the link line to the global
+   Motion/Haptics policy pages — **never restate global policy per page**
+   ("honors reduced motion", "press recedes", "focus-visible ring" are all
+   boilerplate; cut them).
+
+A **Usage** section exists only when it shows something no variant displays
+(a provider requirement, a controlled-props pattern) — a bare code block, one
+sentence max. If the variant source already shows the import and basic JSX,
+Usage duplicating it is a bug, not documentation.
 
 **The `VariantPreview` (examples switcher).** `components/docs/variant-preview.tsx`
 takes `variants: { key, title, component, code, description? }[]`. `key` is a
@@ -103,8 +112,9 @@ Then add the component to **both** hand-maintained indexes:
 - `app/docs/components/page.tsx` (`COMPONENTS` overview grid)
 
 Docs debt is a bug: a component without a docs page, or a docs page whose
-Motion section doesn't match the code, should be filed and fixed like any other
-defect.
+Notes/API don't match the code, should be filed and fixed like any other
+defect. So is bloat — a Usage block duplicating the variant source, or global
+policy restated per page.
 
 ## Verifying — the four gates
 

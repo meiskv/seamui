@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { VariantPreview } from "@/components/docs/variant-preview"
+import { Install, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import ChatTimelineDemo from "@/registry/seam/examples/chat-timeline-demo"
 import ChatTimelineUnread from "@/registry/seam/examples/chat-timeline-unread"
@@ -22,64 +22,37 @@ export default function ChatTimelineDocs() {
         messages from the same sender. Place it inside a Conversation.
       </p>
 
-      <ComponentPreview code={exampleSource("chat-timeline-demo")}>
-        <ChatTimelineDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          { key: "default", title: "Default", component: <ChatTimelineDemo />, code: exampleSource("chat-timeline-demo") },
+          { key: "unread", title: "Unread divider", component: <ChatTimelineUnread />, code: exampleSource("chat-timeline-unread") },
+        ]}
+      />
 
       <Install name="chat-timeline" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import {
-  ChatTimeline,
-  ChatTimelineGroup,
-  ChatTimelineHeader,
-  ChatTimelineDivider,
-} from "@/components/ui/chat-timeline"`}</CodeBlock>
-        <CodeBlock>{`<Conversation>
-  <ConversationContent>
-    <ChatTimeline>
-      <ChatTimelineGroup>
-        <ChatTimelineHeader>Today</ChatTimelineHeader>
-        {/* <Message /> rows */}
-      </ChatTimelineGroup>
-    </ChatTimeline>
-  </ConversationContent>
-</Conversation>`}</CodeBlock>
-        <p className="text-muted-foreground text-sm">
+      <Notes>
+        <li>
           Grouping is presentational — you pass ordered messages and decide the
           day boundaries and which consecutive-sender runs collapse their
-          avatar. The component supplies the layout and the sticky headers.
-        </p>
-      </Section>
-
-      <Section title="Examples">
-        <h3 className="text-muted-foreground/80 mt-4 text-xs font-medium">
-          Unread divider
-        </h3>
-        <ComponentPreview code={exampleSource("chat-timeline-unread")}>
-          <ChatTimelineUnread />
-        </ComponentPreview>
-      </Section>
-
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
+          avatar; the component supplies the layout and the sticky headers.
+        </li>
+        <li>
           The date chips pin with a constant subtle backdrop — nothing
           translates, so they read the same with reduced motion on. New groups
-          inherit the Message entrance. Regrouping is instant by design:
-          reflowing history must never wobble, so there are no layout springs on
-          the timeline itself.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
-          The timeline is a <code>role=&quot;list&quot;</code> of message rows.
-          The unread divider is a labeled <code>role=&quot;separator&quot;</code>{" "}
-          announced once — the flanking rules are decorative. Collapsed avatars
-          leave a spacer so alignment holds without adding noise for screen
-          readers.
-        </p>
-      </Section>
+          inherit the Message entrance; regrouping is instant by design, with
+          no layout springs — reflowing history must never wobble.
+        </li>
+        <li>
+          The timeline is a <code>role=&quot;list&quot;</code> of message rows;
+          the unread divider is a labeled <code>role=&quot;separator&quot;</code>{" "}
+          announced once — the flanking rules are decorative.
+        </li>
+        <li>
+          Collapsed avatars leave a spacer so alignment holds without adding
+          noise for screen readers.
+        </li>
+      </Notes>
     </main>
   )
 }

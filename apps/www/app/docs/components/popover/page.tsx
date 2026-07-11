@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 
 import { VariantPreview } from "@/components/docs/variant-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { Install, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import PopoverDemo from "@/registry/seam/examples/popover-demo"
 import PopoverForm from "@/registry/seam/examples/popover-form"
@@ -31,40 +31,16 @@ export default function PopoverDocs() {
 
       <Install name="popover" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import {
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-} from "@/components/ui/popover"`}</CodeBlock>
-        <CodeBlock>{`<Popover>
-  <PopoverTrigger render={<Button>Open</Button>} />
-  <PopoverContent>…</PopoverContent>
-</Popover>`}</CodeBlock>
-      </Section>
-
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
-          Same overlay condense as Tooltip: the shared <code>condense</code>{" "}
-          token from <code>@/lib/motion</code> — CSS keyed to Base UI&apos;s{" "}
-          <code>data-starting-style</code> / <code>data-ending-style</code> so
-          the exit is awaited, not cut. The popup grows from its trigger via the{" "}
-          <code>--transform-origin</code> Base UI sets and fades in on a
-          spring-shaped bezier, then falls back and fades on dismiss. The scale
-          rides the standalone <code>scale</code> property since Base UI owns{" "}
-          <code>transform</code> for positioning. Under{" "}
-          <code>prefers-reduced-motion</code> it fades only.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
-          Manages focus trapping and restoration, <code>aria</code> wiring, and
-          dismissal on outside-click and Escape. Compose{" "}
-          <code>PopoverTitle</code> / <code>PopoverDescription</code> for
-          labelled content and <code>PopoverClose</code> for a close button.
-        </p>
-      </Section>
+      <Notes>
+        <li>
+          Manages focus trapping and restoration; dismisses on outside click
+          and Escape.
+        </li>
+        <li>
+          Compose <code>PopoverTitle</code> / <code>PopoverDescription</code>{" "}
+          for labelled content and <code>PopoverClose</code> for a close button.
+        </li>
+      </Notes>
     </main>
   )
 }

@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 
 import { VariantPreview } from "@/components/docs/variant-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { Install, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import ContextMenuDemo from "@/registry/seam/examples/context-menu-demo"
 import ContextMenuLabelled from "@/registry/seam/examples/context-menu-labelled"
@@ -31,40 +31,16 @@ export default function ContextMenuDocs() {
 
       <Install name="context-menu" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import {
-  ContextMenu,
-  ContextMenuTrigger,
-  ContextMenuContent,
-  ContextMenuItem,
-  ContextMenuSeparator,
-} from "@/components/ui/context-menu"`}</CodeBlock>
-        <CodeBlock>{`<ContextMenu>
-  <ContextMenuTrigger>Right-click me</ContextMenuTrigger>
-  <ContextMenuContent>
-    <ContextMenuItem>Reload</ContextMenuItem>
-  </ContextMenuContent>
-</ContextMenu>`}</CodeBlock>
-      </Section>
-
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
-          Shares the menu&apos;s overlay condense: the shared{" "}
-          <code>condense</code> token from <code>@/lib/motion</code> — CSS keyed
-          to Base UI&apos;s <code>data-starting-style</code> /{" "}
-          <code>data-ending-style</code> so the exit is awaited. The popup grows
-          from its origin and fades in, then falls back and fades on dismiss,
-          anchored to the cursor position by Base UI. Under{" "}
-          <code>prefers-reduced-motion</code> it fades only.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
-          Opens on <code>contextmenu</code> and long-press; full keyboard
-          navigation once open; dismisses on Escape and outside interaction.
-        </p>
-      </Section>
+      <Notes>
+        <li>
+          Opens on <code>contextmenu</code> (right-click) and long-press,
+          anchored to the cursor position rather than the trigger element.
+        </li>
+        <li>
+          Full keyboard navigation once open; dismisses on Escape and outside
+          interaction.
+        </li>
+      </Notes>
     </main>
   )
 }

@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 
 import { VariantPreview } from "@/components/docs/variant-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { Install, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import AvatarDemo from "@/registry/seam/examples/avatar-demo"
 import AvatarSizes from "@/registry/seam/examples/avatar-sizes"
@@ -31,29 +31,18 @@ export default function AvatarDocs() {
 
       <Install name="avatar" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"`}</CodeBlock>
-        <CodeBlock>{`<Avatar>
-  <AvatarImage src="/me.png" alt="@me" />
-  <AvatarFallback>ME</AvatarFallback>
-</Avatar>`}</CodeBlock>
-      </Section>
-
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
-          The image fades in with <code>fades.normal</code> once it loads, so
-          swapping in a resolved photo never pops. The fallback shows instantly
-          while loading. Honors <code>prefers-reduced-motion</code>.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
+      <Notes>
+        <li>
+          The image fades in with <code>fades.normal</code> once it loads —
+          the fallback shows instantly in the meantime, so a resolving photo
+          never pops.
+        </li>
+        <li>
           Always provide an <code>alt</code> on <code>AvatarImage</code> and a
           meaningful <code>AvatarFallback</code> (initials) for when the image
           fails or is still loading.
-        </p>
-      </Section>
+        </li>
+      </Notes>
     </main>
   )
 }

@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 
 import { VariantPreview } from "@/components/docs/variant-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { Install, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import DropdownMenuDemo from "@/registry/seam/examples/dropdown-menu-demo"
 import DropdownMenuCheckboxes from "@/registry/seam/examples/dropdown-menu-checkboxes"
@@ -35,44 +35,20 @@ export default function DropdownMenuDocs() {
 
       <Install name="dropdown-menu" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-} from "@/components/ui/dropdown-menu"`}</CodeBlock>
-        <CodeBlock>{`<DropdownMenu>
-  <DropdownMenuTrigger render={<Button>Menu</Button>} />
-  <DropdownMenuContent>
-    <DropdownMenuItem>Profile</DropdownMenuItem>
-    <DropdownMenuSeparator />
-    <DropdownMenuItem>Log out</DropdownMenuItem>
-  </DropdownMenuContent>
-</DropdownMenu>`}</CodeBlock>
-      </Section>
-
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
-          Menu and submenu both grow from their trigger origin and fade in via
-          the shared <code>condense</code> token from <code>@/lib/motion</code>{" "}
-          — CSS keyed to Base UI&apos;s <code>data-starting-style</code> /{" "}
-          <code>data-ending-style</code> so the exit is awaited, then fall back
-          and fade on dismiss — the same overlay condense as Tooltip and
-          Popover. Base UI handles positioning, collision, and typeahead. Under{" "}
-          <code>prefers-reduced-motion</code> it fades only.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
-          Full keyboard support (arrows, Home/End, typeahead, Escape) and{" "}
-          <code>role="menu"</code> semantics. Also ships checkbox and radio items
-          from Base UI if you need them.
-        </p>
-      </Section>
+      <Notes>
+        <li>
+          Full keyboard support — arrows, Home/End, typeahead, Escape — with{" "}
+          <code>role=&quot;menu&quot;</code> semantics; Base UI handles
+          positioning and collision.
+        </li>
+        <li>
+          Submenus animate from their own trigger origin, same as the root menu.
+        </li>
+        <li>
+          Checkbox and radio items ship in the same file when a menu needs
+          selectable state.
+        </li>
+      </Notes>
     </main>
   )
 }

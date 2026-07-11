@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 
 import { VariantPreview } from "@/components/docs/variant-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { Install, ApiTable, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import ButtonDemo from "@/registry/seam/examples/button-demo"
 import ButtonVariants from "@/registry/seam/examples/button-variants"
@@ -34,106 +34,29 @@ export default function ButtonDocs() {
 
       <Install name="button" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import { Button } from "@/components/ui/button"
+      <ApiTable
+        rows={[
+          { prop: "variant", type: `"default" | "destructive" | "outline" | "secondary" | "ghost" | "link"`, default: `"default"`, desc: "Visual style." },
+          { prop: "size", type: `"default" | "sm" | "lg" | "icon"`, default: `"default"`, desc: "Dimensions." },
+          { prop: "render", type: "ReactElement | (props, state) => ReactElement", desc: "Render a different element (e.g. an <a>) — Base UI's replacement for asChild." },
+          { prop: "haptic", type: `boolean | "tap" | "tick" | "success" | "error"`, default: "true", desc: "Haptic on press when a HapticsProvider is mounted; false opts out." },
+          { prop: "disabled", type: "boolean", default: "false", desc: "Also accepts Base UI's focusableWhenDisabled." },
+        ]}
+        footer={
+          <>Plus all native <code>&lt;button&gt;</code> props.</>
+        }
+      />
 
-<Button variant="outline" size="lg">Button</Button>`}</CodeBlock>
-        <p className="text-muted-foreground text-sm">
-          For the <strong>As a link</strong> variant, use Base UI&apos;s{" "}
-          <code>render</code> prop (it replaces Radix&apos;s{" "}
-          <code>asChild</code>).
-        </p>
-      </Section>
-
-      <Section title="API Reference">
-        <div className="squircle overflow-hidden rounded-lg border">
-          <table className="w-full border-collapse text-sm">
-            <thead>
-              <tr className="bg-muted/50 text-muted-foreground text-left text-xs">
-                <Th>Prop</Th>
-                <Th>Type</Th>
-                <Th>Default</Th>
-                <Th>Description</Th>
-              </tr>
-            </thead>
-            <tbody>
-              <Row
-                prop="variant"
-                type={`"default" | "destructive" | "outline" | "secondary" | "ghost" | "link"`}
-                def={`"default"`}
-                desc="Visual style."
-              />
-              <Row
-                prop="size"
-                type={`"default" | "sm" | "lg" | "icon"`}
-                def={`"default"`}
-                desc="Dimensions."
-              />
-              <Row
-                prop="render"
-                type={`ReactElement | (props, state) => ReactElement`}
-                def="—"
-                desc="Render a different element (e.g. an <a>). From Base UI."
-              />
-              <Row
-                prop="disabled"
-                type="boolean"
-                def="false"
-                desc="Also accepts Base UI's focusableWhenDisabled."
-              />
-            </tbody>
-          </table>
-        </div>
-        <p className="text-muted-foreground mt-2 text-sm">
-          Plus all native <code>&lt;button&gt;</code> props and motion props (
-          <code>whileTap</code> etc. can be overridden).
-        </p>
-      </Section>
-
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
-          Press recedes to <code>depth.pressed</code> (scale 0.97) with{" "}
-          <code>springs.press</code>; release settles with a spring. The{" "}
-          <code>ghost</code> and <code>link</code> variants stay flat. Honors{" "}
-          <code>prefers-reduced-motion</code> — depth animation is disabled,
-          everything else works.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
-          Renders a native <code>&lt;button&gt;</code> by default. Keyboard
-          activation (Space/Enter) triggers the same press feedback. Focus is
-          visible via a <code>focus-visible</code> ring.{" "}
-          <code>focusableWhenDisabled</code> keeps tab order stable when
-          disabling mid-interaction.
-        </p>
-      </Section>
+      <Notes>
+        <li>
+          <code>ghost</code> and <code>link</code> stay flat — no press depth by
+          design.
+        </li>
+        <li>
+          <code>focusableWhenDisabled</code> keeps tab order stable when a
+          button disables mid-interaction.
+        </li>
+      </Notes>
     </main>
-  )
-}
-
-function Th({ children }: { children: React.ReactNode }) {
-  return <th className="px-3 py-2 font-medium">{children}</th>
-}
-
-function Row({
-  prop,
-  type,
-  def,
-  desc,
-}: {
-  prop: string
-  type: string
-  def: string
-  desc: string
-}) {
-  return (
-    <tr className="border-t align-top">
-      <td className="px-3 py-2 font-mono text-xs">{prop}</td>
-      <td className="px-3 py-2 font-mono text-xs">{type}</td>
-      <td className="px-3 py-2 font-mono text-xs">{def}</td>
-      <td className="text-muted-foreground px-3 py-2">{desc}</td>
-    </tr>
   )
 }

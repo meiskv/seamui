@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 
 import { VariantPreview } from "@/components/docs/variant-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { Install, ApiTable, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import VoiceControlBarDemo from "@/registry/seam/examples/voice-control-bar-demo"
 import VoiceControlBarExpand from "@/registry/seam/examples/voice-control-bar-expand"
@@ -34,59 +34,40 @@ export default function VoiceControlBarDocs() {
 
       <Install name="voice-control-bar" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import {
-  VoiceControlBar,
-  VoiceControlBarPanel,
-  VoiceControlBarActions,
-  VoiceControlBarTrigger,
-  VoiceControlBarEnd,
-} from "@/components/ui/voice-control-bar"`}</CodeBlock>
-        <CodeBlock>{`<VoiceControlBar>
-  <VoiceControlBarPanel>
-    {/* a Composer, transcript, or anything to reveal on expand */}
-  </VoiceControlBarPanel>
-  <VoiceControlBarActions>
-    <MediaToggle kind="mic" />
-    <VoiceControlBarTrigger><MessageSquare /></VoiceControlBarTrigger>
-    <VoiceControlBarEnd onClick={endCall} />
-  </VoiceControlBarActions>
-</VoiceControlBar>`}</CodeBlock>
-        <p className="text-muted-foreground text-sm">
-          Expansion is uncontrolled by default (the <code>Trigger</code> flips
-          it); pass <code>expanded</code> / <code>onExpandedChange</code> to
-          drive it yourself. The bar owns no transport — drop in whatever call
-          controls you like and wire <code>VoiceControlBarEnd</code> to your
-          disconnect.
-        </p>
-      </Section>
+      <ApiTable
+        rows={[
+          { prop: "expanded", type: "boolean", desc: "Controlled expanded state of the panel." },
+          { prop: "defaultExpanded", type: "boolean", default: "false", desc: "Uncontrolled initial state; the Trigger flips it." },
+          { prop: "onExpandedChange", type: "(expanded: boolean) => void", desc: "Called when the panel opens or closes." },
+        ]}
+        footer={
+          <>Props on the root <code>&lt;VoiceControlBar&gt;</code>; <code>Trigger</code> and <code>End</code> accept all Button props.</>
+        }
+      />
 
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
-          The morph is the one sanctioned duration case — a layout change that
-          can&apos;t spring cleanly:
-        </p>
-        <ul className="text-muted-foreground mt-2 list-disc space-y-1 pl-5 text-sm">
-          <li>The panel opens with the grid-rows <code>0fr → 1fr</code> height trick, so it eases to its natural height with no measured pixels.</li>
-          <li>The container&apos;s radius and padding transition together — pill (<code>rounded-full</code>) to card (<code>rounded-3xl</code> squircle).</li>
-          <li>Every control inside keeps its own spring feedback: the toggles, the dogfooded Button trigger, and the END key all press at <code>depth.pressed</code>.</li>
-        </ul>
-        <p className="text-muted-foreground mt-2 text-sm">
-          Under reduced motion the morph snaps (<code>motion-reduce:transition-none</code>)
-          rather than freezing mid-animation, and the press feedback dims instead
-          of scaling.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
-          The trigger carries <code>aria-expanded</code> and{" "}
-          <code>aria-label</code> that flip with the panel, which is{" "}
-          <code>aria-hidden</code> while collapsed so its contents stay out of
-          the tab order. <code>VoiceControlBarEnd</code> defaults to an{" "}
-          &ldquo;End call&rdquo; label when it renders icon-only.
-        </p>
-      </Section>
+      <Notes>
+        <li>
+          The bar owns no transport — drop in whatever call controls you like
+          and wire <code>VoiceControlBarEnd</code> to your disconnect. It
+          defaults to an &ldquo;End call&rdquo; label when it renders
+          icon-only.
+        </li>
+        <li>
+          The morph is the one sanctioned duration case: the panel opens with
+          the grid-rows <code>0fr → 1fr</code> height trick while the
+          container&apos;s radius and padding transition together — pill
+          (<code>rounded-full</code>) to card (<code>rounded-3xl</code>{" "}
+          squircle). Under reduced motion it snaps
+          (<code>motion-reduce:transition-none</code>) rather than freezing
+          mid-morph, while every control inside keeps its own press feedback.
+        </li>
+        <li>
+          The trigger drives <code>aria-expanded</code> (and{" "}
+          <code>aria-pressed</code>) with a label that flips with the panel,
+          and the panel is <code>aria-hidden</code> while collapsed so its
+          contents stay out of the tab order.
+        </li>
+      </Notes>
     </main>
   )
 }

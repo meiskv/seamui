@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 
 import { VariantPreview } from "@/components/docs/variant-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { Install, ApiTable, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import ComposerDemo from "@/registry/seam/examples/composer-demo"
 import ComposerStreaming from "@/registry/seam/examples/composer-streaming"
@@ -33,52 +33,46 @@ export default function ComposerDocs() {
 
       <Install name="composer" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import {
-  Composer,
-  ComposerTextarea,
-  ComposerToolbar,
-  ComposerTools,
-  ComposerSubmit,
-  ComposerAttachments,
-  ComposerAttachment,
-} from "@/components/ui/composer"`}</CodeBlock>
-        <CodeBlock>{`<Composer status={status} onStop={stop} onSubmit={send}>
-  <ComposerTextarea value={value} onChange={…} placeholder="Ask anything…" />
-  <ComposerToolbar>
-    <ComposerSubmit disabled={!value.trim()} />
-  </ComposerToolbar>
-</Composer>`}</CodeBlock>
-        <p className="text-muted-foreground text-sm">
+      <ApiTable
+        rows={[
+          { prop: "status", type: `"ready" | "streaming"`, default: `"ready"`, desc: "While streaming, the submit key becomes a stop control (its type switches to button)." },
+          { prop: "onStop", type: "() => void", desc: "Fired by the stop key while status is streaming." },
+          { prop: "onSubmit", type: "FormEventHandler", desc: "Composer renders a real <form>; Enter in the textarea submits it." },
+          { prop: "value / onChange", type: "Textarea props", desc: "On ComposerTextarea — the controlled text; you own the string." },
+          { prop: "onRemove", type: "() => void", desc: "On ComposerAttachment — renders a ghost remove key inside the chip." },
+        ]}
+        footer={
+          <>
+            <code>ComposerTextarea</code> accepts all Textarea props;{" "}
+            <code>ComposerSubmit</code> accepts all Button props.
+          </>
+        }
+      />
+
+      <Notes>
+        <li>
           Fully controlled and transport-agnostic: you own <code>value</code>,{" "}
-          <code>onSubmit</code>, and a <code>status</code> of{" "}
-          <code>&quot;ready&quot;</code> or <code>&quot;streaming&quot;</code>.
-          The shape maps 1:1 onto the AI SDK&apos;s <code>useChat</code>, with no
-          runtime dependency on it.
-        </p>
-      </Section>
-
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
-          Send and stop press with <code>depth.pressed</code> inherited from
-          Button; the icon crossfades between them on opacity. Attachment chips
-          rise in and fall out on <code>springs.snappy</code>. The well itself
-          stays still — text entry is calm, with only a focus ring for feedback.
-          Under reduced motion the chip enter/exit and icon swap collapse to
-          opacity fades.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
-          A real <code>&lt;form&gt;</code>: <kbd>Enter</kbd> submits,{" "}
-          <kbd>Shift</kbd>+<kbd>Enter</kbd> inserts a newline, and submitting via
-          keyboard never steals focus from the textarea. The submit/stop control
-          swaps its <code>aria-label</code> and its button <code>type</code> with
-          the status; the attachment remove control dogfoods a resized ghost
-          Button.
-        </p>
-      </Section>
+          <code>onSubmit</code>, and <code>status</code> — the shape maps 1:1
+          onto the AI SDK&apos;s <code>useChat</code>, with no runtime
+          dependency on it.
+        </li>
+        <li>
+          <kbd>Enter</kbd> submits, <kbd>Shift</kbd>+<kbd>Enter</kbd> inserts a
+          newline, and submitting via keyboard never steals focus from the
+          textarea. The submit/stop control swaps its <code>aria-label</code>{" "}
+          and button <code>type</code> with the status.
+        </li>
+        <li>
+          The send/stop icon crossfades on opacity — identical under reduced
+          motion. Attachment chips rise in and fall out on{" "}
+          <code>springs.snappy</code>, collapsing to opacity fades under
+          reduced motion.
+        </li>
+        <li>
+          The well itself stays still — text entry is calm, with only a focus
+          ring for feedback.
+        </li>
+      </Notes>
     </main>
   )
 }

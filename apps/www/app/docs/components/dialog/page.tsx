@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 
 import { VariantPreview } from "@/components/docs/variant-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { Install, ApiTable, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import DialogDemo from "@/registry/seam/examples/dialog-demo"
 import DialogForm from "@/registry/seam/examples/dialog-form"
@@ -31,53 +31,33 @@ export default function DialogDocs() {
 
       <Install name="dialog" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import {
-  Dialog,
-  DialogTrigger,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-  DialogFooter,
-  DialogClose,
-} from "@/components/ui/dialog"`}</CodeBlock>
-        <CodeBlock>{`<Dialog>
-  <DialogTrigger render={<Button>Open</Button>} />
-  <DialogContent>
-    <DialogHeader>
-      <DialogTitle>Title</DialogTitle>
-      <DialogDescription>Description</DialogDescription>
-    </DialogHeader>
-    <DialogFooter>
-      <DialogClose render={<Button>Save</Button>} />
-    </DialogFooter>
-  </DialogContent>
-</Dialog>`}</CodeBlock>
-      </Section>
+      <ApiTable
+        rows={[
+          { prop: "showClose", type: "boolean", default: "true", desc: "Renders the corner close button inside DialogContent; false removes it." },
+          { prop: "open", type: "boolean", desc: "Controlled open state, forwarded to Base UI's Root." },
+          { prop: "defaultOpen", type: "boolean", default: "false", desc: "Uncontrolled initial open state." },
+          { prop: "onOpenChange", type: "(open, eventDetails) => void", desc: "Called when the open state changes." },
+        ]}
+        footer={
+          <>
+            <code>Dialog</code> forwards all other Base UI Root props;{" "}
+            <code>DialogContent</code> forwards Popup props.
+          </>
+        }
+      />
 
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
-          The panel animates via the shared <code>condense</code> token from{" "}
-          <code>@/lib/motion</code> — CSS keyed to Base UI&apos;s{" "}
-          <code>data-starting-style</code> / <code>data-ending-style</code>, so
-          Base UI can await the exit before unmounting. On open it pops from
-          center and fades in on a spring-shaped bezier; on dismiss it falls
-          back, scaling down and fading slightly quicker than it rose. The
-          backdrop dims and undims on the same clock. Under{" "}
-          <code>prefers-reduced-motion</code> the scale is dropped — it still
-          fades in and out.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
-          Traps focus, restores it on close, locks page scroll, and wires{" "}
-          <code>aria-labelledby</code> / <code>aria-describedby</code> from{" "}
-          <code>DialogTitle</code> / <code>DialogDescription</code>. Dismisses on
-          Escape and backdrop click.
-        </p>
-      </Section>
+      <Notes>
+        <li>
+          Traps focus while open, restores it on close, and locks page scroll.
+        </li>
+        <li>
+          Dismisses on Escape and backdrop click.
+        </li>
+        <li>
+          <code>aria-labelledby</code> / <code>aria-describedby</code> are wired
+          from <code>DialogTitle</code> / <code>DialogDescription</code>.
+        </li>
+      </Notes>
     </main>
   )
 }

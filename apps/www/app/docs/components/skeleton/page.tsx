@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { VariantPreview } from "@/components/docs/variant-preview"
+import { Install, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import SkeletonDemo from "@/registry/seam/examples/skeleton-demo"
 
@@ -20,32 +20,25 @@ export default function SkeletonDocs() {
         waits.
       </p>
 
-      <ComponentPreview code={exampleSource("skeleton-demo")}>
-        <SkeletonDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          { key: "default", title: "Default", component: <SkeletonDemo />, code: exampleSource("skeleton-demo") },
+        ]}
+      />
 
       <Install name="skeleton" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import { Skeleton } from "@/components/ui/skeleton"`}</CodeBlock>
-        <CodeBlock>{`<Skeleton className="h-4 w-40" />`}</CodeBlock>
-      </Section>
-
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
-          The pulse is opacity-only — the one kind of animation seamui runs on
-          a plain duration — so it stays on under reduced motion. Loading
-          feedback never goes dead; it just doesn&apos;t travel.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
-          Renders a plain <code>&lt;div&gt;</code> with no announced content.
-          Set <code>aria-busy</code> on the loading region and announce
+      <Notes>
+        <li>
+          The pulse is opacity-only, so it stays on under reduced motion —
+          loading feedback never goes dead, it just doesn&apos;t travel.
+        </li>
+        <li>
+          Renders a plain <code>&lt;div&gt;</code> with no announced content;
+          set <code>aria-busy</code> on the loading region and announce
           completion there, rather than labeling individual skeletons.
-        </p>
-      </Section>
+        </li>
+      </Notes>
     </main>
   )
 }

@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
-import { Section, CodeBlock, Install } from "@/components/docs/section"
+import { VariantPreview } from "@/components/docs/variant-preview"
+import { Install, ApiTable, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import ResponseDemo from "@/registry/seam/examples/response-demo"
 import ResponseStreaming from "@/registry/seam/examples/response-streaming"
@@ -21,62 +21,54 @@ export default function ResponseDocs() {
         half-arrived response never flashes broken markup mid-stream.
       </p>
 
-      <ComponentPreview code={exampleSource("response-demo")}>
-        <ResponseDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          { key: "default", title: "Default", component: <ResponseDemo />, code: exampleSource("response-demo") },
+          { key: "streaming", title: "Streaming", component: <ResponseStreaming />, code: exampleSource("response-streaming") },
+          { key: "code", title: "Code & tables", component: <ResponseCode />, code: exampleSource("response-code") },
+        ]}
+      />
 
       <Install name="response" />
 
-      <Section title="Usage">
-        <CodeBlock>{`import { Response } from "@/components/ui/response"`}</CodeBlock>
-        <CodeBlock>{`<Response>{message.text}</Response>`}</CodeBlock>
-        <p className="text-muted-foreground text-sm">
-          Pass the (possibly incomplete) markdown string as the only child.
+      <ApiTable
+        rows={[
+          { prop: "children", type: "string", desc: "The (possibly incomplete) markdown as the only child — pass the streaming message text directly." },
+          { prop: "className", type: "string", desc: "Merged onto the prose container." },
+        ]}
+        footer={
+          <>
+            Plus all native <code>&lt;div&gt;</code> props except{" "}
+            <code>children</code>, which must be a string.
+          </>
+        }
+      />
+
+      <Notes>
+        <li>
           Built on <code>react-markdown</code> + <code>remark-gfm</code>; an
-          unterminated code fence is auto-closed each frame so streaming tokens
-          stay renderable.
-        </p>
-      </Section>
-
-      <Section title="Examples">
-        <h3 className="text-muted-foreground/80 mt-4 text-xs font-medium">
-          Streaming
-        </h3>
-        <ComponentPreview code={exampleSource("response-streaming")}>
-          <ResponseStreaming />
-        </ComponentPreview>
-
-        <h3 className="text-muted-foreground/80 mt-4 text-xs font-medium">
-          Code &amp; tables
-        </h3>
-        <ComponentPreview code={exampleSource("response-code")}>
-          <ResponseCode />
-        </ComponentPreview>
-      </Section>
-
-      <Section title="Motion">
-        <p className="text-muted-foreground text-sm">
-          Static by design. Streamed text appends with no per-character
+          unterminated code fence is auto-closed each frame, so streaming
+          tokens stay renderable and never flash broken markup.
+        </li>
+        <li>
+          Static by design: streamed text appends with no per-character
           animation (explicitly forbidden in seamui) and no layout springs —
-          reflowing prose must never bounce. The sense of life comes from the
-          Conversation viewport following along, not from the letters. This
-          makes the reduced-motion story trivial: nothing moves either way.
-          Fenced code renders as a debossed well today and will adopt the{" "}
-          <code>code-block</code> component through the same overrides when it
-          lands.
-        </p>
-      </Section>
-
-      <Section title="Accessibility">
-        <p className="text-muted-foreground text-sm">
-          Emits semantic HTML from the markdown pipeline — heading levels,
-          lists, and tables are preserved; links open in a new tab with{" "}
-          <code>rel=&quot;noreferrer&quot;</code>; wide code and tables scroll in
-          keyboard-focusable containers. Announcement of streamed content is the
-          Conversation&apos;s responsibility, so Response stays quiet to avoid
-          double-announcing.
-        </p>
-      </Section>
+          the sense of life comes from the Conversation viewport following
+          along, which makes the reduced-motion story trivial.
+        </li>
+        <li>
+          Fenced code renders through the seam <code>code-block</code>{" "}
+          component (well, copy key, highlighting); inline code stays a
+          debossed chip. Links open in a new tab with{" "}
+          <code>rel=&quot;noreferrer&quot;</code>; wide code and tables scroll
+          in their own containers.
+        </li>
+        <li>
+          Semantic HTML is preserved (headings, lists, tables). Announcement of
+          streamed content is the Conversation&apos;s responsibility, so
+          Response stays quiet to avoid double-announcing.
+        </li>
+      </Notes>
     </main>
   )
 }
