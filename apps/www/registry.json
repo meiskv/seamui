@@ -49,6 +49,22 @@
       ]
     },
     {
+      "name": "haptics",
+      "type": "registry:lib",
+      "title": "seam haptics",
+      "description": "Haptic + click-audio feedback layer: HapticsProvider and the useHaptics hook every interactive control fires through.",
+      "dependencies": [
+        "web-haptics"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/lib/haptics.tsx",
+          "type": "registry:lib",
+          "target": "lib/haptics.tsx"
+        }
+      ]
+    },
+    {
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
@@ -60,7 +76,8 @@
       ],
       "registryDependencies": [
         "https://seamui.dev/r/utils.json",
-        "https://seamui.dev/r/motion.json"
+        "https://seamui.dev/r/motion.json",
+        "https://seamui.dev/r/haptics.json"
       ],
       "files": [
         {
@@ -82,7 +99,8 @@
       ],
       "registryDependencies": [
         "https://seamui.dev/r/utils.json",
-        "https://seamui.dev/r/motion.json"
+        "https://seamui.dev/r/motion.json",
+        "https://seamui.dev/r/haptics.json"
       ],
       "files": [
         {
@@ -205,7 +223,8 @@
       ],
       "registryDependencies": [
         "https://seamui.dev/r/utils.json",
-        "https://seamui.dev/r/motion.json"
+        "https://seamui.dev/r/motion.json",
+        "https://seamui.dev/r/haptics.json"
       ],
       "files": [
         {
@@ -227,7 +246,8 @@
       ],
       "registryDependencies": [
         "https://seamui.dev/r/utils.json",
-        "https://seamui.dev/r/motion.json"
+        "https://seamui.dev/r/motion.json",
+        "https://seamui.dev/r/haptics.json"
       ],
       "files": [
         {
@@ -248,7 +268,8 @@
       ],
       "registryDependencies": [
         "https://seamui.dev/r/utils.json",
-        "https://seamui.dev/r/motion.json"
+        "https://seamui.dev/r/motion.json",
+        "https://seamui.dev/r/haptics.json"
       ],
       "files": [
         {
@@ -269,7 +290,8 @@
       ],
       "registryDependencies": [
         "https://seamui.dev/r/utils.json",
-        "https://seamui.dev/r/motion.json"
+        "https://seamui.dev/r/motion.json",
+        "https://seamui.dev/r/haptics.json"
       ],
       "files": [
         {
@@ -600,7 +622,9 @@
         "@base-ui/react"
       ],
       "registryDependencies": [
-        "https://seamui.dev/r/utils.json"
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json",
+        "https://seamui.dev/r/haptics.json"
       ],
       "files": [
         {

@@ -6,6 +6,7 @@ import { motion, useReducedMotion } from "motion/react"
 
 import { cn } from "@/lib/utils"
 import { springs, fades, shake, reduced } from "@/lib/motion"
+import { useHaptics } from "@/lib/haptics"
 
 const MotionInput = motion.create(BaseOTPField.Input)
 
@@ -24,10 +25,19 @@ function OTPField({
   ...props
 }: React.ComponentProps<typeof BaseOTPField.Root> & { invalid?: boolean }) {
   const reduceMotion = useReducedMotion() ?? false
+  const { trigger } = useHaptics()
   const [internalLen, setInternalLen] = React.useState(() =>
     typeof defaultValue === "string" ? defaultValue.length : 0
   )
   const filled = typeof value === "string" ? value.length : internalLen
+  const filledRef = React.useRef(filled)
+  filledRef.current = filled
+
+  // tactile feedback: the error pattern when a code is rejected.
+  React.useEffect(() => {
+    if (invalid) trigger("error")
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [invalid])
 
   return (
     <BaseOTPField.Root
@@ -37,6 +47,8 @@ function OTPField({
       value={value}
       defaultValue={defaultValue}
       onValueChange={(...args: Parameters<NonNullable<typeof onValueChange>>) => {
+        // tactile feedback: a tick per digit landed (not on delete).
+        if (args[0].length > filledRef.current) trigger("tick")
         setInternalLen(args[0].length)
         onValueChange?.(...args)
       }}

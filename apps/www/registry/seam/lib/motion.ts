@@ -2,17 +2,54 @@
 // Springs over durations; depth over flatness. See seamui docs → Motion.
 import type { TargetAndTransition, Transition } from "motion/react"
 
-/** Spring presets, tuned against 60fps mobile feel. */
-export const springs = {
-  /** Press-down feedback: near-instant, no bounce. */
-  press: { type: "spring", stiffness: 600, damping: 40, mass: 0.5 } satisfies Transition,
-  /** Release / hover settle: quick with a hint of life. */
-  snappy: { type: "spring", stiffness: 420, damping: 30, mass: 0.7 } satisfies Transition,
-  /** Overlays entering (dialogs, popovers, sheets). */
-  surface: { type: "spring", stiffness: 320, damping: 28, mass: 0.9 } satisfies Transition,
-  /** Playful accents (toasts, badges). Use sparingly. */
-  bouncy: { type: "spring", stiffness: 380, damping: 18, mass: 0.9 } satisfies Transition,
-} as const
+/**
+ * ── Personality: retune the whole library in one line ────────────────
+ * Every seamui animation pulls its spring from `springs`, and `springs`
+ * just picks a personality below. Swap the pick — or edit the numbers —
+ * and all components change feel together; no component files to touch.
+ *
+ * Each personality defines the same four roles:
+ *   press   — press-down feedback: near-instant
+ *   snappy  — release / settle / state changes
+ *   surface — overlays entering (dialogs, popovers, sheets)
+ *   bouncy  — playful accents (toasts, badges); use sparingly
+ */
+export const personalities = {
+  /** The seam default — quick and physical, with a hint of life. */
+  seam: {
+    press: { type: "spring", stiffness: 600, damping: 40, mass: 0.5 },
+    snappy: { type: "spring", stiffness: 420, damping: 30, mass: 0.7 },
+    surface: { type: "spring", stiffness: 320, damping: 28, mass: 0.9 },
+    bouncy: { type: "spring", stiffness: 380, damping: 18, mass: 0.9 },
+  },
+  /** Tighter and faster, no overshoot — dense professional tools. */
+  brisk: {
+    press: { type: "spring", stiffness: 800, damping: 50, mass: 0.4 },
+    snappy: { type: "spring", stiffness: 560, damping: 40, mass: 0.55 },
+    surface: { type: "spring", stiffness: 440, damping: 38, mass: 0.7 },
+    bouncy: { type: "spring", stiffness: 500, damping: 26, mass: 0.7 },
+  },
+  /** Softer and slower — calm, editorial surfaces. */
+  relaxed: {
+    press: { type: "spring", stiffness: 420, damping: 36, mass: 0.7 },
+    snappy: { type: "spring", stiffness: 280, damping: 28, mass: 0.9 },
+    surface: { type: "spring", stiffness: 220, damping: 26, mass: 1.1 },
+    bouncy: { type: "spring", stiffness: 260, damping: 18, mass: 1 },
+  },
+  /** More overshoot everywhere — playful, consumer-facing apps. */
+  playful: {
+    press: { type: "spring", stiffness: 620, damping: 30, mass: 0.5 },
+    snappy: { type: "spring", stiffness: 420, damping: 20, mass: 0.8 },
+    surface: { type: "spring", stiffness: 340, damping: 18, mass: 0.9 },
+    bouncy: { type: "spring", stiffness: 400, damping: 12, mass: 1 },
+  },
+} as const satisfies Record<
+  string,
+  Record<"press" | "snappy" | "surface" | "bouncy", Transition>
+>
+
+/** Spring presets, tuned against 60fps mobile feel. Pick a personality here. */
+export const springs = personalities.seam
 
 /** Opacity-only fades (the one place plain durations are allowed). */
 export const fades = {

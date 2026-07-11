@@ -17,6 +17,7 @@
     "paths": {
       "@/lib/utils": ["./registry/seam/lib/utils.ts"],
       "@/lib/motion": ["./registry/seam/lib/motion.ts"],
+      "@/lib/haptics": ["./registry/seam/lib/haptics.tsx"],
       "@/components/ui/button": ["./registry/seam/ui/button.tsx"],
       "@/registry/*": ["./registry/*"],
       "@/*": ["./*"]

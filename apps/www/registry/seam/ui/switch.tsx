@@ -6,20 +6,28 @@ import { motion, useReducedMotion } from "motion/react"
 
 import { cn } from "@/lib/utils"
 import { springs, fades, reduced } from "@/lib/motion"
+import { useHaptics } from "@/lib/haptics"
 
 const MotionThumb = motion.create(BaseSwitch.Thumb)
 
 function Switch({
   className,
   disabled,
+  onCheckedChange,
   ...props
 }: React.ComponentProps<typeof BaseSwitch.Root>) {
   const reduceMotion = useReducedMotion()
+  const { trigger } = useHaptics()
 
   return (
     <BaseSwitch.Root
       data-slot="switch"
       disabled={disabled}
+      // tactile feedback: a tick as the state commits (no-op sans provider).
+      onCheckedChange={(...args: Parameters<NonNullable<typeof onCheckedChange>>) => {
+        trigger("tick")
+        onCheckedChange?.(...args)
+      }}
       // seam touch feedback: while pressed the thumb *stretches* toward the
       // far side (the "pressed" variant propagates down to the thumb), then
       // snaps across on release — the iOS switch feel. Under reduced motion

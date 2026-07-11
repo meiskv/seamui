@@ -7,15 +7,23 @@ import { motion, useReducedMotion } from "motion/react"
 
 import { cn } from "@/lib/utils"
 import { springs, fades, depth, reduced } from "@/lib/motion"
+import { useHaptics } from "@/lib/haptics"
 
 function RadioGroup({
   className,
+  onValueChange,
   ...props
 }: React.ComponentProps<typeof BaseRadioGroup>) {
+  const { trigger } = useHaptics()
   return (
     <BaseRadioGroup
       data-slot="radio-group"
       className={cn("grid gap-2.5", className)}
+      // tactile feedback: a tick as the selection commits (no-op sans provider).
+      onValueChange={(...args: Parameters<NonNullable<typeof onValueChange>>) => {
+        trigger("tick")
+        onValueChange?.(...args)
+      }}
       {...props}
     />
   )

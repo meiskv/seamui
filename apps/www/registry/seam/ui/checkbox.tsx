@@ -7,18 +7,26 @@ import { Check, Minus } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { springs, fades, depth, reduced } from "@/lib/motion"
+import { useHaptics } from "@/lib/haptics"
 
 function Checkbox({
   className,
   disabled,
+  onCheckedChange,
   ...props
 }: React.ComponentProps<typeof BaseCheckbox.Root>) {
   const reduceMotion = useReducedMotion()
+  const { trigger } = useHaptics()
 
   return (
     <BaseCheckbox.Root
       data-slot="checkbox"
       disabled={disabled}
+      // tactile feedback: a tick as the state commits (no-op sans provider).
+      onCheckedChange={(...args: Parameters<NonNullable<typeof onCheckedChange>>) => {
+        trigger("tick")
+        onCheckedChange?.(...args)
+      }}
       // seam touch feedback: the box itself recedes on press (the mark's pop
       // is state motion, not press motion — a control needs both).
       render={

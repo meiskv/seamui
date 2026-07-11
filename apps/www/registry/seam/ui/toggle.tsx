@@ -7,6 +7,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
 import { springs, fades, depth, reduced } from "@/lib/motion"
+import { useHaptics, type HapticPreset } from "@/lib/haptics"
 
 const toggleVariants = cva(
   // pressed-on state rises as a white key out of the surface (seam design language).
@@ -30,16 +31,35 @@ const toggleVariants = cva(
 
 export interface ToggleProps
   extends Omit<React.ComponentProps<typeof BaseToggle>, "render">,
-    VariantProps<typeof toggleVariants> {}
+    VariantProps<typeof toggleVariants> {
+  /** Haptic on press when a HapticsProvider is mounted: `true` = "tap",
+   *  a preset name to override, `false` to opt out. */
+  haptic?: boolean | HapticPreset
+}
 
-function Toggle({ className, variant, size, disabled, ...props }: ToggleProps) {
+function Toggle({
+  className,
+  variant,
+  size,
+  disabled,
+  haptic = true,
+  onPointerDown,
+  ...props
+}: ToggleProps) {
   const reduceMotion = useReducedMotion()
+  const { trigger } = useHaptics()
 
   return (
     <BaseToggle
       data-slot="toggle"
       className={cn(toggleVariants({ variant, size, className }))}
       disabled={disabled}
+      onPointerDown={(e) => {
+        onPointerDown?.(e)
+        if (haptic && !disabled && e.button === 0) {
+          trigger(haptic === true ? "tap" : haptic)
+        }
+      }}
       // Base UI keeps native <button> semantics; motion supplies press depth.
       render={
         <motion.button

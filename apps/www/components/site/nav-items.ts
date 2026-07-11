@@ -9,7 +9,11 @@ const c = (slug: string, title: string): NavItem => ({
 export const NAV: NavGroup[] = [
   {
     title: "Getting Started",
-    items: [{ title: "Overview", href: "/docs/components" }],
+    items: [
+      { title: "Overview", href: "/docs/components" },
+      { title: "Motion", href: "/docs/motion" },
+      { title: "Haptics", href: "/docs/haptics" },
+    ],
   },
   {
     title: "Forms",
