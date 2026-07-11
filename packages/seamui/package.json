@@ -1,6 +1,6 @@
 {
   "name": "@seamui/cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "CLI for seamui — beautifully animated components you own, built on Base UI + motion.dev.",
   "type": "module",
   "bin": {

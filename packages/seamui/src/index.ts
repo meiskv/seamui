@@ -6,15 +6,18 @@
  * wires up the @seamui namespace, `add` delegates to `shadcn add @seamui/<name>`.
  */
 import { spawnSync } from "node:child_process"
-import { existsSync, readFileSync, writeFileSync } from "node:fs"
+import { existsSync } from "node:fs"
 import { resolve } from "node:path"
 
 import { Command } from "commander"
 import pc from "picocolors"
 
-/** The public seamui registry. Namespace resolves {name} → registry item. */
-const REGISTRY_NAMESPACE = "@seamui"
-const REGISTRY_URL = "https://seamui.dev/r/{name}.json"
+import {
+  ensureNamespace,
+  type NamespaceStatus,
+  REGISTRY_NAMESPACE,
+  resolveRefs,
+} from "./config"
 
 /** Foundation items installed on every `init`. */
 const FOUNDATION = ["theme", "utils", "motion"]
@@ -42,18 +45,21 @@ function shadcn(args: string[], cwd: string): number {
   return run("bunx", ["--bun", "shadcn@latest", ...args], cwd)
 }
 
-/** Ensure components.json declares the @seamui namespace. Idempotent. */
-function ensureNamespace(cwd: string): void {
-  const file = resolve(cwd, "components.json")
-  if (!existsSync(file)) return
-  const json = JSON.parse(readFileSync(file, "utf8"))
-  json.registries ??= {}
-  if (json.registries[REGISTRY_NAMESPACE] !== REGISTRY_URL) {
-    json.registries[REGISTRY_NAMESPACE] = REGISTRY_URL
-    writeFileSync(file, JSON.stringify(json, null, 2) + "\n")
-    console.log(
-      pc.green(`✔ Registered ${REGISTRY_NAMESPACE} in components.json`)
+/** Ensure the @seamui namespace, reporting the result. Exits on unreadable config. */
+function syncNamespace(cwd: string): NamespaceStatus {
+  try {
+    const status = ensureNamespace(cwd)
+    if (status === "registered") {
+      console.log(
+        pc.green(`✔ Registered ${REGISTRY_NAMESPACE} in components.json`)
+      )
+    }
+    return status
+  } catch (error) {
+    console.error(
+      pc.red(error instanceof Error ? error.message : String(error))
     )
+    process.exit(1)
   }
 }
 
@@ -95,7 +101,7 @@ program
   .description(
     "Beautifully animated components you own — Base UI + motion.dev."
   )
-  .version("0.1.0")
+  .version("0.1.1")
 
 program
   .command("init")
@@ -120,12 +126,10 @@ program
 
     if (scaffold(framework, cwd) !== 0) process.exit(1)
     if (shadcn(["init", "-y", "-b", "neutral"], cwd) !== 0) process.exit(1)
-    ensureNamespace(cwd)
+    const status = syncNamespace(cwd)
     if (
-      shadcn(
-        ["add", ...FOUNDATION.map((n) => `${REGISTRY_NAMESPACE}/${n}`)],
-        cwd
-      ) !== 0
+      shadcn(["add", ...resolveRefs(FOUNDATION, status !== "missing")], cwd) !==
+      0
     ) {
       process.exit(1)
     }
@@ -150,12 +154,21 @@ program
       )
       process.exit(1)
     }
-    ensureNamespace(cwd)
+    const status = syncNamespace(cwd)
+    if (status === "missing") {
+      console.log(
+        pc.yellow(
+          "No components.json found — installing via direct registry URLs; shadcn will set the project up first."
+        )
+      )
+    }
     const passthrough = opts.yes ? ["-y"] : []
-    const refs = components.map((c) =>
-      c.includes("/") || c.startsWith("http") ? c : `${REGISTRY_NAMESPACE}/${c}`
-    )
-    process.exit(shadcn(["add", ...refs, ...passthrough], cwd))
+    const refs = resolveRefs(components, status !== "missing")
+    const code = shadcn(["add", ...refs, ...passthrough], cwd)
+    // shadcn bootstraps components.json on a first-run add; register the
+    // namespace in it so plain `shadcn add @seamui/<name>` works from now on.
+    if (code === 0 && status === "missing") syncNamespace(cwd)
+    process.exit(code)
   })
 
 program.parse()
