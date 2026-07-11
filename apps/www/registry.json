@@ -17,12 +17,28 @@
       ]
     },
     {
+      "name": "design",
+      "type": "registry:file",
+      "title": "seam design contract",
+      "description": "The design.md contract installed with every seamui component: pillars, debossed/embossed rule, motion tokens, and extension patterns.",
+      "files": [
+        {
+          "path": "registry/seam/design.md",
+          "type": "registry:file",
+          "target": "~/design.md"
+        }
+      ]
+    },
+    {
       "name": "utils",
       "type": "registry:lib",
       "title": "cn utility",
       "dependencies": [
         "clsx",
         "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "https://seamui.dev/r/design.json"
       ],
       "files": [
         {

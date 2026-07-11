@@ -5,6 +5,13 @@ extending **seamui**. Read it before touching a component. It supersedes the
 prose in `PLAN.md` wherever the two disagree — `PLAN.md` is the original build
 spec; this file is how the library actually works now.
 
+This contract also ships to consumers: `registry/seam/design.md` is the
+consumer-facing distillation of §§1–5, installed into every consumer project as
+`design.md` (the `design` registry item rides along with `utils`, which every
+component depends on). **When you change the design language — pillars, the
+debossed/embossed rule, tokens, the animation patterns — update `design.md` in
+the same commit**, or every future install anchors agents to a stale contract.
+
 ---
 
 ## 0. What seamui is (in one breath)
@@ -369,6 +376,7 @@ apps/www/
   registry/seam/            # THE PRODUCT — canonical component sources
     lib/{utils,motion,haptics}  # cn() + motion tokens (personalities, springs, depth, fades, reduced) + haptics provider
     theme/theme.css         # tokens + depth/well shadows (edit HERE, regen globals)
+    design.md               # consumer-shipped design contract (installs as design.md in consumer apps)
     ui/<name>.tsx           # one file per component
     examples/<name>-*.tsx   # live demos, shipped as registry examples
   registry.json             # registry index (input to `shadcn build`)
@@ -393,4 +401,5 @@ packages/seamui/            # the `seamui` CLI (thin wrapper over shadcn)
 - Interactive Base UI buttons use the `render` pattern (§5A), never `motion.create`.
 - Dogfood the foundation: button-shaped controls reuse `Button`/`buttonVariants` (§5A), never a hand-rolled copy of the button base classes or inline `whileTap`.
 - `data-slot` on every wrapper; shadcn-style names; squircle + depth per §2.
+- Design-language changes also land in `registry/seam/design.md` (the consumer-shipped contract) in the same commit.
 - Verify in a browser across the four gates before declaring done.

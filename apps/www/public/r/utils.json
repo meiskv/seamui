@@ -7,6 +7,9 @@
     "clsx",
     "tailwind-merge"
   ],
+  "registryDependencies": [
+    "https://seamui.dev/r/design.json"
+  ],
   "files": [
     {
       "path": "registry/seam/lib/utils.ts",
