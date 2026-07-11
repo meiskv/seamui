@@ -23,8 +23,18 @@ export default function SuggestionsDocs() {
 
       <VariantPreview
         variants={[
-          { key: "default", title: "Default", component: <SuggestionsDemo />, code: exampleSource("suggestions-demo") },
-          { key: "with-composer", title: "Filling a composer", component: <SuggestionsWithComposer />, code: exampleSource("suggestions-with-composer") },
+          {
+            key: "default",
+            title: "Default",
+            component: <SuggestionsDemo />,
+            code: exampleSource("suggestions-demo"),
+          },
+          {
+            key: "with-composer",
+            title: "Filling a composer",
+            component: <SuggestionsWithComposer />,
+            code: exampleSource("suggestions-with-composer"),
+          },
         ]}
       />
 

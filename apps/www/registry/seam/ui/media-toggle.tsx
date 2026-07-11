@@ -1,6 +1,6 @@
 "use client"
 
-import * as React from "react"
+import type * as React from "react"
 import {
   Mic,
   MicOff,
@@ -16,7 +16,10 @@ import { Toggle } from "./toggle"
 
 type MediaKind = "mic" | "camera" | "screen-share"
 
-const ICONS: Record<MediaKind, { on: LucideIcon; off: LucideIcon; label: string }> = {
+const ICONS: Record<
+  MediaKind,
+  { on: LucideIcon; off: LucideIcon; label: string }
+> = {
   mic: { on: Mic, off: MicOff, label: "Microphone" },
   camera: { on: Video, off: VideoOff, label: "Camera" },
   "screen-share": { on: Monitor, off: MonitorOff, label: "Share screen" },

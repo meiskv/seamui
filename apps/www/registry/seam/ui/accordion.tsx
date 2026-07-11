@@ -1,6 +1,6 @@
 "use client"
 
-import * as React from "react"
+import type * as React from "react"
 import { Accordion as BaseAccordion } from "@base-ui/react/accordion"
 import { motion, useReducedMotion } from "motion/react"
 import { ChevronDown } from "lucide-react"
@@ -70,9 +70,7 @@ function AccordionTrigger({
         {...props}
       >
         {children}
-        <ChevronDown
-          className="text-muted-foreground size-4 shrink-0 transition-transform duration-200 group-data-[panel-open]/acc:rotate-180 motion-reduce:transition-none"
-        />
+        <ChevronDown className="text-muted-foreground size-4 shrink-0 transition-transform duration-200 group-data-[panel-open]/acc:rotate-180 motion-reduce:transition-none" />
       </BaseAccordion.Trigger>
     </BaseAccordion.Header>
   )

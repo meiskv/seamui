@@ -1,8 +1,4 @@
-import {
-  Tool,
-  ToolContent,
-  ToolHeader,
-} from "@/registry/seam/ui/tool"
+import { Tool, ToolContent, ToolHeader } from "@/registry/seam/ui/tool"
 
 export default function ToolError() {
   return (

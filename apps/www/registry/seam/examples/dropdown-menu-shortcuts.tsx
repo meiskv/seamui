@@ -14,7 +14,9 @@ import {
 export default function DropdownMenuShortcuts() {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger render={<Button variant="outline">My Account</Button>} />
+      <DropdownMenuTrigger
+        render={<Button variant="outline">My Account</Button>}
+      />
       <DropdownMenuContent className="w-52">
         <DropdownMenuLabel>Signed in as m@example.com</DropdownMenuLabel>
         <DropdownMenuSeparator />

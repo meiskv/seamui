@@ -90,10 +90,7 @@ function ComposerTextarea({
   )
 }
 
-function ComposerToolbar({
-  className,
-  ...props
-}: React.ComponentProps<"div">) {
+function ComposerToolbar({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="composer-toolbar"

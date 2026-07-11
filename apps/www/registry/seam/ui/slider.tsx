@@ -1,6 +1,6 @@
 "use client"
 
-import * as React from "react"
+import type * as React from "react"
 import { Slider as BaseSlider } from "@base-ui/react/slider"
 import { motion, useReducedMotion } from "motion/react"
 
@@ -23,7 +23,9 @@ function Slider({
       data-slot="slider"
       className={cn("relative w-full touch-none select-none", className)}
       // tactile feedback: a tick as the value lands (no-op sans provider).
-      onValueCommitted={(...args: Parameters<NonNullable<typeof onValueCommitted>>) => {
+      onValueCommitted={(
+        ...args: Parameters<NonNullable<typeof onValueCommitted>>
+      ) => {
         trigger("tick")
         onValueCommitted?.(...args)
       }}

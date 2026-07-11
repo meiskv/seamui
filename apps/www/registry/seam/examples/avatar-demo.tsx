@@ -1,8 +1,4 @@
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/registry/seam/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/registry/seam/ui/avatar"
 
 export default function AvatarDemo() {
   return (

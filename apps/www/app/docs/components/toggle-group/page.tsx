@@ -24,9 +24,24 @@ export default function ToggleGroupDocs() {
 
       <VariantPreview
         variants={[
-          { key: "default", title: "Alignment", component: <ToggleGroupDemo />, code: exampleSource("toggle-group-demo") },
-          { key: "text", title: "Formatting", component: <ToggleGroupText />, code: exampleSource("toggle-group-text") },
-          { key: "disabled", title: "Disabled", component: <ToggleGroupDisabled />, code: exampleSource("toggle-group-disabled") },
+          {
+            key: "default",
+            title: "Alignment",
+            component: <ToggleGroupDemo />,
+            code: exampleSource("toggle-group-demo"),
+          },
+          {
+            key: "text",
+            title: "Formatting",
+            component: <ToggleGroupText />,
+            code: exampleSource("toggle-group-text"),
+          },
+          {
+            key: "disabled",
+            title: "Disabled",
+            component: <ToggleGroupDisabled />,
+            code: exampleSource("toggle-group-disabled"),
+          },
         ]}
       />
 
@@ -35,8 +50,8 @@ export default function ToggleGroupDocs() {
       <Notes>
         <li>
           Pass <code>multiple</code> to allow more than one pressed toggle at a
-          time. Control with <code>value</code> / <code>onValueChange</code>{" "}
-          (an array of pressed values).
+          time. Control with <code>value</code> / <code>onValueChange</code> (an
+          array of pressed values).
         </li>
         <li>
           The well itself is static — depth comes from the{" "}

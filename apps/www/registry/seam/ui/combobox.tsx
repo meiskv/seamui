@@ -1,6 +1,6 @@
 "use client"
 
-import * as React from "react"
+import type * as React from "react"
 import { Combobox as BaseCombobox } from "@base-ui/react/combobox"
 import { Check, ChevronsUpDown, Search, X } from "lucide-react"
 

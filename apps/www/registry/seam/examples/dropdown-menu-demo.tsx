@@ -11,7 +11,9 @@ import {
 export default function DropdownMenuDemo() {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger render={<Button variant="outline">Open menu</Button>} />
+      <DropdownMenuTrigger
+        render={<Button variant="outline">Open menu</Button>}
+      />
       <DropdownMenuContent>
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />

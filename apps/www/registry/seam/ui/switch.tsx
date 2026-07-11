@@ -1,6 +1,6 @@
 "use client"
 
-import * as React from "react"
+import type * as React from "react"
 import { Switch as BaseSwitch } from "@base-ui/react/switch"
 import { motion, useReducedMotion } from "motion/react"
 
@@ -27,7 +27,9 @@ function Switch({
       // custom render flips its default to "assume non-button".
       nativeButton
       // tactile feedback: a tick as the state commits (no-op sans provider).
-      onCheckedChange={(...args: Parameters<NonNullable<typeof onCheckedChange>>) => {
+      onCheckedChange={(
+        ...args: Parameters<NonNullable<typeof onCheckedChange>>
+      ) => {
         trigger("tick")
         onCheckedChange?.(...args)
       }}

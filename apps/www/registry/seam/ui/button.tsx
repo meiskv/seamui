@@ -95,9 +95,7 @@ function Button({
     motionRender = <motion.button {...motionProps} />
   } else if (React.isValidElement(render)) {
     const MotionEl = asMotion(render.type as React.ElementType)
-    motionRender = (
-      <MotionEl {...(render.props as object)} {...motionProps} />
-    )
+    motionRender = <MotionEl {...(render.props as object)} {...motionProps} />
   } else {
     // function-form render: pass through untouched (no press motion).
     motionRender = render

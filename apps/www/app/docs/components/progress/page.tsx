@@ -22,8 +22,18 @@ export default function ProgressDocs() {
 
       <VariantPreview
         variants={[
-          { key: "default", title: "Animated", component: <ProgressDemo />, code: exampleSource("progress-demo") },
-          { key: "labeled", title: "Labeled", component: <ProgressLabeled />, code: exampleSource("progress-labeled") },
+          {
+            key: "default",
+            title: "Animated",
+            component: <ProgressDemo />,
+            code: exampleSource("progress-demo"),
+          },
+          {
+            key: "labeled",
+            title: "Labeled",
+            component: <ProgressLabeled />,
+            code: exampleSource("progress-labeled"),
+          },
         ]}
       />
 

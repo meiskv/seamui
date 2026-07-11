@@ -23,9 +23,28 @@ export default function PopoverDocs() {
 
       <VariantPreview
         variants={[
-          { key: "default", title: "Default", component: <PopoverDemo />, code: exampleSource("popover-demo") },
-          { key: "form", title: "Form", component: <PopoverForm />, code: exampleSource("popover-form"), description: "A compact settings panel — inputs live right in the floating surface." },
-          { key: "align", title: "Alignment", component: <PopoverAlign />, code: exampleSource("popover-align"), description: "Align the panel to the start or end edge of the trigger." },
+          {
+            key: "default",
+            title: "Default",
+            component: <PopoverDemo />,
+            code: exampleSource("popover-demo"),
+          },
+          {
+            key: "form",
+            title: "Form",
+            component: <PopoverForm />,
+            code: exampleSource("popover-form"),
+            description:
+              "A compact settings panel — inputs live right in the floating surface.",
+          },
+          {
+            key: "align",
+            title: "Alignment",
+            component: <PopoverAlign />,
+            code: exampleSource("popover-align"),
+            description:
+              "Align the panel to the start or end edge of the trigger.",
+          },
         ]}
       />
 
@@ -33,8 +52,8 @@ export default function PopoverDocs() {
 
       <Notes>
         <li>
-          Manages focus trapping and restoration; dismisses on outside click
-          and Escape.
+          Manages focus trapping and restoration; dismisses on outside click and
+          Escape.
         </li>
         <li>
           Compose <code>PopoverTitle</code> / <code>PopoverDescription</code>{" "}

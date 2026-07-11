@@ -7,7 +7,8 @@ import ToastDemo from "@/registry/seam/examples/toast-demo"
 
 export const metadata: Metadata = {
   title: "Toast — seamui",
-  description: "Toast notifications built on Base UI with a bouncy seam entrance.",
+  description:
+    "Toast notifications built on Base UI with a bouncy seam entrance.",
 }
 
 export default function ToastDocs() {
@@ -21,7 +22,12 @@ export default function ToastDocs() {
 
       <VariantPreview
         variants={[
-          { key: "default", title: "Default", component: <ToastDemo />, code: exampleSource("toast-demo") },
+          {
+            key: "default",
+            title: "Default",
+            component: <ToastDemo />,
+            code: exampleSource("toast-demo"),
+          },
         ]}
       />
 
@@ -34,8 +40,8 @@ export default function ToastDocs() {
         </li>
         <li>
           Toasts enter with an overshooting cubic-bezier (a{" "}
-          <code>springs.bouncy</code>-shaped curve) on opacity and offset;
-          Base UI owns the stacking transforms and native swipe-to-dismiss.
+          <code>springs.bouncy</code>-shaped curve) on opacity and offset; Base
+          UI owns the stacking transforms and native swipe-to-dismiss.
         </li>
         <li>
           Announced via an ARIA live region, focusable for keyboard dismissal,

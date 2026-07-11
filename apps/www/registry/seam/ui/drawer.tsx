@@ -1,6 +1,6 @@
 "use client"
 
-import * as React from "react"
+import type * as React from "react"
 import { Drawer as BaseDrawer } from "@base-ui/react/drawer"
 
 import { cn } from "@/lib/utils"
@@ -55,7 +55,10 @@ function DrawerHeader({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="drawer-header"
-      className={cn("flex flex-col gap-1.5 text-center sm:text-left", className)}
+      className={cn(
+        "flex flex-col gap-1.5 text-center sm:text-left",
+        className
+      )}
       {...props}
     />
   )

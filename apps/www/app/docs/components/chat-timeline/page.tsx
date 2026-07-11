@@ -18,14 +18,24 @@ export default function ChatTimelineDocs() {
       <h1 className="text-2xl font-semibold tracking-tight">Chat Timeline</h1>
       <p className="text-muted-foreground mt-1.5 text-[0.9375rem]">
         A conversation with temporal structure — day headers that pin as you
-        scroll, an unread divider, and collapsed avatars on consecutive
-        messages from the same sender. Place it inside a Conversation.
+        scroll, an unread divider, and collapsed avatars on consecutive messages
+        from the same sender. Place it inside a Conversation.
       </p>
 
       <VariantPreview
         variants={[
-          { key: "default", title: "Default", component: <ChatTimelineDemo />, code: exampleSource("chat-timeline-demo") },
-          { key: "unread", title: "Unread divider", component: <ChatTimelineUnread />, code: exampleSource("chat-timeline-unread") },
+          {
+            key: "default",
+            title: "Default",
+            component: <ChatTimelineDemo />,
+            code: exampleSource("chat-timeline-demo"),
+          },
+          {
+            key: "unread",
+            title: "Unread divider",
+            component: <ChatTimelineUnread />,
+            code: exampleSource("chat-timeline-unread"),
+          },
         ]}
       />
 
@@ -40,13 +50,14 @@ export default function ChatTimelineDocs() {
         <li>
           The date chips pin with a constant subtle backdrop — nothing
           translates, so they read the same with reduced motion on. New groups
-          inherit the Message entrance; regrouping is instant by design, with
-          no layout springs — reflowing history must never wobble.
+          inherit the Message entrance; regrouping is instant by design, with no
+          layout springs — reflowing history must never wobble.
         </li>
         <li>
           The timeline is a <code>role=&quot;list&quot;</code> of message rows;
-          the unread divider is a labeled <code>role=&quot;separator&quot;</code>{" "}
-          announced once — the flanking rules are decorative.
+          the unread divider is a labeled{" "}
+          <code>role=&quot;separator&quot;</code> announced once — the flanking
+          rules are decorative.
         </li>
         <li>
           Collapsed avatars leave a spacer so alignment holds without adding

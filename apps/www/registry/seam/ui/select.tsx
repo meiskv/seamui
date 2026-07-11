@@ -1,6 +1,6 @@
 "use client"
 
-import * as React from "react"
+import type * as React from "react"
 import { Select as BaseSelect } from "@base-ui/react/select"
 import { Check, ChevronDown } from "lucide-react"
 
@@ -34,7 +34,8 @@ function SelectTrigger({
         "flex h-10 items-center justify-between gap-2 rounded-md squircle text-sm outline-none",
         variant === "default" &&
           "w-full bg-muted shadow-well px-3.5 py-2 font-medium hover:bg-muted/80",
-        variant === "ghost" && "w-fit bg-transparent px-2 py-2 hover:text-foreground",
+        variant === "ghost" &&
+          "w-fit bg-transparent px-2 py-2 hover:text-foreground",
         "data-[popup-open]:ring-2 data-[popup-open]:ring-ring/50 focus-visible:ring-2 focus-visible:ring-ring/50",
         "disabled:pointer-events-none disabled:opacity-50",
         className
@@ -117,7 +118,10 @@ function SelectLabel({
   return (
     <BaseSelect.GroupLabel
       data-slot="select-label"
-      className={cn("px-2 py-1.5 text-xs font-medium text-muted-foreground", className)}
+      className={cn(
+        "px-2 py-1.5 text-xs font-medium text-muted-foreground",
+        className
+      )}
       {...props}
     />
   )

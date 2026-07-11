@@ -28,7 +28,9 @@ export default function VoiceVisualizerMic() {
     <div className="flex flex-col items-center gap-4">
       <VoiceVisualizer state="listening" track={track} size="lg" />
       {track ? (
-        <VoiceVisualizerCaption>Speak — the dots follow your voice.</VoiceVisualizerCaption>
+        <VoiceVisualizerCaption>
+          Speak — the dots follow your voice.
+        </VoiceVisualizerCaption>
       ) : (
         <Button variant="secondary" size="sm" onClick={enable}>
           Enable microphone

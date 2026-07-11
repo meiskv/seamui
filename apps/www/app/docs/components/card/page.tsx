@@ -23,9 +23,24 @@ export default function CardDocs() {
 
       <VariantPreview
         variants={[
-          { key: "default", title: "Sign in", component: <CardDemo />, code: exampleSource("card-demo") },
-          { key: "stats", title: "Stat", component: <CardStats />, code: exampleSource("card-stats") },
-          { key: "notification", title: "Notification", component: <CardNotification />, code: exampleSource("card-notification") },
+          {
+            key: "default",
+            title: "Sign in",
+            component: <CardDemo />,
+            code: exampleSource("card-demo"),
+          },
+          {
+            key: "stats",
+            title: "Stat",
+            component: <CardStats />,
+            code: exampleSource("card-stats"),
+          },
+          {
+            key: "notification",
+            title: "Notification",
+            component: <CardNotification />,
+            code: exampleSource("card-notification"),
+          },
         ]}
       />
 
@@ -34,8 +49,8 @@ export default function CardDocs() {
       <Notes>
         <li>
           A static surface at <code>resting</code> depth — it never animates on
-          its own; depth motion belongs to the interactive keys placed inside
-          it and to overlays that rise above it.
+          its own; depth motion belongs to the interactive keys placed inside it
+          and to overlays that rise above it.
         </li>
         <li>
           Renders plain <code>&lt;div&gt;</code> structure with no implicit

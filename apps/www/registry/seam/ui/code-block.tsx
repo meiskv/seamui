@@ -59,7 +59,11 @@ function CodeBlockCopyButton({
           transition={fades.fast}
           className="flex items-center justify-center"
         >
-          {copied ? <Check className="size-3.5" /> : <Copy className="size-3.5" />}
+          {copied ? (
+            <Check className="size-3.5" />
+          ) : (
+            <Copy className="size-3.5" />
+          )}
         </motion.span>
       </AnimatePresence>
     </Button>

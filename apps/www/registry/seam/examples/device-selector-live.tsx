@@ -18,7 +18,9 @@ export default function DeviceSelectorLive() {
   const enable = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
-      stream.getTracks().forEach((t) => t.stop())
+      stream.getTracks().forEach((t) => {
+        t.stop()
+      })
       setEnabled(true)
     } catch {
       // denied / unavailable

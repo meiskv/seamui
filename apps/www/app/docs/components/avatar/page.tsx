@@ -23,9 +23,24 @@ export default function AvatarDocs() {
 
       <VariantPreview
         variants={[
-          { key: "default", title: "Default", component: <AvatarDemo />, code: exampleSource("avatar-demo") },
-          { key: "sizes", title: "Sizes", component: <AvatarSizes />, code: exampleSource("avatar-sizes") },
-          { key: "group", title: "Group", component: <AvatarGroup />, code: exampleSource("avatar-group") },
+          {
+            key: "default",
+            title: "Default",
+            component: <AvatarDemo />,
+            code: exampleSource("avatar-demo"),
+          },
+          {
+            key: "sizes",
+            title: "Sizes",
+            component: <AvatarSizes />,
+            code: exampleSource("avatar-sizes"),
+          },
+          {
+            key: "group",
+            title: "Group",
+            component: <AvatarGroup />,
+            code: exampleSource("avatar-group"),
+          },
         ]}
       />
 
@@ -33,9 +48,9 @@ export default function AvatarDocs() {
 
       <Notes>
         <li>
-          The image fades in with <code>fades.normal</code> once it loads —
-          the fallback shows instantly in the meantime, so a resolving photo
-          never pops.
+          The image fades in with <code>fades.normal</code> once it loads — the
+          fallback shows instantly in the meantime, so a resolving photo never
+          pops.
         </li>
         <li>
           Always provide an <code>alt</code> on <code>AvatarImage</code> and a

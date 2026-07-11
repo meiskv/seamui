@@ -21,7 +21,12 @@ export default function ScrollAreaDocs() {
 
       <VariantPreview
         variants={[
-          { key: "default", title: "Default", component: <ScrollAreaDemo />, code: exampleSource("scroll-area-demo") },
+          {
+            key: "default",
+            title: "Default",
+            component: <ScrollAreaDemo />,
+            code: exampleSource("scroll-area-demo"),
+          },
         ]}
       />
 

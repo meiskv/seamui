@@ -73,7 +73,10 @@ type DeviceContextValue = {
 const DeviceContext = React.createContext<DeviceContextValue | null>(null)
 function useDeviceContext() {
   const ctx = React.useContext(DeviceContext)
-  if (!ctx) throw new Error("DeviceSelector parts must be used within <DeviceSelector>.")
+  if (!ctx)
+    throw new Error(
+      "DeviceSelector parts must be used within <DeviceSelector>."
+    )
   return ctx
 }
 
@@ -105,7 +108,9 @@ function DeviceSelector({
   }
 
   return (
-    <DeviceContext.Provider value={{ kind, devices, value: current, onValueChange: set }}>
+    <DeviceContext.Provider
+      value={{ kind, devices, value: current, onValueChange: set }}
+    >
       <DropdownMenu {...props}>{children}</DropdownMenu>
     </DeviceContext.Provider>
   )
@@ -140,7 +145,9 @@ function DeviceSelectorContent({
   className,
   label,
   ...props
-}: React.ComponentProps<typeof DropdownMenuContent> & { label?: React.ReactNode }) {
+}: React.ComponentProps<typeof DropdownMenuContent> & {
+  label?: React.ReactNode
+}) {
   const { kind, devices, value, onValueChange } = useDeviceContext()
   return (
     <DropdownMenuContent

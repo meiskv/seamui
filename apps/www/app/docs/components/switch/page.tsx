@@ -23,9 +23,24 @@ export default function SwitchDocs() {
 
       <VariantPreview
         variants={[
-          { key: "default", title: "Default", component: <SwitchDemo />, code: exampleSource("switch-demo") },
-          { key: "settings", title: "Settings list", component: <SwitchSettings />, code: exampleSource("switch-settings") },
-          { key: "disabled", title: "Disabled", component: <SwitchDisabled />, code: exampleSource("switch-disabled") },
+          {
+            key: "default",
+            title: "Default",
+            component: <SwitchDemo />,
+            code: exampleSource("switch-demo"),
+          },
+          {
+            key: "settings",
+            title: "Settings list",
+            component: <SwitchSettings />,
+            code: exampleSource("switch-settings"),
+          },
+          {
+            key: "disabled",
+            title: "Disabled",
+            component: <SwitchDisabled />,
+            code: exampleSource("switch-disabled"),
+          },
         ]}
       />
 
@@ -33,13 +48,34 @@ export default function SwitchDocs() {
 
       <ApiTable
         rows={[
-          { prop: "checked", type: "boolean", desc: "Controlled on/off state." },
-          { prop: "defaultChecked", type: "boolean", default: "false", desc: "Initial state when uncontrolled." },
-          { prop: "onCheckedChange", type: "(checked, eventDetails) => void", desc: "Fires as the state commits (also triggers the haptic tick)." },
-          { prop: "disabled", type: "boolean", default: "false", desc: "Disables the switch." },
+          {
+            prop: "checked",
+            type: "boolean",
+            desc: "Controlled on/off state.",
+          },
+          {
+            prop: "defaultChecked",
+            type: "boolean",
+            default: "false",
+            desc: "Initial state when uncontrolled.",
+          },
+          {
+            prop: "onCheckedChange",
+            type: "(checked, eventDetails) => void",
+            desc: "Fires as the state commits (also triggers the haptic tick).",
+          },
+          {
+            prop: "disabled",
+            type: "boolean",
+            default: "false",
+            desc: "Disables the switch.",
+          },
         ]}
         footer={
-          <>Plus all Base UI <code>Switch.Root</code> props (e.g. <code>name</code>, <code>required</code> for forms).</>
+          <>
+            Plus all Base UI <code>Switch.Root</code> props (e.g.{" "}
+            <code>name</code>, <code>required</code> for forms).
+          </>
         }
       />
 

@@ -24,13 +24,22 @@ export default function TabsIcons() {
           Alerts
         </TabsTrigger>
       </TabsList>
-      <TabsContent value="profile" className="text-muted-foreground pt-2 text-sm">
+      <TabsContent
+        value="profile"
+        className="text-muted-foreground pt-2 text-sm"
+      >
         Your public profile.
       </TabsContent>
-      <TabsContent value="billing" className="text-muted-foreground pt-2 text-sm">
+      <TabsContent
+        value="billing"
+        className="text-muted-foreground pt-2 text-sm"
+      >
         Manage billing and invoices.
       </TabsContent>
-      <TabsContent value="alerts" className="text-muted-foreground pt-2 text-sm">
+      <TabsContent
+        value="alerts"
+        className="text-muted-foreground pt-2 text-sm"
+      >
         Notification preferences.
       </TabsContent>
     </Tabs>

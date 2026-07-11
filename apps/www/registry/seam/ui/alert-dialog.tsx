@@ -1,14 +1,12 @@
 "use client"
 
-import * as React from "react"
+import type * as React from "react"
 import { AlertDialog as BaseAlertDialog } from "@base-ui/react/alert-dialog"
 
 import { cn } from "@/lib/utils"
 import { condense } from "@/lib/motion"
 
-function AlertDialog(
-  props: React.ComponentProps<typeof BaseAlertDialog.Root>
-) {
+function AlertDialog(props: React.ComponentProps<typeof BaseAlertDialog.Root>) {
   return <BaseAlertDialog.Root {...props} />
 }
 
@@ -47,17 +45,26 @@ function AlertDialogContent({
   )
 }
 
-function AlertDialogHeader({ className, ...props }: React.ComponentProps<"div">) {
+function AlertDialogHeader({
+  className,
+  ...props
+}: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="alert-dialog-header"
-      className={cn("flex flex-col gap-1.5 text-center sm:text-left", className)}
+      className={cn(
+        "flex flex-col gap-1.5 text-center sm:text-left",
+        className
+      )}
       {...props}
     />
   )
 }
 
-function AlertDialogFooter({ className, ...props }: React.ComponentProps<"div">) {
+function AlertDialogFooter({
+  className,
+  ...props
+}: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="alert-dialog-footer"

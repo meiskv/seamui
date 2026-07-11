@@ -1,6 +1,6 @@
 "use client"
 
-import * as React from "react"
+import type * as React from "react"
 import { motion, useReducedMotion } from "motion/react"
 
 import { cn } from "@/lib/utils"
@@ -41,10 +41,7 @@ function Message({
 // embossed key they placed on the surface (bg-secondary + shadow-resting,
 // right-aligned); the assistant's reply is flat prose — the surface itself
 // speaking — so it carries no bubble and no shadow.
-function MessageContent({
-  className,
-  ...props
-}: React.ComponentProps<"div">) {
+function MessageContent({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="message-content"
@@ -96,10 +93,7 @@ function MessageAvatar({
 // Hover/focus-revealed action row (copy, regenerate, …). Reveal is opacity
 // only — the one animation seamui runs on a plain duration — so it survives
 // reduced motion; it just appears instantly instead of fading.
-function MessageActions({
-  className,
-  ...props
-}: React.ComponentProps<"div">) {
+function MessageActions({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="message-actions"

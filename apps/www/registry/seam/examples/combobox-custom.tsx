@@ -13,7 +13,12 @@ const users = [
   { value: "ada", name: "Ada Lovelace", role: "Engineering", initials: "AL" },
   { value: "alan", name: "Alan Turing", role: "Research", initials: "AT" },
   { value: "grace", name: "Grace Hopper", role: "Engineering", initials: "GH" },
-  { value: "katherine", name: "Katherine Johnson", role: "Research", initials: "KJ" },
+  {
+    value: "katherine",
+    name: "Katherine Johnson",
+    role: "Research",
+    initials: "KJ",
+  },
 ]
 
 type User = (typeof users)[number]

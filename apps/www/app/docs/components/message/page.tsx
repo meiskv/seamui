@@ -9,7 +9,8 @@ import MessageAvatarFallback from "@/registry/seam/examples/message-avatar-fallb
 
 export const metadata: Metadata = {
   title: "Message — seamui",
-  description: "Chat message row — user as an embossed key, assistant as flat prose.",
+  description:
+    "Chat message row — user as an embossed key, assistant as flat prose.",
 }
 
 export default function MessageDocs() {
@@ -25,9 +26,24 @@ export default function MessageDocs() {
 
       <VariantPreview
         variants={[
-          { key: "default", title: "Default", component: <MessageDemo />, code: exampleSource("message-demo") },
-          { key: "actions", title: "Actions", component: <MessageActions />, code: exampleSource("message-actions") },
-          { key: "avatar-fallback", title: "Avatar fallback", component: <MessageAvatarFallback />, code: exampleSource("message-avatar-fallback") },
+          {
+            key: "default",
+            title: "Default",
+            component: <MessageDemo />,
+            code: exampleSource("message-demo"),
+          },
+          {
+            key: "actions",
+            title: "Actions",
+            component: <MessageActions />,
+            code: exampleSource("message-actions"),
+          },
+          {
+            key: "avatar-fallback",
+            title: "Avatar fallback",
+            component: <MessageAvatarFallback />,
+            code: exampleSource("message-avatar-fallback"),
+          },
         ]}
       />
 

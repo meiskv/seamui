@@ -13,7 +13,9 @@ import {
 export default function DropdownMenuSubmenu() {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger render={<Button variant="outline">Actions</Button>} />
+      <DropdownMenuTrigger
+        render={<Button variant="outline">Actions</Button>}
+      />
       <DropdownMenuContent className="w-44">
         <DropdownMenuItem>New tab</DropdownMenuItem>
         <DropdownMenuItem>New window</DropdownMenuItem>

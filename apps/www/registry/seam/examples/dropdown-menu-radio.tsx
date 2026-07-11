@@ -18,7 +18,9 @@ export default function DropdownMenuRadio() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger render={<Button variant="outline">Panel position</Button>} />
+      <DropdownMenuTrigger
+        render={<Button variant="outline">Panel position</Button>}
+      />
       <DropdownMenuContent className="w-44">
         <DropdownMenuLabel>Position</DropdownMenuLabel>
         <DropdownMenuSeparator />

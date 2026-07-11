@@ -1,8 +1,16 @@
 import { RadioGroup, RadioGroupItem } from "@/registry/seam/ui/radio-group"
 
 const PLANS = [
-  { value: "spring", title: "Springs", desc: "Physics-based, reacts to velocity." },
-  { value: "duration", title: "Durations", desc: "A fixed clock; opacity only." },
+  {
+    value: "spring",
+    title: "Springs",
+    desc: "Physics-based, reacts to velocity.",
+  },
+  {
+    value: "duration",
+    title: "Durations",
+    desc: "A fixed clock; opacity only.",
+  },
 ]
 
 export default function RadioGroupDescriptions() {

@@ -24,10 +24,30 @@ export default function InputDocs() {
 
       <VariantPreview
         variants={[
-          { key: "default", title: "Default", component: <InputDemo />, code: exampleSource("input-demo") },
-          { key: "disabled", title: "Disabled", component: <InputDisabled />, code: exampleSource("input-disabled") },
-          { key: "invalid", title: "Invalid", component: <InputInvalid />, code: exampleSource("input-invalid") },
-          { key: "file", title: "File", component: <InputFile />, code: exampleSource("input-file") },
+          {
+            key: "default",
+            title: "Default",
+            component: <InputDemo />,
+            code: exampleSource("input-demo"),
+          },
+          {
+            key: "disabled",
+            title: "Disabled",
+            component: <InputDisabled />,
+            code: exampleSource("input-disabled"),
+          },
+          {
+            key: "invalid",
+            title: "Invalid",
+            component: <InputInvalid />,
+            code: exampleSource("input-invalid"),
+          },
+          {
+            key: "file",
+            title: "File",
+            component: <InputFile />,
+            code: exampleSource("input-file"),
+          },
         ]}
       />
 

@@ -11,7 +11,8 @@ import DropdownMenuShortcuts from "@/registry/seam/examples/dropdown-menu-shortc
 
 export const metadata: Metadata = {
   title: "Dropdown Menu — seamui",
-  description: "Dropdown menu built on Base UI with seam overlay-depth entrance.",
+  description:
+    "Dropdown menu built on Base UI with seam overlay-depth entrance.",
 }
 
 export default function DropdownMenuDocs() {
@@ -25,11 +26,36 @@ export default function DropdownMenuDocs() {
 
       <VariantPreview
         variants={[
-          { key: "default", title: "Default", component: <DropdownMenuDemo />, code: exampleSource("dropdown-menu-demo") },
-          { key: "checkboxes", title: "Checkboxes", component: <DropdownMenuCheckboxes />, code: exampleSource("dropdown-menu-checkboxes") },
-          { key: "radio", title: "Radio group", component: <DropdownMenuRadio />, code: exampleSource("dropdown-menu-radio") },
-          { key: "submenu", title: "Submenu", component: <DropdownMenuSubmenu />, code: exampleSource("dropdown-menu-submenu") },
-          { key: "shortcuts", title: "Shortcuts", component: <DropdownMenuShortcuts />, code: exampleSource("dropdown-menu-shortcuts") },
+          {
+            key: "default",
+            title: "Default",
+            component: <DropdownMenuDemo />,
+            code: exampleSource("dropdown-menu-demo"),
+          },
+          {
+            key: "checkboxes",
+            title: "Checkboxes",
+            component: <DropdownMenuCheckboxes />,
+            code: exampleSource("dropdown-menu-checkboxes"),
+          },
+          {
+            key: "radio",
+            title: "Radio group",
+            component: <DropdownMenuRadio />,
+            code: exampleSource("dropdown-menu-radio"),
+          },
+          {
+            key: "submenu",
+            title: "Submenu",
+            component: <DropdownMenuSubmenu />,
+            code: exampleSource("dropdown-menu-submenu"),
+          },
+          {
+            key: "shortcuts",
+            title: "Shortcuts",
+            component: <DropdownMenuShortcuts />,
+            code: exampleSource("dropdown-menu-shortcuts"),
+          },
         ]}
       />
 

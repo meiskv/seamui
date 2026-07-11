@@ -1,6 +1,6 @@
 "use client"
 
-import * as React from "react"
+import type * as React from "react"
 import { Checkbox as BaseCheckbox } from "@base-ui/react/checkbox"
 import { motion, useReducedMotion } from "motion/react"
 import { Check, Minus } from "lucide-react"
@@ -26,7 +26,9 @@ function Checkbox({
       // custom render flips its default to "assume non-button".
       nativeButton
       // tactile feedback: a tick as the state commits (no-op sans provider).
-      onCheckedChange={(...args: Parameters<NonNullable<typeof onCheckedChange>>) => {
+      onCheckedChange={(
+        ...args: Parameters<NonNullable<typeof onCheckedChange>>
+      ) => {
         trigger("tick")
         onCheckedChange?.(...args)
       }}
@@ -35,7 +37,11 @@ function Checkbox({
       render={
         <motion.button
           whileTap={
-            disabled ? undefined : reduceMotion ? reduced.pressed : depth.pressed
+            disabled
+              ? undefined
+              : reduceMotion
+                ? reduced.pressed
+                : depth.pressed
           }
           transition={reduceMotion ? fades.fast : springs.press}
         />
@@ -57,7 +63,9 @@ function Checkbox({
         render={
           // seam motion: the mark pops in with a snappy spring.
           <motion.span
-            initial={reduceMotion ? reduced.fadeIn.initial : { scale: 0, opacity: 0 }}
+            initial={
+              reduceMotion ? reduced.fadeIn.initial : { scale: 0, opacity: 0 }
+            }
             animate={{ scale: 1, opacity: 1 }}
             transition={reduceMotion ? fades.fast : springs.snappy}
           />

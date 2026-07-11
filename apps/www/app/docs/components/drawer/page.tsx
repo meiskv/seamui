@@ -23,9 +23,26 @@ export default function DrawerDocs() {
 
       <VariantPreview
         variants={[
-          { key: "default", title: "Default", component: <DrawerDemo />, code: exampleSource("drawer-demo") },
-          { key: "menu", title: "Action sheet", component: <DrawerMenu />, code: exampleSource("drawer-menu"), description: "A list of actions — the mobile share-sheet pattern." },
-          { key: "form", title: "Form", component: <DrawerForm />, code: exampleSource("drawer-form"), description: "Collect input without leaving the sheet." },
+          {
+            key: "default",
+            title: "Default",
+            component: <DrawerDemo />,
+            code: exampleSource("drawer-demo"),
+          },
+          {
+            key: "menu",
+            title: "Action sheet",
+            component: <DrawerMenu />,
+            code: exampleSource("drawer-menu"),
+            description: "A list of actions — the mobile share-sheet pattern.",
+          },
+          {
+            key: "form",
+            title: "Form",
+            component: <DrawerForm />,
+            code: exampleSource("drawer-form"),
+            description: "Collect input without leaving the sheet.",
+          },
         ]}
       />
 

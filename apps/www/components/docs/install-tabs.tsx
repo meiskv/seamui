@@ -1,6 +1,11 @@
 "use client"
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/seam/ui/tabs"
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/registry/seam/ui/tabs"
 
 import { CodeBlock } from "./code-block"
 

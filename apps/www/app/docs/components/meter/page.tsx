@@ -22,8 +22,18 @@ export default function MeterDocs() {
 
       <VariantPreview
         variants={[
-          { key: "default", title: "Default", component: <MeterDemo />, code: exampleSource("meter-demo") },
-          { key: "levels", title: "Levels", component: <MeterLevels />, code: exampleSource("meter-levels") },
+          {
+            key: "default",
+            title: "Default",
+            component: <MeterDemo />,
+            code: exampleSource("meter-demo"),
+          },
+          {
+            key: "levels",
+            title: "Levels",
+            component: <MeterLevels />,
+            code: exampleSource("meter-levels"),
+          },
         ]}
       />
 
@@ -31,8 +41,8 @@ export default function MeterDocs() {
 
       <Notes>
         <li>
-          Exposes <code>role="meter"</code> with value/min/max —
-          announced as a measurement, not task progress — and associates{" "}
+          Exposes <code>role="meter"</code> with value/min/max — announced as a
+          measurement, not task progress — and associates{" "}
           <code>MeterLabel</code> for a readable name.
         </li>
       </Notes>

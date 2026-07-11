@@ -15,13 +15,18 @@ export default function KbdDocs() {
     <main className="mx-auto max-w-3xl px-6 py-10">
       <h1 className="text-2xl font-semibold tracking-tight">Kbd</h1>
       <p className="text-muted-foreground mt-1.5 text-[0.9375rem]">
-        A keyboard key rendered literally in the seam language: a tiny
-        embossed keycap resting on the surface.
+        A keyboard key rendered literally in the seam language: a tiny embossed
+        keycap resting on the surface.
       </p>
 
       <VariantPreview
         variants={[
-          { key: "default", title: "Default", component: <KbdDemo />, code: exampleSource("kbd-demo") },
+          {
+            key: "default",
+            title: "Default",
+            component: <KbdDemo />,
+            code: exampleSource("kbd-demo"),
+          },
         ]}
       />
 

@@ -15,7 +15,10 @@ export default function VoiceVisualizerDemo() {
 
   React.useEffect(() => {
     if (state !== "listening" && state !== "speaking") return
-    const id = setInterval(() => setLevel(0.2 + Math.abs(Math.sin(performance.now() / 300)) * 0.8), 80)
+    const id = setInterval(
+      () => setLevel(0.2 + Math.abs(Math.sin(performance.now() / 300)) * 0.8),
+      80
+    )
     return () => clearInterval(id)
   }, [state])
 

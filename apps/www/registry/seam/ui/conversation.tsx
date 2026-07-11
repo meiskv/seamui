@@ -117,7 +117,10 @@ function ConversationContent({
     <div
       ref={contentRef}
       data-slot="conversation-content"
-      className={cn("mx-auto flex w-full max-w-2xl flex-col gap-1 p-4", className)}
+      className={cn(
+        "mx-auto flex w-full max-w-2xl flex-col gap-1 p-4",
+        className
+      )}
       {...props}
     />
   )

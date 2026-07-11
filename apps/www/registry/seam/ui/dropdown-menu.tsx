@@ -1,6 +1,6 @@
 "use client"
 
-import * as React from "react"
+import type * as React from "react"
 import { Menu as BaseMenu } from "@base-ui/react/menu"
 import { Check, ChevronRight, Circle } from "lucide-react"
 
@@ -83,7 +83,10 @@ function DropdownMenuLabel({
   return (
     <div
       data-slot="dropdown-menu-label"
-      className={cn("px-2 py-1.5 text-xs font-medium text-muted-foreground", className)}
+      className={cn(
+        "px-2 py-1.5 text-xs font-medium text-muted-foreground",
+        className
+      )}
       {...props}
     />
   )
@@ -126,7 +129,9 @@ function DropdownMenuCheckboxItem({
 function DropdownMenuRadioGroup(
   props: React.ComponentProps<typeof BaseMenu.RadioGroup>
 ) {
-  return <BaseMenu.RadioGroup data-slot="dropdown-menu-radio-group" {...props} />
+  return (
+    <BaseMenu.RadioGroup data-slot="dropdown-menu-radio-group" {...props} />
+  )
 }
 
 function DropdownMenuRadioItem({

@@ -36,7 +36,9 @@ export default function ComposerStreaming() {
           value={value}
           onChange={(e) => setValue(e.target.value)}
           placeholder={
-            status === "streaming" ? "Generating…" : "Send, then watch the key flip"
+            status === "streaming"
+              ? "Generating…"
+              : "Send, then watch the key flip"
           }
           disabled={status === "streaming"}
         />

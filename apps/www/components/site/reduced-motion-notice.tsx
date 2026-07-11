@@ -26,9 +26,9 @@ export function ReducedMotionNotice() {
           Reduce Motion is enabled on your device,
         </span>{" "}
         so seamui is showing its reduced variants — opacity fades and dims
-        instead of springs and depth. To see the full motion system, turn it
-        off (macOS: System Settings → Accessibility → Display → Reduce
-        Motion) and reload.
+        instead of springs and depth. To see the full motion system, turn it off
+        (macOS: System Settings → Accessibility → Display → Reduce Motion) and
+        reload.
       </p>
     </div>
   )

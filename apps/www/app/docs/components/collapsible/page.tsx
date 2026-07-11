@@ -21,7 +21,12 @@ export default function CollapsibleDocs() {
 
       <VariantPreview
         variants={[
-          { key: "default", title: "Default", component: <CollapsibleDemo />, code: exampleSource("collapsible-demo") },
+          {
+            key: "default",
+            title: "Default",
+            component: <CollapsibleDemo />,
+            code: exampleSource("collapsible-demo"),
+          },
         ]}
       />
 
@@ -30,8 +35,8 @@ export default function CollapsibleDocs() {
       <Notes>
         <li>
           Same height technique as Accordion: Base UI measures{" "}
-          <code>--collapsible-panel-height</code> and the height eases between
-          0 and that value.
+          <code>--collapsible-panel-height</code> and the height eases between 0
+          and that value.
         </li>
         <li>
           The trigger exposes <code>aria-expanded</code> and controls the

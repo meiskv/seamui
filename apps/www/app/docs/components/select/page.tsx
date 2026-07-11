@@ -23,9 +23,24 @@ export default function SelectDocs() {
 
       <VariantPreview
         variants={[
-          { key: "default", title: "Default", component: <SelectDemo />, code: exampleSource("select-demo") },
-          { key: "groups", title: "Groups", component: <SelectGroups />, code: exampleSource("select-groups") },
-          { key: "disabled", title: "Disabled", component: <SelectDisabled />, code: exampleSource("select-disabled") },
+          {
+            key: "default",
+            title: "Default",
+            component: <SelectDemo />,
+            code: exampleSource("select-demo"),
+          },
+          {
+            key: "groups",
+            title: "Groups",
+            component: <SelectGroups />,
+            code: exampleSource("select-groups"),
+          },
+          {
+            key: "disabled",
+            title: "Disabled",
+            component: <SelectDisabled />,
+            code: exampleSource("select-disabled"),
+          },
         ]}
       />
 
@@ -33,13 +48,34 @@ export default function SelectDocs() {
 
       <ApiTable
         rows={[
-          { prop: "value / onValueChange", type: "Value, (value, eventDetails) => void", desc: "Controlled selection on <Select>." },
-          { prop: "defaultValue", type: "Value", desc: "Initial selection when uncontrolled." },
-          { prop: "variant", type: `"default" | "ghost"`, default: `"default"`, desc: "On <SelectTrigger> — recessed muted well, or naked text + chevron for inline dropdowns." },
-          { prop: "sideOffset", type: "number", default: "6", desc: "On <SelectContent> — gap between trigger and popup." },
+          {
+            prop: "value / onValueChange",
+            type: "Value, (value, eventDetails) => void",
+            desc: "Controlled selection on <Select>.",
+          },
+          {
+            prop: "defaultValue",
+            type: "Value",
+            desc: "Initial selection when uncontrolled.",
+          },
+          {
+            prop: "variant",
+            type: `"default" | "ghost"`,
+            default: `"default"`,
+            desc: "On <SelectTrigger> — recessed muted well, or naked text + chevron for inline dropdowns.",
+          },
+          {
+            prop: "sideOffset",
+            type: "number",
+            default: "6",
+            desc: "On <SelectContent> — gap between trigger and popup.",
+          },
         ]}
         footer={
-          <><code>&lt;Select&gt;</code> forwards all Base UI <code>Select.Root</code> props.</>
+          <>
+            <code>&lt;Select&gt;</code> forwards all Base UI{" "}
+            <code>Select.Root</code> props.
+          </>
         }
       />
 
