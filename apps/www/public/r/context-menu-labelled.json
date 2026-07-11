@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "context-menu-labelled",
+  "type": "registry:example",
+  "title": "Context Menu Labelled",
+  "registryDependencies": [
+    "https://seamui.dev/r/context-menu.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/context-menu-labelled.tsx",
+      "content": "import {\n  ContextMenu,\n  ContextMenuContent,\n  ContextMenuItem,\n  ContextMenuLabel,\n  ContextMenuSeparator,\n  ContextMenuTrigger,\n} from \"@/registry/seam/ui/context-menu\"\n\nexport default function ContextMenuLabelled() {\n  return (\n    <ContextMenu>\n      <ContextMenuTrigger className=\"flex h-28 w-72 items-center justify-center rounded-lg border border-dashed text-sm text-muted-foreground\">\n        Right-click here\n      </ContextMenuTrigger>\n      <ContextMenuContent>\n        <ContextMenuLabel>Page</ContextMenuLabel>\n        <ContextMenuItem>Back</ContextMenuItem>\n        <ContextMenuItem>Forward</ContextMenuItem>\n        <ContextMenuItem>Reload</ContextMenuItem>\n        <ContextMenuSeparator />\n        <ContextMenuLabel>Tools</ContextMenuLabel>\n        <ContextMenuItem>View Source</ContextMenuItem>\n        <ContextMenuItem>Inspect</ContextMenuItem>\n      </ContextMenuContent>\n    </ContextMenu>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

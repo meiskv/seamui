@@ -1,9 +1,11 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
+import { VariantPreview } from "@/components/docs/variant-preview"
 import { Section, CodeBlock, Install } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import DrawerDemo from "@/registry/seam/examples/drawer-demo"
+import DrawerMenu from "@/registry/seam/examples/drawer-menu"
+import DrawerForm from "@/registry/seam/examples/drawer-form"
 
 export const metadata: Metadata = {
   title: "Drawer — seamui",
@@ -19,9 +21,13 @@ export default function DrawerDocs() {
         most mobile-native surface in seamui.
       </p>
 
-      <ComponentPreview code={exampleSource("drawer-demo")}>
-        <DrawerDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          { key: "default", title: "Default", component: <DrawerDemo />, code: exampleSource("drawer-demo") },
+          { key: "menu", title: "Action sheet", component: <DrawerMenu />, code: exampleSource("drawer-menu"), description: "A list of actions — the mobile share-sheet pattern." },
+          { key: "form", title: "Form", component: <DrawerForm />, code: exampleSource("drawer-form"), description: "Collect input without leaving the sheet." },
+        ]}
+      />
 
       <Install name="drawer" />
 

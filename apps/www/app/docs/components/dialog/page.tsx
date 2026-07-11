@@ -1,9 +1,11 @@
 import type { Metadata } from "next"
 
-import { ComponentPreview } from "@/components/docs/component-preview"
+import { VariantPreview } from "@/components/docs/variant-preview"
 import { Section, CodeBlock, Install } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import DialogDemo from "@/registry/seam/examples/dialog-demo"
+import DialogForm from "@/registry/seam/examples/dialog-form"
+import DialogScroll from "@/registry/seam/examples/dialog-scroll"
 
 export const metadata: Metadata = {
   title: "Dialog — seamui",
@@ -19,9 +21,13 @@ export default function DialogDocs() {
         stack while a backdrop dims everything below.
       </p>
 
-      <ComponentPreview code={exampleSource("dialog-demo")}>
-        <DialogDemo />
-      </ComponentPreview>
+      <VariantPreview
+        variants={[
+          { key: "default", title: "Default", component: <DialogDemo />, code: exampleSource("dialog-demo") },
+          { key: "form", title: "Form", component: <DialogForm />, code: exampleSource("dialog-form"), description: "A real form inside — the surface still rises to the top of the stack." },
+          { key: "scroll", title: "Scrollable", component: <DialogScroll />, code: exampleSource("dialog-scroll"), description: "Long content scrolls inside the modal; the header and footer stay put." },
+        ]}
+      />
 
       <Install name="dialog" />
 

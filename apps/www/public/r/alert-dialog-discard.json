@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "alert-dialog-discard",
+  "type": "registry:example",
+  "title": "Alert Dialog Discard",
+  "registryDependencies": [
+    "https://seamui.dev/r/alert-dialog.json",
+    "https://seamui.dev/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/alert-dialog-discard.tsx",
+      "content": "import { Button } from \"@/registry/seam/ui/button\"\nimport {\n  AlertDialog,\n  AlertDialogAction,\n  AlertDialogCancel,\n  AlertDialogContent,\n  AlertDialogDescription,\n  AlertDialogFooter,\n  AlertDialogHeader,\n  AlertDialogTitle,\n  AlertDialogTrigger,\n} from \"@/registry/seam/ui/alert-dialog\"\n\nexport default function AlertDialogDiscard() {\n  return (\n    <AlertDialog>\n      <AlertDialogTrigger\n        render={<Button variant=\"outline\">Discard changes</Button>}\n      />\n      <AlertDialogContent>\n        <AlertDialogHeader>\n          <AlertDialogTitle>Discard changes?</AlertDialogTitle>\n          <AlertDialogDescription>\n            You have unsaved edits. If you leave now, they will be lost and\n            cannot be recovered.\n          </AlertDialogDescription>\n        </AlertDialogHeader>\n        <AlertDialogFooter>\n          <AlertDialogCancel render={<Button variant=\"ghost\">Cancel</Button>} />\n          <AlertDialogAction render={<Button>Discard</Button>} />\n        </AlertDialogFooter>\n      </AlertDialogContent>\n    </AlertDialog>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

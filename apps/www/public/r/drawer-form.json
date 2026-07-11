@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "drawer-form",
+  "type": "registry:example",
+  "title": "Drawer Form",
+  "registryDependencies": [
+    "https://seamui.dev/r/drawer.json",
+    "https://seamui.dev/r/input.json",
+    "https://seamui.dev/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/drawer-form.tsx",
+      "content": "import { Button } from \"@/registry/seam/ui/button\"\nimport { Input } from \"@/registry/seam/ui/input\"\nimport {\n  Drawer,\n  DrawerContent,\n  DrawerDescription,\n  DrawerFooter,\n  DrawerHeader,\n  DrawerTitle,\n  DrawerTrigger,\n  DrawerClose,\n} from \"@/registry/seam/ui/drawer\"\n\nexport default function DrawerForm() {\n  return (\n    <Drawer>\n      <DrawerTrigger render={<Button variant=\"outline\">Add contact</Button>} />\n      <DrawerContent>\n        <DrawerHeader>\n          <DrawerTitle>Add contact</DrawerTitle>\n          <DrawerDescription>\n            Save a new contact to your address book.\n          </DrawerDescription>\n        </DrawerHeader>\n        <div className=\"flex flex-col gap-4\">\n          <div className=\"flex flex-col gap-2\">\n            <label htmlFor=\"drawer-form-name\" className=\"text-sm font-medium\">\n              Name\n            </label>\n            <Input id=\"drawer-form-name\" placeholder=\"Ada Lovelace\" />\n          </div>\n          <div className=\"flex flex-col gap-2\">\n            <label htmlFor=\"drawer-form-email\" className=\"text-sm font-medium\">\n              Email\n            </label>\n            <Input\n              id=\"drawer-form-email\"\n              type=\"email\"\n              placeholder=\"ada@example.com\"\n            />\n          </div>\n        </div>\n        <DrawerFooter>\n          <DrawerClose render={<Button variant=\"ghost\">Cancel</Button>} />\n          <DrawerClose render={<Button>Save</Button>} />\n        </DrawerFooter>\n      </DrawerContent>\n    </Drawer>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tooltip-icon",
+  "type": "registry:example",
+  "title": "Tooltip Icon",
+  "registryDependencies": [
+    "https://seamui.dev/r/tooltip.json",
+    "https://seamui.dev/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/tooltip-icon.tsx",
+      "content": "import { Plus } from \"lucide-react\"\n\nimport { Button } from \"@/registry/seam/ui/button\"\nimport {\n  Tooltip,\n  TooltipContent,\n  TooltipProvider,\n  TooltipTrigger,\n} from \"@/registry/seam/ui/tooltip\"\n\nexport default function TooltipIcon() {\n  return (\n    <TooltipProvider>\n      <Tooltip>\n        <TooltipTrigger\n          render={\n            <Button variant=\"ghost\" size=\"icon\" aria-label=\"Add item\">\n              <Plus />\n            </Button>\n          }\n        />\n        <TooltipContent>Add item</TooltipContent>\n      </Tooltip>\n    </TooltipProvider>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}
