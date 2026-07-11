@@ -1,3 +1,5 @@
+"use client"
+
 import { Volume2, VolumeX } from "lucide-react"
 
 import { MediaToggle } from "@/registry/seam/ui/media-toggle"
