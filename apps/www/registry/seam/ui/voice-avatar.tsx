@@ -65,7 +65,7 @@ function VoiceAvatar({
     <div
       data-slot="voice-avatar"
       data-speaking={active || undefined}
-      className={cn("relative inline-flex", className)}
+      className="relative inline-flex"
     >
       <motion.span
         aria-hidden
@@ -74,7 +74,7 @@ function VoiceAvatar({
         animate={animate}
         transition={transition}
       />
-      <Avatar className="size-11 shadow-resting">
+      <Avatar className={cn("size-11 shadow-resting", className)}>
         {src ? <AvatarImage src={src} alt={name ?? ""} /> : null}
         <AvatarFallback>{children ?? initials(name)}</AvatarFallback>
       </Avatar>
