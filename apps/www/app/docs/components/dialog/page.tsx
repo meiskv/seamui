@@ -58,10 +58,15 @@ export default function DialogDocs() {
 
       <Section title="Motion">
         <p className="text-muted-foreground text-sm">
-          The popup animates from <code>depth.modal.initial</code> to rest with{" "}
-          <code>springs.surface</code> — top-of-stack depth. The backdrop fades
-          in with <code>fades.normal</code>, reading as the page receding
-          beneath. Honors <code>prefers-reduced-motion</code>.
+          The panel animates via the shared <code>condense</code> token from{" "}
+          <code>@/lib/motion</code> — CSS keyed to Base UI&apos;s{" "}
+          <code>data-starting-style</code> / <code>data-ending-style</code>, so
+          Base UI can await the exit before unmounting. On open it pops from
+          center and fades in on a spring-shaped bezier; on dismiss it falls
+          back, scaling down and fading slightly quicker than it rose. The
+          backdrop dims and undims on the same clock. Under{" "}
+          <code>prefers-reduced-motion</code> the scale is dropped — it still
+          fades in and out.
         </p>
       </Section>
 

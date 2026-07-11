@@ -48,11 +48,14 @@ export default function TooltipDocs() {
 
       <Section title="Motion">
         <p className="text-muted-foreground text-sm">
-          On open the popup animates from <code>depth.overlay.initial</code>{" "}
-          (opacity 0, scale 0.96, offset) to rest with{" "}
-          <code>springs.surface</code> — the surface rising toward the user.
-          Base UI owns positioning and mount; motion owns the entrance. Honors{" "}
-          <code>prefers-reduced-motion</code>.
+          On open the popup grows from its trigger and fades in via the shared{" "}
+          <code>condense</code> token from <code>@/lib/motion</code> — CSS keyed
+          to Base UI&apos;s <code>data-starting-style</code> /{" "}
+          <code>data-ending-style</code>, on a spring-shaped bezier. It rides the
+          standalone <code>scale</code> property (Base UI owns{" "}
+          <code>transform</code> for positioning) and falls back and fades on
+          dismiss, awaited by Base UI rather than cut. Under{" "}
+          <code>prefers-reduced-motion</code> it fades only.
         </p>
       </Section>
 

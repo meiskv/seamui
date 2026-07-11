@@ -2,11 +2,10 @@
 
 import * as React from "react"
 import { Select as BaseSelect } from "@base-ui/react/select"
-import { motion, useReducedMotion } from "motion/react"
 import { Check, ChevronDown } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { springs, fades, depth, reduced } from "@/lib/motion"
+import { condense } from "@/lib/motion"
 
 function Select(props: React.ComponentProps<typeof BaseSelect.Root>) {
   return <BaseSelect.Root {...props} />
@@ -56,8 +55,6 @@ function SelectContent({
   sideOffset = 6,
   ...props
 }: React.ComponentProps<typeof BaseSelect.Popup> & { sideOffset?: number }) {
-  const reduceMotion = useReducedMotion()
-
   return (
     <BaseSelect.Portal>
       {/* alignItemWithTrigger={false}: drop the list *below* the trigger like a
@@ -73,16 +70,9 @@ function SelectContent({
           data-slot="select-content"
           className={cn(
             "bg-popover text-popover-foreground z-50 max-h-[min(24rem,var(--available-height))] min-w-[var(--anchor-width)] overflow-y-auto rounded-lg border p-1 shadow-overlay outline-none",
+            condense.surface,
             className
           )}
-          render={
-            <motion.div
-              // reduced motion: opacity-only fade — never a dead pop-in.
-              initial={reduceMotion ? reduced.fadeIn.initial : depth.overlay.initial}
-              animate={depth.overlay.animate}
-              transition={reduceMotion ? fades.normal : springs.surface}
-            />
-          }
           {...props}
         >
           {children}

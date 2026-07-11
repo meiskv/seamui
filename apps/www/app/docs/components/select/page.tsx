@@ -52,10 +52,14 @@ export default function SelectDocs() {
 
       <Section title="Motion">
         <p className="text-muted-foreground text-sm">
-          The popup animates in with <code>depth.overlay</code> and{" "}
-          <code>springs.surface</code>. Base UI aligns the list to the trigger
-          width via <code>--anchor-width</code> and handles keyboard selection.
-          Honors <code>prefers-reduced-motion</code>.
+          The popup grows from the trigger and fades in via the shared{" "}
+          <code>condense</code> token from <code>@/lib/motion</code> — CSS keyed
+          to Base UI&apos;s <code>data-starting-style</code> /{" "}
+          <code>data-ending-style</code> so the exit is awaited, then drops below
+          the trigger, scaling and fading down on close. Base UI aligns the list
+          to the trigger width via <code>--anchor-width</code> and handles
+          keyboard selection. Under <code>prefers-reduced-motion</code> it fades
+          only.
         </p>
       </Section>
 

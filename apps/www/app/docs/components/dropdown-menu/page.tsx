@@ -56,10 +56,13 @@ export default function DropdownMenuDocs() {
 
       <Section title="Motion">
         <p className="text-muted-foreground text-sm">
-          The popup rises from <code>depth.overlay.initial</code> with{" "}
-          <code>springs.surface</code> — the same overlay pattern as Tooltip and
-          Popover. Base UI handles positioning, collision, and typeahead. Honors{" "}
-          <code>prefers-reduced-motion</code>.
+          Menu and submenu both grow from their trigger origin and fade in via
+          the shared <code>condense</code> token from <code>@/lib/motion</code>{" "}
+          — CSS keyed to Base UI&apos;s <code>data-starting-style</code> /{" "}
+          <code>data-ending-style</code> so the exit is awaited, then fall back
+          and fade on dismiss — the same overlay condense as Tooltip and
+          Popover. Base UI handles positioning, collision, and typeahead. Under{" "}
+          <code>prefers-reduced-motion</code> it fades only.
         </p>
       </Section>
 

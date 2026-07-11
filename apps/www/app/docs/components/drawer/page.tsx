@@ -55,11 +55,16 @@ export default function DrawerDocs() {
 
       <Section title="Motion">
         <p className="text-muted-foreground text-sm">
-          Unlike the other overlays, the Drawer defers entirely to Base UI&apos;s
-          native drawer engine: a spring-based slide-up, drag-to-dismiss from the
-          grab handle, and a backdrop that dims in proportion to the drag. That
-          physics <em>is</em> the seam mobile-depth philosophy, so seamui styles
-          it and stays out of the way — no <code>motion</code> wrapper needed.
+          Swipe-to-dismiss stays Base UI&apos;s native drag — a 1:1 gesture from
+          the grab handle with a backdrop that dims in proportion to the drag.
+          The non-gesture open and close now use the seam <code>condense</code>{" "}
+          sheet from <code>@/lib/motion</code>: keyed to Base UI&apos;s{" "}
+          <code>data-starting-style</code> / <code>data-ending-style</code>, it
+          slides up from off-screen and fades in, then falls back down and fades
+          on dismiss. The slide rides the standalone <code>translate</code>{" "}
+          property since Base UI owns <code>transform</code> for the drag, and it
+          self-suppresses mid-swipe so the gesture stays 1:1. Under{" "}
+          <code>prefers-reduced-motion</code> it fades only.
         </p>
       </Section>
 

@@ -49,9 +49,13 @@ export default function ContextMenuDocs() {
 
       <Section title="Motion">
         <p className="text-muted-foreground text-sm">
-          Shares the menu&apos;s overlay entrance: <code>depth.overlay</code>{" "}
-          with <code>springs.surface</code>, anchored to the cursor position by
-          Base UI. Honors <code>prefers-reduced-motion</code>.
+          Shares the menu&apos;s overlay condense: the shared{" "}
+          <code>condense</code> token from <code>@/lib/motion</code> — CSS keyed
+          to Base UI&apos;s <code>data-starting-style</code> /{" "}
+          <code>data-ending-style</code> so the exit is awaited. The popup grows
+          from its origin and fades in, then falls back and fades on dismiss,
+          anchored to the cursor position by Base UI. Under{" "}
+          <code>prefers-reduced-motion</code> it fades only.
         </p>
       </Section>
 

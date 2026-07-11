@@ -45,10 +45,15 @@ export default function PopoverDocs() {
 
       <Section title="Motion">
         <p className="text-muted-foreground text-sm">
-          Same overlay-depth entrance as Tooltip: from{" "}
-          <code>depth.overlay.initial</code> to rest with{" "}
-          <code>springs.surface</code>. Positioning (side, align, collision) is
-          handled by Base UI. Honors <code>prefers-reduced-motion</code>.
+          Same overlay condense as Tooltip: the shared <code>condense</code>{" "}
+          token from <code>@/lib/motion</code> — CSS keyed to Base UI&apos;s{" "}
+          <code>data-starting-style</code> / <code>data-ending-style</code> so
+          the exit is awaited, not cut. The popup grows from its trigger via the{" "}
+          <code>--transform-origin</code> Base UI sets and fades in on a
+          spring-shaped bezier, then falls back and fades on dismiss. The scale
+          rides the standalone <code>scale</code> property since Base UI owns{" "}
+          <code>transform</code> for positioning. Under{" "}
+          <code>prefers-reduced-motion</code> it fades only.
         </p>
       </Section>
 
