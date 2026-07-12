@@ -192,6 +192,11 @@ const COMPONENTS = [
     title: "Workbench Header",
     desc: "The bar over the thread.",
   },
+  {
+    name: "command-palette",
+    title: "Command Palette",
+    desc: "⌘K launcher on Autocomplete.",
+  },
 ]
 
 export default function ComponentsIndex() {

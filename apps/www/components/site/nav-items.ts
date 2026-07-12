@@ -120,6 +120,7 @@ export const NAV: NavGroup[] = [
       c("sidebar", "Sidebar"),
       c("session-item", "Session Item"),
       c("workbench-header", "Workbench Header"),
+      c("command-palette", "Command Palette"),
     ],
   },
 ]

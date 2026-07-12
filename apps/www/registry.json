@@ -1168,6 +1168,28 @@
       ]
     },
     {
+      "name": "command-palette",
+      "type": "registry:ui",
+      "title": "Command Palette",
+      "description": "⌘K launcher — Base UI Autocomplete rendered inline and always-open inside a Dialog.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json",
+        "https://seamui.dev/r/kbd.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/command-palette.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/command-palette.tsx"
+        }
+      ]
+    },
+    {
       "name": "session-item",
       "type": "registry:ui",
       "title": "Session Item",
@@ -3711,6 +3733,37 @@
       "files": [
         {
           "path": "registry/seam/examples/workbench-shell.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "command-palette-demo",
+      "type": "registry:example",
+      "title": "Command Palette Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/command-palette.json",
+        "https://seamui.dev/r/button.json",
+        "https://seamui.dev/r/kbd.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/command-palette-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "command-palette-flat",
+      "type": "registry:example",
+      "title": "Command Palette Flat",
+      "registryDependencies": [
+        "https://seamui.dev/r/command-palette.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/command-palette-flat.tsx",
           "type": "registry:example"
         }
       ]
