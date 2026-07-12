@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sidebar-collapse",
+  "type": "registry:example",
+  "title": "Sidebar Collapse",
+  "registryDependencies": [
+    "https://seamui.dev/r/sidebar.json",
+    "https://seamui.dev/r/session-item.json",
+    "https://seamui.dev/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/sidebar-collapse.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport { Button } from \"@/registry/seam/ui/button\"\nimport {\n  Sidebar,\n  SidebarContent,\n  SidebarGroup,\n  SidebarGroupLabel,\n  SidebarHeader,\n  SidebarProvider,\n  SidebarTrigger,\n} from \"@/registry/seam/ui/sidebar\"\nimport { SessionItem } from \"@/registry/seam/ui/session-item\"\n\n// Controlled collapse: the width eases to a slim icon rail (status dots stay\n// visible); labels fade on the same clock. Under reduced motion both jump.\nexport default function SidebarCollapse() {\n  const [open, setOpen] = React.useState(false)\n\n  return (\n    <SidebarProvider\n      open={open}\n      onOpenChange={setOpen}\n      className=\"bg-background h-64 overflow-hidden rounded-lg border\"\n    >\n      <Sidebar>\n        <SidebarHeader>\n          <SidebarTrigger />\n        </SidebarHeader>\n        <SidebarContent>\n          <SidebarGroup>\n            <SidebarGroupLabel count={2}>Working</SidebarGroupLabel>\n            <SessionItem title=\"migrate-billing-webhooks\" status=\"working\" />\n            <SessionItem title=\"port-drawer-to-native\" status=\"working\" />\n          </SidebarGroup>\n        </SidebarContent>\n      </Sidebar>\n      <div className=\"flex flex-1 items-center justify-center\">\n        <Button variant=\"outline\" size=\"sm\" onClick={() => setOpen((o) => !o)}>\n          {open ? \"Collapse\" : \"Expand\"} (or ⌘B)\n        </Button>\n      </div>\n    </SidebarProvider>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

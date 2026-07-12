@@ -117,6 +117,9 @@ export const NAV: NavGroup[] = [
       c("agent-status", "Agent Status"),
       c("branch-chip", "Branch Chip"),
       c("context-meter", "Context Meter"),
+      c("sidebar", "Sidebar"),
+      c("session-item", "Session Item"),
+      c("workbench-header", "Workbench Header"),
     ],
   },
 ]

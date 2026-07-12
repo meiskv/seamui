@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "workbench-header",
+  "type": "registry:ui",
+  "title": "Workbench Header",
+  "description": "The bar over the thread — session identity left, telemetry and actions right.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://seamui.dev/r/utils.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/ui/workbench-header.tsx",
+      "content": "import type * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\n// The bar over the thread: session identity left, telemetry and actions\n// right. Canvas, not key — flat background with a hairline edge, so the\n// embossed chips inside it (agent-status, branch-chip, context-meter, keys)\n// carry the depth. Layout only; nothing here animates.\nfunction WorkbenchHeader({\n  className,\n  ...props\n}: React.ComponentProps<\"header\">) {\n  return (\n    <header\n      data-slot=\"workbench-header\"\n      className={cn(\n        \"bg-background border-border/60 flex h-14 shrink-0 items-center gap-3 border-b px-4\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction WorkbenchHeaderTitle({\n  description,\n  className,\n  children,\n  ...props\n}: React.ComponentProps<\"h1\"> & { description?: React.ReactNode }) {\n  return (\n    <div data-slot=\"workbench-header-title\" className=\"min-w-0\">\n      <h1\n        className={cn(\n          \"truncate text-sm leading-tight font-semibold\",\n          className\n        )}\n        {...props}\n      >\n        {children}\n      </h1>\n      {description ? (\n        <p className=\"text-muted-foreground truncate text-xs\">{description}</p>\n      ) : null}\n    </div>\n  )\n}\n\nfunction WorkbenchHeaderActions({\n  className,\n  ...props\n}: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"workbench-header-actions\"\n      className={cn(\"ml-auto flex shrink-0 items-center gap-2\", className)}\n      {...props}\n    />\n  )\n}\n\nexport { WorkbenchHeader, WorkbenchHeaderTitle, WorkbenchHeaderActions }\n",
+      "type": "registry:ui",
+      "target": "components/ui/workbench-header.tsx"
+    }
+  ]
+}

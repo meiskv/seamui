@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sidebar-demo",
+  "type": "registry:example",
+  "title": "Sidebar Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/sidebar.json",
+    "https://seamui.dev/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/sidebar-demo.tsx",
+      "content": "import { Inbox, Search, Settings } from \"lucide-react\"\n\nimport { Button } from \"@/registry/seam/ui/button\"\nimport {\n  Sidebar,\n  SidebarContent,\n  SidebarFooter,\n  SidebarGroup,\n  SidebarGroupLabel,\n  SidebarHeader,\n  SidebarLabel,\n  SidebarProvider,\n  SidebarTrigger,\n} from \"@/registry/seam/ui/sidebar\"\n\nconst ITEMS = [\n  { icon: Inbox, label: \"Inbox\" },\n  { icon: Search, label: \"Search\" },\n  { icon: Settings, label: \"Settings\" },\n]\n\nexport default function SidebarDemo() {\n  return (\n    <SidebarProvider className=\"bg-background h-72 overflow-hidden rounded-lg border\">\n      <Sidebar>\n        <SidebarHeader>\n          <SidebarTrigger />\n          <SidebarLabel className=\"text-sm font-semibold\">acme</SidebarLabel>\n        </SidebarHeader>\n        <SidebarContent>\n          <SidebarGroup>\n            <SidebarGroupLabel>Workspace</SidebarGroupLabel>\n            {ITEMS.map(({ icon: Icon, label }) => (\n              <Button\n                key={label}\n                variant=\"ghost\"\n                className=\"h-8 w-full justify-start gap-2.5 px-2.5 font-normal\"\n              >\n                <Icon className=\"size-4 shrink-0\" />\n                <SidebarLabel className=\"flex-1 text-left\">\n                  {label}\n                </SidebarLabel>\n              </Button>\n            ))}\n          </SidebarGroup>\n        </SidebarContent>\n        <SidebarFooter>\n          <SidebarLabel className=\"text-muted-foreground text-xs\">\n            ⌘B toggles the rail\n          </SidebarLabel>\n        </SidebarFooter>\n      </Sidebar>\n      <div className=\"text-muted-foreground flex flex-1 items-center justify-center text-sm\">\n        Content\n      </div>\n    </SidebarProvider>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

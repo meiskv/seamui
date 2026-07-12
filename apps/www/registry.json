@@ -1147,6 +1147,65 @@
       ]
     },
     {
+      "name": "sidebar",
+      "type": "registry:ui",
+      "title": "Sidebar",
+      "description": "Collapsible app sidebar — a recessed well the active session rises out of; ⌘B rail collapse.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/button.json",
+        "https://seamui.dev/r/badge.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/sidebar.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/sidebar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "session-item",
+      "type": "registry:ui",
+      "title": "Session Item",
+      "description": "Rich session row for the sidebar, plus the hover-card layout with status, branch, and quick actions.",
+      "dependencies": [],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/button.json",
+        "https://seamui.dev/r/badge.json",
+        "https://seamui.dev/r/agent-status.json",
+        "https://seamui.dev/r/branch-chip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/session-item.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/session-item.tsx"
+        }
+      ]
+    },
+    {
+      "name": "workbench-header",
+      "type": "registry:ui",
+      "title": "Workbench Header",
+      "description": "The bar over the thread — session identity left, telemetry and actions right.",
+      "dependencies": [],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/workbench-header.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/workbench-header.tsx"
+        }
+      ]
+    },
+    {
       "name": "button-demo",
       "type": "registry:example",
       "title": "Button Demo",
@@ -3526,6 +3585,132 @@
       "files": [
         {
           "path": "registry/seam/examples/context-meter-critical.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "sidebar-demo",
+      "type": "registry:example",
+      "title": "Sidebar Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/sidebar.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/sidebar-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "sidebar-sessions",
+      "type": "registry:example",
+      "title": "Sidebar Sessions",
+      "registryDependencies": [
+        "https://seamui.dev/r/sidebar.json",
+        "https://seamui.dev/r/session-item.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/sidebar-sessions.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "sidebar-collapse",
+      "type": "registry:example",
+      "title": "Sidebar Collapse",
+      "registryDependencies": [
+        "https://seamui.dev/r/sidebar.json",
+        "https://seamui.dev/r/session-item.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/sidebar-collapse.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "session-item-demo",
+      "type": "registry:example",
+      "title": "Session Item Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/session-item.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/session-item-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "session-item-hover-card",
+      "type": "registry:example",
+      "title": "Session Item Hover Card",
+      "registryDependencies": [
+        "https://seamui.dev/r/session-item.json",
+        "https://seamui.dev/r/preview-card.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/session-item-hover-card.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "session-item-unread",
+      "type": "registry:example",
+      "title": "Session Item Unread",
+      "registryDependencies": [
+        "https://seamui.dev/r/session-item.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/session-item-unread.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "workbench-header-demo",
+      "type": "registry:example",
+      "title": "Workbench Header Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/workbench-header.json",
+        "https://seamui.dev/r/agent-status.json",
+        "https://seamui.dev/r/branch-chip.json",
+        "https://seamui.dev/r/context-meter.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/workbench-header-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "workbench-shell",
+      "type": "registry:example",
+      "title": "Workbench Shell",
+      "registryDependencies": [
+        "https://seamui.dev/r/workbench-header.json",
+        "https://seamui.dev/r/sidebar.json",
+        "https://seamui.dev/r/session-item.json",
+        "https://seamui.dev/r/agent-status.json",
+        "https://seamui.dev/r/context-meter.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/workbench-shell.tsx",
           "type": "registry:example"
         }
       ]

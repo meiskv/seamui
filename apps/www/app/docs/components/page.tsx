@@ -177,6 +177,21 @@ const COMPONENTS = [
     title: "Context Meter",
     desc: "Context-window usage ring.",
   },
+  {
+    name: "sidebar",
+    title: "Sidebar",
+    desc: "Collapsible well of sessions.",
+  },
+  {
+    name: "session-item",
+    title: "Session Item",
+    desc: "Session row with hover card.",
+  },
+  {
+    name: "workbench-header",
+    title: "Workbench Header",
+    desc: "The bar over the thread.",
+  },
 ]
 
 export default function ComponentsIndex() {

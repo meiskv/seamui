@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "session-item-hover-card",
+  "type": "registry:example",
+  "title": "Session Item Hover Card",
+  "registryDependencies": [
+    "https://seamui.dev/r/session-item.json",
+    "https://seamui.dev/r/preview-card.json",
+    "https://seamui.dev/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/session-item-hover-card.tsx",
+      "content": "import { GitPullRequestArrow, MessageSquare } from \"lucide-react\"\n\nimport { Button } from \"@/registry/seam/ui/button\"\nimport {\n  PreviewCard,\n  PreviewCardContent,\n  PreviewCardTrigger,\n} from \"@/registry/seam/ui/preview-card\"\nimport {\n  SessionCard,\n  SessionCardRow,\n  SessionItem,\n} from \"@/registry/seam/ui/session-item\"\n\n// The workbench signature: hover a session row to see live status, branch,\n// and next actions without leaving the current thread. The hover wiring is\n// preview-card; on touch, put the same SessionCard in a popover instead.\nexport default function SessionItemHoverCard() {\n  return (\n    <div className=\"bg-muted/40 w-72 rounded-lg border p-2\">\n      <PreviewCard>\n        <PreviewCardTrigger\n          render={\n            <SessionItem\n              title=\"fix-auth-redirect\"\n              status=\"waiting\"\n              unread={3}\n              time=\"2m\"\n            />\n          }\n        />\n        <PreviewCardContent className=\"w-72\">\n          <SessionCard\n            title=\"fix-auth-redirect\"\n            status=\"waiting\"\n            branch=\"claude/fix-auth-redirect\"\n            actions={\n              <>\n                <Button\n                  size=\"sm\"\n                  variant=\"secondary\"\n                  className=\"h-7 gap-1.5 text-xs\"\n                >\n                  <MessageSquare className=\"size-3\" /> Reply\n                </Button>\n                <Button\n                  size=\"sm\"\n                  variant=\"ghost\"\n                  className=\"h-7 gap-1.5 text-xs\"\n                >\n                  <GitPullRequestArrow className=\"size-3\" /> Review diff\n                </Button>\n              </>\n            }\n          >\n            <SessionCardRow label=\"Asking\">\n              Delete the legacy /login route?\n            </SessionCardRow>\n            <SessionCardRow label=\"Changes\">+142 −38 in 6 files</SessionCardRow>\n            <SessionCardRow label=\"Started\">32 minutes ago</SessionCardRow>\n          </SessionCard>\n        </PreviewCardContent>\n      </PreviewCard>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}
