@@ -1090,12 +1090,10 @@
       "title": "Agent Status",
       "description": "The canonical agent-state indicator — waiting/working/ready/done/error, as dot or chip.",
       "dependencies": [
-        "motion",
         "lucide-react"
       ],
       "registryDependencies": [
         "https://seamui.dev/r/utils.json",
-        "https://seamui.dev/r/motion.json",
         "https://seamui.dev/r/badge.json"
       ],
       "files": [

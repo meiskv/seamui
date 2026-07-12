@@ -1,11 +1,7 @@
-"use client"
-
 import type * as React from "react"
-import { motion, useReducedMotion } from "motion/react"
 import { Check, CircleAlert, Eye, X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { springs, fades } from "@/lib/motion"
 import { Badge } from "./badge"
 
 // The canonical agent-state machine — the vocabulary session sidebars,
@@ -16,9 +12,12 @@ type AgentState = "waiting" | "working" | "ready" | "done" | "error"
 // The theme is monochrome, so state reads through shape + animation, not hue:
 // waiting = filled + attention halo, working = filled + ambient pulse,
 // ready = hollow, done = faint, error = the one sanctioned color.
+// The working pulse is CSS animate-pulse — the Spinner precedent for ambient
+// loops: opacity-only, so it reads identically under reduced motion, and it
+// keeps running inside AnimatePresence parents where motion.dev repeat stalls.
 const DOT: Record<AgentState, string> = {
   waiting: "bg-primary ring-[3px] ring-primary/20",
-  working: "bg-primary",
+  working: "bg-primary animate-pulse",
   ready: "border-2 border-primary bg-transparent",
   done: "bg-muted-foreground/40",
   error: "bg-destructive",
@@ -32,21 +31,17 @@ const LABELS: Record<AgentState, string> = {
   error: "Error",
 }
 
-// Bare dot for dense rows (session lists, tab strips). Working pulses on a
-// springs.bouncy scale loop; under reduced motion the pulse becomes a
-// staggerless opacity breathe — feedback never goes dead. With an aria-label
-// it announces as a status; without one it's decoration next to visible text.
+// Bare dot for dense rows (session lists, tab strips). With an aria-label it
+// announces as a status; without one it's decoration next to visible text.
 function AgentStatusDot({
   status,
   className,
   ...props
-}: React.ComponentProps<typeof motion.span> & { status: AgentState }) {
-  const reduceMotion = useReducedMotion()
-  const working = status === "working"
+}: React.ComponentProps<"span"> & { status: AgentState }) {
   const labelled = props["aria-label"] !== undefined
 
   return (
-    <motion.span
+    <span
       data-slot="agent-status-dot"
       data-status={status}
       role={labelled ? "status" : undefined}
@@ -56,22 +51,6 @@ function AgentStatusDot({
         DOT[status],
         className
       )}
-      animate={
-        working
-          ? reduceMotion
-            ? { opacity: 0.35 }
-            : { scale: 1.3 }
-          : undefined
-      }
-      transition={
-        working
-          ? {
-              ...(reduceMotion ? fades.normal : springs.bouncy),
-              repeat: Infinity,
-              repeatType: "reverse",
-            }
-          : undefined
-      }
       {...props}
     />
   )

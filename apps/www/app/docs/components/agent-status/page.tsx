@@ -58,8 +58,9 @@ export default function AgentStatusDocs() {
           color. Distinct without color vision by construction.
         </li>
         <li>
-          The working pulse loops on <code>springs.bouncy</code>; under reduced
-          motion it becomes an opacity breathe — the feedback never goes dead.
+          The working pulse is CSS <code>animate-pulse</code> — the Spinner
+          precedent for ambient loops. It&apos;s opacity-only, so it reads
+          identically under reduced motion; the feedback never goes dead.
         </li>
         <li>
           The chip is <code>aria-live=&quot;polite&quot;</code>, so a state
