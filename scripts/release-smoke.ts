@@ -14,7 +14,7 @@
  * Run: `bun run scripts/release-smoke.ts` (aka `bun run smoke`).
  */
 import { spawnSync } from "node:child_process"
-import { readFileSync, readdirSync } from "node:fs"
+import { existsSync, readFileSync, readdirSync } from "node:fs"
 import { dirname, join } from "node:path"
 import { fileURLToPath } from "node:url"
 
@@ -22,6 +22,7 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..")
 const CLI_DIR = join(ROOT, "packages/seamui")
 const CLI_DIST = join(CLI_DIR, "dist/index.js")
 const R_DIR = join(ROOT, "apps/www/public/r")
+const R_DIR_NATIVE = join(R_DIR, "native")
 
 const failures: string[] = []
 
@@ -44,29 +45,44 @@ if (build.status !== 0) {
   }
 }
 
-// ── 2. Every registry JSON parses and is well-formed ─────────────────
-console.log("• Validating public/r/*.json…")
-const jsonFiles = readdirSync(R_DIR).filter((f) => f.endsWith(".json"))
-if (jsonFiles.length === 0) {
-  failures.push("no registry JSON found — did `registry:build` run?")
-}
+// ── 2. Every registry JSON parses and is well-formed (web + native) ──
+console.log("• Validating public/r/*.json (+ native)…")
+const registryDirs: Array<{ label: string; dir: string; required: boolean }> = [
+  { label: "public/r", dir: R_DIR, required: true },
+  { label: "public/r/native", dir: R_DIR_NATIVE, required: true },
+]
 let validated = 0
-for (const file of jsonFiles) {
-  const full = join(R_DIR, file)
-  let parsed: { name?: unknown; files?: unknown }
-  try {
-    parsed = JSON.parse(readFileSync(full, "utf8"))
-  } catch (err) {
-    failures.push(`${file}: not valid JSON (${(err as Error).message})`)
+for (const { label, dir, required } of registryDirs) {
+  if (!existsSync(dir)) {
+    if (required) {
+      failures.push(`${label}: missing — did \`registry:build\` run?`)
+    }
     continue
   }
-  if (typeof parsed.name !== "string" || !parsed.name) {
-    failures.push(`${file}: missing "name"`)
+  const jsonFiles = readdirSync(dir).filter((f) => f.endsWith(".json"))
+  if (jsonFiles.length === 0) {
+    failures.push(
+      `${label}: no registry JSON found — did \`registry:build\` run?`
+    )
   }
-  if (!Array.isArray(parsed.files) || parsed.files.length === 0) {
-    failures.push(`${file}: missing "files"`)
+  for (const file of jsonFiles) {
+    let parsed: { name?: unknown; files?: unknown }
+    try {
+      parsed = JSON.parse(readFileSync(join(dir, file), "utf8"))
+    } catch (err) {
+      failures.push(
+        `${label}/${file}: not valid JSON (${(err as Error).message})`
+      )
+      continue
+    }
+    if (typeof parsed.name !== "string" || !parsed.name) {
+      failures.push(`${label}/${file}: missing "name"`)
+    }
+    if (!Array.isArray(parsed.files) || parsed.files.length === 0) {
+      failures.push(`${label}/${file}: missing "files"`)
+    }
+    validated++
   }
-  validated++
 }
 
 if (failures.length > 0) {

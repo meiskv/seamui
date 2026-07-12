@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "haptics",
+  "type": "registry:lib",
+  "title": "seam native haptics",
+  "description": "Haptic feedback layer for React Native: HapticsProvider and the useHaptics hook every interactive control fires through, powered by expo-haptics. Same contract as the web haptics lib.",
+  "dependencies": [
+    "expo-haptics"
+  ],
+  "files": [
+    {
+      "path": "registry/seam-native/lib/haptics.tsx",
+      "content": "// seamui native haptics — the tactile third of the touch-feedback pillar, the\n// peer of registry/seam/lib/haptics.tsx (web / web-haptics).\n//\n// Same contract as web: mount <HapticsProvider> once around your app shell and\n// every seamui control taps and ticks as you use it. Without a provider every\n// trigger is a silent no-op, so components always call the hook unconditionally.\n// The engine is the only difference — real device haptics via `expo-haptics`\n// (a strict upgrade over web's Vibration hack). Fire-and-forget: never awaited,\n// never throws into the UI, never gates on reduced motion (haptics aren't\n// motion).\nimport * as Haptics from \"expo-haptics\"\nimport * as React from \"react\"\n\ntype HapticPreset = \"tap\" | \"tick\" | \"success\" | \"error\"\n\ntype HapticsContextValue = {\n  enabled: boolean\n  /** Fire a haptic. Never throws, never blocks. */\n  trigger: (preset?: HapticPreset) => void\n}\n\nconst HapticsContext = React.createContext<HapticsContextValue>({\n  enabled: false,\n  trigger: () => {},\n})\n\n/** seam presets → expo-haptics calls (NATIVE.md §4). `tick` uses the\n *  cross-platform selection tick; refine to `performAndroidHapticsAsync`\n *  (e.g. a segment tick) per-control where finer grain is wanted, e.g. slider. */\nfunction fire(preset: HapticPreset): Promise<void> {\n  switch (preset) {\n    case \"tap\":\n      return Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)\n    case \"tick\":\n      return Haptics.selectionAsync()\n    case \"success\":\n      return Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success)\n    case \"error\":\n      return Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error)\n  }\n}\n\nfunction HapticsProvider({\n  enabled = true,\n  children,\n}: {\n  enabled?: boolean\n  children: React.ReactNode\n}) {\n  const value = React.useMemo<HapticsContextValue>(\n    () => ({\n      enabled,\n      trigger: (preset = \"tap\") => {\n        if (!enabled) return\n        // fire-and-forget — feedback must never block or throw into the UI.\n        try {\n          void fire(preset)\n        } catch {\n          // no haptics engine available — stay silent\n        }\n      },\n    }),\n    [enabled]\n  )\n\n  return (\n    <HapticsContext.Provider value={value}>{children}</HapticsContext.Provider>\n  )\n}\n\n/** Read the ambient haptics channel. Safe without a provider (no-op). */\nfunction useHaptics() {\n  return React.useContext(HapticsContext)\n}\n\nexport { HapticsProvider, useHaptics, type HapticPreset }\n",
+      "type": "registry:lib",
+      "target": "lib/haptics.tsx"
+    }
+  ]
+}

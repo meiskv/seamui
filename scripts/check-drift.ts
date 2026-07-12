@@ -2,9 +2,11 @@
 /**
  * Drift gate — the two seamui-specific "did you regenerate?" checks.
  *
- *   1. Registry: `registry/seam/**` is the source; `public/r/*.json` is BUILD
+ *   1. Registry: `registry/seam/**` (web) and `registry/seam-native/**` (native)
+ *      are the sources; `public/r/*.json` + `public/r/native/*.json` are BUILD
  *      OUTPUT. Editing the JSON by hand, or forgetting `registry:build` after a
  *      source change, silently ships a stale registry to every consumer.
+ *      `registry:build` builds both targets; `public/r` covers native too.
  *   2. Theme: `theme/theme.css` is canonical; `app/globals.css` is a generated
  *      copy (CLAUDE.md §2's two-file rule). Editing the copy directly drifts it.
  *
@@ -20,7 +22,11 @@ import { fileURLToPath } from "node:url"
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..")
 const THEME_SRC = "apps/www/registry/seam/theme/theme.css"
 const GLOBALS = "apps/www/app/globals.css"
-const REGISTRY_PATHS = ["apps/www/public/r", "apps/www/registry.json"]
+const REGISTRY_PATHS = [
+  "apps/www/public/r", // covers both web (public/r/*.json) and native (public/r/native/*.json)
+  "apps/www/registry.json",
+  "apps/www/registry-native.json",
+]
 
 function sh(cmd: string, args: string[], cwd = ROOT) {
   return spawnSync(cmd, args, { cwd, encoding: "utf8", stdio: "pipe" })

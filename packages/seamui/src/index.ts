@@ -15,14 +15,19 @@ import pc from "picocolors"
 import {
   ensureNamespace,
   type NamespaceStatus,
+  type Platform,
   REGISTRY_NAMESPACE,
   resolveRefs,
 } from "./config"
 
-/** Foundation items installed on every `init`. */
-const FOUNDATION = ["theme", "utils", "motion"]
+/** Foundation items installed on every `init`, per platform. Native adds
+ *  `haptics` (its own registry item, wired site-wide like web). */
+const FOUNDATION: Record<Platform, string[]> = {
+  web: ["theme", "utils", "motion"],
+  native: ["theme", "utils", "motion", "haptics"],
+}
 
-type Framework = "next" | "vite" | "remix"
+type Framework = "next" | "vite" | "remix" | "expo"
 
 function run(cmd: string, args: string[], cwd: string): number {
   const printable = [cmd, ...args].join(" ")
@@ -91,6 +96,11 @@ function scaffold(framework: Framework, cwd: string): number {
       )
     case "remix":
       return run("bunx", ["--bun", "create-remix@latest", ".", "--yes"], cwd)
+    case "expo":
+      // Native scaffold — a fresh Expo (SDK 57+) app. Styling/animation deps
+      // (uniwind, reanimated, expo-haptics) are pulled in by the foundation
+      // items' npm `dependencies` when shadcn adds them.
+      return run("bunx", ["--bun", "create-expo-app@latest", ".", "--yes"], cwd)
   }
 }
 
@@ -108,14 +118,47 @@ program
   .description("Set up seamui in a new or existing project")
   .option(
     "-t, --template <framework>",
-    "framework: next | vite | remix",
+    "web framework: next | vite | remix (ignored when --platform native)",
     "next"
+  )
+  .option(
+    "-p, --platform <platform>",
+    "target platform: web | native (native scaffolds an Expo app)",
+    "web"
   )
   .option("--cwd <dir>", "working directory", process.cwd())
   .option("-y, --yes", "skip confirmation prompts", false)
   .allowUnknownOption(true)
   .action((opts) => {
     const cwd = resolve(opts.cwd)
+    const platform = opts.platform as Platform
+    if (!["web", "native"].includes(platform)) {
+      console.error(pc.red(`Unknown platform "${platform}". Use web | native.`))
+      process.exit(1)
+    }
+
+    if (platform === "native") {
+      // Native path: scaffold Expo, then install the native foundation via the
+      // native registry. We skip the web `shadcn init` (Tailwind/CSS-vars web
+      // setup); shadcn bootstraps a components.json from the item URLs.
+      if (scaffold("expo", cwd) !== 0) process.exit(1)
+      if (
+        shadcn(
+          ["add", ...resolveRefs(FOUNDATION.native, false, "native")],
+          cwd
+        ) !== 0
+      ) {
+        process.exit(1)
+      }
+      console.log()
+      console.log(pc.green("✔ seamui native is ready."))
+      console.log(
+        pc.dim("Next:"),
+        pc.cyan("seamui add button --platform native")
+      )
+      return
+    }
+
     const framework = opts.template as Framework
     if (!["next", "vite", "remix"].includes(framework)) {
       console.error(
@@ -128,8 +171,10 @@ program
     if (shadcn(["init", "-y", "-b", "neutral"], cwd) !== 0) process.exit(1)
     const status = syncNamespace(cwd)
     if (
-      shadcn(["add", ...resolveRefs(FOUNDATION, status !== "missing")], cwd) !==
-      0
+      shadcn(
+        ["add", ...resolveRefs(FOUNDATION.web, status !== "missing")],
+        cwd
+      ) !== 0
     ) {
       process.exit(1)
     }
@@ -143,17 +188,33 @@ program
   .command("add")
   .description("Add seamui components")
   .argument("[components...]", "component names, e.g. button")
+  .option("-p, --platform <platform>", "target platform: web | native", "web")
   .option("--cwd <dir>", "working directory", process.cwd())
   .option("-y, --yes", "skip confirmation prompts", false)
   .allowUnknownOption(true)
   .action((components: string[], opts) => {
     const cwd = resolve(opts.cwd)
+    const platform = opts.platform as Platform
+    if (!["web", "native"].includes(platform)) {
+      console.error(pc.red(`Unknown platform "${platform}". Use web | native.`))
+      process.exit(1)
+    }
     if (!components.length) {
       console.error(
         pc.red("Specify at least one component, e.g. `seamui add button`.")
       )
       process.exit(1)
     }
+    const passthrough = opts.yes ? ["-y"] : []
+
+    // Native: resolve against the native registry via direct item URLs. We
+    // don't touch a native project's components.json (RN registry config is
+    // still nascent) — shadcn adds from the URLs directly.
+    if (platform === "native") {
+      const refs = resolveRefs(components, false, "native")
+      process.exit(shadcn(["add", ...refs, ...passthrough], cwd))
+    }
+
     const status = syncNamespace(cwd)
     if (status === "missing") {
       console.log(
@@ -162,7 +223,6 @@ program
         )
       )
     }
-    const passthrough = opts.yes ? ["-y"] : []
     const refs = resolveRefs(components, status !== "missing")
     const code = shadcn(["add", ...refs, ...passthrough], cwd)
     // shadcn bootstraps components.json on a first-run add; register the

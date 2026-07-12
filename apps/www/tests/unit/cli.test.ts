@@ -8,7 +8,9 @@ import {
   ensureNamespace,
   itemUrl,
   REGISTRY_NAMESPACE,
+  REGISTRY_NAMESPACE_NATIVE,
   REGISTRY_URL,
+  REGISTRY_URL_NATIVE,
   resolveRefs,
 } from "../../../../packages/seamui/src/config"
 
@@ -49,6 +51,23 @@ describe("seamui CLI", () => {
     const { status, stderr } = runCli(["init", "--template", "svelte"])
     expect(status).toBe(1)
     expect(stderr.toLowerCase()).toContain("unknown framework")
+  })
+
+  it("rejects an unknown platform for `init` (exit 1)", () => {
+    const { status, stderr } = runCli(["init", "--platform", "desktop"])
+    expect(status).toBe(1)
+    expect(stderr.toLowerCase()).toContain("unknown platform")
+  })
+
+  it("rejects an unknown platform for `add` (exit 1)", () => {
+    const { status, stderr } = runCli([
+      "add",
+      "button",
+      "--platform",
+      "desktop",
+    ])
+    expect(status).toBe(1)
+    expect(stderr.toLowerCase()).toContain("unknown platform")
   })
 
   it("errors (exit 1) on a malformed components.json before invoking shadcn", () => {
@@ -143,5 +162,50 @@ describe("registry refs (resolveRefs)", () => {
       "@acme/thing",
       "https://x/y.json",
     ])
+  })
+
+  it("resolves native names to the native registry when configured", () => {
+    expect(resolveRefs(["button", "switch"], true, "native")).toEqual([
+      `${REGISTRY_NAMESPACE_NATIVE}/button`,
+      `${REGISTRY_NAMESPACE_NATIVE}/switch`,
+    ])
+  })
+
+  it("falls back to direct native item URLs when unconfigured", () => {
+    expect(resolveRefs(["button"], false, "native")).toEqual([
+      itemUrl("button", "native"),
+    ])
+    expect(itemUrl("button", "native")).toBe(
+      "https://seamui.dev/r/native/button.json"
+    )
+    // the native URL path is distinct from web.
+    expect(itemUrl("button", "native")).not.toBe(itemUrl("button"))
+  })
+
+  it("unwraps a native-namespaced ref to a native URL when unconfigured", () => {
+    expect(
+      resolveRefs([`${REGISTRY_NAMESPACE_NATIVE}/dialog`], false, "native")
+    ).toEqual([itemUrl("dialog", "native")])
+  })
+})
+
+describe("native namespace registration", () => {
+  let dir: string
+  beforeEach(() => {
+    dir = mkdtempSync(join(tmpdir(), "seamui-native-"))
+  })
+  afterEach(() => {
+    rmSync(dir, { recursive: true, force: true })
+  })
+
+  it("registers @seamui-native without disturbing an existing @seamui entry", () => {
+    writeFileSync(
+      join(dir, "components.json"),
+      JSON.stringify({ registries: { [REGISTRY_NAMESPACE]: REGISTRY_URL } })
+    )
+    expect(ensureNamespace(dir, "native")).toBe("registered")
+    const json = JSON.parse(readFileSync(join(dir, "components.json"), "utf8"))
+    expect(json.registries[REGISTRY_NAMESPACE_NATIVE]).toBe(REGISTRY_URL_NATIVE)
+    expect(json.registries[REGISTRY_NAMESPACE]).toBe(REGISTRY_URL)
   })
 })
