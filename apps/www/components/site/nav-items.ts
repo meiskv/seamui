@@ -111,4 +111,12 @@ export const NAV: NavGroup[] = [
       c("voice-control-bar", "Voice Control Bar"),
     ],
   },
+  {
+    title: "Workbench",
+    items: [
+      c("agent-status", "Agent Status"),
+      c("branch-chip", "Branch Chip"),
+      c("context-meter", "Context Meter"),
+    ],
+  },
 ]

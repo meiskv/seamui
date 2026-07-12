@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "agent-status-live",
+  "type": "registry:example",
+  "title": "Agent Status Live",
+  "registryDependencies": [
+    "https://seamui.dev/r/agent-status.json",
+    "https://seamui.dev/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/agent-status-live.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport { AgentStatus, type AgentState } from \"@/registry/seam/ui/agent-status\"\nimport { Button } from \"@/registry/seam/ui/button\"\n\nconst ORDER: AgentState[] = [\"waiting\", \"working\", \"ready\", \"done\", \"error\"]\n\n// The chip is aria-live, so cycling states here is also a screen-reader demo:\n// each change announces politely without interrupting.\nexport default function AgentStatusLive() {\n  const [index, setIndex] = React.useState(1)\n\n  return (\n    <div className=\"flex items-center gap-4\">\n      <AgentStatus status={ORDER[index]} />\n      <Button\n        variant=\"outline\"\n        size=\"sm\"\n        onClick={() => setIndex((i) => (i + 1) % ORDER.length)}\n      >\n        Next state\n      </Button>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

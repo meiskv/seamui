@@ -162,6 +162,21 @@ const COMPONENTS = [
     title: "Voice Control Bar",
     desc: "Call pill that morphs into chat.",
   },
+  {
+    name: "agent-status",
+    title: "Agent Status",
+    desc: "The agent-state dot and chip.",
+  },
+  {
+    name: "branch-chip",
+    title: "Branch Chip",
+    desc: "Press-to-copy branch pill.",
+  },
+  {
+    name: "context-meter",
+    title: "Context Meter",
+    desc: "Context-window usage ring.",
+  },
 ]
 
 export default function ComponentsIndex() {

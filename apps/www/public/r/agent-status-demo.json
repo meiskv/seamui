@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "agent-status-demo",
+  "type": "registry:example",
+  "title": "Agent Status Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/agent-status.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/agent-status-demo.tsx",
+      "content": "import { AgentStatus } from \"@/registry/seam/ui/agent-status\"\n\nexport default function AgentStatusDemo() {\n  return (\n    <div className=\"flex flex-wrap items-center gap-2\">\n      <AgentStatus status=\"waiting\" />\n      <AgentStatus status=\"working\" />\n      <AgentStatus status=\"ready\" />\n      <AgentStatus status=\"done\" />\n      <AgentStatus status=\"error\" />\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "context-meter-sizes",
+  "type": "registry:example",
+  "title": "Context Meter Sizes",
+  "registryDependencies": [
+    "https://seamui.dev/r/context-meter.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/context-meter-sizes.tsx",
+      "content": "import { ContextMeter } from \"@/registry/seam/ui/context-meter\"\n\nexport default function ContextMeterSizes() {\n  return (\n    <div className=\"flex items-center gap-6\">\n      <ContextMeter value={62} size=\"sm\" />\n      <ContextMeter value={62} size=\"md\" />\n      <ContextMeter value={62} size=\"lg\" showValue />\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

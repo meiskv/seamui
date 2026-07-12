@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "branch-chip-pr",
+  "type": "registry:example",
+  "title": "Branch Chip PR",
+  "registryDependencies": [
+    "https://seamui.dev/r/branch-chip.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/branch-chip-pr.tsx",
+      "content": "import { BranchChip } from \"@/registry/seam/ui/branch-chip\"\n\nexport default function BranchChipPr() {\n  return (\n    <div className=\"flex flex-col items-start gap-2\">\n      <BranchChip\n        branch=\"feat/agent-status\"\n        ahead={2}\n        pr={{ number: 69, state: \"open\" }}\n      />\n      <BranchChip branch=\"feat/diff-view\" pr={{ number: 72, state: \"draft\" }} />\n      <BranchChip\n        branch=\"fix/toast-stacking\"\n        pr={{ number: 58, state: \"merged\" }}\n      />\n      <BranchChip\n        branch=\"experiment/webgpu\"\n        pr={{ number: 41, state: \"closed\" }}\n      />\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

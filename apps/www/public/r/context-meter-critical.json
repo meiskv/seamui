@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "context-meter-critical",
+  "type": "registry:example",
+  "title": "Context Meter Critical",
+  "registryDependencies": [
+    "https://seamui.dev/r/context-meter.json",
+    "https://seamui.dev/r/slider.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/context-meter-critical.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport { ContextMeter } from \"@/registry/seam/ui/context-meter\"\nimport { Slider } from \"@/registry/seam/ui/slider\"\n\n// Past criticalAt (default 85%) the fill turns destructive — drag the slider\n// across the threshold to watch the arc ease and flip.\nexport default function ContextMeterCritical() {\n  const [value, setValue] = React.useState(78)\n\n  return (\n    <div className=\"flex w-56 flex-col gap-4\">\n      <div className=\"flex items-center gap-3\">\n        <ContextMeter value={value} size=\"lg\" showValue />\n        <span className=\"text-muted-foreground text-sm\">of 200k tokens</span>\n      </div>\n      <Slider\n        value={value}\n        onValueChange={(v) => setValue(v as number)}\n        aria-label=\"Simulated context usage\"\n      />\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

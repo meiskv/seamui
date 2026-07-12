@@ -1085,6 +1085,70 @@
       ]
     },
     {
+      "name": "agent-status",
+      "type": "registry:ui",
+      "title": "Agent Status",
+      "description": "The canonical agent-state indicator — waiting/working/ready/done/error, as dot or chip.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json",
+        "https://seamui.dev/r/badge.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/agent-status.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/agent-status.tsx"
+        }
+      ]
+    },
+    {
+      "name": "branch-chip",
+      "type": "registry:ui",
+      "title": "Branch Chip",
+      "description": "Branch/worktree pill — press to copy, with ahead/behind counts and PR state.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json",
+        "https://seamui.dev/r/button.json",
+        "https://seamui.dev/r/badge.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/branch-chip.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/branch-chip.tsx"
+        }
+      ]
+    },
+    {
+      "name": "context-meter",
+      "type": "registry:ui",
+      "title": "Context Meter",
+      "description": "Context-window usage ring on Base UI Meter; turns destructive past a critical threshold.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/context-meter.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/context-meter.tsx"
+        }
+      ]
+    },
+    {
       "name": "button-demo",
       "type": "registry:example",
       "title": "Button Demo",
@@ -3336,6 +3400,134 @@
       "files": [
         {
           "path": "registry/seam/examples/data-table-editable.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "agent-status-demo",
+      "type": "registry:example",
+      "title": "Agent Status Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/agent-status.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/agent-status-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "agent-status-dots",
+      "type": "registry:example",
+      "title": "Agent Status Dots",
+      "registryDependencies": [
+        "https://seamui.dev/r/agent-status.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/agent-status-dots.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "agent-status-live",
+      "type": "registry:example",
+      "title": "Agent Status Live",
+      "registryDependencies": [
+        "https://seamui.dev/r/agent-status.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/agent-status-live.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "branch-chip-demo",
+      "type": "registry:example",
+      "title": "Branch Chip Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/branch-chip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/branch-chip-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "branch-chip-sync",
+      "type": "registry:example",
+      "title": "Branch Chip Sync",
+      "registryDependencies": [
+        "https://seamui.dev/r/branch-chip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/branch-chip-sync.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "branch-chip-pr",
+      "type": "registry:example",
+      "title": "Branch Chip PR",
+      "registryDependencies": [
+        "https://seamui.dev/r/branch-chip.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/branch-chip-pr.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "context-meter-demo",
+      "type": "registry:example",
+      "title": "Context Meter Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/context-meter.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/context-meter-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "context-meter-sizes",
+      "type": "registry:example",
+      "title": "Context Meter Sizes",
+      "registryDependencies": [
+        "https://seamui.dev/r/context-meter.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/context-meter-sizes.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "context-meter-critical",
+      "type": "registry:example",
+      "title": "Context Meter Critical",
+      "registryDependencies": [
+        "https://seamui.dev/r/context-meter.json",
+        "https://seamui.dev/r/slider.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/context-meter-critical.tsx",
           "type": "registry:example"
         }
       ]

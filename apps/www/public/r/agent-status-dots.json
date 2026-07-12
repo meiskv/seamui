@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "agent-status-dots",
+  "type": "registry:example",
+  "title": "Agent Status Dots",
+  "registryDependencies": [
+    "https://seamui.dev/r/agent-status.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/agent-status-dots.tsx",
+      "content": "import {\n  AgentStatusDot,\n  type AgentState,\n} from \"@/registry/seam/ui/agent-status\"\n\nconst SESSIONS: { name: string; when: string; status: AgentState }[] = [\n  { name: \"fix-auth-redirect\", when: \"2m\", status: \"waiting\" },\n  { name: \"migrate-billing-webhooks\", when: \"now\", status: \"working\" },\n  { name: \"model-picker-component\", when: \"18m\", status: \"ready\" },\n  { name: \"bump-dependencies\", when: \"1h\", status: \"done\" },\n  { name: \"flaky-e2e-hunt\", when: \"3h\", status: \"error\" },\n]\n\n// The dot form is for dense rows — a session list where the label is the\n// row itself, so the dot stays decorative next to visible text.\nexport default function AgentStatusDots() {\n  return (\n    <ul className=\"w-64 space-y-0.5\">\n      {SESSIONS.map((s) => (\n        <li\n          key={s.name}\n          className=\"flex items-center gap-2.5 rounded-md px-2 py-1.5 text-sm\"\n        >\n          <AgentStatusDot status={s.status} />\n          <span className=\"min-w-0 flex-1 truncate\">{s.name}</span>\n          <span className=\"text-muted-foreground text-xs tabular-nums\">\n            {s.when}\n          </span>\n        </li>\n      ))}\n    </ul>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}
