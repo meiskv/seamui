@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "model-picker-footer",
+  "type": "registry:example",
+  "title": "Model Picker Footer",
+  "registryDependencies": [
+    "https://seamui.dev/r/model-picker.json",
+    "https://seamui.dev/r/mode-selector.json",
+    "https://seamui.dev/r/context-meter.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/model-picker-footer.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { Bot, HelpCircle, ListTodo } from \"lucide-react\"\n\nimport { ContextMeter } from \"@/registry/seam/ui/context-meter\"\nimport { ModeOption, ModeSelector } from \"@/registry/seam/ui/mode-selector\"\nimport {\n  ModelPicker,\n  ModelPickerContent,\n  ModelPickerItem,\n  ModelPickerProvider,\n  ModelPickerTrigger,\n} from \"@/registry/seam/ui/model-picker\"\n\n// The composed composer footer: mode left, model + context right — the row\n// that sits under the composer's textarea in every agent product.\nexport default function ModelPickerFooter() {\n  const [mode, setMode] = React.useState<string[]>([\"agent\"])\n\n  return (\n    <div className=\"bg-muted shadow-well flex w-full max-w-md items-center gap-2 rounded-lg squircle border border-border/60 p-2\">\n      <ModeSelector\n        value={mode}\n        onValueChange={setMode}\n        className=\"shadow-none\"\n      >\n        <ModeOption value=\"agent\" aria-label=\"Agent mode\">\n          <Bot className=\"size-3.5\" /> Agent\n        </ModeOption>\n        <ModeOption value=\"plan\" aria-label=\"Plan mode\">\n          <ListTodo className=\"size-3.5\" /> Plan\n        </ModeOption>\n        <ModeOption value=\"ask\" aria-label=\"Ask mode\">\n          <HelpCircle className=\"size-3.5\" /> Ask\n        </ModeOption>\n      </ModeSelector>\n      <div className=\"ml-auto flex items-center gap-1.5\">\n        <ModelPicker defaultValue=\"fable-5\">\n          <ModelPickerTrigger />\n          <ModelPickerContent>\n            <ModelPickerProvider name=\"Anthropic\">\n              <ModelPickerItem value=\"fable-5\">Fable 5</ModelPickerItem>\n              <ModelPickerItem value=\"haiku-4-5\">Haiku 4.5</ModelPickerItem>\n            </ModelPickerProvider>\n          </ModelPickerContent>\n        </ModelPicker>\n        <ContextMeter value={124_000} max={200_000} showValue />\n      </div>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

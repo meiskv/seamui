@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dictation-card-review",
+  "type": "registry:example",
+  "title": "Dictation Card Review",
+  "registryDependencies": [
+    "https://seamui.dev/r/dictation-card.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/dictation-card-review.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport { DictationCard } from \"@/registry/seam/ui/dictation-card\"\n\n// After capture: not listening anymore, the transcript is just editable text\n// awaiting an explicit ✓ — the review step that makes dictation trustworthy.\nexport default function DictationCardReview() {\n  const [value, setValue] = React.useState(\n    \"Add rate limiting to the webhook endpoint, then rerun the failing e2e suite.\"\n  )\n\n  return (\n    <div className=\"bg-muted shadow-well w-full max-w-md rounded-lg squircle border border-border/60 p-2\">\n      <DictationCard\n        value={value}\n        onValueChange={setValue}\n        listening={false}\n        onConfirm={() => setValue(\"\")}\n        onCancel={() => setValue(\"\")}\n      />\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

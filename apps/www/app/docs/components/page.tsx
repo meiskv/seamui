@@ -197,6 +197,21 @@ const COMPONENTS = [
     title: "Command Palette",
     desc: "⌘K launcher on Autocomplete.",
   },
+  {
+    name: "model-picker",
+    title: "Model Picker",
+    desc: "Provider groups + connection dots.",
+  },
+  {
+    name: "mode-selector",
+    title: "Mode Selector",
+    desc: "Agent/plan/ask segmented keys.",
+  },
+  {
+    name: "dictation-card",
+    title: "Dictation Card",
+    desc: "Editable transcript with ✓/✕.",
+  },
 ]
 
 export default function ComponentsIndex() {

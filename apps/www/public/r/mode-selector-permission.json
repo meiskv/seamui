@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "mode-selector-permission",
+  "type": "registry:example",
+  "title": "Mode Selector Permission",
+  "registryDependencies": [
+    "https://seamui.dev/r/mode-selector.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/mode-selector-permission.tsx",
+      "content": "import { ModeOption, ModeSelector } from \"@/registry/seam/ui/mode-selector\"\n\n// Same control, permission-mode vocabulary — the chips Paseo pins on a draft.\nexport default function ModeSelectorPermission() {\n  return (\n    <ModeSelector defaultValue={[\"ask\"]}>\n      <ModeOption value=\"ask\">Ask first</ModeOption>\n      <ModeOption value=\"auto-edit\">Auto-edit</ModeOption>\n      <ModeOption value=\"full-auto\">Full auto</ModeOption>\n    </ModeSelector>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

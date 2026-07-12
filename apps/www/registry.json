@@ -1190,6 +1190,65 @@
       ]
     },
     {
+      "name": "model-picker",
+      "type": "registry:ui",
+      "title": "Model Picker",
+      "description": "Provider-grouped model select with connection dots — a recipe over Select for composer footers.",
+      "dependencies": [],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/select.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/model-picker.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/model-picker.tsx"
+        }
+      ]
+    },
+    {
+      "name": "mode-selector",
+      "type": "registry:ui",
+      "title": "Mode Selector",
+      "description": "Agent/plan/ask segmented control — a compact recipe over Toggle Group for composer footers.",
+      "dependencies": [],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/toggle-group.json",
+        "https://seamui.dev/r/toggle.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/mode-selector.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/mode-selector.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dictation-card",
+      "type": "registry:ui",
+      "title": "Dictation Card",
+      "description": "Waveform + live editable transcript + confirm/cancel — dictation as a review step in the composer well.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/button.json",
+        "https://seamui.dev/r/textarea.json",
+        "https://seamui.dev/r/voice-visualizer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/dictation-card.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/dictation-card.tsx"
+        }
+      ]
+    },
+    {
       "name": "session-item",
       "type": "registry:ui",
       "title": "Session Item",
@@ -3764,6 +3823,106 @@
       "files": [
         {
           "path": "registry/seam/examples/command-palette-flat.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "model-picker-demo",
+      "type": "registry:example",
+      "title": "Model Picker Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/model-picker.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/model-picker-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "model-picker-connection",
+      "type": "registry:example",
+      "title": "Model Picker Connection",
+      "registryDependencies": [
+        "https://seamui.dev/r/model-picker.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/model-picker-connection.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "model-picker-footer",
+      "type": "registry:example",
+      "title": "Model Picker Footer",
+      "registryDependencies": [
+        "https://seamui.dev/r/model-picker.json",
+        "https://seamui.dev/r/mode-selector.json",
+        "https://seamui.dev/r/context-meter.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/model-picker-footer.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "mode-selector-demo",
+      "type": "registry:example",
+      "title": "Mode Selector Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/mode-selector.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/mode-selector-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "mode-selector-permission",
+      "type": "registry:example",
+      "title": "Mode Selector Permission",
+      "registryDependencies": [
+        "https://seamui.dev/r/mode-selector.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/mode-selector-permission.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "dictation-card-demo",
+      "type": "registry:example",
+      "title": "Dictation Card Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/dictation-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/dictation-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "dictation-card-review",
+      "type": "registry:example",
+      "title": "Dictation Card Review",
+      "registryDependencies": [
+        "https://seamui.dev/r/dictation-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/dictation-card-review.tsx",
           "type": "registry:example"
         }
       ]

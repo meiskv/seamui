@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "model-picker-demo",
+  "type": "registry:example",
+  "title": "Model Picker Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/model-picker.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/model-picker-demo.tsx",
+      "content": "import {\n  ModelPicker,\n  ModelPickerContent,\n  ModelPickerItem,\n  ModelPickerProvider,\n  ModelPickerTrigger,\n} from \"@/registry/seam/ui/model-picker\"\n\nexport default function ModelPickerDemo() {\n  return (\n    <ModelPicker defaultValue=\"fable-5\">\n      <ModelPickerTrigger />\n      <ModelPickerContent>\n        <ModelPickerProvider name=\"Anthropic\" connection=\"connected\">\n          <ModelPickerItem\n            value=\"fable-5\"\n            description=\"Most capable; deep reasoning\"\n            meta=\"1M ctx\"\n          >\n            Fable 5\n          </ModelPickerItem>\n          <ModelPickerItem\n            value=\"opus-4-8\"\n            description=\"Strong all-rounder\"\n            meta=\"200k\"\n          >\n            Opus 4.8\n          </ModelPickerItem>\n          <ModelPickerItem\n            value=\"haiku-4-5\"\n            description=\"Fast and inexpensive\"\n            meta=\"200k\"\n          >\n            Haiku 4.5\n          </ModelPickerItem>\n        </ModelPickerProvider>\n        <ModelPickerProvider name=\"Local\" connection=\"connected\">\n          <ModelPickerItem value=\"llama-groq\" description=\"On the LAN box\">\n            Llama 4 70B\n          </ModelPickerItem>\n        </ModelPickerProvider>\n      </ModelPickerContent>\n    </ModelPicker>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

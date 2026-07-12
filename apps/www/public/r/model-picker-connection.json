@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "model-picker-connection",
+  "type": "registry:example",
+  "title": "Model Picker Connection",
+  "registryDependencies": [
+    "https://seamui.dev/r/model-picker.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/model-picker-connection.tsx",
+      "content": "import {\n  ModelPicker,\n  ModelPickerContent,\n  ModelPickerItem,\n  ModelPickerProvider,\n  ModelPickerTrigger,\n} from \"@/registry/seam/ui/model-picker\"\n\n// Provider connection states: connected (filled), error (destructive),\n// off (faint). Disabled items for providers you can't reach.\nexport default function ModelPickerConnection() {\n  return (\n    <ModelPicker defaultValue=\"fable-5\">\n      <ModelPickerTrigger />\n      <ModelPickerContent>\n        <ModelPickerProvider name=\"Anthropic\" connection=\"connected\">\n          <ModelPickerItem value=\"fable-5\">Fable 5</ModelPickerItem>\n        </ModelPickerProvider>\n        <ModelPickerProvider name=\"OpenAI\" connection=\"error\">\n          <ModelPickerItem\n            value=\"gpt\"\n            disabled\n            description=\"Key expired — reconnect\"\n          >\n            GPT-5.2\n          </ModelPickerItem>\n        </ModelPickerProvider>\n        <ModelPickerProvider name=\"Google\" connection=\"off\">\n          <ModelPickerItem value=\"gemini\" disabled description=\"Not configured\">\n            Gemini 3 Pro\n          </ModelPickerItem>\n        </ModelPickerProvider>\n      </ModelPickerContent>\n    </ModelPicker>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}
