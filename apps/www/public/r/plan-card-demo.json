@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "plan-card-demo",
+  "type": "registry:example",
+  "title": "Plan Card Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/plan-card.json",
+    "https://seamui.dev/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/plan-card-demo.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport {\n  PlanCard,\n  PlanCardStep,\n  type PlanDecision,\n} from \"@/registry/seam/ui/plan-card\"\nimport { Button } from \"@/registry/seam/ui/button\"\n\nexport default function PlanCardDemo() {\n  const [decision, setDecision] = React.useState<PlanDecision | undefined>(\n    undefined\n  )\n\n  return (\n    <div className=\"flex flex-col items-start gap-3\">\n      <PlanCard\n        description=\"Migrate billing webhooks to the new queue.\"\n        decision={decision}\n        onApprove={() => setDecision(\"approved\")}\n        onReject={() => setDecision(\"rejected\")}\n      >\n        <PlanCardStep index={1}>\n          Add a queue consumer for stripe events\n        </PlanCardStep>\n        <PlanCardStep index={2}>\n          Backfill unprocessed webhooks from the log\n        </PlanCardStep>\n        <PlanCardStep index={3}>\n          Cut the legacy endpoint over behind a flag\n        </PlanCardStep>\n        <PlanCardStep index={4}>Run the billing e2e suite</PlanCardStep>\n      </PlanCard>\n      {decision ? (\n        <Button\n          variant=\"ghost\"\n          size=\"sm\"\n          className=\"text-muted-foreground text-xs\"\n          onClick={() => setDecision(undefined)}\n        >\n          Reset demo\n        </Button>\n      ) : null}\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

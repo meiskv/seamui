@@ -212,6 +212,16 @@ const COMPONENTS = [
     title: "Dictation Card",
     desc: "Editable transcript with ✓/✕.",
   },
+  {
+    name: "permission-card",
+    title: "Permission Card",
+    desc: "Allow once / session / deny.",
+  },
+  {
+    name: "plan-card",
+    title: "Plan Card",
+    desc: "Approve plans, restore checkpoints.",
+  },
 ]
 
 export default function ComponentsIndex() {

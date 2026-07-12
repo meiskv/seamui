@@ -1249,6 +1249,47 @@
       ]
     },
     {
+      "name": "permission-card",
+      "type": "registry:ui",
+      "title": "Permission Card",
+      "description": "Inline approval — allow once / allow for session / deny, settling into a receipt.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/button.json",
+        "https://seamui.dev/r/badge.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/permission-card.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/permission-card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "plan-card",
+      "type": "registry:ui",
+      "title": "Plan Card",
+      "description": "Plan approval with a step checklist, plus the checkpoint-restore strip for the timeline.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/plan-card.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/plan-card.tsx"
+        }
+      ]
+    },
+    {
       "name": "session-item",
       "type": "registry:ui",
       "title": "Session Item",
@@ -3923,6 +3964,78 @@
       "files": [
         {
           "path": "registry/seam/examples/dictation-card-review.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "permission-card-demo",
+      "type": "registry:example",
+      "title": "Permission Card Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/permission-card.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/permission-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "permission-card-receipts",
+      "type": "registry:example",
+      "title": "Permission Card Receipts",
+      "registryDependencies": [
+        "https://seamui.dev/r/permission-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/permission-card-receipts.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "permission-card-stepper",
+      "type": "registry:example",
+      "title": "Permission Card Stepper",
+      "registryDependencies": [
+        "https://seamui.dev/r/permission-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/permission-card-stepper.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "plan-card-demo",
+      "type": "registry:example",
+      "title": "Plan Card Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/plan-card.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/plan-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "plan-card-progress",
+      "type": "registry:example",
+      "title": "Plan Card Progress",
+      "registryDependencies": [
+        "https://seamui.dev/r/plan-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/plan-card-progress.tsx",
           "type": "registry:example"
         }
       ]
