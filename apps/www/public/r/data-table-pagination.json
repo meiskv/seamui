@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "data-table-pagination",
+  "type": "registry:example",
+  "title": "Data Table Pagination",
+  "registryDependencies": [
+    "https://seamui.dev/r/data-table.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/data-table-pagination.tsx",
+      "content": "\"use client\"\n\nimport type { ColumnDef } from \"@tanstack/react-table\"\n\nimport { DataTable } from \"@/registry/seam/ui/data-table\"\n\ntype Order = {\n  id: string\n  customer: string\n  city: string\n  total: string\n}\n\nconst CUSTOMERS = [\n  \"Ava Bradley\",\n  \"Noah Chen\",\n  \"Mia Torres\",\n  \"Liam Novak\",\n  \"Zoe Patel\",\n  \"Ethan Cole\",\n  \"Lily Sato\",\n  \"Owen Reyes\",\n  \"Emma Diaz\",\n  \"Kai Nguyen\",\n]\nconst CITIES = [\"Lisbon\", \"Osaka\", \"Austin\", \"Berlin\", \"Nairobi\", \"Bogotá\"]\n\nconst DATA: Order[] = Array.from({ length: 48 }, (_, i) => ({\n  id: `ord_${1000 + i}`,\n  customer: CUSTOMERS[i % CUSTOMERS.length],\n  city: CITIES[i % CITIES.length],\n  total: `$${(60 + ((i * 53) % 940)).toFixed(2)}`,\n}))\n\nconst columns: ColumnDef<Order>[] = [\n  {\n    accessorKey: \"id\",\n    header: \"Order\",\n    cell: ({ row }) => (\n      <span className=\"font-mono text-xs\">{row.original.id}</span>\n    ),\n  },\n  { accessorKey: \"customer\", header: \"Customer\" },\n  { accessorKey: \"city\", header: \"City\" },\n  {\n    accessorKey: \"total\",\n    header: () => <div className=\"text-right\">Total</div>,\n    cell: ({ row }) => (\n      <div className=\"text-right tabular-nums\">{row.original.total}</div>\n    ),\n  },\n]\n\nexport default function DataTablePaginationExample() {\n  return (\n    <DataTable\n      columns={columns}\n      data={DATA}\n      getRowId={(row) => row.id}\n      pageSize={10}\n      label=\"Orders, paginated\"\n    />\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

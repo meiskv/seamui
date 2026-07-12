@@ -74,6 +74,10 @@ export const NAV: NavGroup[] = [
     ],
   },
   {
+    title: "Data",
+    items: [c("table", "Table"), c("data-table", "Data Table")],
+  },
+  {
     title: "Display",
     items: [
       c("avatar", "Avatar"),

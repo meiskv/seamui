@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "data-table-editable",
+  "type": "registry:example",
+  "title": "Data Table Editable",
+  "registryDependencies": [
+    "https://seamui.dev/r/data-table.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/data-table-editable.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport type { ColumnDef } from \"@tanstack/react-table\"\n\nimport { DataTable, DataTableEditableCell } from \"@/registry/seam/ui/data-table\"\n\ntype Item = {\n  id: string\n  sku: string\n  name: string\n  price: number\n}\n\nconst SEED: Item[] = [\n  { id: \"1\", sku: \"SKU-100\", name: \"Spring washer\", price: 4.5 },\n  { id: \"2\", sku: \"SKU-101\", name: \"Depth gauge\", price: 28 },\n  { id: \"3\", sku: \"SKU-102\", name: \"Squircle jig\", price: 12.75 },\n  { id: \"4\", sku: \"SKU-103\", name: \"Haptic coil\", price: 60 },\n]\n\nexport default function DataTableEditable() {\n  const [data, setData] = React.useState<Item[]>(SEED)\n\n  const updateCell = React.useCallback(\n    (rowIndex: number, columnId: string, value: unknown) => {\n      setData((prev) =>\n        prev.map((row, i) =>\n          i === rowIndex\n            ? {\n                ...row,\n                [columnId]:\n                  columnId === \"price\" ? Number(value) : (value as string),\n              }\n            : row\n        )\n      )\n    },\n    []\n  )\n\n  const columns = React.useMemo<ColumnDef<Item>[]>(\n    () => [\n      {\n        accessorKey: \"sku\",\n        header: \"SKU\",\n        cell: ({ row }) => (\n          <span className=\"font-mono text-xs\">{row.original.sku}</span>\n        ),\n      },\n      {\n        accessorKey: \"name\",\n        header: \"Name\",\n        // Free-text edit: any non-empty value commits.\n        cell: ({ row, table }) => (\n          <DataTableEditableCell\n            value={row.original.name}\n            label={`Name for ${row.original.sku}`}\n            validate={(value) => value.length > 0}\n            onCommit={(value) =>\n              table.options.meta?.updateData?.(row.index, \"name\", value)\n            }\n          />\n        ),\n      },\n      {\n        accessorKey: \"price\",\n        header: () => <div className=\"text-right\">Price ($)</div>,\n        // Validated edit: a non-numeric value shakes and keeps you in the cell.\n        cell: ({ row, table }) => (\n          <DataTableEditableCell\n            align=\"right\"\n            className=\"tabular-nums\"\n            value={row.original.price}\n            label={`Price for ${row.original.sku}`}\n            validate={(value) => /^\\d+(\\.\\d{1,2})?$/.test(value)}\n            onCommit={(value) =>\n              table.options.meta?.updateData?.(row.index, \"price\", value)\n            }\n          />\n        ),\n      },\n    ],\n    []\n  )\n\n  return (\n    <DataTable\n      columns={columns}\n      data={data}\n      getRowId={(row) => row.id}\n      onDataChange={updateCell}\n      pagination={false}\n      label=\"Inventory, editable\"\n    />\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

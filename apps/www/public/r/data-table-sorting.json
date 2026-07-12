@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "data-table-sorting",
+  "type": "registry:example",
+  "title": "Data Table Sorting",
+  "registryDependencies": [
+    "https://seamui.dev/r/data-table.json",
+    "https://seamui.dev/r/checkbox.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/data-table-sorting.tsx",
+      "content": "\"use client\"\n\nimport type { ColumnDef } from \"@tanstack/react-table\"\n\nimport { Checkbox } from \"@/registry/seam/ui/checkbox\"\nimport { DataTable, DataTableColumnHeader } from \"@/registry/seam/ui/data-table\"\n\ntype Project = {\n  id: string\n  name: string\n  owner: string\n  stars: number\n}\n\nconst DATA: Project[] = [\n  { id: \"1\", name: \"seamui\", owner: \"Ava\", stars: 1284 },\n  { id: \"2\", name: \"motion-lab\", owner: \"Noah\", stars: 342 },\n  { id: \"3\", name: \"base-kit\", owner: \"Mia\", stars: 891 },\n  { id: \"4\", name: \"squircle\", owner: \"Liam\", stars: 57 },\n  { id: \"5\", name: \"haptics-web\", owner: \"Zoe\", stars: 623 },\n]\n\nconst columns: ColumnDef<Project>[] = [\n  {\n    id: \"select\",\n    enableSorting: false,\n    header: ({ table }) => (\n      <Checkbox\n        checked={table.getIsAllPageRowsSelected()}\n        indeterminate={\n          table.getIsSomePageRowsSelected() && !table.getIsAllPageRowsSelected()\n        }\n        onCheckedChange={(value) =>\n          table.toggleAllPageRowsSelected(Boolean(value))\n        }\n        aria-label=\"Select all rows\"\n      />\n    ),\n    cell: ({ row }) => (\n      <Checkbox\n        checked={row.getIsSelected()}\n        onCheckedChange={(value) => row.toggleSelected(Boolean(value))}\n        aria-label={`Select ${row.original.name}`}\n      />\n    ),\n  },\n  {\n    accessorKey: \"name\",\n    header: ({ column }) => (\n      <DataTableColumnHeader column={column} title=\"Project\" />\n    ),\n    cell: ({ row }) => <span className=\"font-medium\">{row.original.name}</span>,\n  },\n  {\n    accessorKey: \"owner\",\n    header: ({ column }) => (\n      <DataTableColumnHeader column={column} title=\"Owner\" />\n    ),\n  },\n  {\n    accessorKey: \"stars\",\n    header: ({ column }) => (\n      <DataTableColumnHeader column={column} title=\"Stars\" align=\"right\" />\n    ),\n    cell: ({ row }) => (\n      <div className=\"text-right tabular-nums\">\n        {row.original.stars.toLocaleString()}\n      </div>\n    ),\n  },\n]\n\nexport default function DataTableSorting() {\n  return (\n    <DataTable\n      columns={columns}\n      data={DATA}\n      getRowId={(row) => row.id}\n      pagination={false}\n      label=\"Projects, sortable\"\n    />\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}
