@@ -1290,6 +1290,53 @@
       ]
     },
     {
+      "name": "terminal-block",
+      "type": "registry:ui",
+      "title": "Terminal Block",
+      "description": "Command output in a debossed well with a live agent-status chip and copy key.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json",
+        "https://seamui.dev/r/button.json",
+        "https://seamui.dev/r/agent-status.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/terminal-block.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/terminal-block.tsx"
+        }
+      ]
+    },
+    {
+      "name": "checks-panel",
+      "type": "registry:ui",
+      "title": "Checks Panel",
+      "description": "CI checks list with expandable failure logs and a merge button that names its method.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json",
+        "https://seamui.dev/r/collapsible.json",
+        "https://seamui.dev/r/button.json",
+        "https://seamui.dev/r/spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/checks-panel.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/checks-panel.tsx"
+        }
+      ]
+    },
+    {
       "name": "session-item",
       "type": "registry:ui",
       "title": "Session Item",
@@ -4036,6 +4083,62 @@
       "files": [
         {
           "path": "registry/seam/examples/plan-card-progress.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "terminal-block-demo",
+      "type": "registry:example",
+      "title": "Terminal Block Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/terminal-block.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/terminal-block-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "terminal-block-states",
+      "type": "registry:example",
+      "title": "Terminal Block States",
+      "registryDependencies": [
+        "https://seamui.dev/r/terminal-block.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/terminal-block-states.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "checks-panel-demo",
+      "type": "registry:example",
+      "title": "Checks Panel Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/checks-panel.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/checks-panel-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "checks-panel-failure",
+      "type": "registry:example",
+      "title": "Checks Panel Failure",
+      "registryDependencies": [
+        "https://seamui.dev/r/checks-panel.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/checks-panel-failure.tsx",
           "type": "registry:example"
         }
       ]

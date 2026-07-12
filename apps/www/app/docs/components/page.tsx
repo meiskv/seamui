@@ -222,6 +222,16 @@ const COMPONENTS = [
     title: "Plan Card",
     desc: "Approve plans, restore checkpoints.",
   },
+  {
+    name: "terminal-block",
+    title: "Terminal Block",
+    desc: "Command output with live status.",
+  },
+  {
+    name: "checks-panel",
+    title: "Checks Panel",
+    desc: "CI list with logs + named merge.",
+  },
 ]
 
 export default function ComponentsIndex() {

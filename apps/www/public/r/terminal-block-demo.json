@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "terminal-block-demo",
+  "type": "registry:example",
+  "title": "Terminal Block Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/terminal-block.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/terminal-block-demo.tsx",
+      "content": "import { TerminalBlock } from \"@/registry/seam/ui/terminal-block\"\n\nconst OUTPUT = `$ bun run test --filter billing\n✓ webhooks/stripe.test.ts (12 tests) 84ms\n✓ webhooks/backfill.test.ts (7 tests) 41ms\n\nTest Files  2 passed (2)\n     Tests  19 passed (19)`\n\nexport default function TerminalBlockDemo() {\n  return (\n    <TerminalBlock\n      command=\"bun run test --filter billing\"\n      status=\"done\"\n      className=\"w-full max-w-md\"\n    >\n      {OUTPUT}\n    </TerminalBlock>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}
