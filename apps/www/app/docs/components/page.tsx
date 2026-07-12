@@ -86,6 +86,16 @@ const COMPONENTS = [
   { name: "card", title: "Card", desc: "Raised surface with sections." },
   { name: "kbd", title: "Kbd", desc: "Shortcut as an embossed keycap." },
   {
+    name: "table",
+    title: "Table",
+    desc: "Styled rows on a raised surface.",
+  },
+  {
+    name: "data-table",
+    title: "Data Table",
+    desc: "TanStack grid: filter, page, edit.",
+  },
+  {
     name: "message",
     title: "Message",
     desc: "Chat row: user key, assistant prose.",

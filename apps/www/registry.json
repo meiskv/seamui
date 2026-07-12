@@ -3218,6 +3218,127 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "title": "Table",
+      "description": "Styled semantic table primitives on a raised seam surface.",
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/table.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/table.tsx"
+        }
+      ]
+    },
+    {
+      "name": "data-table",
+      "type": "registry:ui",
+      "title": "Data Table",
+      "description": "TanStack Table engine: filtering, pagination, sorting, selection, inline edit, and row actions.",
+      "dependencies": [
+        "@tanstack/react-table",
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json",
+        "https://seamui.dev/r/haptics.json",
+        "https://seamui.dev/r/table.json",
+        "https://seamui.dev/r/button.json",
+        "https://seamui.dev/r/input.json",
+        "https://seamui.dev/r/select.json",
+        "https://seamui.dev/r/dropdown-menu.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/data-table.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/data-table.tsx"
+        }
+      ]
+    },
+    {
+      "name": "table-demo",
+      "type": "registry:example",
+      "title": "Table Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/table-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "data-table-demo",
+      "type": "registry:example",
+      "title": "Data Table Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/data-table.json",
+        "https://seamui.dev/r/avatar.json",
+        "https://seamui.dev/r/badge.json",
+        "https://seamui.dev/r/checkbox.json",
+        "https://seamui.dev/r/input.json",
+        "https://seamui.dev/r/select.json",
+        "https://seamui.dev/r/dropdown-menu.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/data-table-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "data-table-sorting",
+      "type": "registry:example",
+      "title": "Data Table Sorting",
+      "registryDependencies": [
+        "https://seamui.dev/r/data-table.json",
+        "https://seamui.dev/r/checkbox.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/data-table-sorting.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "data-table-pagination",
+      "type": "registry:example",
+      "title": "Data Table Pagination",
+      "registryDependencies": [
+        "https://seamui.dev/r/data-table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/data-table-pagination.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "data-table-editable",
+      "type": "registry:example",
+      "title": "Data Table Editable",
+      "registryDependencies": [
+        "https://seamui.dev/r/data-table.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/data-table-editable.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }
