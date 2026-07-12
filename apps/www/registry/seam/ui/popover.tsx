@@ -34,7 +34,7 @@ function PopoverContent({
           // seam condense: the surface rises out of its anchor and fades in;
           // on dismiss it falls back and fades (Base UI awaits the CSS exit).
           className={cn(
-            "bg-popover text-popover-foreground z-50 w-72 rounded-lg border p-4 shadow-overlay outline-none",
+            "bg-popover text-popover-foreground z-50 w-72 rounded-lg squircle border p-4 shadow-overlay outline-none",
             condense.surface,
             className
           )}
