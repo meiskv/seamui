@@ -32,11 +32,16 @@ function SelectTrigger({
       data-slot="select-trigger"
       className={cn(
         "flex h-10 items-center justify-between gap-2 rounded-md squircle text-sm outline-none",
+        // default — a debossed entry well, styled to match Input/OTP/etc: a
+        // hairline border carving it into the surface (seamui design language).
         variant === "default" &&
-          "w-full bg-muted shadow-well px-3.5 py-2 font-medium hover:bg-muted/80",
+          "w-full border border-border/60 bg-muted shadow-well px-3.5 py-2 hover:bg-muted/80",
         variant === "ghost" &&
           "w-fit bg-transparent px-2 py-2 hover:text-foreground",
-        "data-[popup-open]:ring-2 data-[popup-open]:ring-ring/50 focus-visible:ring-2 focus-visible:ring-ring/50",
+        // Focus/open lifts the border to the ring colour, like the other wells.
+        "focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:border-ring",
+        "data-[popup-open]:ring-2 data-[popup-open]:ring-ring/50 data-[popup-open]:border-ring",
+        "data-[invalid]:border-destructive data-[invalid]:ring-2 data-[invalid]:ring-destructive/30",
         "disabled:pointer-events-none disabled:opacity-50",
         className
       )}
