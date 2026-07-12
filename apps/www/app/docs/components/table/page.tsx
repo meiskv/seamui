@@ -64,9 +64,10 @@ export default function TableDocs() {
 
       <Notes>
         <li>
-          The wrapper is a focusable <code>role=&quot;region&quot;</code> with{" "}
-          <code>tabindex=0</code>, so a table wider than its container can be
-          scrolled by keyboard, not just pointer.
+          When the table is wider than its container the wrapper becomes a
+          focusable <code>role=&quot;region&quot;</code> so it can be scrolled
+          by keyboard, not just pointer — a table that fits adds no extra tab
+          stop.
         </li>
         <li>
           Set <code>data-state=&quot;selected&quot;</code> on a{" "}

@@ -19,7 +19,6 @@ import {
 } from "@tanstack/react-table"
 import { motion, useAnimate, useReducedMotion } from "motion/react"
 import {
-  ArrowDown,
   ArrowUp,
   ArrowUpDown,
   ChevronLeft,
@@ -262,16 +261,14 @@ function SortIndicator({ sorted }: { sorted: false | "asc" | "desc" }) {
     <motion.span
       className="flex"
       initial={false}
+      // One arrow springs 180° between ascending (points up) and descending
+      // (points down) — a single token flipping, so the two states never look
+      // alike. Jumps instantly under reduced motion.
       animate={{ rotate: sorted === "desc" ? 180 : 0 }}
       transition={reduceMotion ? reduced.instant : springs.snappy}
       aria-hidden
     >
-      {/* Rotating a single arrow reads as the same token flipping direction. */}
-      {sorted === "desc" ? (
-        <ArrowDown className="size-3.5" />
-      ) : (
-        <ArrowUp className="size-3.5" />
-      )}
+      <ArrowUp className="size-3.5" />
     </motion.span>
   )
 }
@@ -305,6 +302,11 @@ function DataTablePagination<TData>({
   const pageCount = Math.max(table.getPageCount(), 1)
   const selected = table.getFilteredSelectedRowModel().rows.length
   const total = table.getFilteredRowModel().rows.length
+  // Always include the active pageSize so the trigger never renders blank when
+  // a consumer passes a value outside the default set.
+  const sizeOptions = Array.from(new Set([...PAGE_SIZES, pageSize])).sort(
+    (a, b) => a - b
+  )
 
   return (
     <div className="flex flex-col gap-3 px-1 sm:flex-row sm:items-center sm:justify-between">
@@ -325,7 +327,7 @@ function DataTablePagination<TData>({
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              {PAGE_SIZES.map((size) => (
+              {sizeOptions.map((size) => (
                 <SelectItem key={size} value={String(size)}>
                   {size}
                 </SelectItem>
@@ -432,18 +434,21 @@ function DataTableEditableCell({
     requestAnimationFrame(() => triggerRef.current?.focus())
   }
 
-  function cancel() {
+  // `refocus` only when the user ended the edit by keyboard (Enter/Escape) —
+  // returning focus to the cell is right there. On blur the user is *leaving*
+  // for somewhere else (Tab, a click), so stealing focus back would fight them.
+  function cancel(refocus: boolean) {
     setInvalid(false)
     setEditing(false)
-    refocusTrigger()
+    if (refocus) refocusTrigger()
   }
 
   function commit(fromBlur: boolean) {
     const next = draft.trim()
     if (validate && !validate(next)) {
-      // Blur shouldn't trap the user in an invalid cell — revert instead.
+      // Blur shouldn't trap the user in an invalid cell — revert, let focus go.
       if (fromBlur) {
-        cancel()
+        cancel(false)
         return
       }
       setInvalid(true)
@@ -461,7 +466,7 @@ function DataTableEditableCell({
     }
     setInvalid(false)
     setEditing(false)
-    refocusTrigger()
+    if (!fromBlur) refocusTrigger()
   }
 
   if (!editing) {
@@ -506,7 +511,7 @@ function DataTableEditableCell({
             commit(false)
           } else if (event.key === "Escape") {
             event.preventDefault()
-            cancel()
+            cancel(true)
           }
         }}
         className={cn(
