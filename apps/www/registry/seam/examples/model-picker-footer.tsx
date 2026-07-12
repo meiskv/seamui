@@ -15,6 +15,11 @@ import {
 
 // The composed composer footer: mode left, model + context right — the row
 // that sits under the composer's textarea in every agent product.
+const MODELS = {
+  "fable-5": "Fable 5",
+  "haiku-4-5": "Haiku 4.5",
+}
+
 export default function ModelPickerFooter() {
   const [mode, setMode] = React.useState<string[]>(["agent"])
 
@@ -36,7 +41,7 @@ export default function ModelPickerFooter() {
         </ModeOption>
       </ModeSelector>
       <div className="ml-auto flex items-center gap-1.5">
-        <ModelPicker defaultValue="fable-5">
+        <ModelPicker items={MODELS} defaultValue="fable-5">
           <ModelPickerTrigger />
           <ModelPickerContent>
             <ModelPickerProvider name="Anthropic">

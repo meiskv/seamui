@@ -8,9 +8,15 @@ import {
 
 // Provider connection states: connected (filled), error (destructive),
 // off (faint). Disabled items for providers you can't reach.
+const MODELS = {
+  "fable-5": "Fable 5",
+  gpt: "GPT-5.2",
+  gemini: "Gemini 3 Pro",
+}
+
 export default function ModelPickerConnection() {
   return (
-    <ModelPicker defaultValue="fable-5">
+    <ModelPicker items={MODELS} defaultValue="fable-5">
       <ModelPickerTrigger />
       <ModelPickerContent>
         <ModelPickerProvider name="Anthropic" connection="connected">

@@ -6,9 +6,16 @@ import {
   ModelPickerTrigger,
 } from "@/registry/seam/ui/model-picker"
 
+const MODELS = {
+  "fable-5": "Fable 5",
+  "opus-4-8": "Opus 4.8",
+  "haiku-4-5": "Haiku 4.5",
+  "llama-groq": "Llama 4 70B",
+}
+
 export default function ModelPickerDemo() {
   return (
-    <ModelPicker defaultValue="fable-5">
+    <ModelPicker items={MODELS} defaultValue="fable-5">
       <ModelPickerTrigger />
       <ModelPickerContent>
         <ModelPickerProvider name="Anthropic" connection="connected">
