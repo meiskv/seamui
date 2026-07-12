@@ -32,11 +32,16 @@ function SelectTrigger({
       data-slot="select-trigger"
       className={cn(
         "flex h-10 items-center justify-between gap-2 rounded-md squircle text-sm outline-none",
+        // default — a debossed entry well, styled to match Input/OTP/etc: a
+        // hairline border carving it into the surface (seamui design language).
         variant === "default" &&
-          "w-full bg-muted shadow-well px-3.5 py-2 font-medium hover:bg-muted/80",
+          "w-full border border-border/60 bg-muted shadow-well px-3.5 py-2 hover:bg-muted/80",
         variant === "ghost" &&
           "w-fit bg-transparent px-2 py-2 hover:text-foreground",
-        "data-[popup-open]:ring-2 data-[popup-open]:ring-ring/50 focus-visible:ring-2 focus-visible:ring-ring/50",
+        // Focus/open lifts the border to the ring colour, like the other wells.
+        "focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:border-ring",
+        "data-[popup-open]:ring-2 data-[popup-open]:ring-ring/50 data-[popup-open]:border-ring",
+        "data-[invalid]:border-destructive data-[invalid]:ring-2 data-[invalid]:ring-destructive/30",
         "disabled:pointer-events-none disabled:opacity-50",
         className
       )}
@@ -70,7 +75,10 @@ function SelectContent({
         <BaseSelect.Popup
           data-slot="select-content"
           className={cn(
-            "bg-popover text-popover-foreground z-50 max-h-[min(24rem,var(--available-height))] min-w-[var(--anchor-width)] overflow-y-auto rounded-lg border p-1 shadow-overlay outline-none",
+            // A debossed tray (muted well) that floats up — the chosen option
+            // rises out of it as an embossed key (seam well/key language, §1),
+            // the same shape as the toggle group, just vertical.
+            "bg-muted text-foreground z-50 max-h-[min(24rem,var(--available-height))] min-w-[var(--anchor-width)] overflow-y-auto rounded-lg squircle border border-border/60 p-1.5 shadow-overlay outline-none",
             condense.surface,
             className
           )}
@@ -92,8 +100,20 @@ function SelectItem({
     <BaseSelect.Item
       data-slot="select-item"
       className={cn(
-        "relative flex cursor-default select-none items-center gap-2 rounded-md py-1.5 pl-2 pr-8 text-sm outline-none",
-        "data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground",
+        "relative flex cursor-default select-none items-center gap-2 rounded-md squircle py-1.5 pl-2.5 pr-8 text-sm outline-none",
+        // Transient keyboard/pointer cursor. On the near-white tray a fill alone
+        // is <1.2:1, so pair it with a solid hairline that clears WCAG 1.4.11
+        // non-text contrast — a light warm-gray in light (3.4:1, kept soft) and
+        // muted-foreground in dark (6.2:1) — so the active state is perceivable
+        // by colour, not just the shadow.
+        "data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground data-[highlighted]:ring-1 data-[highlighted]:ring-inset data-[highlighted]:ring-[oklch(0.6_0.006_106)] dark:data-[highlighted]:ring-muted-foreground",
+        // The chosen value is an embossed key raised out of the tray. bg-secondary
+        // (not card) reads raised in BOTH themes — white on the light well, lighter
+        // than the well in dark — and the same hairline delineates it at 3:1. The
+        // compound keeps the key embossed even when it's the cursor (on open Base
+        // UI highlights the selected item).
+        "data-[selected]:bg-secondary data-[selected]:text-secondary-foreground data-[selected]:shadow-resting data-[selected]:font-medium data-[selected]:ring-1 data-[selected]:ring-inset data-[selected]:ring-[oklch(0.6_0.006_106)] dark:data-[selected]:ring-muted-foreground",
+        "data-[selected]:data-[highlighted]:bg-secondary data-[selected]:data-[highlighted]:text-secondary-foreground",
         "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
         className
       )}

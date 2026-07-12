@@ -30,7 +30,7 @@ function PreviewCardContent({
         <BasePreviewCard.Popup
           data-slot="preview-card-content"
           className={cn(
-            "bg-popover text-popover-foreground z-50 w-80 rounded-lg border p-4 shadow-overlay outline-none",
+            "bg-popover text-popover-foreground z-50 w-80 rounded-lg squircle border p-4 shadow-overlay outline-none",
             // seam motion: floating surface rises with overlay depth, falls back on close.
             condense.surface,
             className

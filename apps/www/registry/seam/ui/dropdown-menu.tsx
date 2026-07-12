@@ -37,7 +37,7 @@ function DropdownMenuContent({
         <BaseMenu.Popup
           data-slot="dropdown-menu-content"
           className={cn(
-            "bg-popover text-popover-foreground z-50 min-w-40 rounded-lg border p-1 shadow-overlay outline-none",
+            "bg-popover text-popover-foreground z-50 min-w-40 rounded-lg squircle border p-1 shadow-overlay outline-none",
             condense.surface,
             className
           )}
@@ -190,7 +190,7 @@ function DropdownMenuSubContent({
         <BaseMenu.Popup
           data-slot="dropdown-menu-sub-content"
           className={cn(
-            "bg-popover text-popover-foreground z-50 min-w-40 rounded-lg border p-1 shadow-overlay outline-none",
+            "bg-popover text-popover-foreground z-50 min-w-40 rounded-lg squircle border p-1 shadow-overlay outline-none",
             condense.surface,
             className
           )}
