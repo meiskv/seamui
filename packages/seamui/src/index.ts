@@ -101,7 +101,7 @@ program
   .description(
     "Beautifully animated components you own — Base UI + motion.dev."
   )
-  .version("0.1.1")
+  .version("0.1.2")
 
 program
   .command("init")
