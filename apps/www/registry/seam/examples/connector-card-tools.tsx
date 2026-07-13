@@ -1,4 +1,4 @@
-import { Github } from "lucide-react"
+import { GitBranch } from "lucide-react"
 
 import { ConnectorCard } from "@/registry/seam/ui/connector-card"
 
@@ -8,7 +8,7 @@ export default function ConnectorCardTools() {
   return (
     <ConnectorCard
       name="GitHub"
-      icon={<Github />}
+      icon={<GitBranch />}
       description="Issues, pull requests, and CI on your repositories."
       connection="connected"
       enabled

@@ -1,4 +1,4 @@
-import { Github } from "lucide-react"
+import { GitBranch } from "lucide-react"
 
 import { ConnectorCard } from "@/registry/seam/ui/connector-card"
 
@@ -9,17 +9,17 @@ export default function ConnectorCardStates() {
     <div className="flex w-full max-w-sm flex-col gap-3">
       <ConnectorCard
         name="GitHub"
-        icon={<Github />}
+        icon={<GitBranch />}
         connection="connected"
         enabled
       />
       <ConnectorCard
         name="GitHub"
-        icon={<Github />}
+        icon={<GitBranch />}
         connection="disconnected"
       />
-      <ConnectorCard name="GitHub" icon={<Github />} connection="needs-auth" />
-      <ConnectorCard name="GitHub" icon={<Github />} connection="error" />
+      <ConnectorCard name="GitHub" icon={<GitBranch />} connection="needs-auth" />
+      <ConnectorCard name="GitHub" icon={<GitBranch />} connection="error" />
     </div>
   )
 }

@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { Calendar, FileText, Github, MessageSquare } from "lucide-react"
+import { Calendar, FileText, GitBranch, MessageSquare } from "lucide-react"
 
 import {
   ConnectorCard,
@@ -21,7 +21,7 @@ const INITIAL: Connector[] = [
   {
     id: "github",
     name: "GitHub",
-    icon: <Github />,
+    icon: <GitBranch />,
     connection: "connected",
     enabled: true,
   },
