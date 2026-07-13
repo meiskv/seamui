@@ -9,6 +9,46 @@ import { fades } from "@/lib/motion"
 import { AgentStatus, type AgentState } from "./agent-status"
 import { Button } from "./button"
 
+// Lightweight status-line tinting for plain-string output: a cheap pass that
+// greens pass/✓ lines and reds fail/error/✗ lines — no ANSI plumbing, no deps.
+// Errors win over successes so a mixed "1 failed" line still reads red; leads
+// on the line's symbol/keyword to avoid false positives ("no errors found"
+// stays neutral). Consumers who need real ANSI colors pass their own nodes.
+function outputLineClass(line: string): string {
+  const t = line.trimStart()
+  if (
+    /^(?:[✗✘×✖⨯]|error|fail|fatal|panic)/i.test(t) ||
+    /\b\d+\s+(?:failed|errors?)\b/i.test(t)
+  )
+    return "text-destructive"
+  if (
+    /^(?:[✓✔√]|pass)/i.test(t) ||
+    /\b\d+\s+passed\b/i.test(t) ||
+    /\ball\s+(?:tests?\s+)?passed\b/i.test(t)
+  )
+    return "text-emerald-600 dark:text-emerald-500"
+  if (/^(?:[⚠]|warn)/i.test(t)) return "text-amber-600 dark:text-amber-500"
+  if (/^\$\s/.test(t)) return "text-muted-foreground" // shell prompt echo
+  return ""
+}
+
+function TintedOutput({ text }: { text: string }) {
+  const lines = text.split("\n")
+  return (
+    <>
+      {lines.map((line, i) => {
+        const cls = outputLineClass(line)
+        return (
+          <React.Fragment key={i}>
+            {cls ? <span className={cls}>{line}</span> : line}
+            {i < lines.length - 1 ? "\n" : null}
+          </React.Fragment>
+        )
+      })}
+    </>
+  )
+}
+
 // The code-block sibling for command output: a debossed well you read into,
 // with the command and live agent-status in an embossed header. A thread /
 // review element, not a live PTY — output arrives as children.
@@ -16,6 +56,7 @@ function TerminalBlock({
   command,
   status,
   copyText,
+  tint = true,
   className,
   children,
   ...props
@@ -25,10 +66,13 @@ function TerminalBlock({
   status?: AgentState
   /** Text the copy key copies; defaults to string children. */
   copyText?: string
+  /** Auto-tint pass/fail lines when the output is a plain string. Off → verbatim. */
+  tint?: boolean
   children?: React.ReactNode
 }) {
   const [copied, setCopied] = React.useState(false)
-  const text = copyText ?? (typeof children === "string" ? children : undefined)
+  const raw = typeof children === "string" ? children : undefined
+  const text = copyText ?? raw
 
   const copy = async () => {
     if (text === undefined) return
@@ -102,7 +146,7 @@ function TerminalBlock({
         className="max-h-72 overflow-auto p-3 outline-none"
       >
         <pre className="font-mono text-xs leading-relaxed whitespace-pre-wrap">
-          {children}
+          {tint && raw !== undefined ? <TintedOutput text={raw} /> : children}
           {status === "working" ? (
             // Ambient cursor pulse — CSS, the Spinner precedent (see #72);
             // opacity-only so it reads identically under reduced motion.
