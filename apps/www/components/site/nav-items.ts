@@ -128,6 +128,7 @@ export const NAV: NavGroup[] = [
       c("plan-card", "Plan Card"),
       c("terminal-block", "Terminal Block"),
       c("checks-panel", "Checks Panel"),
+      c("connector-card", "Connector Card"),
     ],
   },
 ]

@@ -1337,6 +1337,31 @@
       ]
     },
     {
+      "name": "connector-card",
+      "type": "registry:ui",
+      "title": "Connector Card",
+      "description": "Integration card with OAuth states, per-conversation enable switch, and a discovered-tools disclosure.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json",
+        "https://seamui.dev/r/button.json",
+        "https://seamui.dev/r/badge.json",
+        "https://seamui.dev/r/switch.json",
+        "https://seamui.dev/r/collapsible.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/connector-card.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/connector-card.tsx"
+        }
+      ]
+    },
+    {
       "name": "session-item",
       "type": "registry:ui",
       "title": "Session Item",
@@ -4139,6 +4164,48 @@
       "files": [
         {
           "path": "registry/seam/examples/checks-panel-failure.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "connector-list-demo",
+      "type": "registry:example",
+      "title": "Connector List Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/connector-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/connector-list-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "connector-card-states",
+      "type": "registry:example",
+      "title": "Connector Card States",
+      "registryDependencies": [
+        "https://seamui.dev/r/connector-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/connector-card-states.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "connector-card-tools",
+      "type": "registry:example",
+      "title": "Connector Card Tools",
+      "registryDependencies": [
+        "https://seamui.dev/r/connector-card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/connector-card-tools.tsx",
           "type": "registry:example"
         }
       ]

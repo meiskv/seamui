@@ -232,6 +232,11 @@ const COMPONENTS = [
     title: "Checks Panel",
     desc: "CI list with logs + named merge.",
   },
+  {
+    name: "connector-card",
+    title: "Connector Card",
+    desc: "Integrations with OAuth states.",
+  },
 ]
 
 export default function ComponentsIndex() {
