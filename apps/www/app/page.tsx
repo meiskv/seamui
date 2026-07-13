@@ -8,6 +8,11 @@ import { MediaToggle } from "@/registry/seam/ui/media-toggle"
 import { AgentStatus } from "@/registry/seam/ui/agent-status"
 import { BranchChip } from "@/registry/seam/ui/branch-chip"
 import { ModeOption, ModeSelector } from "@/registry/seam/ui/mode-selector"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/registry/seam/ui/popover"
 import { Fig } from "@/components/site/fig"
 import { FigPresence } from "@/components/site/fig-presence"
 import { ThemeToggle } from "@/components/site/theme-toggle"
@@ -68,7 +73,7 @@ export default function HomePage() {
         {/* specimens — every one is live; press them */}
         <section
           aria-label="Live specimens"
-          className="grid gap-4 md:grid-cols-3"
+          className="grid gap-4 sm:grid-cols-2"
         >
           <Fig
             n="01"
@@ -121,6 +126,25 @@ export default function HomePage() {
                 pr={{ number: 69, state: "open" }}
               />
             </div>
+          </Fig>
+
+          <Fig
+            n="04"
+            label="The condense"
+            desc="Overlays rise out of their trigger and fall back on dismiss — one motion, both directions, backdrop in sync."
+            prop="condense.surface"
+            href="/docs/motion"
+          >
+            <Popover>
+              <PopoverTrigger render={<Button variant="outline" />}>
+                Open overlay
+              </PopoverTrigger>
+              <PopoverContent className="w-52">
+                <p className="text-sm">
+                  Overlay depth — dismiss me and I fall back where I came from.
+                </p>
+              </PopoverContent>
+            </Popover>
           </Fig>
         </section>
 
