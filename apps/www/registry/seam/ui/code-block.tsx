@@ -116,7 +116,9 @@ function CodeBlock({
       {showHeader && (
         <div
           data-slot="code-block-header"
-          className="flex items-center justify-between gap-2 border-b border-border/60 px-2 py-1"
+          // Raised control strip (bg-secondary): the language badge + copy key read
+          // as lifted chrome, not sunk into the debossed code well below.
+          className="bg-secondary flex items-center justify-between gap-2 border-b border-border/60 px-2 py-1"
         >
           <Badge variant="muted" className="font-mono shadow-none">
             {language}

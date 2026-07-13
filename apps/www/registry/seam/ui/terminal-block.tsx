@@ -53,7 +53,10 @@ function TerminalBlock({
     >
       <div
         data-slot="terminal-block-header"
-        className="flex items-center gap-2 border-b border-border/60 px-2 py-1"
+        // Raised control strip: the header carries the command + status chip +
+        // copy key, so it's a lifted bar (bg-secondary), not part of the debossed
+        // well below — otherwise a settled "done" chip reads gray-on-gray.
+        className="bg-secondary flex items-center gap-2 border-b border-border/60 px-2 py-1"
       >
         <TerminalSquare
           aria-hidden
