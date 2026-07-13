@@ -156,8 +156,8 @@ export default function HomePage() {
           <p className="text-muted-foreground mt-2 max-w-xl text-pretty">
             <code className="text-foreground">init</code> scaffolds — or wires
             up — your app: the theme tokens, the depth shadows, and the
-            foundation. Then add any component. Next.js, Vite, or Remix; Tailwind
-            v4.
+            foundation. Then add any component. Next.js, Vite, or Remix;
+            Tailwind v4.
           </p>
           <div className="mt-6 border-t">
             <InstallRow
