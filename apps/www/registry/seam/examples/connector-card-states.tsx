@@ -18,7 +18,11 @@ export default function ConnectorCardStates() {
         icon={<GitBranch />}
         connection="disconnected"
       />
-      <ConnectorCard name="GitHub" icon={<GitBranch />} connection="needs-auth" />
+      <ConnectorCard
+        name="GitHub"
+        icon={<GitBranch />}
+        connection="needs-auth"
+      />
       <ConnectorCard name="GitHub" icon={<GitBranch />} connection="error" />
     </div>
   )
