@@ -3,12 +3,46 @@
 import * as React from "react"
 import { AnimatePresence, motion } from "motion/react"
 import { Check, Copy } from "lucide-react"
-import { codeToHtml } from "shiki"
+import { createHighlighterCore } from "shiki/core"
+import { createJavaScriptRegexEngine } from "shiki/engine/javascript"
 
 import { cn } from "@/lib/utils"
 import { fades } from "@/lib/motion"
 import { Badge } from "./badge"
 import { Button } from "./button"
+
+// Fine-grained shiki: instead of the full bundle (every grammar + the ~500KB
+// Oniguruma WASM), we load a single highlighter with just the web languages
+// below and shiki's pure-JS regex engine (no WASM). Grammars/themes are dynamic
+// imports, so they code-split into their own chunks and never touch a page's
+// initial JS — only a mounted CodeBlock pays for them. Need another language?
+// Add its `import("shiki/langs/<name>.mjs")` line; aliases (ts, js, sh, shell)
+// come registered with the grammar. Unknown languages fall back to plain text.
+let highlighterPromise: ReturnType<typeof createHighlighterCore> | null = null
+function getHighlighter() {
+  if (!highlighterPromise) {
+    highlighterPromise = createHighlighterCore({
+      themes: [
+        import("shiki/themes/github-light.mjs"),
+        import("shiki/themes/github-dark.mjs"),
+      ],
+      langs: [
+        import("shiki/langs/tsx.mjs"),
+        import("shiki/langs/jsx.mjs"),
+        import("shiki/langs/typescript.mjs"),
+        import("shiki/langs/javascript.mjs"),
+        import("shiki/langs/json.mjs"),
+        import("shiki/langs/bash.mjs"),
+        import("shiki/langs/css.mjs"),
+        import("shiki/langs/html.mjs"),
+      ],
+      // `forgiving` skips the rare grammar regex the JS engine can't compile
+      // (some shell patterns) instead of throwing — highlighting degrades, never breaks.
+      engine: createJavaScriptRegexEngine({ forgiving: true }),
+    })
+  }
+  return highlighterPromise
+}
 
 // Shiki runs in dual-theme mode (defaultColor:false → each token carries a
 // --shiki-light and --shiki-dark var). These rules pick the right one per
@@ -90,13 +124,23 @@ function CodeBlock({
 
   React.useEffect(() => {
     let active = true
-    codeToHtml(source, {
-      lang: language,
-      themes: { light: "github-light", dark: "github-dark" },
-      defaultColor: false,
-    })
-      .then((h) => active && setHtml(h))
-      // unknown language / load failure → keep the plain-text fallback
+    getHighlighter()
+      .then((hl) => {
+        if (!active) return
+        // Only highlight languages we bundled; anything else renders as plain
+        // text (shiki's built-in "text" needs no grammar) — never throws.
+        const lang = hl.getLoadedLanguages().includes(language)
+          ? language
+          : "text"
+        setHtml(
+          hl.codeToHtml(source, {
+            lang,
+            themes: { light: "github-light", dark: "github-dark" },
+            defaultColor: false,
+          })
+        )
+      })
+      // load failure → keep the plain-text fallback
       .catch(() => active && setHtml(null))
     return () => {
       active = false
