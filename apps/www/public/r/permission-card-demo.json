@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "permission-card-demo",
+  "type": "registry:example",
+  "title": "Permission Card Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/permission-card.json",
+    "https://seamui.dev/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/permission-card-demo.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport {\n  PermissionCard,\n  PermissionCardCommand,\n  type PermissionDecision,\n} from \"@/registry/seam/ui/permission-card\"\nimport { Button } from \"@/registry/seam/ui/button\"\n\n// Decide and the card settles into its receipt — the thread keeps the trail.\nexport default function PermissionCardDemo() {\n  const [decision, setDecision] = React.useState<\n    PermissionDecision | undefined\n  >(undefined)\n\n  return (\n    <div className=\"flex flex-col items-start gap-3\">\n      <PermissionCard\n        title=\"Run command\"\n        description=\"The agent wants to run a shell command in the worktree.\"\n        decision={decision}\n        onAllow={(scope) =>\n          setDecision(scope === \"session\" ? \"allowed-session\" : \"allowed\")\n        }\n        onDeny={() => setDecision(\"denied\")}\n      >\n        <PermissionCardCommand>\n          bun run test --filter billing\n        </PermissionCardCommand>\n      </PermissionCard>\n      {decision ? (\n        <Button\n          variant=\"ghost\"\n          size=\"sm\"\n          className=\"text-muted-foreground text-xs\"\n          onClick={() => setDecision(undefined)}\n        >\n          Reset demo\n        </Button>\n      ) : null}\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "session-item-unread",
+  "type": "registry:example",
+  "title": "Session Item Unread",
+  "registryDependencies": [
+    "https://seamui.dev/r/session-item.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/session-item-unread.tsx",
+      "content": "import { SessionItem } from \"@/registry/seam/ui/session-item\"\n\n// Unread rows bold the title and show a count; the count announces as\n// \"3 unread\", not just a number.\nexport default function SessionItemUnread() {\n  return (\n    <div className=\"bg-muted/40 w-72 rounded-lg border p-2\">\n      <SessionItem\n        title=\"fix-auth-redirect\"\n        status=\"waiting\"\n        unread={3}\n        time=\"2m\"\n      />\n      <SessionItem\n        title=\"rate-limit backoff strategy\"\n        status=\"waiting\"\n        unread={1}\n        time=\"9m\"\n      />\n      <SessionItem title=\"bump-dependencies\" status=\"done\" time=\"1h\" />\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

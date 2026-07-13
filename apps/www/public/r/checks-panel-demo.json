@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checks-panel-demo",
+  "type": "registry:example",
+  "title": "Checks Panel Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/checks-panel.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/checks-panel-demo.tsx",
+      "content": "import {\n  ChecksPanel,\n  ChecksPanelFooter,\n  ChecksPanelItem,\n  MergeButton,\n} from \"@/registry/seam/ui/checks-panel\"\n\nexport default function ChecksPanelDemo() {\n  return (\n    <ChecksPanel summary=\"4 passed, 1 running\">\n      <ChecksPanelItem name=\"lint\" status=\"pass\" duration=\"12s\" />\n      <ChecksPanelItem name=\"typecheck\" status=\"pass\" duration=\"41s\" />\n      <ChecksPanelItem name=\"test\" status=\"pass\" duration=\"1m 08s\" />\n      <ChecksPanelItem name=\"motion-contract\" status=\"pass\" duration=\"4s\" />\n      <ChecksPanelItem name=\"e2e\" status=\"running\" />\n      <ChecksPanelFooter>\n        <MergeButton method=\"squash\" disabled />\n      </ChecksPanelFooter>\n    </ChecksPanel>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

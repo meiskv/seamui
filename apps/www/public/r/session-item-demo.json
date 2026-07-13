@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "session-item-demo",
+  "type": "registry:example",
+  "title": "Session Item Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/session-item.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/session-item-demo.tsx",
+      "content": "import { SessionItem } from \"@/registry/seam/ui/session-item\"\n\nexport default function SessionItemDemo() {\n  return (\n    <div className=\"bg-muted/40 w-72 rounded-lg border p-2\">\n      <SessionItem title=\"fix-auth-redirect\" status=\"waiting\" time=\"2m\" />\n      <SessionItem\n        title=\"migrate-billing-webhooks\"\n        status=\"working\"\n        time=\"now\"\n        active\n      />\n      <SessionItem title=\"model-picker-component\" status=\"ready\" time=\"18m\" />\n      <SessionItem title=\"bump-dependencies\" status=\"done\" time=\"1h\" />\n      <SessionItem title=\"flaky-e2e-hunt\" status=\"error\" time=\"3h\" />\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

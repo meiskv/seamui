@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "branch-chip-demo",
+  "type": "registry:example",
+  "title": "Branch Chip Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/branch-chip.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/branch-chip-demo.tsx",
+      "content": "import { BranchChip } from \"@/registry/seam/ui/branch-chip\"\n\n// Press to copy — the icon crossfades to a check.\nexport default function BranchChipDemo() {\n  return <BranchChip branch=\"claude/fix-auth-redirect\" />\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

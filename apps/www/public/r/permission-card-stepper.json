@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "permission-card-stepper",
+  "type": "registry:example",
+  "title": "Permission Card Stepper",
+  "registryDependencies": [
+    "https://seamui.dev/r/permission-card.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/permission-card-stepper.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport {\n  PermissionCard,\n  PermissionCardCommand,\n} from \"@/registry/seam/ui/permission-card\"\n\nconst QUESTIONS = [\n  { title: \"Install dependency\", command: \"bun add zod\" },\n  { title: \"Run migration\", command: \"bun run db:migrate\" },\n  { title: \"Restart dev server\", command: \"bun run dev\" },\n]\n\n// Paseo-style multi-question runs advance one answer at a time.\nexport default function PermissionCardStepper() {\n  const [current, setCurrent] = React.useState(0)\n  const q = QUESTIONS[Math.min(current, QUESTIONS.length - 1)]\n  const finished = current >= QUESTIONS.length\n\n  if (finished) {\n    return (\n      <PermissionCard title=\"All requests handled\" decision=\"allowed-session\" />\n    )\n  }\n\n  return (\n    <PermissionCard\n      title={q.title}\n      step={{ current: current + 1, total: QUESTIONS.length }}\n      onAllow={() => setCurrent((c) => c + 1)}\n      onDeny={() => setCurrent((c) => c + 1)}\n    >\n      <PermissionCardCommand>{q.command}</PermissionCardCommand>\n    </PermissionCard>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "workbench-header-demo",
+  "type": "registry:example",
+  "title": "Workbench Header Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/workbench-header.json",
+    "https://seamui.dev/r/agent-status.json",
+    "https://seamui.dev/r/branch-chip.json",
+    "https://seamui.dev/r/context-meter.json",
+    "https://seamui.dev/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/workbench-header-demo.tsx",
+      "content": "import { Plus } from \"lucide-react\"\n\nimport { AgentStatus } from \"@/registry/seam/ui/agent-status\"\nimport { BranchChip } from \"@/registry/seam/ui/branch-chip\"\nimport { Button } from \"@/registry/seam/ui/button\"\nimport { ContextMeter } from \"@/registry/seam/ui/context-meter\"\nimport {\n  WorkbenchHeader,\n  WorkbenchHeaderActions,\n  WorkbenchHeaderTitle,\n} from \"@/registry/seam/ui/workbench-header\"\n\nexport default function WorkbenchHeaderDemo() {\n  return (\n    <div className=\"bg-background w-full overflow-hidden rounded-lg border\">\n      <WorkbenchHeader>\n        <WorkbenchHeaderTitle description=\"seamui/seamui\">\n          migrate-billing-webhooks\n        </WorkbenchHeaderTitle>\n        <AgentStatus status=\"working\" />\n        <WorkbenchHeaderActions>\n          <ContextMeter value={124_000} max={200_000} showValue />\n          <BranchChip branch=\"claude/billing-webhooks\" ahead={2} />\n          <Button size=\"sm\" variant=\"secondary\" className=\"h-8 gap-1.5\">\n            <Plus className=\"size-4\" /> New session\n          </Button>\n        </WorkbenchHeaderActions>\n      </WorkbenchHeader>\n      <div className=\"text-muted-foreground flex h-32 items-center justify-center text-sm\">\n        Thread\n      </div>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

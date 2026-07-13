@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "mode-selector",
+  "type": "registry:ui",
+  "title": "Mode Selector",
+  "description": "Agent/plan/ask segmented control — a compact recipe over Toggle Group for composer footers.",
+  "dependencies": [],
+  "registryDependencies": [
+    "https://seamui.dev/r/utils.json",
+    "https://seamui.dev/r/toggle-group.json",
+    "https://seamui.dev/r/toggle.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/ui/mode-selector.tsx",
+      "content": "\"use client\"\n\nimport type * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\nimport { Toggle } from \"./toggle\"\nimport { ToggleGroup } from \"./toggle-group\"\n\n// The agent/plan/ask segmented control — a thin recipe over toggle-group,\n// compacted to composer-footer height. Same component fits permission modes\n// (ask / auto-edit / full-auto); only the children change. The well/key\n// language, press feedback, haptics, and reduced motion all come from the\n// Toggle foundation.\n\nfunction ModeSelector({\n  className,\n  ...props\n}: React.ComponentProps<typeof ToggleGroup>) {\n  return (\n    <ToggleGroup\n      data-slot=\"mode-selector\"\n      className={cn(\"gap-0.5 rounded-md p-1\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction ModeOption({\n  className,\n  ...props\n}: React.ComponentProps<typeof Toggle>) {\n  return (\n    <Toggle\n      data-slot=\"mode-option\"\n      size=\"sm\"\n      className={cn(\"h-6 min-w-0 gap-1 px-2 text-xs\", className)}\n      {...props}\n    />\n  )\n}\n\nexport { ModeSelector, ModeOption }\n",
+      "type": "registry:ui",
+      "target": "components/ui/mode-selector.tsx"
+    }
+  ]
+}

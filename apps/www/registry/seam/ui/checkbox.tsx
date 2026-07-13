@@ -1,6 +1,6 @@
 "use client"
 
-import type * as React from "react"
+import * as React from "react"
 import { Checkbox as BaseCheckbox } from "@base-ui/react/checkbox"
 import { motion, useReducedMotion } from "motion/react"
 import { Check, Minus } from "lucide-react"
@@ -17,6 +17,13 @@ function Checkbox({
 }: React.ComponentProps<typeof BaseCheckbox.Root>) {
   const reduceMotion = useReducedMotion()
   const { trigger } = useHaptics()
+  // Defer the mark's entrance until after hydration: `initial` serializes
+  // `opacity:0;transform:scale(0)` on the server for a defaultChecked box,
+  // which the client's first paint doesn't match. `initial={false}` renders
+  // the settled mark during SSR/hydration; a genuine user-check (mounted, the
+  // indicator remounts) still pops in.
+  const [mounted, setMounted] = React.useState(false)
+  React.useEffect(() => setMounted(true), [])
 
   return (
     <BaseCheckbox.Root
@@ -64,7 +71,11 @@ function Checkbox({
           // seam motion: the mark pops in with a snappy spring.
           <motion.span
             initial={
-              reduceMotion ? reduced.fadeIn.initial : { scale: 0, opacity: 0 }
+              !mounted
+                ? false
+                : reduceMotion
+                  ? reduced.fadeIn.initial
+                  : { scale: 0, opacity: 0 }
             }
             animate={{ scale: 1, opacity: 1 }}
             transition={reduceMotion ? fades.fast : springs.snappy}

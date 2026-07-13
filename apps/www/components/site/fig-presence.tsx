@@ -6,6 +6,7 @@ import {
   VoiceVisualizer,
   VoiceVisualizerCaption,
 } from "@/registry/seam/ui/voice-visualizer"
+import { VoiceAvatar } from "@/registry/seam/ui/voice-avatar"
 
 type State = "listening" | "thinking" | "speaking"
 const ORDER: State[] = ["listening", "thinking", "speaking"]
@@ -46,11 +47,20 @@ export function FigPresence() {
   }, [])
 
   return (
-    <div className="flex flex-col items-center gap-3">
-      <VoiceVisualizer state={state} level={level} count={5} />
-      <VoiceVisualizerCaption className="text-xs">
-        {CAPTION[state]}
-      </VoiceVisualizerCaption>
+    <div className="flex items-center gap-5">
+      {/* the caller — its halo breathes with the level while the agent speaks */}
+      <VoiceAvatar
+        name="Aria"
+        speaking={state === "speaking"}
+        level={level}
+        className="size-10"
+      />
+      <div className="flex flex-col items-center gap-3">
+        <VoiceVisualizer state={state} level={level} count={5} />
+        <VoiceVisualizerCaption className="text-xs">
+          {CAPTION[state]}
+        </VoiceVisualizerCaption>
+      </div>
     </div>
   )
 }

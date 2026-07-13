@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "connector-card-tools",
+  "type": "registry:example",
+  "title": "Connector Card Tools",
+  "registryDependencies": [
+    "https://seamui.dev/r/connector-card.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/connector-card-tools.tsx",
+      "content": "import { Github } from \"lucide-react\"\n\nimport { ConnectorCard } from \"@/registry/seam/ui/connector-card\"\n\n// Discovered tools sit behind a quiet disclosure — the MCP tool-discovery\n// pattern, one press away instead of cluttering the card.\nexport default function ConnectorCardTools() {\n  return (\n    <ConnectorCard\n      name=\"GitHub\"\n      icon={<Github />}\n      description=\"Issues, pull requests, and CI on your repositories.\"\n      connection=\"connected\"\n      enabled\n      tools={[\n        \"list_issues\",\n        \"issue_write\",\n        \"create_pull_request\",\n        \"pull_request_read\",\n        \"search_code\",\n        \"get_file_contents\",\n      ]}\n      className=\"w-full max-w-sm\"\n    />\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

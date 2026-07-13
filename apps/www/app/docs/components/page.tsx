@@ -162,6 +162,81 @@ const COMPONENTS = [
     title: "Voice Control Bar",
     desc: "Call pill that morphs into chat.",
   },
+  {
+    name: "agent-status",
+    title: "Agent Status",
+    desc: "The agent-state dot and chip.",
+  },
+  {
+    name: "branch-chip",
+    title: "Branch Chip",
+    desc: "Press-to-copy branch pill.",
+  },
+  {
+    name: "context-meter",
+    title: "Context Meter",
+    desc: "Context-window usage ring.",
+  },
+  {
+    name: "sidebar",
+    title: "Sidebar",
+    desc: "Collapsible well of sessions.",
+  },
+  {
+    name: "session-item",
+    title: "Session Item",
+    desc: "Session row with hover card.",
+  },
+  {
+    name: "workbench-header",
+    title: "Workbench Header",
+    desc: "The bar over the thread.",
+  },
+  {
+    name: "command-palette",
+    title: "Command Palette",
+    desc: "⌘K launcher on Autocomplete.",
+  },
+  {
+    name: "model-picker",
+    title: "Model Picker",
+    desc: "Provider groups + connection dots.",
+  },
+  {
+    name: "mode-selector",
+    title: "Mode Selector",
+    desc: "Agent/plan/ask segmented keys.",
+  },
+  {
+    name: "dictation-card",
+    title: "Dictation Card",
+    desc: "Editable transcript with ✓/✕.",
+  },
+  {
+    name: "permission-card",
+    title: "Permission Card",
+    desc: "Allow once / session / deny.",
+  },
+  {
+    name: "plan-card",
+    title: "Plan Card",
+    desc: "Approve plans, restore checkpoints.",
+  },
+  {
+    name: "terminal-block",
+    title: "Terminal Block",
+    desc: "Command output with live status.",
+  },
+  {
+    name: "checks-panel",
+    title: "Checks Panel",
+    desc: "CI list with logs + named merge.",
+  },
+  {
+    name: "connector-card",
+    title: "Connector Card",
+    desc: "Integrations with OAuth states.",
+  },
 ]
 
 export default function ComponentsIndex() {

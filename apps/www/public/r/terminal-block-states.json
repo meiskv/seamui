@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "terminal-block-states",
+  "type": "registry:example",
+  "title": "Terminal Block States",
+  "registryDependencies": [
+    "https://seamui.dev/r/terminal-block.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/terminal-block-states.tsx",
+      "content": "import { TerminalBlock } from \"@/registry/seam/ui/terminal-block\"\n\n// Working shows a pulsing cursor at the output tail; waiting means the\n// process needs input; error keeps the trail for diagnosis.\nexport default function TerminalBlockStates() {\n  return (\n    <div className=\"flex w-full max-w-md flex-col gap-3\">\n      <TerminalBlock command=\"bun run db:migrate\" status=\"working\">\n        {`Applying 3 migrations…\n✓ 0041_billing_queue\n✓ 0042_webhook_log\n`}\n      </TerminalBlock>\n      <TerminalBlock command=\"git push\" status=\"waiting\">\n        {`Username for 'https://github.com':`}\n      </TerminalBlock>\n      <TerminalBlock command=\"bun run smoke\" status=\"error\">\n        {`✗ smoke: registry install failed (exit 1)\nerror: connect ETIMEDOUT registry.seamui.dev:443`}\n      </TerminalBlock>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

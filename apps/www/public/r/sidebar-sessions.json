@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sidebar-sessions",
+  "type": "registry:example",
+  "title": "Sidebar Sessions",
+  "registryDependencies": [
+    "https://seamui.dev/r/sidebar.json",
+    "https://seamui.dev/r/session-item.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/sidebar-sessions.tsx",
+      "content": "import {\n  Sidebar,\n  SidebarContent,\n  SidebarGroup,\n  SidebarGroupLabel,\n  SidebarHeader,\n  SidebarLabel,\n  SidebarProvider,\n  SidebarTrigger,\n} from \"@/registry/seam/ui/sidebar\"\nimport { SessionItem } from \"@/registry/seam/ui/session-item\"\n\n// The status-grouped sidebar — Paseo's grouping on seamui parts: sessions\n// bucketed by the agent-status state machine, loudest bucket first.\nexport default function SidebarSessions() {\n  return (\n    <SidebarProvider className=\"bg-background h-96 overflow-hidden rounded-lg border\">\n      <Sidebar className=\"w-72\">\n        <SidebarHeader>\n          <SidebarTrigger />\n          <SidebarLabel className=\"text-sm font-semibold\">\n            seamui/seamui\n          </SidebarLabel>\n        </SidebarHeader>\n        <SidebarContent>\n          <SidebarGroup>\n            <SidebarGroupLabel count={2}>Waiting on you</SidebarGroupLabel>\n            <SessionItem\n              title=\"fix-auth-redirect\"\n              status=\"waiting\"\n              unread={3}\n              time=\"2m\"\n            />\n            <SessionItem\n              title=\"rate-limit backoff strategy\"\n              status=\"waiting\"\n              unread={1}\n              time=\"9m\"\n            />\n          </SidebarGroup>\n          <SidebarGroup>\n            <SidebarGroupLabel count={1}>Working</SidebarGroupLabel>\n            <SessionItem\n              title=\"migrate-billing-webhooks\"\n              status=\"working\"\n              time=\"now\"\n              active\n            />\n          </SidebarGroup>\n          <SidebarGroup>\n            <SidebarGroupLabel count={1}>Ready to review</SidebarGroupLabel>\n            <SessionItem\n              title=\"model-picker-component\"\n              status=\"ready\"\n              time=\"18m\"\n            />\n          </SidebarGroup>\n          <SidebarGroup>\n            <SidebarGroupLabel count={2}>Done</SidebarGroupLabel>\n            <SessionItem title=\"bump-dependencies\" status=\"done\" time=\"1h\" />\n            <SessionItem title=\"flaky-e2e-hunt\" status=\"error\" time=\"3h\" />\n          </SidebarGroup>\n        </SidebarContent>\n      </Sidebar>\n      <div className=\"text-muted-foreground flex flex-1 items-center justify-center text-sm\">\n        Thread\n      </div>\n    </SidebarProvider>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

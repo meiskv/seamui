@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "permission-card-receipts",
+  "type": "registry:example",
+  "title": "Permission Card Receipts",
+  "registryDependencies": [
+    "https://seamui.dev/r/permission-card.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/permission-card-receipts.tsx",
+      "content": "import {\n  PermissionCard,\n  PermissionCardCommand,\n} from \"@/registry/seam/ui/permission-card\"\n\n// The four settled states — an audit trail, not dead prompts.\nexport default function PermissionCardReceipts() {\n  return (\n    <div className=\"flex flex-col gap-3\">\n      <PermissionCard title=\"Read .env.production\" decision=\"allowed\" />\n      <PermissionCard title=\"Run git push\" decision=\"allowed-session\">\n        <PermissionCardCommand>\n          git push -u origin claude/billing-webhooks\n        </PermissionCardCommand>\n      </PermissionCard>\n      <PermissionCard title=\"Delete node_modules\" decision=\"denied\" />\n      <PermissionCard title=\"Format with Biome\" decision=\"auto\" />\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

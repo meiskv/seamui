@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "plan-card-progress",
+  "type": "registry:example",
+  "title": "Plan Card Progress",
+  "registryDependencies": [
+    "https://seamui.dev/r/plan-card.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/plan-card-progress.tsx",
+      "content": "import {\n  PlanCard,\n  PlanCardCheckpoint,\n  PlanCardStep,\n} from \"@/registry/seam/ui/plan-card\"\n\n// The same card mid-execution: approved, steps completing, and the\n// checkpoint strip sitting in the timeline below it.\nexport default function PlanCardProgress() {\n  return (\n    <div className=\"flex w-full max-w-md flex-col gap-3\">\n      <PlanCard title=\"Executing plan\" decision=\"approved\">\n        <PlanCardStep index={1} done>\n          Add a queue consumer for stripe events\n        </PlanCardStep>\n        <PlanCardStep index={2} done>\n          Backfill unprocessed webhooks from the log\n        </PlanCardStep>\n        <PlanCardStep index={3}>\n          Cut the legacy endpoint over behind a flag\n        </PlanCardStep>\n        <PlanCardStep index={4}>Run the billing e2e suite</PlanCardStep>\n      </PlanCard>\n      <PlanCardCheckpoint label=\"Checkpoint before step 3\" />\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

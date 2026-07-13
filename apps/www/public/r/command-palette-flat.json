@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "command-palette-flat",
+  "type": "registry:example",
+  "title": "Command Palette Flat",
+  "registryDependencies": [
+    "https://seamui.dev/r/command-palette.json",
+    "https://seamui.dev/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/command-palette-flat.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport { Button } from \"@/registry/seam/ui/button\"\nimport {\n  CommandPalette,\n  CommandPaletteContent,\n  CommandPaletteEmpty,\n  CommandPaletteInput,\n  CommandPaletteItem,\n  CommandPaletteList,\n  CommandPaletteTrigger,\n} from \"@/registry/seam/ui/command-palette\"\n\n// The minimal palette: a flat item list, no groups, no footer. ⌘K opens it\n// too (the hotkey is on by default).\nconst ACTIONS = [\n  \"Go to session\",\n  \"Review changes\",\n  \"Create pull request\",\n  \"Rerun checks\",\n  \"Archive workspace\",\n]\n\nexport default function CommandPaletteFlat() {\n  const [open, setOpen] = React.useState(false)\n  const [last, setLast] = React.useState<string | null>(null)\n\n  return (\n    <div className=\"flex flex-col items-center gap-3\">\n      <CommandPalette open={open} onOpenChange={setOpen}>\n        <CommandPaletteTrigger render={<Button variant=\"secondary\" />}>\n          Quick actions\n        </CommandPaletteTrigger>\n        <CommandPaletteContent items={ACTIONS}>\n          <CommandPaletteInput placeholder=\"What do you need?\" />\n          <CommandPaletteEmpty>Nothing matches.</CommandPaletteEmpty>\n          <CommandPaletteList>\n            {(action: string) => (\n              <CommandPaletteItem\n                key={action}\n                value={action}\n                onClick={() => {\n                  setLast(action)\n                  setOpen(false)\n                }}\n              >\n                {action}\n              </CommandPaletteItem>\n            )}\n          </CommandPaletteList>\n        </CommandPaletteContent>\n      </CommandPalette>\n      <p className=\"text-muted-foreground text-xs\" aria-live=\"polite\">\n        {last ? `Ran: ${last}` : \"Run an action to see it echoed here.\"}\n      </p>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

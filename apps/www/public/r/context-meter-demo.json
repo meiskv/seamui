@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "context-meter-demo",
+  "type": "registry:example",
+  "title": "Context Meter Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/context-meter.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/context-meter-demo.tsx",
+      "content": "import { ContextMeter } from \"@/registry/seam/ui/context-meter\"\n\n// Map tokens-used / window-size straight onto value / max.\nexport default function ContextMeterDemo() {\n  return <ContextMeter value={124_000} max={200_000} size=\"md\" showValue />\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "context-meter",
+  "type": "registry:ui",
+  "title": "Context Meter",
+  "description": "Context-window usage ring on Base UI Meter; turns destructive past a critical threshold.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "https://seamui.dev/r/utils.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/ui/context-meter.tsx",
+      "content": "\"use client\"\n\nimport type * as React from \"react\"\nimport { Meter as BaseMeter } from \"@base-ui/react/meter\"\n\nimport { cn } from \"@/lib/utils\"\n\nconst SIZES = {\n  sm: \"size-4\",\n  md: \"size-5\",\n  lg: \"size-7\",\n} as const\n\n// Ring geometry: drawn in a fixed 24-unit viewBox, scaled by the size class.\nconst RADIUS = 10.5\nconst CIRCUMFERENCE = 2 * Math.PI * RADIUS\n\n// A compact gauge of context-window usage for composer footers and workbench\n// headers. Base UI Meter provides the semantics (role=\"meter\" — a static\n// measurement, not task progress); the ring translates the debossed rule to\n// stroke: the track is the carved slot, the primary arc is the token rising\n// in it. Past `criticalAt` the arc turns destructive — the monochrome theme's\n// one \"act now\" hue.\nfunction ContextMeter({\n  value,\n  max = 100,\n  size = \"sm\",\n  showValue = false,\n  criticalAt = 0.85,\n  className,\n  children,\n  ...props\n}: React.ComponentProps<typeof BaseMeter.Root> & {\n  size?: keyof typeof SIZES\n  /** Render the usage as a percentage next to the ring. */\n  showValue?: boolean\n  /** Fraction (0–1) past which the fill turns destructive. */\n  criticalAt?: number\n}) {\n  const fraction = max > 0 ? Math.min(Math.max(value / max, 0), 1) : 0\n  const critical = fraction >= criticalAt\n  const percent = Math.round(fraction * 100)\n\n  return (\n    <BaseMeter.Root\n      data-slot=\"context-meter\"\n      data-critical={critical || undefined}\n      aria-label=\"Context used\"\n      value={value}\n      max={max}\n      className={cn(\"inline-flex items-center gap-1.5\", className)}\n      {...props}\n    >\n      {/* Decorative — the Meter root carries the accessible name and value. */}\n      <svg\n        viewBox=\"0 0 24 24\"\n        role=\"presentation\"\n        aria-hidden=\"true\"\n        className={cn(\"-rotate-90 shrink-0\", SIZES[size])}\n      >\n        <circle\n          cx=\"12\"\n          cy=\"12\"\n          r={RADIUS}\n          fill=\"none\"\n          strokeWidth=\"3\"\n          className=\"stroke-border\"\n        />\n        <circle\n          cx=\"12\"\n          cy=\"12\"\n          r={RADIUS}\n          fill=\"none\"\n          strokeWidth=\"3\"\n          strokeLinecap=\"round\"\n          strokeDasharray={CIRCUMFERENCE}\n          strokeDashoffset={CIRCUMFERENCE * (1 - fraction)}\n          // eased dash-offset — a layout dimension that can't spring cleanly,\n          // same rule as Meter's width fill.\n          className={cn(\n            \"transition-[stroke-dashoffset] duration-500 ease-out motion-reduce:transition-none\",\n            critical ? \"stroke-destructive\" : \"stroke-primary\"\n          )}\n        />\n      </svg>\n      {showValue && (\n        <span\n          data-slot=\"context-meter-value\"\n          aria-hidden\n          className={cn(\n            \"text-xs tabular-nums\",\n            critical ? \"text-destructive\" : \"text-muted-foreground\"\n          )}\n        >\n          {percent}%\n        </span>\n      )}\n      {children}\n    </BaseMeter.Root>\n  )\n}\n\nexport { ContextMeter }\n",
+      "type": "registry:ui",
+      "target": "components/ui/context-meter.tsx"
+    }
+  ]
+}

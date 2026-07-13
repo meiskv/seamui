@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checks-panel-failure",
+  "type": "registry:example",
+  "title": "Checks Panel Failure",
+  "registryDependencies": [
+    "https://seamui.dev/r/checks-panel.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/checks-panel-failure.tsx",
+      "content": "import {\n  ChecksPanel,\n  ChecksPanelFooter,\n  ChecksPanelItem,\n  MergeButton,\n} from \"@/registry/seam/ui/checks-panel\"\n\n// A failed check carries its log one disclosure away — attach it to the\n// thread, fix, re-run.\nexport default function ChecksPanelFailure() {\n  return (\n    <ChecksPanel summary=\"2 passed, 1 failed, 1 skipped\">\n      <ChecksPanelItem name=\"lint\" status=\"pass\" duration=\"11s\" />\n      <ChecksPanelItem name=\"typecheck\" status=\"fail\" duration=\"38s\">\n        {`registry/seam/ui/diff-view.tsx(88,14): error TS2322:\n  Type 'string | undefined' is not assignable to type 'string'.\n\nFound 1 error in registry/seam/ui/diff-view.tsx:88`}\n      </ChecksPanelItem>\n      <ChecksPanelItem name=\"test\" status=\"pass\" duration=\"59s\" />\n      <ChecksPanelItem name=\"e2e\" status=\"skipped\" />\n      <ChecksPanelFooter>\n        <MergeButton method=\"squash\" disabled />\n      </ChecksPanelFooter>\n    </ChecksPanel>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

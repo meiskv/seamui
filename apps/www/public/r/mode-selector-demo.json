@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "mode-selector-demo",
+  "type": "registry:example",
+  "title": "Mode Selector Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/mode-selector.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/mode-selector-demo.tsx",
+      "content": "import { Bot, HelpCircle, ListTodo } from \"lucide-react\"\n\nimport { ModeOption, ModeSelector } from \"@/registry/seam/ui/mode-selector\"\n\nexport default function ModeSelectorDemo() {\n  return (\n    <ModeSelector defaultValue={[\"agent\"]}>\n      <ModeOption value=\"agent\" aria-label=\"Agent mode\">\n        <Bot className=\"size-3.5\" /> Agent\n      </ModeOption>\n      <ModeOption value=\"plan\" aria-label=\"Plan mode\">\n        <ListTodo className=\"size-3.5\" /> Plan\n      </ModeOption>\n      <ModeOption value=\"ask\" aria-label=\"Ask mode\">\n        <HelpCircle className=\"size-3.5\" /> Ask\n      </ModeOption>\n    </ModeSelector>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}
