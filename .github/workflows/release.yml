@@ -55,9 +55,12 @@ jobs:
       - name: Build CLI
         if: steps.check.outputs.exists != 'true'
         run: bun run --cwd packages/seamui build
-      - name: Publish to npm (with provenance)
+      # Provenance is public-repo-only (npm rejects it for private sources);
+      # publish without it while this repo is private. Re-add --provenance if
+      # the repo ever goes public.
+      - name: Publish to npm
         if: steps.check.outputs.exists != 'true'
         working-directory: packages/seamui
-        run: npm publish --provenance --access public
+        run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
