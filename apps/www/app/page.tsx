@@ -148,16 +148,32 @@ export default function HomePage() {
           </Fig>
         </section>
 
-        {/* install — wherever your stack lives */}
+        {/* install — one command to set up, then add anything */}
         <section className="mt-20">
           <h2 className="text-2xl font-semibold tracking-tight">
-            Wherever your stack lives.
+            Start in one command.
           </h2>
+          <p className="text-muted-foreground mt-2 max-w-xl text-pretty">
+            <code className="text-foreground">init</code> scaffolds — or wires
+            up — your app: the theme tokens, the depth shadows, and the
+            foundation. Then add any component. Next.js, Vite, or Remix; Tailwind
+            v4.
+          </p>
           <div className="mt-6 border-t">
             <InstallRow
-              label="seamui"
+              label="setup"
+              cmd="bunx --bun @seamui/cli@latest init"
+            />
+            <InstallRow
+              label="add"
               cmd="bunx --bun @seamui/cli@latest add button"
             />
+          </div>
+          <p className="text-muted-foreground mt-6 text-sm">
+            Prefer no extra CLI? Every component installs straight from the
+            registry — the shadcn CLI or the raw URL:
+          </p>
+          <div className="mt-4 border-t">
             <InstallRow
               label="shadcn"
               cmd="bunx --bun shadcn@latest add @seamui/button"
