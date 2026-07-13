@@ -156,8 +156,10 @@ function PlanCardCheckpoint({
     >
       <Flag aria-hidden className="size-3.5 shrink-0" />
       <span className="min-w-0 flex-1 truncate">{label}</span>
+      {/* The strip is a debossed well; Restore rises out of it as an embossed
+          key (secondary), not a flat ghost. */}
       <Button
-        variant="ghost"
+        variant="secondary"
         size="sm"
         className="h-6 gap-1 px-2 text-xs"
         onClick={() => onRestore?.()}
