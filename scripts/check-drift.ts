@@ -51,15 +51,10 @@ if (registryDiff) {
 
 // ── 2. Theme two-file rule ───────────────────────────────────────────
 console.log("• Regenerating app/globals.css from theme.css…")
-const themeBody = readFileSync(join(ROOT, THEME_SRC), "utf8")
-  .split("\n")
-  .slice(8) // drop theme.css's own 8-line top comment block (CLAUDE.md §2)
-  .join("\n")
-const regenerated =
-  '@import "tailwindcss";\n\n' +
-  "/* seam theme tokens (kept in sync with registry/seam/theme/theme.css). */\n\n" +
-  themeBody
-writeFileSync(join(ROOT, GLOBALS), regenerated)
+// theme.css now ships the Tailwind entry (`@import "tailwindcss"`) itself so
+// consumers' globals.css is self-sufficient — so the docs globals.css is just
+// a verbatim copy of theme.css (CLAUDE.md §2).
+writeFileSync(join(ROOT, GLOBALS), readFileSync(join(ROOT, THEME_SRC), "utf8"))
 const themeDiff = gitDiff([GLOBALS])
 if (themeDiff) {
   failures.push(

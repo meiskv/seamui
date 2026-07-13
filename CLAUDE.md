@@ -116,16 +116,14 @@ Concretely:
 | `--shadow-well` | **inset** — the debossed container the keys sit in |
 
 > **Two-file rule:** the canonical theme is `registry/seam/theme/theme.css` (this
-> is what consumers install). `apps/www/app/globals.css` is a copy with a
-> `@import "tailwindcss";` header for the docs site. **Edit `theme.css`, then
-> regenerate globals** so they never drift:
+> is what consumers install — it ships the `@import "tailwindcss";` +
+> `@custom-variant dark` entry itself, so a fresh `seamui add theme` produces a
+> self-sufficient `globals.css`). `apps/www/app/globals.css` is now a **verbatim
+> copy** for the docs site. **Edit `theme.css`, then regenerate globals** so they
+> never drift:
 > ```bash
-> { echo '@import "tailwindcss";'; echo; \
->   echo '/* seam theme tokens (kept in sync with registry/seam/theme/theme.css). */'; \
->   echo; tail -n +9 apps/www/registry/seam/theme/theme.css; } \
->   > apps/www/app/globals.css
+> cp apps/www/registry/seam/theme/theme.css apps/www/app/globals.css
 > ```
-> (`tail -n +9` skips theme.css's own top comment block.)
 
 ---
 

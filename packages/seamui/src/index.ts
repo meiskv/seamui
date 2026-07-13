@@ -101,7 +101,7 @@ program
   .description(
     "Beautifully animated components you own — Base UI + motion.dev."
   )
-  .version("0.1.2")
+  .version("0.1.4")
 
 program
   .command("init")
@@ -125,11 +125,17 @@ program
     }
 
     if (scaffold(framework, cwd) !== 0) process.exit(1)
-    if (shadcn(["init", "-y", "-b", "neutral"], cwd) !== 0) process.exit(1)
+    // shadcn ≥4.13 repurposed `-b` to the component library (base|radix); the
+    // Base-UI defaults preset (`-d` → base-nova) is the non-interactive setup.
+    if (shadcn(["init", "-y", "-d"], cwd) !== 0) process.exit(1)
     const status = syncNamespace(cwd)
+    // `-o` so the foundation (theme → app/globals.css) applies without an
+    // interactive overwrite prompt that would hang a non-interactive run.
     if (
-      shadcn(["add", ...resolveRefs(FOUNDATION, status !== "missing")], cwd) !==
-      0
+      shadcn(
+        ["add", ...resolveRefs(FOUNDATION, status !== "missing"), "-y", "-o"],
+        cwd
+      ) !== 0
     ) {
       process.exit(1)
     }
@@ -162,7 +168,9 @@ program
         )
       )
     }
-    const passthrough = opts.yes ? ["-y"] : []
+    // `-y -o`: skip confirmations and overwrite existing files (shared deps
+    // like button/badge recur across components; a prompt would hang non-TTY).
+    const passthrough = opts.yes ? ["-y", "-o"] : []
     const refs = resolveRefs(components, status !== "missing")
     const code = shadcn(["add", ...refs, ...passthrough], cwd)
     // shadcn bootstraps components.json on a first-run add; register the

@@ -6,6 +6,11 @@
    raised white "keys" with soft diffuse shadows and squircle corners;
    grouped controls sit in recessed muted "wells" and the active one rises. */
 
+/* Tailwind v4 entry + class-based dark mode — shipped in the theme so a fresh
+   consumer's globals.css is self-sufficient after `seamui add theme`. */
+@import "tailwindcss";
+@custom-variant dark (&:is(.dark *));
+
 :root {
   --radius: 0.875rem;
 
