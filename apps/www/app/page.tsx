@@ -1,14 +1,13 @@
 import Link from "next/link"
+import { Bot, HelpCircle, ListTodo } from "lucide-react"
 
 import { Button } from "@/registry/seam/ui/button"
 import { Switch } from "@/registry/seam/ui/switch"
 import { Checkbox } from "@/registry/seam/ui/checkbox"
 import { MediaToggle } from "@/registry/seam/ui/media-toggle"
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/registry/seam/ui/popover"
+import { AgentStatus } from "@/registry/seam/ui/agent-status"
+import { BranchChip } from "@/registry/seam/ui/branch-chip"
+import { ModeOption, ModeSelector } from "@/registry/seam/ui/mode-selector"
 import { Fig } from "@/components/site/fig"
 import { FigPresence } from "@/components/site/fig-presence"
 import { ThemeToggle } from "@/components/site/theme-toggle"
@@ -98,21 +97,30 @@ export default function HomePage() {
 
           <Fig
             n="03"
-            label="The condense"
-            desc="Overlays rise out of their trigger and fall back on dismiss — one motion, both directions, backdrop in sync."
-            prop="condense.surface"
-            href="/docs/motion"
+            label="Built for agents"
+            desc="A whole workbench tier — status, git, mode — in the same springs, depth, and squircle language you own."
+            prop={'status = "working" · pr.state = "open"'}
+            href="/docs/components/agent-status"
           >
-            <Popover>
-              <PopoverTrigger render={<Button variant="outline" />}>
-                Open overlay
-              </PopoverTrigger>
-              <PopoverContent className="w-52">
-                <p className="text-sm">
-                  Overlay depth — dismiss me and I fall back where I came from.
-                </p>
-              </PopoverContent>
-            </Popover>
+            <div className="flex flex-col items-center gap-3">
+              <AgentStatus status="working" />
+              <ModeSelector defaultValue={["agent"]}>
+                <ModeOption value="agent" aria-label="Agent mode">
+                  <Bot className="size-3.5" /> Agent
+                </ModeOption>
+                <ModeOption value="plan" aria-label="Plan mode">
+                  <ListTodo className="size-3.5" /> Plan
+                </ModeOption>
+                <ModeOption value="ask" aria-label="Ask mode">
+                  <HelpCircle className="size-3.5" /> Ask
+                </ModeOption>
+              </ModeSelector>
+              <BranchChip
+                branch="feat/agent-status"
+                ahead={2}
+                pr={{ number: 69, state: "open" }}
+              />
+            </div>
           </Fig>
         </section>
 
