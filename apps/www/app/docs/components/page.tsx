@@ -1,6 +1,8 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 
+import { InstallCommand } from "@/components/site/install-command"
+
 export const metadata: Metadata = {
   title: "Components — seamui",
 }
@@ -247,6 +249,19 @@ export default function ComponentsIndex() {
         Beautifully animated components you own — Base UI primitives with a
         motion.dev depth layer.
       </p>
+
+      {/* install — set up once, then add any component below */}
+      <div className="mt-6 space-y-2">
+        <InstallCommand cmd="bunx --bun @seamui/cli@latest init" />
+        <InstallCommand cmd="bunx --bun @seamui/cli@latest add button" />
+      </div>
+      <p className="text-muted-foreground mt-3 text-sm">
+        <code className="text-foreground">init</code> sets up the theme +
+        foundation (once); then add any component below. Prefer shadcn?{" "}
+        <code className="text-foreground">shadcn add @seamui/&lt;name&gt;</code>
+        .
+      </p>
+
       <ul className="mt-8 grid gap-3 sm:grid-cols-2">
         {COMPONENTS.map((c) => (
           <li key={c.name}>
