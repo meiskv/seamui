@@ -1,6 +1,6 @@
 "use client"
 
-import type * as React from "react"
+import * as React from "react"
 import { Switch as BaseSwitch } from "@base-ui/react/switch"
 import { motion, useReducedMotion } from "motion/react"
 
@@ -18,6 +18,13 @@ function Switch({
 }: React.ComponentProps<typeof BaseSwitch.Root>) {
   const reduceMotion = useReducedMotion()
   const { trigger } = useHaptics()
+  // Defer motion's animated inline styles until after hydration: the width
+  // variant below serializes `width:16px` on the server that the client's
+  // first paint doesn't emit (the `size-4` class already sets it), so SSR and
+  // client disagree. Gating on mount lets the rest state fall back to the CSS
+  // width during hydration; the press-stretch still springs post-mount.
+  const [mounted, setMounted] = React.useState(false)
+  React.useEffect(() => setMounted(true), [])
 
   return (
     <BaseSwitch.Root
@@ -63,11 +70,13 @@ function Switch({
         // seam motion: `layout` springs the thumb when justify flips on toggle.
         layout
         // width geometry for the press stretch (16 = size-4 at rest); the
-        // justify pin means growth always heads toward the far side.
+        // justify pin means growth always heads toward the far side. Applied
+        // only after mount so the resting width comes from CSS during SSR/
+        // hydration (avoids the serialized-inline-style mismatch).
         variants={
-          reduceMotion
-            ? undefined
-            : { rest: { width: 16 }, pressed: { width: 20 } }
+          mounted && !reduceMotion
+            ? { rest: { width: 16 }, pressed: { width: 20 } }
+            : undefined
         }
         transition={reduceMotion ? reduced.instant : springs.snappy}
         className="bg-card size-4 rounded-full shadow-resting"

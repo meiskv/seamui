@@ -45,7 +45,7 @@ function DictationCard({
       role="group"
       aria-labelledby={`${id}-label`}
       className={cn(
-        "bg-secondary shadow-resting flex items-end gap-2 rounded-lg squircle border border-border/60 p-2",
+        "bg-secondary shadow-resting flex items-center gap-2 rounded-lg squircle border border-border/60 p-2",
         className
       )}
       {...props}
@@ -58,7 +58,8 @@ function DictationCard({
         level={level}
         track={track}
         count={4}
-        className="mb-2 shrink-0"
+        size="sm"
+        className="shrink-0 self-center pl-1"
       />
       <Textarea
         data-slot="dictation-card-transcript"

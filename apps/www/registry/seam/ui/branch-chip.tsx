@@ -20,17 +20,26 @@ import { Button } from "./button"
 
 type PrState = "open" | "draft" | "merged" | "closed"
 
-const PR: Record<
-  PrState,
-  {
-    variant: React.ComponentProps<typeof Badge>["variant"]
-    icon: React.ElementType
-  }
-> = {
-  open: { variant: "default", icon: GitPullRequestArrow },
-  draft: { variant: "muted", icon: GitPullRequestDraft },
-  merged: { variant: "secondary", icon: GitMerge },
-  closed: { variant: "destructive", icon: GitPullRequestClosed },
+// PR state carries conventional git colors (GitHub's palette) rather than the
+// seam monochrome — the color *is* the signal here. Each keeps the embossed
+// key shape (border-transparent + shadow) and reads in both themes.
+const PR: Record<PrState, { className: string; icon: React.ElementType }> = {
+  open: {
+    className: "bg-emerald-600 text-white dark:bg-emerald-500 dark:text-black",
+    icon: GitPullRequestArrow,
+  },
+  draft: {
+    className: "bg-muted text-muted-foreground shadow-none border-border/60",
+    icon: GitPullRequestDraft,
+  },
+  merged: {
+    className: "bg-violet-600 text-white dark:bg-violet-500 dark:text-white",
+    icon: GitMerge,
+  },
+  closed: {
+    className: "bg-red-600 text-white dark:bg-red-500 dark:text-white",
+    icon: GitPullRequestClosed,
+  },
 }
 
 interface BranchChipProps
@@ -77,21 +86,22 @@ function BranchChip({
       <span
         data-slot="branch-chip-sync"
         // arrow glyphs + counts read as one little graphic: "2 ahead, 1 behind"
+        // — ahead green (your commits), behind amber (need to pull), git-style.
         role="img"
         aria-label={`${ahead ?? 0} ahead, ${behind ?? 0} behind`}
-        className="text-muted-foreground flex items-center gap-0.5 tabular-nums"
+        className="flex items-center gap-1 tabular-nums"
       >
         {(ahead ?? 0) > 0 && (
-          <>
+          <span className="flex items-center gap-0.5 text-emerald-600 dark:text-emerald-500">
             <ArrowUp aria-hidden className="size-2.5" />
             {ahead}
-          </>
+          </span>
         )}
         {(behind ?? 0) > 0 && (
-          <>
+          <span className="flex items-center gap-0.5 text-amber-600 dark:text-amber-500">
             <ArrowDown aria-hidden className="size-2.5" />
             {behind}
-          </>
+          </span>
         )}
       </span>
     ) : null
@@ -99,10 +109,9 @@ function BranchChip({
   const prBadge = pr ? (
     <Badge
       data-slot="branch-chip-pr"
-      variant={PR[pr.state].variant}
       role="img"
       aria-label={`Pull request ${pr.number}, ${pr.state}`}
-      className="h-4 gap-0.5 px-1 text-[10px] shadow-none"
+      className={cn("h-4 gap-0.5 px-1 text-[10px]", PR[pr.state].className)}
     >
       {(() => {
         const Icon = PR[pr.state].icon
