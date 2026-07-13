@@ -13,6 +13,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/registry/seam/ui/popover"
+import { CopyButton } from "@/components/site/copy-button"
 import { Fig } from "@/components/site/fig"
 import { FigPresence } from "@/components/site/fig-presence"
 import { ThemeToggle } from "@/components/site/theme-toggle"
@@ -231,16 +232,17 @@ export default function HomePage() {
 
 function InstallRow({ label, cmd }: { label: string; cmd: string }) {
   return (
-    <div className="grid grid-cols-[6.5rem_1fr] items-baseline gap-4 border-b py-3.5 sm:grid-cols-[8rem_1fr]">
+    <div className="grid grid-cols-[5rem_1fr_auto] items-center gap-3 border-b py-2.5 sm:grid-cols-[8rem_1fr_auto]">
       <span className="text-muted-foreground font-mono text-xs tracking-widest uppercase">
         {label}
       </span>
-      <code className="overflow-x-auto font-mono text-sm whitespace-nowrap">
+      <code className="min-w-0 overflow-x-auto font-mono text-sm whitespace-nowrap">
         <span aria-hidden className="text-primary">
           ${" "}
         </span>
         {cmd}
       </code>
+      <CopyButton text={cmd} />
     </div>
   )
 }
