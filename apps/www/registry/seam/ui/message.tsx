@@ -4,7 +4,7 @@ import type * as React from "react"
 import { motion, useReducedMotion } from "motion/react"
 
 import { cn } from "@/lib/utils"
-import { springs, fades, depth, reduced } from "@/lib/motion"
+import { springs, fades, depth, reduced, useMounted } from "@/lib/motion"
 import { Avatar, AvatarFallback, AvatarImage } from "./avatar"
 
 type Role = "user" | "assistant"
@@ -19,12 +19,21 @@ function Message({
   ...props
 }: React.ComponentProps<typeof motion.div> & { from?: Role }) {
   const reduceMotion = useReducedMotion()
+  const mounted = useMounted()
 
   return (
     <motion.div
       data-slot="message"
       data-role={from}
-      initial={reduceMotion ? reduced.fadeIn.initial : depth.overlay.initial}
+      // gate the moving entrance behind mount so SSR-rendered history doesn't
+      // hydration-mismatch; messages added after mount still animate in.
+      initial={
+        mounted
+          ? reduceMotion
+            ? reduced.fadeIn.initial
+            : depth.overlay.initial
+          : false
+      }
       animate={depth.overlay.animate}
       transition={reduceMotion ? fades.normal : springs.snappy}
       className={cn(

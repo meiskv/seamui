@@ -5,7 +5,7 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react"
 import { ArrowUp, Square, X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { springs, fades, depth, reduced } from "@/lib/motion"
+import { springs, fades, depth, reduced, useMounted } from "@/lib/motion"
 import { Badge } from "./badge"
 import { Button } from "./button"
 import { Textarea } from "./textarea"
@@ -168,11 +168,20 @@ function ComposerAttachment({
   ...props
 }: React.ComponentProps<typeof Badge> & { onRemove?: () => void }) {
   const reduceMotion = useReducedMotion()
+  const mounted = useMounted()
 
   return (
     <motion.div
       layout={!reduceMotion}
-      initial={reduceMotion ? reduced.fadeIn.initial : depth.overlay.initial}
+      // gate the moving entrance behind mount (SSR hydration safety); chips
+      // added after mount still animate in, and exit is unaffected.
+      initial={
+        mounted
+          ? reduceMotion
+            ? reduced.fadeIn.initial
+            : depth.overlay.initial
+          : false
+      }
       animate={depth.overlay.animate}
       exit={reduceMotion ? reduced.fadeIn.exit : depth.overlay.exit}
       transition={reduceMotion ? fades.normal : springs.snappy}

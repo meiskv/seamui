@@ -1,6 +1,27 @@
 // seamui motion tokens — the single source of truth for all animation.
 // Springs over durations; depth over flatness. See seamui docs → Motion.
+import * as React from "react"
 import type { TargetAndTransition, Transition } from "motion/react"
+
+/**
+ * True only after the first client render. Gate a motion `initial` that moves
+ * (scale/translate) behind this so SSR and the client's first paint agree —
+ * motion serializes an animated `initial` transform on the server that the
+ * client's hydration doesn't, which trips React's hydration-mismatch warning.
+ * Elements that mount *after* hydration (a new chat message, an added chip)
+ * still get their entrance, since `initial` applies on mount.
+ *
+ *   const mounted = useMounted()
+ *   initial={mounted ? (reduceMotion ? reduced.fadeIn.initial : depth.overlay.initial) : false}
+ *
+ * Opacity-only `initial` (e.g. `{ opacity: 0 }`) doesn't need this — no
+ * transform is serialized, so server and client already agree.
+ */
+export function useMounted(): boolean {
+  const [mounted, setMounted] = React.useState(false)
+  React.useEffect(() => setMounted(true), [])
+  return mounted
+}
 
 /**
  * ── Personality: retune the whole library in one line ────────────────

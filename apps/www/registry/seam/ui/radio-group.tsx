@@ -6,7 +6,7 @@ import { Radio as BaseRadio } from "@base-ui/react/radio"
 import { motion, useReducedMotion } from "motion/react"
 
 import { cn } from "@/lib/utils"
-import { springs, fades, depth, reduced } from "@/lib/motion"
+import { springs, fades, depth, reduced, useMounted } from "@/lib/motion"
 import { useHaptics } from "@/lib/haptics"
 
 function RadioGroup({
@@ -37,6 +37,7 @@ function RadioGroupItem({
   ...props
 }: React.ComponentProps<typeof BaseRadio.Root>) {
   const reduceMotion = useReducedMotion()
+  const mounted = useMounted()
 
   return (
     <BaseRadio.Root
@@ -71,7 +72,15 @@ function RadioGroupItem({
           render={
             // seam motion: the dot pops in with a snappy spring.
             <motion.span
-              initial={reduceMotion ? reduced.fadeIn.initial : { scale: 0 }}
+              // gate the pop behind mount so a defaultChecked dot doesn't
+              // hydration-mismatch on SSR; user-checked dots still pop.
+              initial={
+                mounted
+                  ? reduceMotion
+                    ? reduced.fadeIn.initial
+                    : { scale: 0 }
+                  : false
+              }
               animate={{ scale: 1, opacity: 1 }}
               transition={reduceMotion ? fades.fast : springs.snappy}
             />

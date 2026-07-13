@@ -4,7 +4,7 @@ import type * as React from "react"
 import { motion, useReducedMotion } from "motion/react"
 
 import { cn } from "@/lib/utils"
-import { springs, fades, depth, reduced } from "@/lib/motion"
+import { springs, fades, depth, reduced, useMounted } from "@/lib/motion"
 import { Button } from "./button"
 
 // A horizontally scrollable row of prompt chips. The scrollbar is hidden but
@@ -32,11 +32,20 @@ function Suggestion({
   ...props
 }: React.ComponentProps<typeof Button> & { index?: number }) {
   const reduceMotion = useReducedMotion()
+  const mounted = useMounted()
 
   return (
     <motion.div
       className="shrink-0"
-      initial={reduceMotion ? reduced.fadeIn.initial : depth.overlay.initial}
+      // gate the moving entrance behind mount (SSR hydration safety); chips
+      // added after mount still stagger in.
+      initial={
+        mounted
+          ? reduceMotion
+            ? reduced.fadeIn.initial
+            : depth.overlay.initial
+          : false
+      }
       animate={depth.overlay.animate}
       transition={{
         ...(reduceMotion ? fades.normal : springs.snappy),

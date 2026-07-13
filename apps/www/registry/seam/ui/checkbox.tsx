@@ -1,12 +1,12 @@
 "use client"
 
-import * as React from "react"
+import type * as React from "react"
 import { Checkbox as BaseCheckbox } from "@base-ui/react/checkbox"
 import { motion, useReducedMotion } from "motion/react"
 import { Check, Minus } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { springs, fades, depth, reduced } from "@/lib/motion"
+import { springs, fades, depth, reduced, useMounted } from "@/lib/motion"
 import { useHaptics } from "@/lib/haptics"
 
 function Checkbox({
@@ -22,8 +22,7 @@ function Checkbox({
   // which the client's first paint doesn't match. `initial={false}` renders
   // the settled mark during SSR/hydration; a genuine user-check (mounted, the
   // indicator remounts) still pops in.
-  const [mounted, setMounted] = React.useState(false)
-  React.useEffect(() => setMounted(true), [])
+  const mounted = useMounted()
 
   return (
     <BaseCheckbox.Root

@@ -1,11 +1,11 @@
 "use client"
 
-import * as React from "react"
+import type * as React from "react"
 import { Switch as BaseSwitch } from "@base-ui/react/switch"
 import { motion, useReducedMotion } from "motion/react"
 
 import { cn } from "@/lib/utils"
-import { springs, fades, reduced } from "@/lib/motion"
+import { springs, fades, reduced, useMounted } from "@/lib/motion"
 import { useHaptics } from "@/lib/haptics"
 
 const MotionThumb = motion.create(BaseSwitch.Thumb)
@@ -23,8 +23,7 @@ function Switch({
   // first paint doesn't emit (the `size-4` class already sets it), so SSR and
   // client disagree. Gating on mount lets the rest state fall back to the CSS
   // width during hydration; the press-stretch still springs post-mount.
-  const [mounted, setMounted] = React.useState(false)
-  React.useEffect(() => setMounted(true), [])
+  const mounted = useMounted()
 
   return (
     <BaseSwitch.Root

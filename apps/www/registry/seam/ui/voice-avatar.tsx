@@ -4,7 +4,7 @@ import type * as React from "react"
 import { motion, useReducedMotion, type Transition } from "motion/react"
 
 import { cn } from "@/lib/utils"
-import { springs, fades } from "@/lib/motion"
+import { springs, fades, useMounted } from "@/lib/motion"
 import { Avatar, AvatarFallback, AvatarImage } from "./avatar"
 import { useAudioLevel } from "./voice-visualizer"
 
@@ -40,6 +40,7 @@ function VoiceAvatar({
   track?: MediaStreamTrack | null
 }) {
   const reduce = useReducedMotion() ?? false
+  const mounted = useMounted()
   const tracked = useAudioLevel(track)
   const level = levelProp ?? tracked
   const active = speaking ?? level > 0.05
@@ -70,7 +71,8 @@ function VoiceAvatar({
       <motion.span
         aria-hidden
         className="ring-primary/40 pointer-events-none absolute -inset-1 rounded-full ring-2"
-        initial={{ opacity: 0, scale: 0.85 }}
+        // gate the halo's moving initial behind mount (SSR hydration safety)
+        initial={mounted ? { opacity: 0, scale: 0.85 } : false}
         animate={animate}
         transition={transition}
       />
