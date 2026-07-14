@@ -4,7 +4,7 @@ import * as React from "react"
 import { motion, useReducedMotion, type Transition } from "motion/react"
 
 import { cn } from "@/lib/utils"
-import { springs, fades } from "@/lib/motion"
+import { springs, fades, useMounted } from "@/lib/motion"
 
 type VoiceState =
   | "disconnected"
@@ -158,6 +158,7 @@ function VoiceVisualizer({
   variant?: "dots" | "bars"
 }) {
   const reduce = useReducedMotion() ?? false
+  const mounted = useMounted()
   const tracked = useAudioLevel(track)
   const level = levelProp ?? tracked
   const bars = variant === "bars"
@@ -189,8 +190,12 @@ function VoiceVisualizer({
                 ? cn(s.bar, "h-full origin-center rounded-full")
                 : cn(s.dot, "rounded-full")
             )}
-            initial={a.initial}
-            animate={a.animate}
+            // SSR hydration safety: `a.animate` depends on useReducedMotion()
+            // + level, which differ between the server and the client's first
+            // paint. Until mounted, render a deterministic resting dot (faint,
+            // no transform) so both sides match; then animate to the live state.
+            initial={false}
+            animate={mounted ? a.animate : { opacity: 0.25 }}
             transition={a.transition}
           />
         )

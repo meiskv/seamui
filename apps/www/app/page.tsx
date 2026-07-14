@@ -16,6 +16,7 @@ import {
 import { CopyButton } from "@/components/site/copy-button"
 import { Fig } from "@/components/site/fig"
 import { SeamMark } from "@/components/site/logo"
+import { ReducedMotionNotice } from "@/components/site/reduced-motion-notice"
 import { FigPresence } from "@/components/site/fig-presence"
 import { ThemeToggle } from "@/components/site/theme-toggle"
 
@@ -50,6 +51,9 @@ export default function HomePage() {
       </header>
 
       <main className="mx-auto max-w-5xl px-6 pb-20">
+        {/* Tell Reduce-Motion visitors why the specimens fade instead of spring. */}
+        <ReducedMotionNotice />
+
         {/* hero */}
         <section className="py-16 sm:py-20">
           <p className="text-muted-foreground font-mono text-xs tracking-widest uppercase">

@@ -71,9 +71,12 @@ function VoiceAvatar({
       <motion.span
         aria-hidden
         className="ring-primary/40 pointer-events-none absolute -inset-1 rounded-full ring-2"
-        // gate the halo's moving initial behind mount (SSR hydration safety)
-        initial={mounted ? { opacity: 0, scale: 0.85 } : false}
-        animate={animate}
+        // SSR hydration safety: `animate` depends on useReducedMotion() + level,
+        // which differ between the server and the client's first paint. Until
+        // mounted, render a deterministic resting halo (invisible, no transform)
+        // so both sides match; then spring to the live state.
+        initial={false}
+        animate={mounted ? animate : { opacity: 0, scale: 1 }}
         transition={transition}
       />
       <Avatar className={cn("size-11 shadow-resting", className)} {...props}>
