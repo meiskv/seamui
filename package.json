@@ -1,6 +1,7 @@
 {
   "name": "seamui-monorepo",
   "private": true,
+  "license": "MIT",
   "workspaces": ["apps/*", "packages/*"],
   "scripts": {
     "dev": "bun run --cwd apps/www dev",

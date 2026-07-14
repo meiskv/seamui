@@ -18,6 +18,7 @@
       "!apps/www/public/r",
       "!**/*.json",
       "!**/*.css",
+      "!**/*.svg",
       "!bun.lock"
     ]
   },

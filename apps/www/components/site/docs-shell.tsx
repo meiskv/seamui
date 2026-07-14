@@ -7,6 +7,7 @@ import { Menu } from "lucide-react"
 
 import { Button } from "@/registry/seam/ui/button"
 import { Drawer, DrawerContent, DrawerTrigger } from "@/registry/seam/ui/drawer"
+import { SeamMark } from "./logo"
 import { NavList } from "./nav-list"
 import { ReducedMotionNotice } from "./reduced-motion-notice"
 import { ThemeToggle } from "./theme-toggle"
@@ -45,7 +46,11 @@ export function DocsShell({ children }: { children: React.ReactNode }) {
             </DrawerContent>
           </Drawer>
 
-          <Link href="/" className="font-semibold tracking-tight">
+          <Link
+            href="/"
+            className="flex items-center gap-2 font-semibold tracking-tight"
+          >
+            <SeamMark className="size-5" />
             seamui
           </Link>
           <div className="ml-auto">
