@@ -53,7 +53,7 @@ if (jsonFiles.length === 0) {
 let validated = 0
 for (const file of jsonFiles) {
   const full = join(R_DIR, file)
-  let parsed: { name?: unknown; files?: unknown }
+  let parsed: { name?: unknown; files?: unknown; items?: unknown }
   try {
     parsed = JSON.parse(readFileSync(full, "utf8"))
   } catch (err) {
@@ -63,7 +63,13 @@ for (const file of jsonFiles) {
   if (typeof parsed.name !== "string" || !parsed.name) {
     failures.push(`${file}: missing "name"`)
   }
-  if (!Array.isArray(parsed.files) || parsed.files.length === 0) {
+  // registry.json is the registry *index* (served for `shadcn search`), not a
+  // component — it carries `items`, not a per-file `files` array.
+  if (file === "registry.json") {
+    if (!Array.isArray(parsed.items) || parsed.items.length === 0) {
+      failures.push(`${file}: missing "items"`)
+    }
+  } else if (!Array.isArray(parsed.files) || parsed.files.length === 0) {
     failures.push(`${file}: missing "files"`)
   }
   validated++
