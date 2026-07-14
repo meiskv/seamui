@@ -15,6 +15,7 @@ import {
 } from "@/registry/seam/ui/popover"
 import { CopyButton } from "@/components/site/copy-button"
 import { Fig } from "@/components/site/fig"
+import { SeamMark } from "@/components/site/logo"
 import { FigPresence } from "@/components/site/fig-presence"
 import { ThemeToggle } from "@/components/site/theme-toggle"
 
@@ -22,9 +23,13 @@ export default function HomePage() {
   return (
     <>
       <header className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
-        <span className="text-sm font-semibold tracking-tight">
+        <Link
+          href="/"
+          className="flex items-center gap-2 text-sm font-semibold tracking-tight"
+        >
+          <SeamMark className="size-5" />
           seamui<span className="text-primary">.</span>
-        </span>
+        </Link>
         <nav className="flex items-center gap-1">
           <Button
             variant="ghost"
