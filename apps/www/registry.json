@@ -691,6 +691,48 @@
       ]
     },
     {
+      "name": "field",
+      "type": "registry:ui",
+      "title": "Field",
+      "description": "Base UI Field wrappers — label, description, and an error that shakes in, with the error haptic.",
+      "dependencies": [
+        "@base-ui/react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json",
+        "https://seamui.dev/r/haptics.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/field.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/field.tsx"
+        }
+      ]
+    },
+    {
+      "name": "form",
+      "type": "registry:ui",
+      "title": "Form",
+      "description": "Native form with consolidated error handling built on Base UI; pairs with Field.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/field.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/form.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/form.tsx"
+        }
+      ]
+    },
+    {
       "name": "card",
       "type": "registry:ui",
       "title": "Card",
@@ -780,7 +822,7 @@
       "name": "message",
       "type": "registry:ui",
       "title": "Message",
-      "description": "Chat message row \u2014 user as an embossed key, assistant as flat prose.",
+      "description": "Chat message row — user as an embossed key, assistant as flat prose.",
       "dependencies": [
         "@base-ui/react",
         "motion"
@@ -824,7 +866,7 @@
       "name": "composer",
       "type": "registry:ui",
       "title": "Composer",
-      "description": "The prompt input \u2014 a debossed well with send/stop, attachments, and Enter-to-send.",
+      "description": "The prompt input — a debossed well with send/stop, attachments, and Enter-to-send.",
       "dependencies": [
         "motion",
         "lucide-react"
@@ -893,7 +935,7 @@
       "name": "tool",
       "type": "registry:ui",
       "title": "Tool",
-      "description": "Agentic step disclosure \u2014 status chip, collapsible result. Includes Reasoning.",
+      "description": "Agentic step disclosure — status chip, collapsible result. Includes Reasoning.",
       "dependencies": [
         "@base-ui/react",
         "motion",
@@ -4206,6 +4248,100 @@
       "files": [
         {
           "path": "registry/seam/examples/connector-card-tools.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "field-demo",
+      "type": "registry:example",
+      "title": "Field Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/field.json",
+        "https://seamui.dev/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "field-invalid",
+      "type": "registry:example",
+      "title": "Field Invalid",
+      "registryDependencies": [
+        "https://seamui.dev/r/field.json",
+        "https://seamui.dev/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/field-invalid.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "field-textarea",
+      "type": "registry:example",
+      "title": "Field Textarea",
+      "registryDependencies": [
+        "https://seamui.dev/r/field.json",
+        "https://seamui.dev/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/field-textarea.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "field-disabled",
+      "type": "registry:example",
+      "title": "Field Disabled",
+      "registryDependencies": [
+        "https://seamui.dev/r/field.json",
+        "https://seamui.dev/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/field-disabled.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "form-demo",
+      "type": "registry:example",
+      "title": "Form Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/form.json",
+        "https://seamui.dev/r/field.json",
+        "https://seamui.dev/r/input.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/form-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "form-errors",
+      "type": "registry:example",
+      "title": "Form Errors",
+      "registryDependencies": [
+        "https://seamui.dev/r/form.json",
+        "https://seamui.dev/r/field.json",
+        "https://seamui.dev/r/input.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/form-errors.tsx",
           "type": "registry:example"
         }
       ]

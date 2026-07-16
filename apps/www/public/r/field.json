@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "field",
+  "type": "registry:ui",
+  "title": "Field",
+  "description": "Base UI Field wrappers — label, description, and an error that shakes in, with the error haptic.",
+  "dependencies": [
+    "@base-ui/react",
+    "motion"
+  ],
+  "registryDependencies": [
+    "https://seamui.dev/r/utils.json",
+    "https://seamui.dev/r/motion.json",
+    "https://seamui.dev/r/haptics.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/ui/field.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { Field as BaseField } from \"@base-ui/react/field\"\nimport { Fieldset as BaseFieldset } from \"@base-ui/react/fieldset\"\nimport { motion, useReducedMotion } from \"motion/react\"\n\nimport { cn } from \"@/lib/utils\"\nimport { fades, reduced, shake } from \"@/lib/motion\"\nimport { useHaptics } from \"@/lib/haptics\"\n\nfunction Field({\n  className,\n  ...props\n}: React.ComponentProps<typeof BaseField.Root>) {\n  return (\n    <BaseField.Root\n      data-slot=\"field\"\n      className={cn(\"flex w-full flex-col gap-2\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction FieldLabel({\n  className,\n  ...props\n}: React.ComponentProps<typeof BaseField.Label>) {\n  return (\n    <BaseField.Label\n      data-slot=\"field-label\"\n      className={cn(\n        \"text-sm leading-none font-medium select-none\",\n        \"data-[disabled]:pointer-events-none data-[disabled]:opacity-50\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\n// The styled control is seamui's Input — Base UI's Input part is Field-aware\n// on its own, so `<Field><Input /></Field>` wires up automatically. This thin\n// unstyled wrapper exists for the `render` composition: wiring a control that\n// isn't an input into the field, e.g. <FieldControl render={<Textarea />} />.\nfunction FieldControl({\n  ...props\n}: React.ComponentProps<typeof BaseField.Control>) {\n  return <BaseField.Control data-slot=\"field-control\" {...props} />\n}\n\nfunction FieldDescription({\n  className,\n  ...props\n}: React.ComponentProps<typeof BaseField.Description>) {\n  return (\n    <BaseField.Description\n      data-slot=\"field-description\"\n      className={cn(\"text-muted-foreground text-sm\", className)}\n      {...props}\n    />\n  )\n}\n\n// Base UI mounts the error element only while the field is invalid, so this\n// surface's mount IS the \"error appeared\" signal: it shakes in (opacity-only\n// entrance under reduced motion — the destructive text carries the state\n// either way) and fires the error haptic, matching the OTP field's\n// rejected-code pattern.\nfunction FieldErrorSurface({\n  ...props\n}: React.ComponentProps<typeof motion.div>) {\n  const reduceMotion = useReducedMotion() ?? false\n  const { trigger } = useHaptics()\n\n  React.useEffect(() => {\n    trigger(\"error\")\n    // eslint-disable-next-line react-hooks/exhaustive-deps\n  }, [])\n\n  return (\n    <motion.div\n      initial={reduced.fadeIn.initial}\n      animate={\n        reduceMotion\n          ? reduced.fadeIn.animate\n          : { opacity: 1, x: shake.animate.x }\n      }\n      transition={reduceMotion ? fades.normal : shake.transition}\n      {...props}\n    />\n  )\n}\n\nfunction FieldError({\n  className,\n  ...props\n}: React.ComponentProps<typeof BaseField.Error>) {\n  return (\n    <BaseField.Error\n      data-slot=\"field-error\"\n      className={cn(\"text-destructive text-sm\", className)}\n      render={<FieldErrorSurface />}\n      {...props}\n    />\n  )\n}\n\n// Render-prop access to the control's ValidityState — no DOM of its own.\nconst FieldValidity = BaseField.Validity\n\nfunction FieldItem({\n  className,\n  ...props\n}: React.ComponentProps<typeof BaseField.Item>) {\n  return (\n    <BaseField.Item\n      data-slot=\"field-item\"\n      className={cn(\"flex flex-col gap-1\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction Fieldset({\n  className,\n  ...props\n}: React.ComponentProps<typeof BaseFieldset.Root>) {\n  return (\n    <BaseFieldset.Root\n      data-slot=\"fieldset\"\n      className={cn(\"flex w-full flex-col gap-4\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction FieldsetLegend({\n  className,\n  ...props\n}: React.ComponentProps<typeof BaseFieldset.Legend>) {\n  return (\n    <BaseFieldset.Legend\n      data-slot=\"fieldset-legend\"\n      className={cn(\"text-sm leading-none font-semibold\", className)}\n      {...props}\n    />\n  )\n}\n\nexport {\n  Field,\n  FieldLabel,\n  FieldControl,\n  FieldDescription,\n  FieldError,\n  FieldValidity,\n  FieldItem,\n  Fieldset,\n  FieldsetLegend,\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/field.tsx"
+    }
+  ]
+}

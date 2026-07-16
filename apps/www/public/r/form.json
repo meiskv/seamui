@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "form",
+  "type": "registry:ui",
+  "title": "Form",
+  "description": "Native form with consolidated error handling built on Base UI; pairs with Field.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "https://seamui.dev/r/utils.json",
+    "https://seamui.dev/r/field.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/ui/form.tsx",
+      "content": "import type * as React from \"react\"\nimport { Form as BaseForm } from \"@base-ui/react/form\"\n\nimport { cn } from \"@/lib/utils\"\n\n// Base UI Form: native <form> with consolidated error handling. Field\n// validation, focus-first-invalid on submit, and external (server) errors via\n// the `errors` prop all come from Base UI; seamui adds the roomy stacked\n// layout. Pair with Field — `onFormSubmit` receives the values keyed by each\n// Field's `name`.\nfunction Form<\n  FormValues extends Record<string, unknown> = Record<string, unknown>,\n>({ className, ...props }: React.ComponentProps<typeof BaseForm<FormValues>>) {\n  return (\n    <BaseForm\n      data-slot=\"form\"\n      className={cn(\"flex w-full flex-col gap-5\", className)}\n      {...props}\n    />\n  )\n}\n\nexport { Form }\n",
+      "type": "registry:ui",
+      "target": "components/ui/form.tsx"
+    }
+  ]
+}

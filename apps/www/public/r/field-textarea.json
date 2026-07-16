@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "field-textarea",
+  "type": "registry:example",
+  "title": "Field Textarea",
+  "registryDependencies": [
+    "https://seamui.dev/r/field.json",
+    "https://seamui.dev/r/textarea.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/field-textarea.tsx",
+      "content": "import {\n  Field,\n  FieldControl,\n  FieldDescription,\n  FieldLabel,\n} from \"@/registry/seam/ui/field\"\nimport { Textarea } from \"@/registry/seam/ui/textarea\"\n\n// Input is Field-aware on its own; any other control joins the field through\n// FieldControl's render prop — label focus, validation, and aria wiring\n// included.\nexport default function FieldTextarea() {\n  return (\n    <Field name=\"feedback\" className=\"w-full max-w-sm\">\n      <FieldLabel>Feedback</FieldLabel>\n      <FieldControl\n        render={<Textarea placeholder=\"What should we improve?\" />}\n      />\n      <FieldDescription>Shared with the whole team.</FieldDescription>\n    </Field>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

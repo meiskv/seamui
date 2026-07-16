@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "field-disabled",
+  "type": "registry:example",
+  "title": "Field Disabled",
+  "registryDependencies": [
+    "https://seamui.dev/r/field.json",
+    "https://seamui.dev/r/input.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/field-disabled.tsx",
+      "content": "import { Field, FieldDescription, FieldLabel } from \"@/registry/seam/ui/field\"\nimport { Input } from \"@/registry/seam/ui/input\"\n\nexport default function FieldDisabled() {\n  return (\n    <Field name=\"workspace\" disabled className=\"max-w-xs\">\n      <FieldLabel>Workspace</FieldLabel>\n      <Input defaultValue=\"acme-inc\" />\n      <FieldDescription>Contact an admin to rename.</FieldDescription>\n    </Field>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

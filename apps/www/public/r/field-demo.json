@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "field-demo",
+  "type": "registry:example",
+  "title": "Field Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/field.json",
+    "https://seamui.dev/r/input.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/field-demo.tsx",
+      "content": "import { Field, FieldDescription, FieldLabel } from \"@/registry/seam/ui/field\"\nimport { Input } from \"@/registry/seam/ui/input\"\n\nexport default function FieldDemo() {\n  return (\n    <Field name=\"email\" className=\"max-w-xs\">\n      <FieldLabel>Email</FieldLabel>\n      <Input type=\"email\" placeholder=\"you@company.com\" />\n      <FieldDescription>We only use this for receipts.</FieldDescription>\n    </Field>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

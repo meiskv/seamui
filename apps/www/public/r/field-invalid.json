@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "field-invalid",
+  "type": "registry:example",
+  "title": "Field Invalid",
+  "registryDependencies": [
+    "https://seamui.dev/r/field.json",
+    "https://seamui.dev/r/input.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/field-invalid.tsx",
+      "content": "\"use client\"\n\nimport { Field, FieldError, FieldLabel } from \"@/registry/seam/ui/field\"\nimport { Input } from \"@/registry/seam/ui/input\"\n\n// The `validate` function runs on every change; when it first fails, the\n// error message shakes in (opacity-only under reduced motion) and the entry\n// well goes destructive via the field's data-[invalid] state.\nexport default function FieldInvalid() {\n  return (\n    <Field\n      name=\"handle\"\n      className=\"max-w-xs\"\n      validationMode=\"onChange\"\n      validate={(value) => {\n        const v = String(value ?? \"\")\n        if (v !== v.toLowerCase()) return \"Handles are lowercase only.\"\n        if (v.includes(\" \")) return \"No spaces — try a dash.\"\n        return null\n      }}\n    >\n      <FieldLabel>Handle</FieldLabel>\n      <Input placeholder=\"acme-co\" />\n      <FieldError />\n    </Field>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

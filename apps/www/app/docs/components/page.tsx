@@ -21,6 +21,8 @@ const COMPONENTS = [
   },
   { name: "input", title: "Input", desc: "Field-aware text input." },
   { name: "textarea", title: "Textarea", desc: "Auto-growing entry well." },
+  { name: "field", title: "Field", desc: "Label + validation wiring." },
+  { name: "form", title: "Form", desc: "Consolidated form validation." },
   { name: "avatar", title: "Avatar", desc: "Image with fade-in and fallback." },
   {
     name: "separator",
