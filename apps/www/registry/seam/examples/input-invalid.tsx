@@ -2,7 +2,7 @@ import { Input } from "@/registry/seam/ui/input"
 
 export default function InputInvalid() {
   return (
-    <div className="grid max-w-xs gap-1.5">
+    <div className="grid w-full max-w-xs gap-1.5">
       <Input
         type="email"
         defaultValue="not-an-email"

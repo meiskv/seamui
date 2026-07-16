@@ -12,7 +12,9 @@ function Input({
       data-slot="input"
       className={cn(
         // debossed — the field is carved into the surface (inset well shadow).
-        "flex h-10 w-full min-w-0 rounded-md squircle border border-border/60 bg-muted px-3.5 py-1 text-sm shadow-well outline-none",
+        // items-center is for type="file": text inputs center their own text,
+        // but a file input's button + filename row top-aligns without it.
+        "flex h-10 w-full min-w-0 items-center rounded-md squircle border border-border/60 bg-muted px-3.5 py-1 text-sm shadow-well outline-none",
         "placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground",
         "focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:border-ring",
         "disabled:pointer-events-none disabled:opacity-50 data-[invalid]:border-destructive data-[invalid]:ring-destructive/30",
