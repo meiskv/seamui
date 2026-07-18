@@ -6,6 +6,7 @@ import { Check, Copy, TerminalSquare } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { fades } from "@/lib/motion"
+import { useCopy } from "@/lib/use-copy"
 import { AgentStatus, type AgentState } from "./agent-status"
 import { Button } from "./button"
 
@@ -70,20 +71,9 @@ function TerminalBlock({
   tint?: boolean
   children?: React.ReactNode
 }) {
-  const [copied, setCopied] = React.useState(false)
+  const { copied, copy } = useCopy()
   const raw = typeof children === "string" ? children : undefined
   const text = copyText ?? raw
-
-  const copy = async () => {
-    if (text === undefined) return
-    try {
-      await navigator.clipboard.writeText(text)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
-    } catch {
-      // clipboard unavailable (insecure context) — silently no-op
-    }
-  }
 
   return (
     <div
@@ -115,7 +105,7 @@ function TerminalBlock({
             data-slot="terminal-block-copy"
             variant="ghost"
             size="icon"
-            onClick={copy}
+            onClick={() => text !== undefined && copy(text)}
             aria-label={copied ? "Copied" : "Copy output"}
             className="text-muted-foreground size-7 shrink-0"
           >

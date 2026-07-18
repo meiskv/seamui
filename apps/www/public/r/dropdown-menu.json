@@ -6,7 +6,8 @@
   "description": "Dropdown menu built on Base UI with seam overlay-depth entrance.",
   "dependencies": [
     "@base-ui/react",
-    "motion"
+    "motion",
+    "lucide-react"
   ],
   "registryDependencies": [
     "https://seamui.dev/r/utils.json",

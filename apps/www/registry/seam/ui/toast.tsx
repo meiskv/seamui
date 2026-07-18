@@ -5,6 +5,7 @@ import { Toast as BaseToast } from "@base-ui/react/toast"
 import { X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+import { condense } from "@/lib/motion"
 import { Button } from "./button"
 
 /** Re-exported so callers can `const toast = useToast(); toast.add({ ... })`. */
@@ -27,20 +28,18 @@ function Toaster() {
 
   return (
     <BaseToast.Portal>
-      <BaseToast.Viewport className="fixed bottom-4 right-4 z-50 mx-auto flex w-[calc(100vw-2rem)] max-w-sm flex-col sm:right-4">
+      <BaseToast.Viewport
+        data-slot="toast-viewport"
+        className="fixed bottom-4 right-4 z-50 mx-auto flex w-[calc(100vw-2rem)] max-w-sm flex-col sm:right-4"
+      >
         {toasts.map((toast) => (
           <BaseToast.Root
             key={toast.id}
             toast={toast}
             data-slot="toast"
-            // Base UI owns stacking + swipe transforms; seam adds a bouncy,
-            // spring-shaped entrance/exit via a cubic-bezier on opacity/offset.
             className={cn(
               "bg-popover text-popover-foreground absolute inset-x-0 bottom-0 z-[calc(1000-var(--toast-index))] rounded-lg squircle border p-4 shadow-overlay",
-              "[transition:transform_0.5s,opacity_0.35s] [transition-timing-function:cubic-bezier(0.22,1.3,0.36,1)] motion-reduce:[transition:opacity_0.35s]",
-              "data-[starting-style]:translate-y-6 data-[starting-style]:opacity-0",
-              "data-[ending-style]:translate-y-4 data-[ending-style]:opacity-0",
-              "data-[ending-style]:[&[data-swipe-direction]]:translate-y-0"
+              condense.toast
             )}
             style={{
               // stack the toasts with a small vertical offset
@@ -48,8 +47,14 @@ function Toaster() {
                 "translateY(calc(var(--toast-index) * -0.75rem)) scale(calc(1 - var(--toast-index) * 0.05))",
             }}
           >
-            <BaseToast.Title className="text-sm font-medium" />
-            <BaseToast.Description className="text-muted-foreground text-sm" />
+            <BaseToast.Title
+              data-slot="toast-title"
+              className="text-sm font-medium"
+            />
+            <BaseToast.Description
+              data-slot="toast-description"
+              className="text-muted-foreground text-sm"
+            />
             <BaseToast.Close
               render={
                 <Button

@@ -65,6 +65,19 @@
       ]
     },
     {
+      "name": "use-copy",
+      "type": "registry:lib",
+      "title": "seam useCopy",
+      "description": "Copy-to-clipboard hook with a self-resetting \"copied\" flag, shared by every seamui copy affordance.",
+      "files": [
+        {
+          "path": "registry/seam/lib/use-copy.ts",
+          "type": "registry:lib",
+          "target": "lib/use-copy.ts"
+        }
+      ]
+    },
+    {
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
@@ -414,10 +427,12 @@
       "title": "Drawer",
       "description": "Mobile bottom-sheet built on Base UI's native swipe-to-dismiss engine.",
       "dependencies": [
-        "@base-ui/react"
+        "@base-ui/react",
+        "motion"
       ],
       "registryDependencies": [
-        "https://seamui.dev/r/utils.json"
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json"
       ],
       "files": [
         {
@@ -434,7 +449,8 @@
       "description": "Dropdown menu built on Base UI with seam overlay-depth entrance.",
       "dependencies": [
         "@base-ui/react",
-        "motion"
+        "motion",
+        "lucide-react"
       ],
       "registryDependencies": [
         "https://seamui.dev/r/utils.json",
@@ -520,10 +536,12 @@
       "description": "Accordion built on Base UI with eased height animation.",
       "dependencies": [
         "@base-ui/react",
+        "motion",
         "lucide-react"
       ],
       "registryDependencies": [
-        "https://seamui.dev/r/utils.json"
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json"
       ],
       "files": [
         {
@@ -619,7 +637,8 @@
       "title": "OTP Field",
       "description": "One-time-code input built on Base UI.",
       "dependencies": [
-        "@base-ui/react"
+        "@base-ui/react",
+        "motion"
       ],
       "registryDependencies": [
         "https://seamui.dev/r/utils.json",
@@ -664,6 +683,7 @@
       ],
       "registryDependencies": [
         "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json",
         "https://seamui.dev/r/button.json"
       ],
       "files": [
@@ -879,7 +899,8 @@
         "https://seamui.dev/r/utils.json",
         "https://seamui.dev/r/motion.json",
         "https://seamui.dev/r/badge.json",
-        "https://seamui.dev/r/button.json"
+        "https://seamui.dev/r/button.json",
+        "https://seamui.dev/r/use-copy.json"
       ],
       "files": [
         {
@@ -1117,7 +1138,8 @@
         "https://seamui.dev/r/utils.json",
         "https://seamui.dev/r/motion.json",
         "https://seamui.dev/r/button.json",
-        "https://seamui.dev/r/badge.json"
+        "https://seamui.dev/r/badge.json",
+        "https://seamui.dev/r/use-copy.json"
       ],
       "files": [
         {
@@ -1302,7 +1324,8 @@
         "https://seamui.dev/r/utils.json",
         "https://seamui.dev/r/motion.json",
         "https://seamui.dev/r/button.json",
-        "https://seamui.dev/r/agent-status.json"
+        "https://seamui.dev/r/agent-status.json",
+        "https://seamui.dev/r/use-copy.json"
       ],
       "files": [
         {

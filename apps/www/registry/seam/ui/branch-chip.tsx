@@ -1,6 +1,6 @@
 "use client"
 
-import * as React from "react"
+import type * as React from "react"
 import { AnimatePresence, motion } from "motion/react"
 import {
   ArrowDown,
@@ -15,6 +15,7 @@ import {
 
 import { cn } from "@/lib/utils"
 import { fades } from "@/lib/motion"
+import { useCopy } from "@/lib/use-copy"
 import { Badge, badgeVariants } from "./badge"
 import { Button } from "./button"
 
@@ -68,17 +69,10 @@ function BranchChip({
   className,
   ...props
 }: BranchChipProps) {
-  const [copied, setCopied] = React.useState(false)
+  const { copied, copy } = useCopy()
 
-  const copy = async () => {
-    try {
-      await navigator.clipboard.writeText(branch)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
-      onCopy?.(branch)
-    } catch {
-      // clipboard unavailable (insecure context) — silently no-op
-    }
+  const handleCopy = async () => {
+    if (await copy(branch)) onCopy?.(branch)
   }
 
   const sync =
@@ -146,7 +140,7 @@ function BranchChip({
       data-slot="branch-chip"
       variant="secondary"
       size="sm"
-      onClick={copy}
+      onClick={handleCopy}
       aria-label={copied ? "Copied" : `Copy branch name ${branch}`}
       className={cn(
         "h-7 gap-1.5 px-2.5 font-mono text-xs font-normal",

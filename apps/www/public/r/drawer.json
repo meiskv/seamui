@@ -5,10 +5,12 @@
   "title": "Drawer",
   "description": "Mobile bottom-sheet built on Base UI's native swipe-to-dismiss engine.",
   "dependencies": [
-    "@base-ui/react"
+    "@base-ui/react",
+    "motion"
   ],
   "registryDependencies": [
-    "https://seamui.dev/r/utils.json"
+    "https://seamui.dev/r/utils.json",
+    "https://seamui.dev/r/motion.json"
   ],
   "files": [
     {
