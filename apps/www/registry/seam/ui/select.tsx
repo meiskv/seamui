@@ -6,9 +6,26 @@ import { Check, ChevronDown } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { condense } from "@/lib/motion"
+import { useHaptics } from "@/lib/haptics"
 
-function Select(props: React.ComponentProps<typeof BaseSelect.Root>) {
-  return <BaseSelect.Root {...props} />
+function Select({
+  onValueChange,
+  ...props
+}: React.ComponentProps<typeof BaseSelect.Root>) {
+  // Committing a selection is a state change — fire the seam tick (§3b), the
+  // same feedback RadioGroup gives for the same pick-one semantic.
+  const { trigger } = useHaptics()
+  return (
+    <BaseSelect.Root
+      onValueChange={(
+        ...args: Parameters<NonNullable<typeof onValueChange>>
+      ) => {
+        trigger("tick")
+        onValueChange?.(...args)
+      }}
+      {...props}
+    />
+  )
 }
 
 function SelectValue(props: React.ComponentProps<typeof BaseSelect.Value>) {

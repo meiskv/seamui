@@ -454,7 +454,8 @@
       ],
       "registryDependencies": [
         "https://seamui.dev/r/utils.json",
-        "https://seamui.dev/r/motion.json"
+        "https://seamui.dev/r/motion.json",
+        "https://seamui.dev/r/haptics.json"
       ],
       "files": [
         {
@@ -476,7 +477,8 @@
       ],
       "registryDependencies": [
         "https://seamui.dev/r/utils.json",
-        "https://seamui.dev/r/motion.json"
+        "https://seamui.dev/r/motion.json",
+        "https://seamui.dev/r/haptics.json"
       ],
       "files": [
         {
@@ -519,7 +521,8 @@
       "registryDependencies": [
         "https://seamui.dev/r/utils.json",
         "https://seamui.dev/r/motion.json",
-        "https://seamui.dev/r/button.json"
+        "https://seamui.dev/r/button.json",
+        "https://seamui.dev/r/haptics.json"
       ],
       "files": [
         {
