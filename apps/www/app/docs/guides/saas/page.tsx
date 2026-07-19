@@ -5,6 +5,7 @@ import { Section } from "@/components/docs/section"
 import { CodeBlock } from "@/registry/seam/ui/code-block"
 import { exampleSource } from "@/lib/registry-source"
 import AuthBlock from "@/registry/seam/examples/auth-block"
+import SettingsBlock from "@/registry/seam/examples/settings-block"
 
 export const metadata: Metadata = {
   title: "Building a SaaS app — seamui",
@@ -45,12 +46,27 @@ export default function SaasGuide() {
         <CodeBlock code={exampleSource("auth-block")} language="tsx" />
       </Section>
 
+      <Section title="Settings — tabs, switches, and a danger zone">
+        <p className="text-muted-foreground text-sm">
+          Tabs hold the sections; the General tab is a validated Form (Field +
+          Input + a Field-wrapped Select), Notifications are Switch rows that
+          tick as they commit, and the danger zone pairs a destructive{" "}
+          <Link
+            className="hover:text-foreground underline"
+            href="/docs/components/alert"
+          >
+            Alert
+          </Link>{" "}
+          with an AlertDialog so deletion takes two deliberate steps.
+        </p>
+        <div className="squircle bg-background my-4 flex justify-center rounded-xl border p-6">
+          <SettingsBlock />
+        </div>
+        <CodeBlock code={exampleSource("settings-block")} language="tsx" />
+      </Section>
+
       <Section title="Coming next">
         <ul className="text-muted-foreground list-disc space-y-1 pl-5 text-sm">
-          <li>
-            <strong>Settings</strong> — Tabs + Field/Form + Switch + Select,
-            with an AlertDialog danger zone.
-          </li>
           <li>
             <strong>Team members</strong> — Data Table + row actions + an invite
             Dialog.

@@ -4851,6 +4851,31 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "settings-block",
+      "type": "registry:example",
+      "title": "Settings Block",
+      "registryDependencies": [
+        "https://seamui.dev/r/card.json",
+        "https://seamui.dev/r/tabs.json",
+        "https://seamui.dev/r/form.json",
+        "https://seamui.dev/r/field.json",
+        "https://seamui.dev/r/input.json",
+        "https://seamui.dev/r/label.json",
+        "https://seamui.dev/r/select.json",
+        "https://seamui.dev/r/switch.json",
+        "https://seamui.dev/r/avatar.json",
+        "https://seamui.dev/r/button.json",
+        "https://seamui.dev/r/alert.json",
+        "https://seamui.dev/r/alert-dialog.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/settings-block.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }
