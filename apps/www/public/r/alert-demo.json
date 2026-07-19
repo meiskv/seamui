@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "alert-demo",
+  "type": "registry:example",
+  "title": "Alert Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/alert.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/alert-demo.tsx",
+      "content": "import { MailCheck } from \"lucide-react\"\n\nimport { Alert, AlertDescription, AlertTitle } from \"@/registry/seam/ui/alert\"\n\nexport default function AlertDemo() {\n  return (\n    <Alert className=\"max-w-md\">\n      <MailCheck />\n      <AlertTitle>Check your inbox</AlertTitle>\n      <AlertDescription>\n        We sent a verification link to your email address. It expires in 24\n        hours.\n      </AlertDescription>\n    </Alert>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

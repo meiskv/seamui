@@ -66,6 +66,7 @@ const COMPONENTS = [
     title: "Collapsible",
     desc: "Single expandable region.",
   },
+  { name: "alert", title: "Alert", desc: "Persistent inline callout." },
   { name: "progress", title: "Progress", desc: "Eased task-completion fill." },
   { name: "meter", title: "Meter", desc: "Static measurement in a range." },
   {

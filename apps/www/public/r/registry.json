@@ -733,6 +733,25 @@
       ]
     },
     {
+      "name": "alert",
+      "type": "registry:ui",
+      "title": "Alert",
+      "description": "Static inline callout for persistent state — the debossed counterpart to toast.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/alert.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/alert.tsx"
+        }
+      ]
+    },
+    {
       "name": "card",
       "type": "registry:ui",
       "title": "Card",
@@ -4358,6 +4377,48 @@
       "files": [
         {
           "path": "registry/seam/examples/form-errors.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "alert-demo",
+      "type": "registry:example",
+      "title": "Alert Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/alert.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/alert-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "alert-destructive",
+      "type": "registry:example",
+      "title": "Alert Destructive",
+      "registryDependencies": [
+        "https://seamui.dev/r/alert.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/alert-destructive.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "alert-title-only",
+      "type": "registry:example",
+      "title": "Alert Title Only",
+      "registryDependencies": [
+        "https://seamui.dev/r/alert.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/alert-title-only.tsx",
           "type": "registry:example"
         }
       ]

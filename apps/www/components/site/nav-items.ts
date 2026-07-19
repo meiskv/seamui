@@ -68,6 +68,7 @@ export const NAV: NavGroup[] = [
   {
     title: "Feedback",
     items: [
+      c("alert", "Alert"),
       c("progress", "Progress"),
       c("meter", "Meter"),
       c("toast", "Toast"),
