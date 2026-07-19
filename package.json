@@ -19,7 +19,7 @@
     "test:e2e": "bun run --cwd apps/www test:e2e",
     "drift:check": "bun run scripts/check-drift.ts",
     "smoke": "bun run scripts/release-smoke.ts",
-    "verify": "bun run lint && bun run typecheck && bun run motion:check && bun run test && bun run drift:check"
+    "verify": "bun run lint && bun run typecheck && bun run motion:check && bun run test:coverage && bun run drift:check"
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.3"

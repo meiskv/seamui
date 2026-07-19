@@ -405,7 +405,7 @@ packages/seamui/            # the `seamui` CLI (thin wrapper over shadcn)
 
 - `bun run dev` — docs site.
 - `bun run registry:build` — compile `registry/` → `public/r/*.json`. **Run after every registry change; commit the JSON.**
-- `bun run verify` — the fast CI gates in one shot: `lint` (Biome) + `typecheck` (app **and** CLI) + `motion:check` + `test` (Vitest) + `drift:check`.
+- `bun run verify` — the fast CI gates in one shot: `lint` (Biome) + `typecheck` (app **and** CLI) + `motion:check` + `test:coverage` (Vitest **with the CI coverage thresholds** — plain `test` skips them and green-lights code the coverage gate will reject) + `drift:check`.
 - Individual gates: `bun run lint`, `bun run typecheck`, `bun run motion:check`, `bun run test` / `test:coverage`, `bun run drift:check`, `bun run smoke`, `bun run test:e2e` (Playwright). All six CI jobs live in `.github/workflows/ci.yml`; see CONTRIBUTING.md → "Quality gates".
 - `bun run motion:check` mechanically enforces §3/§5 (no reduced-motion kill switches, no inline springs/durations). Ambient infinite-repeat exceptions go in `scripts/motion-contract-allow.txt` with a justification.
 
