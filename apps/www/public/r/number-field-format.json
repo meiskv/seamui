@@ -9,7 +9,7 @@
   "files": [
     {
       "path": "registry/seam/examples/number-field-format.tsx",
-      "content": "import { NumberField } from \"@/registry/seam/ui/number-field\"\n\nexport default function NumberFieldFormat() {\n  return (\n    <NumberField\n      defaultValue={9}\n      min={0}\n      step={1}\n      format={{ style: \"currency\", currency: \"USD\" }}\n    />\n  )\n}\n",
+      "content": "import {\n  NumberField,\n  NumberFieldDecrement,\n  NumberFieldGroup,\n  NumberFieldIncrement,\n  NumberFieldInput,\n} from \"@/registry/seam/ui/number-field\"\n\nexport default function NumberFieldFormat() {\n  return (\n    <NumberField\n      defaultValue={9}\n      min={0}\n      step={1}\n      format={{ style: \"currency\", currency: \"USD\" }}\n    >\n      <NumberFieldGroup>\n        <NumberFieldDecrement />\n        <NumberFieldInput aria-label=\"Price\" className=\"w-20\" />\n        <NumberFieldIncrement />\n      </NumberFieldGroup>\n    </NumberField>\n  )\n}\n",
       "type": "registry:example"
     }
   ]
