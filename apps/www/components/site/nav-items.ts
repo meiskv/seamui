@@ -66,6 +66,7 @@ export const NAV: NavGroup[] = [
       c("scroll-area", "Scroll Area"),
       c("aspect-ratio", "Aspect Ratio"),
       c("breadcrumb", "Breadcrumb"),
+      c("pagination", "Pagination"),
     ],
   },
   {

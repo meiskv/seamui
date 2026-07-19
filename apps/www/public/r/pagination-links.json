@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pagination-links",
+  "type": "registry:example",
+  "title": "Pagination Links",
+  "registryDependencies": [
+    "https://seamui.dev/r/pagination.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/pagination-links.tsx",
+      "content": "import {\n  Pagination,\n  PaginationContent,\n  PaginationItem,\n  PaginationLink,\n  PaginationNext,\n  PaginationPrevious,\n} from \"@/registry/seam/ui/pagination\"\n\n// Plain href navigation — what a server-rendered list page uses.\nexport default function PaginationLinks() {\n  return (\n    <Pagination>\n      <PaginationContent>\n        <PaginationItem>\n          <PaginationPrevious href=\"#page-1\" />\n        </PaginationItem>\n        <PaginationItem>\n          <PaginationLink href=\"#page-1\">1</PaginationLink>\n        </PaginationItem>\n        <PaginationItem>\n          <PaginationLink href=\"#page-2\" isActive>\n            2\n          </PaginationLink>\n        </PaginationItem>\n        <PaginationItem>\n          <PaginationLink href=\"#page-3\">3</PaginationLink>\n        </PaginationItem>\n        <PaginationItem>\n          <PaginationNext href=\"#page-3\" />\n        </PaginationItem>\n      </PaginationContent>\n    </Pagination>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

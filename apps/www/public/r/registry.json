@@ -4412,6 +4412,29 @@
       ]
     },
     {
+      "name": "pagination",
+      "type": "registry:ui",
+      "title": "Pagination",
+      "description": "Page links in a debossed well; the active page is an embossed key that springs between links.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json",
+        "https://seamui.dev/r/haptics.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/pagination.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/pagination.tsx"
+        }
+      ]
+    },
+    {
       "name": "aspect-ratio",
       "type": "registry:ui",
       "title": "Aspect Ratio",
@@ -4569,6 +4592,48 @@
       "files": [
         {
           "path": "registry/seam/examples/alert-title-only.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "pagination-demo",
+      "type": "registry:example",
+      "title": "Pagination Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/pagination.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/pagination-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "pagination-links",
+      "type": "registry:example",
+      "title": "Pagination Links",
+      "registryDependencies": [
+        "https://seamui.dev/r/pagination.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/pagination-links.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "pagination-simple",
+      "type": "registry:example",
+      "title": "Pagination Simple",
+      "registryDependencies": [
+        "https://seamui.dev/r/pagination.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/pagination-simple.tsx",
           "type": "registry:example"
         }
       ]

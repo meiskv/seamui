@@ -77,6 +77,11 @@ const COMPONENTS = [
     title: "Breadcrumb",
     desc: "Current page's location.",
   },
+  {
+    name: "pagination",
+    title: "Pagination",
+    desc: "Active page key in a well.",
+  },
   { name: "alert", title: "Alert", desc: "Persistent inline callout." },
   { name: "progress", title: "Progress", desc: "Eased task-completion fill." },
   { name: "meter", title: "Meter", desc: "Static measurement in a range." },
