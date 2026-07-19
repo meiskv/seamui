@@ -4,12 +4,13 @@
   "type": "registry:example",
   "title": "Input Invalid",
   "registryDependencies": [
+    "https://seamui.dev/r/field.json",
     "https://seamui.dev/r/input.json"
   ],
   "files": [
     {
       "path": "registry/seam/examples/input-invalid.tsx",
-      "content": "import { Input } from \"@/registry/seam/ui/input\"\n\nexport default function InputInvalid() {\n  return (\n    <div className=\"grid w-full max-w-xs gap-1.5\">\n      <Input\n        type=\"email\"\n        defaultValue=\"not-an-email\"\n        aria-invalid\n        aria-describedby=\"email-error\"\n        className=\"w-full\"\n      />\n      <p id=\"email-error\" className=\"text-destructive text-xs\">\n        Enter a valid email address.\n      </p>\n    </div>\n  )\n}\n",
+      "content": "import { Field, FieldError } from \"@/registry/seam/ui/field\"\nimport { Input } from \"@/registry/seam/ui/input\"\n\n// Invalid state comes from the surrounding Field: `invalid` paints the well\n// destructive via data-[invalid], and FieldError carries the message with\n// the aria wiring (and the shake, when the error appears after load).\nexport default function InputInvalid() {\n  return (\n    <Field name=\"email\" invalid className=\"max-w-xs\">\n      <Input type=\"email\" defaultValue=\"not-an-email\" />\n      <FieldError match>Enter a valid email address.</FieldError>\n    </Field>\n  )\n}\n",
       "type": "registry:example"
     }
   ]

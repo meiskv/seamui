@@ -6,6 +6,7 @@ import { exampleSource } from "@/lib/registry-source"
 import FieldDemo from "@/registry/seam/examples/field-demo"
 import FieldInvalid from "@/registry/seam/examples/field-invalid"
 import FieldTextarea from "@/registry/seam/examples/field-textarea"
+import FieldFieldset from "@/registry/seam/examples/field-fieldset"
 import FieldDisabled from "@/registry/seam/examples/field-disabled"
 
 export const metadata: Metadata = {
@@ -45,6 +46,14 @@ export default function FieldDocs() {
             title: "Textarea",
             component: <FieldTextarea />,
             code: exampleSource("field-textarea"),
+          },
+          {
+            key: "fieldset",
+            title: "Fieldset",
+            component: <FieldFieldset />,
+            code: exampleSource("field-fieldset"),
+            description:
+              "Fieldset + legend group related fields; FieldItem scopes a label to one option.",
           },
           {
             key: "disabled",
@@ -101,9 +110,13 @@ export default function FieldDocs() {
           through <code>&lt;FieldControl render={"{<Textarea />}"} /&gt;</code>.
         </li>
         <li>
-          FieldError mounts only while the field is invalid: it shakes in
-          (opacity-only under reduced motion) and fires the <code>error</code>{" "}
-          haptic — the same rejected-input pattern as the OTP field.
+          FieldError fires the seam error signal — a shake (an opacity flash
+          under reduced motion) plus the <code>error</code> haptic — when an
+          error <em>appears</em>: on validation after user input, or when a
+          message lands via <code>match</code> / the Form&apos;s{" "}
+          <code>errors</code>. Errors already present at first paint render
+          statically, and simultaneous field failures coalesce into one haptic.
+          A custom <code>render</code> element keeps the signal.
         </li>
         <li>
           Without children, FieldError renders the message from{" "}
@@ -113,7 +126,13 @@ export default function FieldDocs() {
         </li>
         <li>
           Fieldset and FieldsetLegend group related fields under one heading;
-          FieldItem labels one option inside checkbox or radio groups.
+          FieldItem labels one option inside checkbox or radio groups (see the
+          Fieldset example).
+        </li>
+        <li>
+          FieldValidity is a render-prop escape hatch: it exposes the
+          control&apos;s raw <code>ValidityState</code> for fully custom
+          messaging, and renders no DOM of its own.
         </li>
       </Notes>
     </main>

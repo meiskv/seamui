@@ -60,8 +60,20 @@ export default function InputDocs() {
           surfaces.
         </li>
         <li>
-          Pair with Base UI <code>Field</code> for accessible labels and error
-          messages; invalid state is exposed via <code>data-[invalid]</code>.
+          Pair with seamui&apos;s{" "}
+          <a
+            className="hover:text-foreground underline"
+            href="/docs/components/field"
+          >
+            Field
+          </a>{" "}
+          for labels, descriptions, and shaking error messages; invalid state
+          flows in via <code>data-[invalid]</code> (see the Invalid example).
+        </li>
+        <li>
+          File inputs center their row through a line-height tied to the default{" "}
+          <code>h-10</code>; if you resize one, override it with the same{" "}
+          <code>[&amp;[type=file]]:leading-*</code> variant.
         </li>
       </Notes>
     </main>
