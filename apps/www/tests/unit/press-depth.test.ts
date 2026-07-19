@@ -18,6 +18,18 @@ vi.mock("motion/react", async (importOriginal) => {
 
 import { depth, fades, reduced, springs, usePressDepth } from "@/lib/motion"
 
+// The merger is generic over the incoming props; give the empty case an
+// explicit shape so the returned handlers are visible to the type checker.
+type PressProps = {
+  onPointerDown?: React.PointerEventHandler<HTMLElement>
+  onPointerUp?: React.PointerEventHandler<HTMLElement>
+  onPointerCancel?: React.PointerEventHandler<HTMLElement>
+  onPointerLeave?: React.PointerEventHandler<HTMLElement>
+  onKeyDown?: React.KeyboardEventHandler<HTMLElement>
+  onKeyUp?: React.KeyboardEventHandler<HTMLElement>
+}
+const empty: PressProps = {}
+
 function pointerEvent(button = 0) {
   return {
     button,
@@ -41,7 +53,7 @@ describe("usePressDepth", () => {
 
   it("presses with depth.pressed + springs.press and settles with depth.resting + springs.snappy", () => {
     const { result } = renderHook(() => usePressDepth())
-    const props = result.current({})
+    const props = result.current(empty)
 
     const down = pointerEvent()
     props.onPointerDown?.(down)
@@ -71,17 +83,17 @@ describe("usePressDepth", () => {
 
   it("ignores non-primary buttons and does nothing when disabled", () => {
     const { result: disabled } = renderHook(() => usePressDepth(true))
-    disabled.current({}).onPointerDown?.(pointerEvent())
+    disabled.current(empty).onPointerDown?.(pointerEvent())
     expect(animateMock).not.toHaveBeenCalled()
 
     const { result } = renderHook(() => usePressDepth())
-    result.current({}).onPointerDown?.(pointerEvent(2))
+    result.current(empty).onPointerDown?.(pointerEvent(2))
     expect(animateMock).not.toHaveBeenCalled()
   })
 
   it("presses on keyboard activation (Enter/Space), ignoring repeats and other keys", () => {
     const { result } = renderHook(() => usePressDepth())
-    const props = result.current({})
+    const props = result.current(empty)
 
     props.onKeyDown?.(keyEvent("Enter"))
     props.onKeyDown?.(keyEvent(" "))
@@ -99,7 +111,7 @@ describe("usePressDepth", () => {
 
   it("settles on pointer cancel and leave too", () => {
     const { result } = renderHook(() => usePressDepth())
-    const props = result.current({})
+    const props = result.current(empty)
     props.onPointerCancel?.(pointerEvent())
     props.onPointerLeave?.(pointerEvent())
     expect(animateMock).toHaveBeenCalledTimes(2)
@@ -111,7 +123,7 @@ describe("usePressDepth", () => {
   it("reduced motion: dims via reduced.pressed + fades.fast, never moves (§5b — variant, not kill switch)", () => {
     reducedMotion = true
     const { result } = renderHook(() => usePressDepth())
-    const props = result.current({})
+    const props = result.current(empty)
 
     const down = pointerEvent()
     props.onPointerDown?.(down)
