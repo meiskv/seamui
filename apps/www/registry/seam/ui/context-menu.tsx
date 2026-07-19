@@ -66,6 +66,12 @@ function ContextMenuItem({
   )
 }
 
+function ContextMenuGroup(
+  props: React.ComponentProps<typeof BaseContextMenu.Group>
+) {
+  return <BaseContextMenu.Group data-slot="context-menu-group" {...props} />
+}
+
 // Plain styled label so it works standalone (matching the shadcn API); Base
 // UI's GroupLabel requires a wrapping Menu.Group. Use ContextMenuGroup for a
 // labelled group.
@@ -103,6 +109,7 @@ export {
   ContextMenuTrigger,
   ContextMenuContent,
   ContextMenuItem,
+  ContextMenuGroup,
   ContextMenuLabel,
   ContextMenuSeparator,
 }

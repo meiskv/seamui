@@ -76,7 +76,10 @@ function VoiceControlBarPanel({
     <div
       data-slot="voice-control-bar-panel"
       data-expanded={expanded || undefined}
-      aria-hidden={!expanded}
+      // `inert` when collapsed keeps the panel's inputs/buttons out of the tab
+      // order and the a11y tree (superset of aria-hidden) — a collapsed panel
+      // shouldn't be keyboard-reachable while it's visually hidden.
+      inert={!expanded}
       className={cn(
         "grid transition-[grid-template-rows] duration-300 ease-out motion-reduce:transition-none",
         expanded ? "grid-rows-[1fr]" : "grid-rows-[0fr]"

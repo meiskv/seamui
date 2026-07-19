@@ -9,6 +9,7 @@ import {
   type RowSelectionState,
   type SortingState,
   type Table as TanstackTable,
+  type TableOptions,
   type VisibilityState,
   flexRender,
   getCoreRowModel,
@@ -39,7 +40,7 @@ import {
   TableHeader,
   TableRow,
 } from "./table"
-import { Button } from "./button"
+import { Button, buttonVariants } from "./button"
 import { Input } from "./input"
 import {
   Select,
@@ -85,6 +86,15 @@ interface DataTableProps<TData, TValue> {
   /** Accessible name for the scrollable table region. */
   label?: string
   className?: string
+  /**
+   * Escape hatch merged into `useReactTable`. Pass controlled `state` +
+   * `on*Change`, `manualPagination`/`manualSorting`/`manualFiltering` with
+   * `pageCount`/`rowCount` for server-side data, or any other TanStack option.
+   * A `state` here shallow-merges over the built-in slices, and an
+   * `on*Change` overrides the matching built-in setter, so you can control one
+   * slice (e.g. sorting) and leave the rest internal.
+   */
+  options?: Partial<TableOptions<TData>>
 }
 
 function DataTable<TData, TValue>({
@@ -97,6 +107,7 @@ function DataTable<TData, TValue>({
   pageSize = 10,
   label,
   className,
+  options,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>([])
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
@@ -107,32 +118,47 @@ function DataTable<TData, TValue>({
     React.useState<VisibilityState>({})
 
   const table = useReactTable({
-    data,
-    columns,
     getRowId,
-    state: { sorting, columnFilters, rowSelection, columnVisibility },
-    onSortingChange: setSorting,
-    onColumnFiltersChange: setColumnFilters,
-    onRowSelectionChange: setRowSelection,
-    onColumnVisibilityChange: setColumnVisibility,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: pagination ? getPaginationRowModel() : undefined,
     initialState: { pagination: { pageSize } },
-    meta: { updateData: onDataChange },
+    // Consumer options override the framework defaults above…
+    ...options,
+    // …but data/columns/state/setters/meta stay controlled here, merging any
+    // slice the consumer chose to take over.
+    data,
+    columns,
+    state: {
+      sorting,
+      columnFilters,
+      rowSelection,
+      columnVisibility,
+      ...options?.state,
+    },
+    onSortingChange: options?.onSortingChange ?? setSorting,
+    onColumnFiltersChange: options?.onColumnFiltersChange ?? setColumnFilters,
+    onRowSelectionChange: options?.onRowSelectionChange ?? setRowSelection,
+    onColumnVisibilityChange:
+      options?.onColumnVisibilityChange ?? setColumnVisibility,
+    meta: { updateData: onDataChange, ...options?.meta },
   })
 
   const rows = table.getRowModel().rows
   const columnCount = table.getVisibleFlatColumns().length
-  const { pageIndex } = table.getState().pagination
-  // Signature of what's on screen — changing it refades the body.
-  const reflowKey = `${pageIndex}:${JSON.stringify(sorting)}:${JSON.stringify(
-    columnFilters
-  )}`
+  const tableState = table.getState()
+  // Signature of what's on screen — changing it refades the body. Read from
+  // the live table state so it tracks reflows in controlled mode too.
+  const reflowKey = `${tableState.pagination.pageIndex}:${JSON.stringify(
+    tableState.sorting
+  )}:${JSON.stringify(tableState.columnFilters)}`
 
   return (
-    <div className={cn("flex flex-col gap-3", className)}>
+    <div
+      data-slot="data-table"
+      className={cn("flex flex-col gap-3", className)}
+    >
       {toolbar?.(table)}
       <Table aria-label={label}>
         <TableHeader>
@@ -295,9 +321,11 @@ const PAGE_SIZES = [10, 20, 30, 50] as const
 
 function DataTablePagination<TData>({
   table,
+  className,
+  ...props
 }: {
   table: TanstackTable<TData>
-}) {
+} & Omit<React.ComponentProps<"div">, "children">) {
   const { pageIndex, pageSize } = table.getState().pagination
   const pageCount = Math.max(table.getPageCount(), 1)
   const selected = table.getFilteredSelectedRowModel().rows.length
@@ -309,7 +337,14 @@ function DataTablePagination<TData>({
   )
 
   return (
-    <div className="flex flex-col gap-3 px-1 sm:flex-row sm:items-center sm:justify-between">
+    <div
+      data-slot="data-table-pagination"
+      className={cn(
+        "flex flex-col gap-3 px-1 sm:flex-row sm:items-center sm:justify-between",
+        className
+      )}
+      {...props}
+    >
       <p className="text-muted-foreground text-sm" aria-live="polite">
         {selected > 0
           ? `${selected} of ${total} row${total === 1 ? "" : "s"} selected`
@@ -476,9 +511,12 @@ function DataTableEditableCell({
         type="button"
         data-slot="data-table-edit-trigger"
         onClick={begin}
+        // Dogfoods the foundation's ghost button (base classes + focus ring) on
+        // the native element — the cell owns triggerRef for refocus, so it stays
+        // a plain <button> rather than the Button component (§5A option 2).
         className={cn(
-          "hover:bg-muted/60 flex h-8 w-full items-center rounded-md squircle px-2 text-sm outline-none",
-          "focus-visible:ring-2 focus-visible:ring-ring/50",
+          buttonVariants({ variant: "ghost", size: "sm" }),
+          "hover:bg-muted/60 h-8 w-full justify-start px-2 font-normal",
           align === "right" && "justify-end text-right",
           className
         )}

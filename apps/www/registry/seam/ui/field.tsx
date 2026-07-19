@@ -8,6 +8,7 @@ import { motion, useReducedMotion } from "motion/react"
 import { cn } from "@/lib/utils"
 import { reduced, shake, useMounted } from "@/lib/motion"
 import { useHaptics } from "@/lib/haptics"
+import { Input } from "./input"
 
 function Field({
   className,
@@ -39,14 +40,21 @@ function FieldLabel({
   )
 }
 
-// The styled control is seamui's Input — Base UI's Input part is Field-aware
-// on its own, so `<Field><Input /></Field>` wires up automatically. This thin
-// unstyled wrapper exists for the `render` composition: wiring a control that
-// isn't an input into the field, e.g. <FieldControl render={<Textarea />} />.
+// Renders the seam Input by default (dogfooding: debossed well, focus ring,
+// invalid styling for free); pass `render` to wire any other control into the
+// field, e.g. <FieldControl render={<Textarea />} />. Dropping a seam
+// Input/Textarea directly inside <Field> works too — they're Field-aware.
 function FieldControl({
+  render,
   ...props
 }: React.ComponentProps<typeof BaseField.Control>) {
-  return <BaseField.Control data-slot="field-control" {...props} />
+  return (
+    <BaseField.Control
+      data-slot="field-control"
+      render={render ?? <Input />}
+      {...props}
+    />
+  )
 }
 
 function FieldDescription({

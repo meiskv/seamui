@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "label-demo",
+  "type": "registry:example",
+  "title": "Label Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/label.json",
+    "https://seamui.dev/r/input.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/label-demo.tsx",
+      "content": "import { Label } from \"@/registry/seam/ui/label\"\nimport { Input } from \"@/registry/seam/ui/input\"\n\nexport default function LabelDemo() {\n  return (\n    <div className=\"flex w-72 flex-col gap-2\">\n      <Label htmlFor=\"name\">Name</Label>\n      <Input id=\"name\" placeholder=\"Ada Lovelace\" />\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

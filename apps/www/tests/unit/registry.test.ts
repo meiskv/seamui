@@ -7,6 +7,7 @@ type RegistryItem = {
   name: string
   type: string
   files?: RegistryFile[]
+  dependencies?: string[]
   registryDependencies?: string[]
 }
 type Registry = { items: RegistryItem[] }
@@ -53,6 +54,61 @@ describe("registry.json integrity", () => {
         ).toBe(true)
       }
     }
+  })
+
+  it("declares an npm/registry dependency for every import each ui file makes", () => {
+    // Maps a `@/lib/*` foundation import to the registry item it installs.
+    const FOUNDATION: Record<string, string> = {
+      "@/lib/utils": "utils",
+      "@/lib/motion": "motion",
+      "@/lib/haptics": "haptics",
+      "@/lib/use-copy": "use-copy",
+    }
+    // The npm package name for a bare specifier: scoped keeps the first two
+    // segments (`@base-ui/react/menu` → `@base-ui/react`), unscoped keeps the
+    // first (`motion/react` → `motion`, `shiki/core` → `shiki`).
+    const pkgOf = (spec: string) => {
+      const parts = spec.split("/")
+      return spec.startsWith("@") ? `${parts[0]}/${parts[1]}` : parts[0]
+    }
+    const hasRegDep = (item: RegistryItem, endpoint: string) =>
+      (item.registryDependencies ?? []).some((d) =>
+        d.endsWith(`/${endpoint}.json`)
+      )
+
+    const problems: string[] = []
+    for (const item of registry.items.filter((i) => i.type === "registry:ui")) {
+      for (const file of item.files ?? []) {
+        if (!file.path.endsWith(".tsx")) continue
+        const src = readFileSync(resolve(root, file.path), "utf8")
+        const specs = [...src.matchAll(/from\s+"([^"]+)"/g)].map((m) => m[1])
+        const deps = new Set(item.dependencies ?? [])
+        for (const spec of specs) {
+          if (spec in FOUNDATION) {
+            if (!hasRegDep(item, FOUNDATION[spec]))
+              problems.push(
+                `${item.name}: imports ${spec} but missing registryDependency ${FOUNDATION[spec]}.json`
+              )
+          } else if (spec.startsWith("./") || spec.startsWith("../")) {
+            const endpoint = spec.split("/").pop() as string
+            // Only sibling seam components are registry items; skip local files.
+            if (names.has(endpoint) && !hasRegDep(item, endpoint))
+              problems.push(
+                `${item.name}: imports ${spec} but missing registryDependency ${endpoint}.json`
+              )
+          } else if (spec === "react" || spec.startsWith("react/")) {
+            // React is a peer dependency, never declared in the registry.
+          } else {
+            const pkg = pkgOf(spec)
+            if (!deps.has(pkg))
+              problems.push(
+                `${item.name}: imports "${spec}" but missing npm dependency "${pkg}"`
+              )
+          }
+        }
+      }
+    }
+    expect(problems, problems.join("\n")).toEqual([])
   })
 
   it("marks every ui component that uses hooks/motion as a client component", () => {

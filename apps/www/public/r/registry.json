@@ -65,6 +65,19 @@
       ]
     },
     {
+      "name": "use-copy",
+      "type": "registry:lib",
+      "title": "seam useCopy",
+      "description": "Copy-to-clipboard hook with a self-resetting \"copied\" flag, shared by every seamui copy affordance.",
+      "files": [
+        {
+          "path": "registry/seam/lib/use-copy.ts",
+          "type": "registry:lib",
+          "target": "lib/use-copy.ts"
+        }
+      ]
+    },
+    {
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
@@ -414,10 +427,12 @@
       "title": "Drawer",
       "description": "Mobile bottom-sheet built on Base UI's native swipe-to-dismiss engine.",
       "dependencies": [
-        "@base-ui/react"
+        "@base-ui/react",
+        "motion"
       ],
       "registryDependencies": [
-        "https://seamui.dev/r/utils.json"
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json"
       ],
       "files": [
         {
@@ -434,11 +449,13 @@
       "description": "Dropdown menu built on Base UI with seam overlay-depth entrance.",
       "dependencies": [
         "@base-ui/react",
-        "motion"
+        "motion",
+        "lucide-react"
       ],
       "registryDependencies": [
         "https://seamui.dev/r/utils.json",
-        "https://seamui.dev/r/motion.json"
+        "https://seamui.dev/r/motion.json",
+        "https://seamui.dev/r/haptics.json"
       ],
       "files": [
         {
@@ -460,7 +477,8 @@
       ],
       "registryDependencies": [
         "https://seamui.dev/r/utils.json",
-        "https://seamui.dev/r/motion.json"
+        "https://seamui.dev/r/motion.json",
+        "https://seamui.dev/r/haptics.json"
       ],
       "files": [
         {
@@ -503,7 +521,8 @@
       "registryDependencies": [
         "https://seamui.dev/r/utils.json",
         "https://seamui.dev/r/motion.json",
-        "https://seamui.dev/r/button.json"
+        "https://seamui.dev/r/button.json",
+        "https://seamui.dev/r/haptics.json"
       ],
       "files": [
         {
@@ -520,10 +539,12 @@
       "description": "Accordion built on Base UI with eased height animation.",
       "dependencies": [
         "@base-ui/react",
+        "motion",
         "lucide-react"
       ],
       "registryDependencies": [
-        "https://seamui.dev/r/utils.json"
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json"
       ],
       "files": [
         {
@@ -619,7 +640,8 @@
       "title": "OTP Field",
       "description": "One-time-code input built on Base UI.",
       "dependencies": [
-        "@base-ui/react"
+        "@base-ui/react",
+        "motion"
       ],
       "registryDependencies": [
         "https://seamui.dev/r/utils.json",
@@ -664,6 +686,7 @@
       ],
       "registryDependencies": [
         "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json",
         "https://seamui.dev/r/button.json"
       ],
       "files": [
@@ -687,67 +710,6 @@
           "path": "registry/seam/ui/textarea.tsx",
           "type": "registry:ui",
           "target": "components/ui/textarea.tsx"
-        }
-      ]
-    },
-    {
-      "name": "field",
-      "type": "registry:ui",
-      "title": "Field",
-      "description": "Base UI Field wrappers — label, description, and an error that shakes in, with the error haptic.",
-      "dependencies": [
-        "@base-ui/react",
-        "motion"
-      ],
-      "registryDependencies": [
-        "https://seamui.dev/r/utils.json",
-        "https://seamui.dev/r/motion.json",
-        "https://seamui.dev/r/haptics.json"
-      ],
-      "files": [
-        {
-          "path": "registry/seam/ui/field.tsx",
-          "type": "registry:ui",
-          "target": "components/ui/field.tsx"
-        }
-      ]
-    },
-    {
-      "name": "form",
-      "type": "registry:ui",
-      "title": "Form",
-      "description": "Native form with consolidated error handling built on Base UI; pairs with Field.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
-      "registryDependencies": [
-        "https://seamui.dev/r/utils.json",
-        "https://seamui.dev/r/field.json"
-      ],
-      "files": [
-        {
-          "path": "registry/seam/ui/form.tsx",
-          "type": "registry:ui",
-          "target": "components/ui/form.tsx"
-        }
-      ]
-    },
-    {
-      "name": "alert",
-      "type": "registry:ui",
-      "title": "Alert",
-      "description": "Static inline callout for persistent state — the debossed counterpart to toast.",
-      "dependencies": [
-        "class-variance-authority"
-      ],
-      "registryDependencies": [
-        "https://seamui.dev/r/utils.json"
-      ],
-      "files": [
-        {
-          "path": "registry/seam/ui/alert.tsx",
-          "type": "registry:ui",
-          "target": "components/ui/alert.tsx"
         }
       ]
     },
@@ -940,7 +902,8 @@
         "https://seamui.dev/r/utils.json",
         "https://seamui.dev/r/motion.json",
         "https://seamui.dev/r/badge.json",
-        "https://seamui.dev/r/button.json"
+        "https://seamui.dev/r/button.json",
+        "https://seamui.dev/r/use-copy.json"
       ],
       "files": [
         {
@@ -1178,7 +1141,8 @@
         "https://seamui.dev/r/utils.json",
         "https://seamui.dev/r/motion.json",
         "https://seamui.dev/r/button.json",
-        "https://seamui.dev/r/badge.json"
+        "https://seamui.dev/r/badge.json",
+        "https://seamui.dev/r/use-copy.json"
       ],
       "files": [
         {
@@ -1363,7 +1327,8 @@
         "https://seamui.dev/r/utils.json",
         "https://seamui.dev/r/motion.json",
         "https://seamui.dev/r/button.json",
-        "https://seamui.dev/r/agent-status.json"
+        "https://seamui.dev/r/agent-status.json",
+        "https://seamui.dev/r/use-copy.json"
       ],
       "files": [
         {
@@ -4273,6 +4238,95 @@
       ]
     },
     {
+      "name": "label",
+      "type": "registry:ui",
+      "title": "Label",
+      "description": "Accessible label for form controls.",
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/label.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/label.tsx"
+        }
+      ]
+    },
+    {
+      "name": "field",
+      "type": "registry:ui",
+      "title": "Field",
+      "description": "Base UI Field wrappers — label, description, and an error that shakes in, with the error haptic.",
+      "dependencies": [
+        "@base-ui/react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json",
+        "https://seamui.dev/r/haptics.json",
+        "https://seamui.dev/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/field.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/field.tsx"
+        }
+      ]
+    },
+    {
+      "name": "form",
+      "type": "registry:ui",
+      "title": "Form",
+      "description": "Native form with consolidated error handling built on Base UI; pairs with Field.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/field.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/form.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/form.tsx"
+        }
+      ]
+    },
+    {
+      "name": "label-demo",
+      "type": "registry:example",
+      "title": "Label Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/label.json",
+        "https://seamui.dev/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/label-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "label-checkbox",
+      "type": "registry:example",
+      "title": "Label Checkbox",
+      "registryDependencies": [
+        "https://seamui.dev/r/label.json",
+        "https://seamui.dev/r/checkbox.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/label-checkbox.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "field-demo",
       "type": "registry:example",
       "title": "Field Demo",
@@ -4283,6 +4337,162 @@
       "files": [
         {
           "path": "registry/seam/examples/field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "field-fieldset",
+      "type": "registry:example",
+      "title": "Field Fieldset",
+      "registryDependencies": [
+        "https://seamui.dev/r/field.json",
+        "https://seamui.dev/r/radio-group.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/field-fieldset.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "form-demo",
+      "type": "registry:example",
+      "title": "Form Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/form.json",
+        "https://seamui.dev/r/field.json",
+        "https://seamui.dev/r/input.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/form-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "title": "Alert",
+      "description": "Static inline callout for persistent state — the debossed counterpart to toast.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/alert.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/alert.tsx"
+        }
+      ]
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "title": "Breadcrumb",
+      "description": "Navigation hierarchy showing the current page's location.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/breadcrumb.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/breadcrumb.tsx"
+        }
+      ]
+    },
+    {
+      "name": "aspect-ratio",
+      "type": "registry:ui",
+      "title": "Aspect Ratio",
+      "description": "Constrains content to a fixed width-to-height ratio.",
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/aspect-ratio.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/aspect-ratio.tsx"
+        }
+      ]
+    },
+    {
+      "name": "alert-demo",
+      "type": "registry:example",
+      "title": "Alert Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/alert.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/alert-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "alert-destructive",
+      "type": "registry:example",
+      "title": "Alert Destructive",
+      "registryDependencies": [
+        "https://seamui.dev/r/alert.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/alert-destructive.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "breadcrumb-demo",
+      "type": "registry:example",
+      "title": "Breadcrumb Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/breadcrumb.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/breadcrumb-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "breadcrumb-ellipsis",
+      "type": "registry:example",
+      "title": "Breadcrumb Ellipsis",
+      "registryDependencies": [
+        "https://seamui.dev/r/breadcrumb.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/breadcrumb-ellipsis.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "aspect-ratio-demo",
+      "type": "registry:example",
+      "title": "Aspect Ratio Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/aspect-ratio.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/aspect-ratio-demo.tsx",
           "type": "registry:example"
         }
       ]
@@ -4333,38 +4543,6 @@
       ]
     },
     {
-      "name": "field-fieldset",
-      "type": "registry:example",
-      "title": "Field Fieldset",
-      "registryDependencies": [
-        "https://seamui.dev/r/field.json",
-        "https://seamui.dev/r/radio-group.json"
-      ],
-      "files": [
-        {
-          "path": "registry/seam/examples/field-fieldset.tsx",
-          "type": "registry:example"
-        }
-      ]
-    },
-    {
-      "name": "form-demo",
-      "type": "registry:example",
-      "title": "Form Demo",
-      "registryDependencies": [
-        "https://seamui.dev/r/form.json",
-        "https://seamui.dev/r/field.json",
-        "https://seamui.dev/r/input.json",
-        "https://seamui.dev/r/button.json"
-      ],
-      "files": [
-        {
-          "path": "registry/seam/examples/form-demo.tsx",
-          "type": "registry:example"
-        }
-      ]
-    },
-    {
       "name": "form-errors",
       "type": "registry:example",
       "title": "Form Errors",
@@ -4377,34 +4555,6 @@
       "files": [
         {
           "path": "registry/seam/examples/form-errors.tsx",
-          "type": "registry:example"
-        }
-      ]
-    },
-    {
-      "name": "alert-demo",
-      "type": "registry:example",
-      "title": "Alert Demo",
-      "registryDependencies": [
-        "https://seamui.dev/r/alert.json"
-      ],
-      "files": [
-        {
-          "path": "registry/seam/examples/alert-demo.tsx",
-          "type": "registry:example"
-        }
-      ]
-    },
-    {
-      "name": "alert-destructive",
-      "type": "registry:example",
-      "title": "Alert Destructive",
-      "registryDependencies": [
-        "https://seamui.dev/r/alert.json"
-      ],
-      "files": [
-        {
-          "path": "registry/seam/examples/alert-destructive.tsx",
           "type": "registry:example"
         }
       ]

@@ -38,7 +38,8 @@ const buttonVariants = cva(
   }
 )
 
-/** Variants that sit flat on the surface don't animate depth on press. */
+/** Variants with no resting shadow to compress: they press by dimming
+ *  (movement-free) rather than receding in z, so a scale-down doesn't read. */
 const FLAT_VARIANTS = new Set(["ghost", "link"])
 
 // motion.create() per element type, cached so re-renders reuse components.
@@ -81,12 +82,14 @@ function Button({
   // recede into the surface, spring back on release. Under reduced motion
   // the press dims instead of moving.
   const motionProps = {
-    whileTap:
-      disabled || flat
-        ? undefined
-        : reduceMotion
-          ? reduced.pressed
-          : depth.pressed,
+    // Flat variants (ghost/link) still react to press — they just dim instead
+    // of receding, since there's no shadow to compress. Every control gives
+    // press feedback (§1); only movement is dropped, never the feedback.
+    whileTap: disabled
+      ? undefined
+      : flat || reduceMotion
+        ? reduced.pressed
+        : depth.pressed,
     transition: reduceMotion ? fades.fast : springs.press,
   }
 

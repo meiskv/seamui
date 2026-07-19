@@ -100,7 +100,9 @@ function DrawerDescription({
   )
 }
 
-const DrawerClose = BaseDrawer.Close
+function DrawerClose(props: React.ComponentProps<typeof BaseDrawer.Close>) {
+  return <BaseDrawer.Close data-slot="drawer-close" {...props} />
+}
 
 export {
   Drawer,

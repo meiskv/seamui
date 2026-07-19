@@ -1,13 +1,11 @@
 "use client"
 
 import type * as React from "react"
-import { motion, useReducedMotion } from "motion/react"
 import { Brain, Check, ChevronDown, Wrench, X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { springs, fades, depth, reduced } from "@/lib/motion"
 import { Badge } from "./badge"
-import { buttonVariants } from "./button"
+import { Button } from "./button"
 import { Spinner } from "./spinner"
 import {
   Collapsible,
@@ -91,8 +89,8 @@ function ToolStatus({
 }
 
 // The disclosure trigger. Collapsible has a single trigger (no roving focus),
-// but we still dogfood buttonVariants + a motion.button render for press
-// feedback rather than re-rolling the button base — the composite-safe path.
+// so it wears the Button component: ghost press-dim + haptic tap come from the
+// foundation, no re-rolled button base or inline motion.
 function ToolHeader({
   className,
   title,
@@ -104,19 +102,16 @@ function ToolHeader({
   status?: ToolState
   icon?: React.ReactNode
 }) {
-  const reduceMotion = useReducedMotion()
   return (
     <CollapsibleTrigger
       data-slot="tool-header"
-      className={cn(
-        buttonVariants({ variant: "ghost" }),
-        "group/tool h-auto w-full justify-between gap-2 px-3 py-2 font-normal",
-        className
-      )}
       render={
-        <motion.button
-          whileTap={reduceMotion ? reduced.pressed : depth.pressed}
-          transition={reduceMotion ? fades.fast : springs.press}
+        <Button
+          variant="ghost"
+          className={cn(
+            "group/tool h-auto w-full justify-between gap-2 px-3 py-2 font-normal",
+            className
+          )}
         />
       }
       {...props}

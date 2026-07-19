@@ -113,7 +113,9 @@ function DialogDescription({
   )
 }
 
-const DialogClose = BaseDialog.Close
+function DialogClose(props: React.ComponentProps<typeof BaseDialog.Close>) {
+  return <BaseDialog.Close data-slot="dialog-close" {...props} />
+}
 
 export {
   Dialog,

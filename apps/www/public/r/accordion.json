@@ -6,10 +6,12 @@
   "description": "Accordion built on Base UI with eased height animation.",
   "dependencies": [
     "@base-ui/react",
+    "motion",
     "lucide-react"
   ],
   "registryDependencies": [
-    "https://seamui.dev/r/utils.json"
+    "https://seamui.dev/r/utils.json",
+    "https://seamui.dev/r/motion.json"
   ],
   "files": [
     {

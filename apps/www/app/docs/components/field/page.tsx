@@ -106,8 +106,9 @@ export default function FieldDocs() {
         <li>
           Input is Field-aware on its own —{" "}
           <code>&lt;Field&gt;&lt;Input /&gt;&lt;/Field&gt;</code> wires label,
-          description, and validity automatically. Any other control joins
-          through <code>&lt;FieldControl render={"{<Textarea />}"} /&gt;</code>.
+          description, and validity automatically. <code>FieldControl</code>{" "}
+          renders the seam Input by default; any other control joins through{" "}
+          <code>&lt;FieldControl render={"{<Textarea />}"} /&gt;</code>.
         </li>
         <li>
           FieldError fires the seam error signal — a shake (an opacity flash

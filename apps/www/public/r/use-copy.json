@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-copy",
+  "type": "registry:lib",
+  "title": "seam useCopy",
+  "description": "Copy-to-clipboard hook with a self-resetting \"copied\" flag, shared by every seamui copy affordance.",
+  "files": [
+    {
+      "path": "registry/seam/lib/use-copy.ts",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\n/**\n * Copy-to-clipboard with a self-resetting \"copied\" flag — the shared engine\n * behind every seamui copy affordance (code block, terminal block, branch\n * chip). It clears any pending reset before arming a new one (rapid re-clicks\n * never stack timers) and on unmount (no setState-after-unmount warning).\n *\n *   const { copied, copy } = useCopy()\n *   <Button onClick={() => copy(text)}>{copied ? \"Copied\" : \"Copy\"}</Button>\n *\n * `copy` resolves `true` when the write succeeded, `false` when the clipboard\n * is unavailable (e.g. an insecure context) so callers can react if they want.\n */\nexport function useCopy(resetAfter = 2000): {\n  copied: boolean\n  copy: (text: string) => Promise<boolean>\n} {\n  const [copied, setCopied] = React.useState(false)\n  const timer = React.useRef<ReturnType<typeof setTimeout> | null>(null)\n\n  React.useEffect(\n    () => () => {\n      if (timer.current) clearTimeout(timer.current)\n    },\n    []\n  )\n\n  const copy = React.useCallback(\n    async (text: string) => {\n      try {\n        await navigator.clipboard.writeText(text)\n        setCopied(true)\n        if (timer.current) clearTimeout(timer.current)\n        timer.current = setTimeout(() => setCopied(false), resetAfter)\n        return true\n      } catch {\n        // clipboard unavailable (insecure context) — silently no-op\n        return false\n      }\n    },\n    [resetAfter]\n  )\n\n  return { copied, copy }\n}\n",
+      "type": "registry:lib",
+      "target": "lib/use-copy.ts"
+    }
+  ]
+}

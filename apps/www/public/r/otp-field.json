@@ -5,7 +5,8 @@
   "title": "OTP Field",
   "description": "One-time-code input built on Base UI.",
   "dependencies": [
-    "@base-ui/react"
+    "@base-ui/react",
+    "motion"
   ],
   "registryDependencies": [
     "https://seamui.dev/r/utils.json",

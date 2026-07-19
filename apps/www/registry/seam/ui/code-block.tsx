@@ -8,6 +8,7 @@ import { createJavaScriptRegexEngine } from "shiki/engine/javascript"
 
 import { cn } from "@/lib/utils"
 import { fades } from "@/lib/motion"
+import { useCopy } from "@/lib/use-copy"
 import { Badge } from "./badge"
 import { Button } from "./button"
 
@@ -61,24 +62,14 @@ function CodeBlockCopyButton({
   className,
   ...props
 }: React.ComponentProps<typeof Button> & { code: string }) {
-  const [copied, setCopied] = React.useState(false)
-
-  const copy = async () => {
-    try {
-      await navigator.clipboard.writeText(code)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
-    } catch {
-      // clipboard unavailable (insecure context) — silently no-op
-    }
-  }
+  const { copied, copy } = useCopy()
 
   return (
     <Button
       data-slot="code-block-copy"
       variant="ghost"
       size="icon"
-      onClick={copy}
+      onClick={() => copy(code)}
       aria-label={copied ? "Copied" : "Copy code"}
       className={cn("text-muted-foreground size-7", className)}
       {...props}

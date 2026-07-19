@@ -1,6 +1,7 @@
 import {
   ContextMenu,
   ContextMenuContent,
+  ContextMenuGroup,
   ContextMenuItem,
   ContextMenuLabel,
   ContextMenuSeparator,
@@ -14,14 +15,18 @@ export default function ContextMenuLabelled() {
         Right-click here
       </ContextMenuTrigger>
       <ContextMenuContent>
-        <ContextMenuLabel>Page</ContextMenuLabel>
-        <ContextMenuItem>Back</ContextMenuItem>
-        <ContextMenuItem>Forward</ContextMenuItem>
-        <ContextMenuItem>Reload</ContextMenuItem>
+        <ContextMenuGroup>
+          <ContextMenuLabel>Page</ContextMenuLabel>
+          <ContextMenuItem>Back</ContextMenuItem>
+          <ContextMenuItem>Forward</ContextMenuItem>
+          <ContextMenuItem>Reload</ContextMenuItem>
+        </ContextMenuGroup>
         <ContextMenuSeparator />
-        <ContextMenuLabel>Tools</ContextMenuLabel>
-        <ContextMenuItem>View Source</ContextMenuItem>
-        <ContextMenuItem>Inspect</ContextMenuItem>
+        <ContextMenuGroup>
+          <ContextMenuLabel>Tools</ContextMenuLabel>
+          <ContextMenuItem>View Source</ContextMenuItem>
+          <ContextMenuItem>Inspect</ContextMenuItem>
+        </ContextMenuGroup>
       </ContextMenuContent>
     </ContextMenu>
   )

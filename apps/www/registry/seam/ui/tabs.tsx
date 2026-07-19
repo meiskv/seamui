@@ -6,6 +6,7 @@ import { motion, useReducedMotion } from "motion/react"
 
 import { cn } from "@/lib/utils"
 import { springs } from "@/lib/motion"
+import { useHaptics } from "@/lib/haptics"
 import { buttonVariants } from "./button"
 
 type TabsSize = "default" | "sm"
@@ -20,15 +21,24 @@ const TabsSizeContext = React.createContext<TabsSize>("default")
 function Tabs({
   className,
   size = "default",
+  onValueChange,
   ...props
 }: React.ComponentProps<typeof BaseTabs.Root> & { size?: TabsSize }) {
   const layoutId = React.useId()
+  // Switching tabs commits a selection — fire the seam tick (§3b).
+  const { trigger } = useHaptics()
   return (
     <TabsLayoutContext.Provider value={layoutId}>
       <TabsSizeContext.Provider value={size}>
         <BaseTabs.Root
           data-slot="tabs"
           className={cn("flex flex-col gap-2", className)}
+          onValueChange={(
+            ...args: Parameters<NonNullable<typeof onValueChange>>
+          ) => {
+            trigger("tick")
+            onValueChange?.(...args)
+          }}
           {...props}
         />
       </TabsSizeContext.Provider>

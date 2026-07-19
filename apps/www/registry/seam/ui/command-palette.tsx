@@ -23,15 +23,21 @@ function CommandPalette({
   onOpenChange,
   hotkey = true,
   ...props
-}: React.ComponentProps<typeof BaseDialog.Root> & {
+}: Omit<React.ComponentProps<typeof BaseDialog.Root>, "onOpenChange"> & {
   /** Bind ⌘/Ctrl+K to toggle the palette. */
   hotkey?: boolean
+  /** Fires on open/close. `eventDetails` is `undefined` for the global-hotkey
+   *  toggle — no Base UI event originates it — and present otherwise. */
+  onOpenChange?: (
+    open: boolean,
+    eventDetails?: Parameters<
+      NonNullable<React.ComponentProps<typeof BaseDialog.Root>["onOpenChange"]>
+    >[1]
+  ) => void
 }) {
   const [openState, setOpenState] = React.useState(defaultOpen)
   const open = openProp ?? openState
 
-  // The hotkey toggles without a Base UI event to forward, so consumers of
-  // onOpenChange only receive eventDetails on dialog-originated changes.
   const handleOpenChange: React.ComponentProps<
     typeof BaseDialog.Root
   >["onOpenChange"] = (next, eventDetails) => {
@@ -51,7 +57,7 @@ function CommandPalette({
         e.preventDefault()
         if (openProp === undefined) setOpenState(!open)
         // no Base UI eventDetails exists for a global-hotkey toggle
-        onOpenChange?.(!open, undefined as never)
+        onOpenChange?.(!open)
       }
     }
     window.addEventListener("keydown", onKeyDown)
@@ -74,11 +80,21 @@ function CommandPaletteTrigger(
 // match ready for Enter, cmdk-style.
 function CommandPaletteContent({
   items,
+  autocomplete,
   className,
   children,
   ...props
 }: React.ComponentProps<typeof BaseDialog.Popup> & {
   items: React.ComponentProps<typeof Autocomplete.Root>["items"]
+  /** Escape hatch for the underlying Autocomplete.Root: pass `filter`,
+   *  `value`/`onValueChange`, `itemToStringValue`, `onItemHighlighted`, etc.
+   *  Overrides the palette's tunable defaults (autoHighlight/keepHighlight);
+   *  the `open`/`inline` composition stays locked so the dialog keeps owning
+   *  mount/unmount. */
+  autocomplete?: Omit<
+    React.ComponentProps<typeof Autocomplete.Root>,
+    "items" | "children" | "open" | "inline"
+  >
 }) {
   return (
     <BaseDialog.Portal>
@@ -97,11 +113,12 @@ function CommandPaletteContent({
         {...props}
       >
         <Autocomplete.Root
-          open
-          inline
           autoHighlight="always"
           keepHighlight
           items={items}
+          {...autocomplete}
+          open
+          inline
         >
           {children}
         </Autocomplete.Root>
