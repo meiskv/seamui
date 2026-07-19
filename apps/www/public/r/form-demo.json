@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "form-demo",
+  "type": "registry:example",
+  "title": "Form Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/form.json",
+    "https://seamui.dev/r/field.json",
+    "https://seamui.dev/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/form-demo.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport {\n  Field,\n  FieldControl,\n  FieldError,\n  FieldLabel,\n} from \"@/registry/seam/ui/field\"\nimport { Form } from \"@/registry/seam/ui/form\"\nimport { Button } from \"@/registry/seam/ui/button\"\n\nexport default function FormDemo() {\n  const [submitted, setSubmitted] = React.useState<string | null>(null)\n\n  return (\n    <Form\n      className=\"w-72\"\n      onSubmit={(event) => {\n        event.preventDefault()\n        const data = new FormData(event.currentTarget)\n        setSubmitted(String(data.get(\"email\")))\n      }}\n    >\n      <Field name=\"email\">\n        <FieldLabel>Email</FieldLabel>\n        <FieldControl type=\"email\" required placeholder=\"you@example.com\" />\n        <FieldError match=\"valueMissing\">An email is required.</FieldError>\n        <FieldError match=\"typeMismatch\">Enter a valid email.</FieldError>\n      </Field>\n      <Button type=\"submit\">Subscribe</Button>\n      {submitted ? (\n        <p className=\"text-muted-foreground text-sm\">Subscribed {submitted}</p>\n      ) : null}\n    </Form>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

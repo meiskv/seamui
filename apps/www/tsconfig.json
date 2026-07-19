@@ -18,6 +18,7 @@
       "@/lib/utils": ["./registry/seam/lib/utils.ts"],
       "@/lib/motion": ["./registry/seam/lib/motion.ts"],
       "@/lib/haptics": ["./registry/seam/lib/haptics.tsx"],
+      "@/lib/use-copy": ["./registry/seam/lib/use-copy.ts"],
       "@/components/ui/button": ["./registry/seam/ui/button.tsx"],
       "@/registry/*": ["./registry/*"],
       "@/*": ["./*"]

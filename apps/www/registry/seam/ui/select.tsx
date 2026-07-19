@@ -6,9 +6,26 @@ import { Check, ChevronDown } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { condense } from "@/lib/motion"
+import { useHaptics } from "@/lib/haptics"
 
-function Select(props: React.ComponentProps<typeof BaseSelect.Root>) {
-  return <BaseSelect.Root {...props} />
+function Select({
+  onValueChange,
+  ...props
+}: React.ComponentProps<typeof BaseSelect.Root>) {
+  // Committing a selection is a state change — fire the seam tick (§3b), the
+  // same feedback RadioGroup gives for the same pick-one semantic.
+  const { trigger } = useHaptics()
+  return (
+    <BaseSelect.Root
+      onValueChange={(
+        ...args: Parameters<NonNullable<typeof onValueChange>>
+      ) => {
+        trigger("tick")
+        onValueChange?.(...args)
+      }}
+      {...props}
+    />
+  )
 }
 
 function SelectValue(props: React.ComponentProps<typeof BaseSelect.Value>) {
@@ -106,13 +123,13 @@ function SelectItem({
         // non-text contrast — a light warm-gray in light (3.4:1, kept soft) and
         // muted-foreground in dark (6.2:1) — so the active state is perceivable
         // by colour, not just the shadow.
-        "data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground data-[highlighted]:ring-1 data-[highlighted]:ring-inset data-[highlighted]:ring-[oklch(0.6_0.006_106)] dark:data-[highlighted]:ring-muted-foreground",
+        "data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground data-[highlighted]:ring-1 data-[highlighted]:ring-inset data-[highlighted]:ring-ring-hairline",
         // The chosen value is an embossed key raised out of the tray. bg-secondary
         // (not card) reads raised in BOTH themes — white on the light well, lighter
         // than the well in dark — and the same hairline delineates it at 3:1. The
         // compound keeps the key embossed even when it's the cursor (on open Base
         // UI highlights the selected item).
-        "data-[selected]:bg-secondary data-[selected]:text-secondary-foreground data-[selected]:shadow-resting data-[selected]:font-medium data-[selected]:ring-1 data-[selected]:ring-inset data-[selected]:ring-[oklch(0.6_0.006_106)] dark:data-[selected]:ring-muted-foreground",
+        "data-[selected]:bg-secondary data-[selected]:text-secondary-foreground data-[selected]:shadow-resting data-[selected]:font-medium data-[selected]:ring-1 data-[selected]:ring-inset data-[selected]:ring-ring-hairline",
         "data-[selected]:data-[highlighted]:bg-secondary data-[selected]:data-[highlighted]:text-secondary-foreground",
         "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
         className

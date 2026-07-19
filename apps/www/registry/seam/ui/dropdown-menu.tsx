@@ -6,6 +6,7 @@ import { Check, ChevronRight, Circle } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { condense } from "@/lib/motion"
+import { useHaptics } from "@/lib/haptics"
 
 // Shared item shape so Item / CheckboxItem / RadioItem / SubTrigger stay in sync.
 const menuItemClass =
@@ -57,13 +58,7 @@ function DropdownMenuItem({
   return (
     <BaseMenu.Item
       data-slot="dropdown-menu-item"
-      className={cn(
-        "relative flex cursor-default select-none items-center gap-2 rounded-md px-2 py-1.5 text-sm outline-none",
-        "data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground",
-        "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
-        "[&_svg]:size-4 [&_svg]:shrink-0",
-        className
-      )}
+      className={cn(menuItemClass, className)}
       {...props}
     />
   )
@@ -108,12 +103,21 @@ function DropdownMenuSeparator({
 function DropdownMenuCheckboxItem({
   className,
   children,
+  onCheckedChange,
   ...props
 }: React.ComponentProps<typeof BaseMenu.CheckboxItem>) {
+  // Toggling a checkbox item commits state — fire the seam tick (§3b).
+  const { trigger } = useHaptics()
   return (
     <BaseMenu.CheckboxItem
       data-slot="dropdown-menu-checkbox-item"
       className={cn(menuItemClass, "pl-8", className)}
+      onCheckedChange={(
+        ...args: Parameters<NonNullable<typeof onCheckedChange>>
+      ) => {
+        trigger("tick")
+        onCheckedChange?.(...args)
+      }}
       {...props}
     >
       <span className="absolute left-2 flex size-4 items-center justify-center">
@@ -126,11 +130,23 @@ function DropdownMenuCheckboxItem({
   )
 }
 
-function DropdownMenuRadioGroup(
-  props: React.ComponentProps<typeof BaseMenu.RadioGroup>
-) {
+function DropdownMenuRadioGroup({
+  onValueChange,
+  ...props
+}: React.ComponentProps<typeof BaseMenu.RadioGroup>) {
+  // Selecting a different radio item commits state — fire the seam tick (§3b).
+  const { trigger } = useHaptics()
   return (
-    <BaseMenu.RadioGroup data-slot="dropdown-menu-radio-group" {...props} />
+    <BaseMenu.RadioGroup
+      data-slot="dropdown-menu-radio-group"
+      onValueChange={(
+        ...args: Parameters<NonNullable<typeof onValueChange>>
+      ) => {
+        trigger("tick")
+        onValueChange?.(...args)
+      }}
+      {...props}
+    />
   )
 }
 

@@ -11,18 +11,22 @@ function Progress({
   ...props
 }: React.ComponentProps<typeof BaseProgress.Root>) {
   return (
-    <BaseProgress.Root data-slot="progress" value={value} {...props}>
-      <BaseProgress.Track
-        data-slot="progress-track"
-        className={cn(
-          "bg-muted relative h-2 w-full overflow-hidden rounded-full",
-          className
-        )}
-      >
+    <BaseProgress.Root
+      data-slot="progress"
+      value={value}
+      // className + the rest of props land on the same (outer) element.
+      className={cn(
+        "bg-muted relative h-2 w-full overflow-hidden rounded-full",
+        className
+      )}
+      {...props}
+    >
+      <BaseProgress.Track data-slot="progress-track" className="h-full w-full">
         <BaseProgress.Indicator
           data-slot="progress-indicator"
           // Width is a layout dimension, so it eases with a duration (like the
-          // accordion height) rather than a transform spring.
+          // accordion height) rather than a transform spring. Restyle the fill
+          // via [&_[data-slot=progress-indicator]] or a child selector.
           className="bg-primary h-full rounded-full transition-[width] duration-500 ease-out motion-reduce:transition-none"
         />
       </BaseProgress.Track>

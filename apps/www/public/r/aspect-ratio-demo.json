@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "aspect-ratio-demo",
+  "type": "registry:example",
+  "title": "Aspect Ratio Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/aspect-ratio.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/aspect-ratio-demo.tsx",
+      "content": "import { AspectRatio } from \"@/registry/seam/ui/aspect-ratio\"\n\nexport default function AspectRatioDemo() {\n  return (\n    <div className=\"w-72\">\n      <AspectRatio\n        ratio={16 / 9}\n        className=\"bg-muted shadow-well flex items-center justify-center overflow-hidden rounded-lg squircle\"\n      >\n        <span className=\"text-muted-foreground text-sm\">16 / 9</span>\n      </AspectRatio>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

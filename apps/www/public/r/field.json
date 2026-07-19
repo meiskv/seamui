@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "field",
+  "type": "registry:ui",
+  "title": "Field",
+  "description": "Labelled form field with description and validation, built on Base UI Field + Fieldset.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "https://seamui.dev/r/utils.json",
+    "https://seamui.dev/r/input.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/ui/field.tsx",
+      "content": "\"use client\"\n\nimport type * as React from \"react\"\nimport { Field as BaseField } from \"@base-ui/react/field\"\nimport { Fieldset as BaseFieldset } from \"@base-ui/react/fieldset\"\n\nimport { cn } from \"@/lib/utils\"\nimport { Input } from \"./input\"\n\n// A labelled form row: label + control + description/error, auto-wired by Base\n// UI (the label points at the control, errors get aria-describedby, validity\n// flows to data-[invalid]). Drop a seam Input/Textarea/Select in as the control\n// — they're Field-aware — or use <FieldControl/> for a styled input.\n\nfunction Field({\n  className,\n  ...props\n}: React.ComponentProps<typeof BaseField.Root>) {\n  return (\n    <BaseField.Root\n      data-slot=\"field\"\n      className={cn(\"flex flex-col gap-2\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction FieldLabel({\n  className,\n  ...props\n}: React.ComponentProps<typeof BaseField.Label>) {\n  return (\n    <BaseField.Label\n      data-slot=\"field-label\"\n      className={cn(\n        \"text-sm font-medium leading-none select-none data-[disabled]:opacity-70\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\n// Renders the seam Input by default (dogfooding: debossed well, focus ring,\n// invalid styling for free). Pass `render` to wire a Textarea/Select instead.\nfunction FieldControl({\n  render,\n  ...props\n}: React.ComponentProps<typeof BaseField.Control>) {\n  return (\n    <BaseField.Control\n      data-slot=\"field-control\"\n      render={render ?? <Input />}\n      {...props}\n    />\n  )\n}\n\nfunction FieldDescription({\n  className,\n  ...props\n}: React.ComponentProps<typeof BaseField.Description>) {\n  return (\n    <BaseField.Description\n      data-slot=\"field-description\"\n      className={cn(\"text-muted-foreground text-sm\", className)}\n      {...props}\n    />\n  )\n}\n\n// Only renders when the field is invalid (Base UI gates it on validity).\nfunction FieldError({\n  className,\n  ...props\n}: React.ComponentProps<typeof BaseField.Error>) {\n  return (\n    <BaseField.Error\n      data-slot=\"field-error\"\n      className={cn(\"text-destructive text-sm\", className)}\n      {...props}\n    />\n  )\n}\n\n// Groups related fields under a shared legend (renders a real <fieldset>).\nfunction Fieldset({\n  className,\n  ...props\n}: React.ComponentProps<typeof BaseFieldset.Root>) {\n  return (\n    <BaseFieldset.Root\n      data-slot=\"fieldset\"\n      className={cn(\"flex flex-col gap-4\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction FieldsetLegend({\n  className,\n  ...props\n}: React.ComponentProps<typeof BaseFieldset.Legend>) {\n  return (\n    <BaseFieldset.Legend\n      data-slot=\"fieldset-legend\"\n      className={cn(\"text-sm font-medium\", className)}\n      {...props}\n    />\n  )\n}\n\nexport {\n  Field,\n  FieldLabel,\n  FieldControl,\n  FieldDescription,\n  FieldError,\n  Fieldset,\n  FieldsetLegend,\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/field.tsx"
+    }
+  ]
+}

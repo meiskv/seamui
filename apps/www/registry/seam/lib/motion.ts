@@ -135,6 +135,12 @@ export const condense = {
    *  the gesture stays 1:1. */
   sheet:
     "transition-[translate,opacity] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] data-[starting-style]:translate-y-full data-[starting-style]:opacity-0 data-[ending-style]:translate-y-full data-[ending-style]:opacity-0 data-[dragging]:transition-none motion-reduce:transition-opacity motion-reduce:data-[starting-style]:translate-y-0 motion-reduce:data-[ending-style]:translate-y-0",
+  /** Toast: rises + fades in with the seam bounce, falls back + fades quicker
+   *  on dismiss. Base UI owns the stacking `transform` and swipe, so the
+   *  entrance/exit offset rides `transform` here alongside opacity; the swipe
+   *  exit self-cancels the vertical fall so the gesture direction wins. */
+  toast:
+    "[transition:transform_0.5s,opacity_0.35s] ease-[cubic-bezier(0.22,1.3,0.36,1)] data-[starting-style]:translate-y-6 data-[starting-style]:opacity-0 data-[ending-style]:translate-y-4 data-[ending-style]:opacity-0 data-[ending-style]:[&[data-swipe-direction]]:translate-y-0 motion-reduce:[transition:opacity_0.35s] motion-reduce:data-[starting-style]:translate-y-0 motion-reduce:data-[ending-style]:translate-y-0",
 } as const
 
 /**

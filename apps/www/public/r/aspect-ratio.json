@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "aspect-ratio",
+  "type": "registry:ui",
+  "title": "Aspect Ratio",
+  "description": "Constrains content to a fixed width-to-height ratio.",
+  "registryDependencies": [
+    "https://seamui.dev/r/utils.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/ui/aspect-ratio.tsx",
+      "content": "import type * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\n// Constrains its content to a fixed width:height ratio via the CSS\n// `aspect-ratio` property. No Base UI primitive needed — it's pure layout.\nfunction AspectRatio({\n  ratio = 1,\n  className,\n  style,\n  ...props\n}: React.ComponentProps<\"div\"> & { ratio?: number }) {\n  return (\n    <div\n      data-slot=\"aspect-ratio\"\n      style={{ aspectRatio: ratio, ...style }}\n      className={cn(\"relative w-full\", className)}\n      {...props}\n    />\n  )\n}\n\nexport { AspectRatio }\n",
+      "type": "registry:ui",
+      "target": "components/ui/aspect-ratio.tsx"
+    }
+  ]
+}

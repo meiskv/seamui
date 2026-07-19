@@ -9,7 +9,7 @@
   "files": [
     {
       "path": "registry/seam/examples/number-field-disabled.tsx",
-      "content": "import { NumberField } from \"@/registry/seam/ui/number-field\"\n\nexport default function NumberFieldDisabled() {\n  return <NumberField defaultValue={3} min={0} max={10} disabled />\n}\n",
+      "content": "import {\n  NumberField,\n  NumberFieldDecrement,\n  NumberFieldGroup,\n  NumberFieldIncrement,\n  NumberFieldInput,\n} from \"@/registry/seam/ui/number-field\"\n\nexport default function NumberFieldDisabled() {\n  return (\n    <NumberField defaultValue={3} min={0} max={10} disabled>\n      <NumberFieldGroup>\n        <NumberFieldDecrement />\n        <NumberFieldInput aria-label=\"Quantity\" />\n        <NumberFieldIncrement />\n      </NumberFieldGroup>\n    </NumberField>\n  )\n}\n",
       "type": "registry:example"
     }
   ]
