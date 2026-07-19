@@ -1,14 +1,12 @@
 "use client"
 
 import type * as React from "react"
-import { motion, useReducedMotion } from "motion/react"
 import { ChevronDown, ExternalLink } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { springs, fades, depth, reduced } from "@/lib/motion"
 import { Avatar, AvatarFallback, AvatarImage } from "./avatar"
 import { Badge, badgeVariants } from "./badge"
-import { buttonVariants } from "./button"
+import { Button } from "./button"
 import {
   Collapsible,
   CollapsibleContent,
@@ -40,19 +38,19 @@ function SourcesTrigger({
   children,
   ...props
 }: React.ComponentProps<typeof CollapsibleTrigger> & { count?: number }) {
-  const reduceMotion = useReducedMotion()
   return (
     <CollapsibleTrigger
       data-slot="sources-trigger"
-      className={cn(
-        buttonVariants({ variant: "ghost", size: "sm" }),
-        "group/sources text-muted-foreground w-fit gap-1.5 font-normal",
-        className
-      )}
+      // Single-trigger Collapsible (no roving focus) → wear the Button
+      // component: ghost press-dim + haptic tap come from the foundation.
       render={
-        <motion.button
-          whileTap={reduceMotion ? reduced.pressed : depth.pressed}
-          transition={reduceMotion ? fades.fast : springs.press}
+        <Button
+          variant="ghost"
+          size="sm"
+          className={cn(
+            "group/sources text-muted-foreground w-fit gap-1.5 font-normal",
+            className
+          )}
         />
       }
       {...props}
