@@ -33,6 +33,11 @@ const COMPONENTS = [
   { name: "switch", title: "Switch", desc: "Thumb springs between states." },
   { name: "checkbox", title: "Checkbox", desc: "Mark pops in with a spring." },
   {
+    name: "checkbox-group",
+    title: "Checkbox Group",
+    desc: "Shared state + select-all.",
+  },
+  {
     name: "radio-group",
     title: "Radio Group",
     desc: "Single-choice with spring dot.",

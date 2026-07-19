@@ -34,6 +34,7 @@ export const NAV: NavGroup[] = [
       c("input", "Input"),
       c("textarea", "Textarea"),
       c("checkbox", "Checkbox"),
+      c("checkbox-group", "Checkbox Group"),
       c("radio-group", "Radio Group"),
       c("switch", "Switch"),
       c("slider", "Slider"),

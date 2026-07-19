@@ -271,6 +271,26 @@
       ]
     },
     {
+      "name": "checkbox-group",
+      "type": "registry:ui",
+      "title": "Checkbox Group",
+      "description": "Shared state for a set of seam Checkboxes, with select-all parent support, built on Base UI.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/checkbox.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/checkbox-group.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/checkbox-group.tsx"
+        }
+      ]
+    },
+    {
       "name": "radio-group",
       "type": "registry:ui",
       "title": "Radio Group",
@@ -4634,6 +4654,51 @@
       "files": [
         {
           "path": "registry/seam/examples/pagination-simple.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "checkbox-group-demo",
+      "type": "registry:example",
+      "title": "Checkbox Group Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/checkbox-group.json",
+        "https://seamui.dev/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/checkbox-group-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "checkbox-group-parent",
+      "type": "registry:example",
+      "title": "Checkbox Group Parent",
+      "registryDependencies": [
+        "https://seamui.dev/r/checkbox-group.json",
+        "https://seamui.dev/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/checkbox-group-parent.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "checkbox-group-disabled",
+      "type": "registry:example",
+      "title": "Checkbox Group Disabled",
+      "registryDependencies": [
+        "https://seamui.dev/r/checkbox-group.json",
+        "https://seamui.dev/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/checkbox-group-disabled.tsx",
           "type": "registry:example"
         }
       ]
