@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "field-fieldset",
+  "type": "registry:example",
+  "title": "Field Fieldset",
+  "registryDependencies": [
+    "https://seamui.dev/r/field.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/field-fieldset.tsx",
+      "content": "import {\n  Field,\n  FieldControl,\n  FieldLabel,\n  Fieldset,\n  FieldsetLegend,\n} from \"@/registry/seam/ui/field\"\n\nexport default function FieldFieldset() {\n  return (\n    <Fieldset className=\"w-72\">\n      <FieldsetLegend>Shipping address</FieldsetLegend>\n      <Field>\n        <FieldLabel>Street</FieldLabel>\n        <FieldControl placeholder=\"123 Main St\" />\n      </Field>\n      <Field>\n        <FieldLabel>City</FieldLabel>\n        <FieldControl placeholder=\"Springfield\" />\n      </Field>\n    </Fieldset>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

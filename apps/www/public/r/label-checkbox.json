@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "label-checkbox",
+  "type": "registry:example",
+  "title": "Label Checkbox",
+  "registryDependencies": [
+    "https://seamui.dev/r/label.json",
+    "https://seamui.dev/r/checkbox.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/label-checkbox.tsx",
+      "content": "import { Label } from \"@/registry/seam/ui/label\"\nimport { Checkbox } from \"@/registry/seam/ui/checkbox\"\n\nexport default function LabelCheckbox() {\n  return (\n    <Label>\n      <Checkbox defaultChecked />\n      Accept terms and conditions\n    </Label>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

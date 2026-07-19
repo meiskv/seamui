@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "field-demo",
+  "type": "registry:example",
+  "title": "Field Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/field.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/field-demo.tsx",
+      "content": "import {\n  Field,\n  FieldControl,\n  FieldDescription,\n  FieldLabel,\n} from \"@/registry/seam/ui/field\"\n\nexport default function FieldDemo() {\n  return (\n    <Field className=\"w-72\">\n      <FieldLabel>Email</FieldLabel>\n      <FieldControl type=\"email\" placeholder=\"you@example.com\" />\n      <FieldDescription>We'll never share your email.</FieldDescription>\n    </Field>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

@@ -4235,6 +4235,149 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "title": "Label",
+      "description": "Accessible label for form controls.",
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/label.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/label.tsx"
+        }
+      ]
+    },
+    {
+      "name": "field",
+      "type": "registry:ui",
+      "title": "Field",
+      "description": "Labelled form field with description and validation, built on Base UI Field + Fieldset.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/field.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/field.tsx"
+        }
+      ]
+    },
+    {
+      "name": "form",
+      "type": "registry:ui",
+      "title": "Form",
+      "description": "Form built on Base UI that collects field validity and focuses the first invalid control on submit.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/form.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/form.tsx"
+        }
+      ]
+    },
+    {
+      "name": "label-demo",
+      "type": "registry:example",
+      "title": "Label Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/label.json",
+        "https://seamui.dev/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/label-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "label-checkbox",
+      "type": "registry:example",
+      "title": "Label Checkbox",
+      "registryDependencies": [
+        "https://seamui.dev/r/label.json",
+        "https://seamui.dev/r/checkbox.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/label-checkbox.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "field-demo",
+      "type": "registry:example",
+      "title": "Field Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/field.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/field-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "field-validation",
+      "type": "registry:example",
+      "title": "Field Validation",
+      "registryDependencies": [
+        "https://seamui.dev/r/field.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/field-validation.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "field-fieldset",
+      "type": "registry:example",
+      "title": "Field Fieldset",
+      "registryDependencies": [
+        "https://seamui.dev/r/field.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/field-fieldset.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "form-demo",
+      "type": "registry:example",
+      "title": "Form Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/form.json",
+        "https://seamui.dev/r/field.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/form-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }
