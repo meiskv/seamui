@@ -21,6 +21,13 @@ const COMPONENTS = [
   },
   { name: "input", title: "Input", desc: "Field-aware text input." },
   { name: "textarea", title: "Textarea", desc: "Auto-growing entry well." },
+  { name: "label", title: "Label", desc: "Accessible label for a control." },
+  {
+    name: "field",
+    title: "Field",
+    desc: "Labelled field with validation.",
+  },
+  { name: "form", title: "Form", desc: "Validity-aware form." },
   { name: "avatar", title: "Avatar", desc: "Image with fade-in and fallback." },
   {
     name: "separator",
@@ -64,6 +71,17 @@ const COMPONENTS = [
     title: "Collapsible",
     desc: "Single expandable region.",
   },
+  {
+    name: "aspect-ratio",
+    title: "Aspect Ratio",
+    desc: "Locks content to a ratio.",
+  },
+  {
+    name: "breadcrumb",
+    title: "Breadcrumb",
+    desc: "Current page's location.",
+  },
+  { name: "alert", title: "Alert", desc: "Callout for important messages." },
   { name: "progress", title: "Progress", desc: "Eased task-completion fill." },
   { name: "meter", title: "Meter", desc: "Static measurement in a range." },
   {
