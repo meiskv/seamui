@@ -49,6 +49,14 @@ Physics, not clocks. Every transform/position transition is a **spring** from
 (height/width — accordion, progress, meter). Never write an inline spring config
 or an ad-hoc `duration: 0.3` in a component.
 
+> **One narrow carve-out: disclosure-chevron rotation.** A caret that flips
+> 180° on open (accordion, tool, sources, connector-card, checks-panel) may use
+> a Tailwind `transition-transform duration-200` **with** `motion-reduce:transition-none`.
+> It's a tiny, non-spatial state indicator (not a control moving through the
+> depth stack), the CSS keeps it tied to Base UI's `data-[panel-open]` with no
+> JS, and `motion:check` doesn't scan classes so this is honor-system. Nothing
+> else animates a transform with a duration — a control that *moves* still springs.
+
 ### Touch feedback
 Every interactive control reacts to press **in ≤1 frame** and settles springy on
 release. Press = the control recedes *into* the surface (`depth.pressed`, a
@@ -136,7 +144,8 @@ file *in the registry* so every future install gets it.
 - **`springs`** — `press` (stiff, instant), `snappy` (release/settle), `surface` (overlays), `bouncy` (toasts/accents, sparingly).
 - **`fades`** — `fast` / `normal`, opacity-only durations.
 - **`depth`** — `pressed` / `resting` / `raised` scalars + `overlay` / `modal` enter/exit objects. **Only for elements motion.dev controls end to end** (AI list entries, chips, the scroll-to-bottom button — AnimatePresence owns their unmount, so `exit` runs). Base UI popups do **not** use `depth` — see `condense`.
-- **`condense`** — the overlay motion, in **CSS** (`surface` / `backdrop` / `sheet`), keyed to Base UI's `data-starting-style` / `data-ending-style`. Base UI keeps a popup mounted through its exit and awaits **CSS transitions** (never motion's rAF springs) before unmounting — a spring exit gets cut off instantly, which is *the* reason overlays use CSS here, not motion. Enter = rise/grow + fade (popups scale from `--transform-origin` via the standalone `scale` property, since Base UI owns `transform` for positioning; modals pop from center; sheets slide on the standalone `translate` property). Exit falls back + fades, slightly quicker. Backdrops dim on the same clock. Reduced motion drops the scale/slide → opacity-only, still both ways.
+- **`condense`** — the overlay motion, in **CSS** (`surface` / `backdrop` / `sheet` / `toast`), keyed to Base UI's `data-starting-style` / `data-ending-style`. Base UI keeps a popup mounted through its exit and awaits **CSS transitions** (never motion's rAF springs) before unmounting — a spring exit gets cut off instantly, which is *the* reason overlays use CSS here, not motion. Enter = rise/grow + fade (popups scale from `--transform-origin` via the standalone `scale` property, since Base UI owns `transform` for positioning; modals pop from center; sheets and toasts slide/rise). Exit falls back + fades, slightly quicker. Backdrops dim on the same clock. Reduced motion drops the scale/slide → opacity-only, still both ways.
+- **`useMounted`** — a tiny SSR-hydration guard: `true` only after the first client render. Gate any motion `initial` that *moves* (scale/translate) behind it (`initial={mounted ? … : false}`) so the server's serialized transform and the client's first paint agree — otherwise React throws a hydration-mismatch warning. Opacity-only `initial` doesn't need it. Elements mounting *after* hydration (a new message, an added chip) still get their entrance. Used by composer, message, checkbox, switch, voice-avatar.
 - **`shake`** — error feedback (brief x-axis shake); pair with `reduced.flash` under reduced motion.
 - **`reduced`** — the reduced-motion fallbacks (see §5). `pressed` (dim, no move), `fadeIn` (opacity-only enter), `instant` (zero-duration layout jump), `flash` (opacity error pulse).
 
@@ -171,7 +180,7 @@ For any new component `<name>`:
 3. **Examples** in `registry/seam/examples/`: `<name>-demo.tsx` plus one per meaningful variant (aim for ≥3 total where it makes sense).
 4. **Register** in `registry.json`: correct `dependencies` (npm) and `registryDependencies` (always the `utils` + `motion` URLs; add any seamui component it composes, e.g. a group → its item).
 5. **Build**: `bun run registry:build`. Confirm `public/r/<name>.json` + demo JSON emit.
-6. **Docs page** from the template: Installation → Usage → Examples → Motion → Accessibility. Add a nav entry in `components/site/nav-items.ts`.
+6. **Docs page** from the current template (`components/docs/*`): a heading/blurb, then `<VariantPreview>` (the live examples + copyable source) → `<Install name="…" />` → `<Notes>` (behavior/a11y bullets). Motion and accessibility policy is **centralized** on `/docs/motion` and `/docs/haptics`, which `Notes` links to — don't hand-write per-page Motion/Accessibility sections. Add a nav entry in `components/site/nav-items.ts`.
 7. **Verify the four gates in a real browser** (§6): pointer, keyboard, reduced-motion, dark mode.
 
 ---
@@ -230,9 +239,10 @@ Two allowed ways to dogfood, in order of preference:
    base classes, sizes, focus ring, disabled handling, and press motion for free.
 2. **Reuse `buttonVariants(...)` classes** on the part's own native element when
    wrapping it in the `Button` *component* would break the part. This is not a
-   loophole — it's required for **Base UI composite widgets** (Tabs, Toolbar, Menu)
-   where the parent manages roving focus through the child's ref; an extra `Button`
-   wrapper swallows that ref and **kills arrow-key navigation** (this actually
+   loophole — it's required for **Base UI composite widgets** (Tabs, Menu, and
+   any future Toolbar) where the parent manages roving focus through the child's
+   ref; an extra `Button` wrapper swallows that ref and **kills arrow-key
+   navigation** (this actually
    happened with Tabs). There, do
    `className={cn(buttonVariants({ variant: "ghost", size }), …)}` on the plain
    composite-safe element. Same idea for toggle-shaped controls → `toggleVariants`.
@@ -371,7 +381,7 @@ still reads).
 ```
 apps/www/
   registry/seam/            # THE PRODUCT — canonical component sources
-    lib/{utils,motion,haptics}  # cn() + motion tokens (personalities, springs, depth, fades, reduced) + haptics provider
+    lib/{utils,motion,haptics,use-copy}  # cn() + motion tokens (personalities, springs, depth, fades, reduced) + haptics provider + copy-to-clipboard hook
     theme/theme.css         # tokens + depth/well shadows (edit HERE, regen globals)
     ui/<name>.tsx           # one file per component
     examples/<name>-*.tsx   # live demos, shipped as registry examples
