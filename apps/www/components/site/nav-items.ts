@@ -20,6 +20,7 @@ export const NAV: NavGroup[] = [
     items: [
       { title: "Building a chat app", href: "/docs/guides/chat" },
       { title: "Building a voice agent", href: "/docs/guides/voice" },
+      { title: "Building a SaaS app", href: "/docs/guides/saas" },
     ],
   },
   {
