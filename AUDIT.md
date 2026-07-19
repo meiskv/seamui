@@ -14,6 +14,43 @@ identical). The findings are about the gaps the gates don't see.
 
 ---
 
+## Remediation status (branch `claude/seamui-best-practices-audit-ob4pg1`)
+
+**Fixed and verified** (each browser-checked where interactive):
+
+- **P0 registry deps** — accordion/drawer/otp-field/dropdown-menu entries
+  corrected + an imports-vs-deps guard added to `tests/unit/registry.test.ts`
+  so the class of bug can't recur.
+- **toast** inline motion → `condense.toast` token; toast slots added.
+- **number-field** decomposed into compound parts (the input is now labelable).
+- **haptics sweep** — dropdown checkbox/radio items, select, and tabs now tick
+  on commit.
+- **flat-control press** — ghost/link now dim on press; sources/tool triggers
+  wear the Button component (no inline motion).
+- **ContextMenuGroup** added; **voice-control-bar** collapsed panel is `inert`;
+  **select** rings tokenized (`--ring-hairline`); **progress** className/props
+  unified; Dialog/Drawer/Popover/AlertDialog Close/Action re-exports wrapped
+  with data-slots; **command-palette** gained an Autocomplete passthrough and
+  honest hotkey typing; **useCopy** hook extracted (branch-chip/code-block/
+  terminal-block).
+- **data-table** — `options` passthrough for controlled/manual/server-side
+  state; root/pagination slots; edit-trigger dogfoods `buttonVariants`.
+- **New components** — Field, Form, Label (the forms story), plus Alert,
+  Breadcrumb, Aspect Ratio. Now **73 components**.
+- **Contract/docs** — CLAUDE.md (chevron carve-out, docs template, useMounted,
+  Toolbar ref) and README (73 components) synced to reality.
+
+**Still open** (tracked here, not yet done): context-menu still lacks
+Checkbox/Radio/Sub items; number-field keyboard/press-hold commit haptics;
+code-block stale-HTML-during-rehighlight; mode-selector one-required; radio
+keyboard press feedback; slider disabled whileTap gate; unnamed focusable
+scroll regions; the remaining split className/props LOWs (voice-avatar,
+voice-control-bar, workbench-header); CLI `list`/`diff`; and the rest of the
+missing components (autocomplete, checkbox-group, menubar, navigation-menu,
+toolbar, pagination, calendar, chart, carousel, resizable).
+
+---
+
 ## P0 — Broken standalone installs (registry dependency bugs)
 
 Diffing every ui file's imports against its `registry.json` entry found four
