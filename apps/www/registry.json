@@ -785,6 +785,23 @@
       ]
     },
     {
+      "name": "empty-state",
+      "type": "registry:ui",
+      "title": "Empty State",
+      "description": "Zero-data placeholder — a debossed well with an embossed icon key, copy, and actions.",
+      "dependencies": [],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/empty-state.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/empty-state.tsx"
+        }
+      ]
+    },
+    {
       "name": "spinner",
       "type": "registry:ui",
       "title": "Spinner",
@@ -4699,6 +4716,50 @@
       "files": [
         {
           "path": "registry/seam/examples/checkbox-group-disabled.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "empty-state-demo",
+      "type": "registry:example",
+      "title": "Empty State Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/empty-state.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/empty-state-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "empty-state-search",
+      "type": "registry:example",
+      "title": "Empty State Search",
+      "registryDependencies": [
+        "https://seamui.dev/r/empty-state.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/empty-state-search.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "empty-state-plain",
+      "type": "registry:example",
+      "title": "Empty State Plain",
+      "registryDependencies": [
+        "https://seamui.dev/r/empty-state.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/empty-state-plain.tsx",
           "type": "registry:example"
         }
       ]

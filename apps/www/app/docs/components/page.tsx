@@ -104,6 +104,11 @@ const COMPONENTS = [
   { name: "toast", title: "Toast", desc: "Bouncy stacked notifications." },
   { name: "skeleton", title: "Skeleton", desc: "Pulsing loading placeholder." },
   {
+    name: "empty-state",
+    title: "Empty State",
+    desc: "Zero-data well with actions.",
+  },
+  {
     name: "spinner",
     title: "Spinner",
     desc: "Loading indicator, motion-safe.",

@@ -79,6 +79,7 @@ export const NAV: NavGroup[] = [
       c("toast", "Toast"),
       c("skeleton", "Skeleton"),
       c("spinner", "Spinner"),
+      c("empty-state", "Empty State"),
     ],
   },
   {
