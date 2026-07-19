@@ -144,6 +144,30 @@
       ]
     },
     {
+      "name": "toolbar",
+      "type": "registry:ui",
+      "title": "Toolbar",
+      "description": "Raised strip of controls with one tab stop and arrow-key roving focus, built on Base UI.",
+      "dependencies": [
+        "@base-ui/react",
+        "motion",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json",
+        "https://seamui.dev/r/haptics.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/toolbar.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/toolbar.tsx"
+        }
+      ]
+    },
+    {
       "name": "combobox",
       "type": "registry:ui",
       "title": "Combobox",
@@ -4760,6 +4784,50 @@
       "files": [
         {
           "path": "registry/seam/examples/empty-state-plain.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "toolbar-demo",
+      "type": "registry:example",
+      "title": "Toolbar Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/toolbar.json",
+        "https://seamui.dev/r/toggle-group.json",
+        "https://seamui.dev/r/toggle.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/toolbar-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "toolbar-input",
+      "type": "registry:example",
+      "title": "Toolbar Input",
+      "registryDependencies": [
+        "https://seamui.dev/r/toolbar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/toolbar-input.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "toolbar-vertical",
+      "type": "registry:example",
+      "title": "Toolbar Vertical",
+      "registryDependencies": [
+        "https://seamui.dev/r/toolbar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/toolbar-vertical.tsx",
           "type": "registry:example"
         }
       ]

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toolbar-vertical",
+  "type": "registry:example",
+  "title": "Toolbar Vertical",
+  "registryDependencies": [
+    "https://seamui.dev/r/toolbar.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/toolbar-vertical.tsx",
+      "content": "\"use client\"\n\nimport { Hand, MousePointer2, PenLine, Shapes, Type } from \"lucide-react\"\n\nimport {\n  Toolbar,\n  ToolbarButton,\n  ToolbarSeparator,\n} from \"@/registry/seam/ui/toolbar\"\n\n// Vertical orientation — arrow keys follow the new axis automatically.\nexport default function ToolbarVertical() {\n  return (\n    <Toolbar orientation=\"vertical\" aria-label=\"Canvas tools\">\n      <ToolbarButton size=\"icon\" className=\"size-9\" aria-label=\"Select\">\n        <MousePointer2 />\n      </ToolbarButton>\n      <ToolbarButton size=\"icon\" className=\"size-9\" aria-label=\"Pan\">\n        <Hand />\n      </ToolbarButton>\n      <ToolbarSeparator />\n      <ToolbarButton size=\"icon\" className=\"size-9\" aria-label=\"Draw\">\n        <PenLine />\n      </ToolbarButton>\n      <ToolbarButton size=\"icon\" className=\"size-9\" aria-label=\"Shapes\">\n        <Shapes />\n      </ToolbarButton>\n      <ToolbarButton size=\"icon\" className=\"size-9\" aria-label=\"Text\">\n        <Type />\n      </ToolbarButton>\n    </Toolbar>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

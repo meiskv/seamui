@@ -2,11 +2,10 @@
 
 import type * as React from "react"
 import { Toggle as BaseToggle } from "@base-ui/react/toggle"
-import { motion, useReducedMotion } from "motion/react"
 import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
-import { springs, fades, depth, reduced } from "@/lib/motion"
+import { usePressDepth } from "@/lib/motion"
 import { useHaptics, type HapticPreset } from "@/lib/haptics"
 
 const toggleVariants = cva(
@@ -46,8 +45,11 @@ function Toggle({
   onPointerDown,
   ...props
 }: ToggleProps) {
-  const reduceMotion = useReducedMotion()
   const { trigger } = useHaptics()
+  // Inside a ToggleGroup/Toolbar the toggle is a composite item whose ref
+  // drives roving focus — a motion.button render breaks the registration,
+  // so press depth is applied imperatively on the plain element.
+  const withPress = usePressDepth(disabled ?? false)
 
   return (
     <BaseToggle
@@ -60,19 +62,12 @@ function Toggle({
           trigger(haptic === true ? "tap" : haptic)
         }
       }}
-      // Base UI keeps native <button> semantics; motion supplies press depth.
-      render={
-        <motion.button
-          whileTap={
-            disabled
-              ? undefined
-              : reduceMotion
-                ? reduced.pressed
-                : depth.pressed
-          }
-          transition={reduceMotion ? fades.fast : springs.press}
+      render={(renderProps) => (
+        <button
+          type="button"
+          {...withPress(renderProps as React.ComponentProps<"button">)}
         />
-      }
+      )}
       {...props}
     />
   )

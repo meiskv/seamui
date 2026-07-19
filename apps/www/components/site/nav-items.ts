@@ -28,6 +28,7 @@ export const NAV: NavGroup[] = [
       c("button", "Button"),
       c("toggle", "Toggle"),
       c("toggle-group", "Toggle Group"),
+      c("toolbar", "Toolbar"),
       c("label", "Label"),
       c("field", "Field"),
       c("form", "Form"),

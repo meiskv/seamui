@@ -19,6 +19,11 @@ const COMPONENTS = [
     title: "Toggle Group",
     desc: "Keys rise from a shared well.",
   },
+  {
+    name: "toolbar",
+    title: "Toolbar",
+    desc: "Roving-focus control strip.",
+  },
   { name: "input", title: "Input", desc: "Field-aware text input." },
   { name: "textarea", title: "Textarea", desc: "Auto-growing entry well." },
   { name: "label", title: "Label", desc: "Accessible label for a control." },
