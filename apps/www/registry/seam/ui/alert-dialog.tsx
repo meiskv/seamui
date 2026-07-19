@@ -103,8 +103,17 @@ function AlertDialogDescription({
   )
 }
 
-const AlertDialogAction = BaseAlertDialog.Close
-const AlertDialogCancel = BaseAlertDialog.Close
+function AlertDialogAction(
+  props: React.ComponentProps<typeof BaseAlertDialog.Close>
+) {
+  return <BaseAlertDialog.Close data-slot="alert-dialog-action" {...props} />
+}
+
+function AlertDialogCancel(
+  props: React.ComponentProps<typeof BaseAlertDialog.Close>
+) {
+  return <BaseAlertDialog.Close data-slot="alert-dialog-cancel" {...props} />
+}
 
 export {
   AlertDialog,

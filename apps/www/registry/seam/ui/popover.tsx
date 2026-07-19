@@ -47,9 +47,35 @@ function PopoverContent({
   )
 }
 
-const PopoverClose = BasePopover.Close
-const PopoverTitle = BasePopover.Title
-const PopoverDescription = BasePopover.Description
+function PopoverClose(props: React.ComponentProps<typeof BasePopover.Close>) {
+  return <BasePopover.Close data-slot="popover-close" {...props} />
+}
+
+function PopoverTitle({
+  className,
+  ...props
+}: React.ComponentProps<typeof BasePopover.Title>) {
+  return (
+    <BasePopover.Title
+      data-slot="popover-title"
+      className={cn("text-sm font-semibold", className)}
+      {...props}
+    />
+  )
+}
+
+function PopoverDescription({
+  className,
+  ...props
+}: React.ComponentProps<typeof BasePopover.Description>) {
+  return (
+    <BasePopover.Description
+      data-slot="popover-description"
+      className={cn("text-muted-foreground text-sm", className)}
+      {...props}
+    />
+  )
+}
 
 export {
   Popover,
