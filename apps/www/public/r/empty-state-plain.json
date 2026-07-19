@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "empty-state-plain",
+  "type": "registry:example",
+  "title": "Empty State Plain",
+  "registryDependencies": [
+    "https://seamui.dev/r/empty-state.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/empty-state-plain.tsx",
+      "content": "import {\n  EmptyState,\n  EmptyStateDescription,\n  EmptyStateTitle,\n} from \"@/registry/seam/ui/empty-state\"\n\n// Media and actions are optional — title + description alone stay centered.\nexport default function EmptyStatePlain() {\n  return (\n    <EmptyState className=\"max-w-md py-8\">\n      <EmptyStateTitle>No notifications</EmptyStateTitle>\n      <EmptyStateDescription>You&apos;re all caught up.</EmptyStateDescription>\n    </EmptyState>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

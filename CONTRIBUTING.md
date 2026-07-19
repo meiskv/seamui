@@ -59,7 +59,11 @@ this the slot, or the token in the slot?* Slot → debossed. Token → embossed.
    anatomy, state attributes, mount/unmount behavior.
 2. Create `apps/www/registry/seam/ui/<name>.tsx` following §4–§5 of `CLAUDE.md`.
 3. Add examples in `registry/seam/examples/` — `<name>-demo.tsx` plus one per
-   meaningful variant (aim for ≥3 where it makes sense).
+   meaningful variant (aim for ≥3 where it makes sense). The docs preview
+   stage centers and shrink-wraps the example, so a fluid control (or a
+   wrapper div around one) must carry `w-full max-w-*` on its root or it
+   collapses to content width; intrinsic-size controls (buttons, switches)
+   need nothing.
 4. Register in `registry.json`: npm `dependencies`, `registryDependencies`
    (always the `utils` URL; `motion` if animated; plus any seamui component it
    composes).

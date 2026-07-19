@@ -1,6 +1,7 @@
 // seamui motion tokens — the single source of truth for all animation.
 // Springs over durations; depth over flatness. See seamui docs → Motion.
 import * as React from "react"
+import { animate, useReducedMotion } from "motion/react"
 import type { TargetAndTransition, Transition } from "motion/react"
 
 /**
@@ -151,6 +152,80 @@ export const condense = {
 export const shake: { animate: TargetAndTransition; transition: Transition } = {
   animate: { x: [0, -6, 6, -4, 4, 0] },
   transition: { duration: 0.32, ease: "easeInOut" },
+}
+
+type PressableProps = {
+  onPointerDown?: React.PointerEventHandler<HTMLElement>
+  onPointerUp?: React.PointerEventHandler<HTMLElement>
+  onPointerCancel?: React.PointerEventHandler<HTMLElement>
+  onPointerLeave?: React.PointerEventHandler<HTMLElement>
+  onKeyDown?: React.KeyboardEventHandler<HTMLElement>
+  onKeyUp?: React.KeyboardEventHandler<HTMLElement>
+}
+
+/**
+ * Imperative press depth for controls whose rendered element must stay a
+ * plain DOM node. Base UI composite widgets (Toolbar, Toggle Group, Tabs,
+ * Menubar) register items and rove focus through the element's ref, and a
+ * motion component in that render path breaks the registration — even
+ * `render={<motion.button/>}` leaves arrow-key navigation dead. So
+ * composite items press via motion's imperative `animate()` on the plain
+ * element instead (same tokens, same feel).
+ *
+ * Returns a props merger: wrap the (Base UI-provided) render props and the
+ * element presses into the surface on pointer/keyboard activation and
+ * settles springy on release. Reduced motion dims instead of moving (§5b).
+ *
+ *   const withPress = usePressDepth(disabled)
+ *   render={(props) => <button {...withPress(props)} />}
+ */
+export function usePressDepth(disabled = false) {
+  const reduceMotion = useReducedMotion() ?? false
+
+  return React.useCallback(
+    <P extends PressableProps>(props: P): P => {
+      const press = (el: HTMLElement) => {
+        if (disabled) return
+        if (reduceMotion) animate(el, reduced.pressed, fades.fast)
+        else animate(el, depth.pressed, springs.press)
+      }
+      const settle = (el: HTMLElement) => {
+        if (disabled) return
+        if (reduceMotion) animate(el, { opacity: 1 }, fades.fast)
+        else animate(el, depth.resting, springs.snappy)
+      }
+      return {
+        ...props,
+        onPointerDown: (e) => {
+          props.onPointerDown?.(e)
+          if (e.button === 0) press(e.currentTarget)
+        },
+        onPointerUp: (e) => {
+          props.onPointerUp?.(e)
+          settle(e.currentTarget)
+        },
+        onPointerCancel: (e) => {
+          props.onPointerCancel?.(e)
+          settle(e.currentTarget)
+        },
+        onPointerLeave: (e) => {
+          props.onPointerLeave?.(e)
+          settle(e.currentTarget)
+        },
+        // Feedback must fire on keyboard activation too (§1).
+        onKeyDown: (e) => {
+          props.onKeyDown?.(e)
+          if (!e.repeat && (e.key === " " || e.key === "Enter"))
+            press(e.currentTarget)
+        },
+        onKeyUp: (e) => {
+          props.onKeyUp?.(e)
+          if (e.key === " " || e.key === "Enter") settle(e.currentTarget)
+        },
+      }
+    },
+    [disabled, reduceMotion]
+  )
 }
 
 /**

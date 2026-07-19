@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pagination-simple",
+  "type": "registry:example",
+  "title": "Pagination Simple",
+  "registryDependencies": [
+    "https://seamui.dev/r/pagination.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/pagination-simple.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport {\n  Pagination,\n  PaginationContent,\n  PaginationItem,\n  PaginationNext,\n  PaginationPrevious,\n} from \"@/registry/seam/ui/pagination\"\n\n// Prev/next only — the compact shape for feeds and mobile lists.\nexport default function PaginationSimple() {\n  const [page, setPage] = React.useState(1)\n  const last = 5\n\n  return (\n    <div className=\"flex flex-col items-center gap-2\">\n      <Pagination>\n        <PaginationContent>\n          <PaginationItem>\n            <PaginationPrevious\n              href=\"#\"\n              disabled={page === 1}\n              onClick={(e) => {\n                e.preventDefault()\n                setPage((p) => Math.max(1, p - 1))\n              }}\n            />\n          </PaginationItem>\n          <PaginationItem>\n            <PaginationNext\n              href=\"#\"\n              disabled={page === last}\n              onClick={(e) => {\n                e.preventDefault()\n                setPage((p) => Math.min(last, p + 1))\n              }}\n            />\n          </PaginationItem>\n        </PaginationContent>\n      </Pagination>\n      <p className=\"text-muted-foreground text-sm\" aria-live=\"polite\">\n        Page {page} of {last}\n      </p>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

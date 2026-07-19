@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pagination-demo",
+  "type": "registry:example",
+  "title": "Pagination Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/pagination.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/pagination-demo.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport {\n  Pagination,\n  PaginationContent,\n  PaginationEllipsis,\n  PaginationItem,\n  PaginationLink,\n  PaginationNext,\n  PaginationPrevious,\n} from \"@/registry/seam/ui/pagination\"\n\n// Controlled pagination: the embossed key springs to the page you pick.\nexport default function PaginationDemo() {\n  const [page, setPage] = React.useState(2)\n  const last = 12\n\n  const go = (p: number) => (e: React.MouseEvent) => {\n    e.preventDefault()\n    setPage(p)\n  }\n\n  return (\n    <Pagination>\n      <PaginationContent>\n        <PaginationItem>\n          <PaginationPrevious\n            href=\"#\"\n            disabled={page === 1}\n            onClick={go(page - 1)}\n          />\n        </PaginationItem>\n        {[1, 2, 3].map((p) => (\n          <PaginationItem key={p}>\n            <PaginationLink href=\"#\" isActive={p === page} onClick={go(p)}>\n              {p}\n            </PaginationLink>\n          </PaginationItem>\n        ))}\n        <PaginationItem>\n          <PaginationEllipsis />\n        </PaginationItem>\n        <PaginationItem>\n          <PaginationLink href=\"#\" isActive={page === last} onClick={go(last)}>\n            {last}\n          </PaginationLink>\n        </PaginationItem>\n        <PaginationItem>\n          <PaginationNext\n            href=\"#\"\n            disabled={page === last}\n            onClick={go(page === last ? page : page + 1)}\n          />\n        </PaginationItem>\n      </PaginationContent>\n    </Pagination>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

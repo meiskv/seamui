@@ -1,14 +1,15 @@
-import { Rocket } from "lucide-react"
+import { MailCheck } from "lucide-react"
 
 import { Alert, AlertDescription, AlertTitle } from "@/registry/seam/ui/alert"
 
 export default function AlertDemo() {
   return (
     <Alert className="max-w-md">
-      <Rocket />
-      <AlertTitle>Deploy complete</AlertTitle>
+      <MailCheck />
+      <AlertTitle>Check your inbox</AlertTitle>
       <AlertDescription>
-        Your changes are live. It may take a minute to propagate to all regions.
+        We sent a verification link to your email address. It expires in 24
+        hours.
       </AlertDescription>
     </Alert>
   )

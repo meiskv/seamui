@@ -120,6 +120,12 @@ export function VariantPreview({
               exit={{ opacity: 0 }}
               transition={fades.fast}
             >
+              {/* Sizing contract: the stage centers AND shrink-wraps its
+                  child (flex + items-center), so intrinsic-size specimens
+                  (buttons, switches) render at natural size — but any
+                  example whose root is a wrapper div around a fluid control
+                  must carry `w-full max-w-*` itself, or it collapses to
+                  content width. See CONTRIBUTING.md → examples. */}
               <div className="relative flex min-h-44 items-center justify-center p-6">
                 {active?.component}
               </div>

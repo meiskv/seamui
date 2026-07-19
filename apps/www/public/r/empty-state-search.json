@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "empty-state-search",
+  "type": "registry:example",
+  "title": "Empty State Search",
+  "registryDependencies": [
+    "https://seamui.dev/r/empty-state.json",
+    "https://seamui.dev/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/empty-state-search.tsx",
+      "content": "import { SearchX } from \"lucide-react\"\n\nimport { Button } from \"@/registry/seam/ui/button\"\nimport {\n  EmptyState,\n  EmptyStateActions,\n  EmptyStateDescription,\n  EmptyStateMedia,\n  EmptyStateTitle,\n} from \"@/registry/seam/ui/empty-state\"\n\nexport default function EmptyStateSearch() {\n  return (\n    <EmptyState className=\"max-w-md\">\n      <EmptyStateMedia>\n        <SearchX />\n      </EmptyStateMedia>\n      <EmptyStateTitle>No results for &quot;seamles&quot;</EmptyStateTitle>\n      <EmptyStateDescription>\n        Check the spelling or try a broader term.\n      </EmptyStateDescription>\n      <EmptyStateActions>\n        <Button variant=\"outline\" size=\"sm\">\n          Clear filters\n        </Button>\n      </EmptyStateActions>\n    </EmptyState>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

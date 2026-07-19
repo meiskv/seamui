@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox-group",
+  "type": "registry:ui",
+  "title": "Checkbox Group",
+  "description": "Shared state for a set of seam Checkboxes, with select-all parent support, built on Base UI.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "https://seamui.dev/r/utils.json",
+    "https://seamui.dev/r/checkbox.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/ui/checkbox-group.tsx",
+      "content": "import type * as React from \"react\"\nimport { CheckboxGroup as BaseCheckboxGroup } from \"@base-ui/react/checkbox-group\"\n\nimport { cn } from \"@/lib/utils\"\n\n// Shared state for a series of seam Checkboxes: give each child Checkbox a\n// `name`, control membership with `value`/`defaultValue`, and pass\n// `allValues` to wire a select-all parent (a Checkbox with `parent`).\n// Each checkbox fires its own tick haptic, so the group adds none.\nfunction CheckboxGroup({\n  className,\n  ...props\n}: React.ComponentProps<typeof BaseCheckboxGroup>) {\n  return (\n    <BaseCheckboxGroup\n      data-slot=\"checkbox-group\"\n      className={cn(\n        \"flex flex-col items-start gap-2.5\",\n        \"data-[disabled]:pointer-events-none data-[disabled]:opacity-50\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { CheckboxGroup }\n",
+      "type": "registry:ui",
+      "target": "components/ui/checkbox-group.tsx"
+    }
+  ]
+}

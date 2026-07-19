@@ -4,12 +4,13 @@
   "type": "registry:example",
   "title": "Field Fieldset",
   "registryDependencies": [
-    "https://seamui.dev/r/field.json"
+    "https://seamui.dev/r/field.json",
+    "https://seamui.dev/r/radio-group.json"
   ],
   "files": [
     {
       "path": "registry/seam/examples/field-fieldset.tsx",
-      "content": "import {\n  Field,\n  FieldControl,\n  FieldLabel,\n  Fieldset,\n  FieldsetLegend,\n} from \"@/registry/seam/ui/field\"\n\nexport default function FieldFieldset() {\n  return (\n    <Fieldset className=\"w-72\">\n      <FieldsetLegend>Shipping address</FieldsetLegend>\n      <Field>\n        <FieldLabel>Street</FieldLabel>\n        <FieldControl placeholder=\"123 Main St\" />\n      </Field>\n      <Field>\n        <FieldLabel>City</FieldLabel>\n        <FieldControl placeholder=\"Springfield\" />\n      </Field>\n    </Fieldset>\n  )\n}\n",
+      "content": "import {\n  Field,\n  FieldDescription,\n  FieldItem,\n  FieldLabel,\n  Fieldset,\n  FieldsetLegend,\n} from \"@/registry/seam/ui/field\"\nimport { RadioGroup, RadioGroupItem } from \"@/registry/seam/ui/radio-group\"\n\n// Fieldset + legend group related fields; inside a checkbox or radio group,\n// each FieldItem scopes a label (and optional description) to one option.\nexport default function FieldFieldset() {\n  return (\n    <Fieldset className=\"max-w-xs\">\n      <FieldsetLegend>Notifications</FieldsetLegend>\n      <Field name=\"frequency\">\n        <RadioGroup defaultValue=\"mentions\">\n          <FieldItem>\n            <span className=\"flex items-center gap-2.5\">\n              <RadioGroupItem value=\"all\" />\n              <FieldLabel>Everything</FieldLabel>\n            </span>\n          </FieldItem>\n          <FieldItem>\n            <span className=\"flex items-center gap-2.5\">\n              <RadioGroupItem value=\"mentions\" />\n              <FieldLabel>Mentions only</FieldLabel>\n            </span>\n            <FieldDescription className=\"pl-6.5\">\n              Replies and direct mentions.\n            </FieldDescription>\n          </FieldItem>\n          <FieldItem>\n            <span className=\"flex items-center gap-2.5\">\n              <RadioGroupItem value=\"none\" />\n              <FieldLabel>Off</FieldLabel>\n            </span>\n          </FieldItem>\n        </RadioGroup>\n      </Field>\n    </Fieldset>\n  )\n}\n",
       "type": "registry:example"
     }
   ]

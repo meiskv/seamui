@@ -144,6 +144,30 @@
       ]
     },
     {
+      "name": "toolbar",
+      "type": "registry:ui",
+      "title": "Toolbar",
+      "description": "Raised strip of controls with one tab stop and arrow-key roving focus, built on Base UI.",
+      "dependencies": [
+        "@base-ui/react",
+        "motion",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json",
+        "https://seamui.dev/r/haptics.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/toolbar.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/toolbar.tsx"
+        }
+      ]
+    },
+    {
       "name": "combobox",
       "type": "registry:ui",
       "title": "Combobox",
@@ -267,6 +291,26 @@
           "path": "registry/seam/ui/checkbox.tsx",
           "type": "registry:ui",
           "target": "components/ui/checkbox.tsx"
+        }
+      ]
+    },
+    {
+      "name": "checkbox-group",
+      "type": "registry:ui",
+      "title": "Checkbox Group",
+      "description": "Shared state for a set of seam Checkboxes, with select-all parent support, built on Base UI.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/checkbox.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/checkbox-group.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/checkbox-group.tsx"
         }
       ]
     },
@@ -765,6 +809,23 @@
       ]
     },
     {
+      "name": "empty-state",
+      "type": "registry:ui",
+      "title": "Empty State",
+      "description": "Zero-data placeholder — a debossed well with an embossed icon key, copy, and actions.",
+      "dependencies": [],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/empty-state.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/empty-state.tsx"
+        }
+      ]
+    },
+    {
       "name": "spinner",
       "type": "registry:ui",
       "title": "Spinner",
@@ -803,7 +864,7 @@
       "name": "message",
       "type": "registry:ui",
       "title": "Message",
-      "description": "Chat message row \u2014 user as an embossed key, assistant as flat prose.",
+      "description": "Chat message row — user as an embossed key, assistant as flat prose.",
       "dependencies": [
         "@base-ui/react",
         "motion"
@@ -847,7 +908,7 @@
       "name": "composer",
       "type": "registry:ui",
       "title": "Composer",
-      "description": "The prompt input \u2014 a debossed well with send/stop, attachments, and Enter-to-send.",
+      "description": "The prompt input — a debossed well with send/stop, attachments, and Enter-to-send.",
       "dependencies": [
         "motion",
         "lucide-react"
@@ -917,7 +978,7 @@
       "name": "tool",
       "type": "registry:ui",
       "title": "Tool",
-      "description": "Agentic step disclosure \u2014 status chip, collapsible result. Includes Reasoning.",
+      "description": "Agentic step disclosure — status chip, collapsible result. Includes Reasoning.",
       "dependencies": [
         "@base-ui/react",
         "motion",
@@ -2625,6 +2686,7 @@
       "type": "registry:example",
       "title": "Input Invalid",
       "registryDependencies": [
+        "https://seamui.dev/r/field.json",
         "https://seamui.dev/r/input.json"
       ],
       "files": [
@@ -4256,12 +4318,15 @@
       "name": "field",
       "type": "registry:ui",
       "title": "Field",
-      "description": "Labelled form field with description and validation, built on Base UI Field + Fieldset.",
+      "description": "Base UI Field wrappers — label, description, and an error that shakes in, with the error haptic.",
       "dependencies": [
-        "@base-ui/react"
+        "@base-ui/react",
+        "motion"
       ],
       "registryDependencies": [
         "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json",
+        "https://seamui.dev/r/haptics.json",
         "https://seamui.dev/r/input.json"
       ],
       "files": [
@@ -4276,12 +4341,13 @@
       "name": "form",
       "type": "registry:ui",
       "title": "Form",
-      "description": "Form built on Base UI that collects field validity and focuses the first invalid control on submit.",
+      "description": "Native form with consolidated error handling built on Base UI; pairs with Field.",
       "dependencies": [
         "@base-ui/react"
       ],
       "registryDependencies": [
-        "https://seamui.dev/r/utils.json"
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/field.json"
       ],
       "files": [
         {
@@ -4326,7 +4392,8 @@
       "type": "registry:example",
       "title": "Field Demo",
       "registryDependencies": [
-        "https://seamui.dev/r/field.json"
+        "https://seamui.dev/r/field.json",
+        "https://seamui.dev/r/input.json"
       ],
       "files": [
         {
@@ -4336,25 +4403,12 @@
       ]
     },
     {
-      "name": "field-validation",
-      "type": "registry:example",
-      "title": "Field Validation",
-      "registryDependencies": [
-        "https://seamui.dev/r/field.json"
-      ],
-      "files": [
-        {
-          "path": "registry/seam/examples/field-validation.tsx",
-          "type": "registry:example"
-        }
-      ]
-    },
-    {
       "name": "field-fieldset",
       "type": "registry:example",
       "title": "Field Fieldset",
       "registryDependencies": [
-        "https://seamui.dev/r/field.json"
+        "https://seamui.dev/r/field.json",
+        "https://seamui.dev/r/radio-group.json"
       ],
       "files": [
         {
@@ -4370,6 +4424,7 @@
       "registryDependencies": [
         "https://seamui.dev/r/form.json",
         "https://seamui.dev/r/field.json",
+        "https://seamui.dev/r/input.json",
         "https://seamui.dev/r/button.json"
       ],
       "files": [
@@ -4383,7 +4438,7 @@
       "name": "alert",
       "type": "registry:ui",
       "title": "Alert",
-      "description": "Callout for short, important messages.",
+      "description": "Static inline callout for persistent state — the debossed counterpart to toast.",
       "dependencies": [
         "class-variance-authority"
       ],
@@ -4418,6 +4473,29 @@
       ]
     },
     {
+      "name": "pagination",
+      "type": "registry:ui",
+      "title": "Pagination",
+      "description": "Page links in a debossed well; the active page is an embossed key that springs between links.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/motion.json",
+        "https://seamui.dev/r/haptics.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/ui/pagination.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/pagination.tsx"
+        }
+      ]
+    },
+    {
       "name": "aspect-ratio",
       "type": "registry:ui",
       "title": "Aspect Ratio",
@@ -4437,9 +4515,6 @@
       "name": "alert-demo",
       "type": "registry:example",
       "title": "Alert Demo",
-      "dependencies": [
-        "lucide-react"
-      ],
       "registryDependencies": [
         "https://seamui.dev/r/alert.json"
       ],
@@ -4454,9 +4529,6 @@
       "name": "alert-destructive",
       "type": "registry:example",
       "title": "Alert Destructive",
-      "dependencies": [
-        "lucide-react"
-      ],
       "registryDependencies": [
         "https://seamui.dev/r/alert.json"
       ],
@@ -4505,6 +4577,257 @@
       "files": [
         {
           "path": "registry/seam/examples/aspect-ratio-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "field-invalid",
+      "type": "registry:example",
+      "title": "Field Invalid",
+      "registryDependencies": [
+        "https://seamui.dev/r/field.json",
+        "https://seamui.dev/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/field-invalid.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "field-textarea",
+      "type": "registry:example",
+      "title": "Field Textarea",
+      "registryDependencies": [
+        "https://seamui.dev/r/field.json",
+        "https://seamui.dev/r/textarea.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/field-textarea.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "field-disabled",
+      "type": "registry:example",
+      "title": "Field Disabled",
+      "registryDependencies": [
+        "https://seamui.dev/r/field.json",
+        "https://seamui.dev/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/field-disabled.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "form-errors",
+      "type": "registry:example",
+      "title": "Form Errors",
+      "registryDependencies": [
+        "https://seamui.dev/r/form.json",
+        "https://seamui.dev/r/field.json",
+        "https://seamui.dev/r/input.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/form-errors.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "alert-title-only",
+      "type": "registry:example",
+      "title": "Alert Title Only",
+      "registryDependencies": [
+        "https://seamui.dev/r/alert.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/alert-title-only.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "pagination-demo",
+      "type": "registry:example",
+      "title": "Pagination Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/pagination.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/pagination-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "pagination-links",
+      "type": "registry:example",
+      "title": "Pagination Links",
+      "registryDependencies": [
+        "https://seamui.dev/r/pagination.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/pagination-links.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "pagination-simple",
+      "type": "registry:example",
+      "title": "Pagination Simple",
+      "registryDependencies": [
+        "https://seamui.dev/r/pagination.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/pagination-simple.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "checkbox-group-demo",
+      "type": "registry:example",
+      "title": "Checkbox Group Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/checkbox-group.json",
+        "https://seamui.dev/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/checkbox-group-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "checkbox-group-parent",
+      "type": "registry:example",
+      "title": "Checkbox Group Parent",
+      "registryDependencies": [
+        "https://seamui.dev/r/checkbox-group.json",
+        "https://seamui.dev/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/checkbox-group-parent.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "checkbox-group-disabled",
+      "type": "registry:example",
+      "title": "Checkbox Group Disabled",
+      "registryDependencies": [
+        "https://seamui.dev/r/checkbox-group.json",
+        "https://seamui.dev/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/checkbox-group-disabled.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "empty-state-demo",
+      "type": "registry:example",
+      "title": "Empty State Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/empty-state.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/empty-state-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "empty-state-search",
+      "type": "registry:example",
+      "title": "Empty State Search",
+      "registryDependencies": [
+        "https://seamui.dev/r/empty-state.json",
+        "https://seamui.dev/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/empty-state-search.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "empty-state-plain",
+      "type": "registry:example",
+      "title": "Empty State Plain",
+      "registryDependencies": [
+        "https://seamui.dev/r/empty-state.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/empty-state-plain.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "toolbar-demo",
+      "type": "registry:example",
+      "title": "Toolbar Demo",
+      "registryDependencies": [
+        "https://seamui.dev/r/toolbar.json",
+        "https://seamui.dev/r/toggle-group.json",
+        "https://seamui.dev/r/toggle.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/toolbar-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "toolbar-input",
+      "type": "registry:example",
+      "title": "Toolbar Input",
+      "registryDependencies": [
+        "https://seamui.dev/r/toolbar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/toolbar-input.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "toolbar-vertical",
+      "type": "registry:example",
+      "title": "Toolbar Vertical",
+      "registryDependencies": [
+        "https://seamui.dev/r/toolbar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/toolbar-vertical.tsx",
           "type": "registry:example"
         }
       ]

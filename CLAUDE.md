@@ -239,13 +239,23 @@ Two allowed ways to dogfood, in order of preference:
    base classes, sizes, focus ring, disabled handling, and press motion for free.
 2. **Reuse `buttonVariants(...)` classes** on the part's own native element when
    wrapping it in the `Button` *component* would break the part. This is not a
-   loophole — it's required for **Base UI composite widgets** (Tabs, Menu, and
-   any future Toolbar) where the parent manages roving focus through the child's
+   loophole — it's required for **Base UI composite widgets** (Tabs, Toolbar,
+   Toggle Group, Menu) where the parent manages roving focus through the child's
    ref; an extra `Button` wrapper swallows that ref and **kills arrow-key
    navigation** (this actually
    happened with Tabs). There, do
    `className={cn(buttonVariants({ variant: "ghost", size }), …)}` on the plain
    composite-safe element. Same idea for toggle-shaped controls → `toggleVariants`.
+
+   **Composite items can't take a motion element either.** Even
+   `render={<motion.button/>}` (Pattern A) corrupts the composite's item
+   registration — tab stops land on the wrong element and arrow keys go dead
+   (this actually happened with Toggle Group and Toolbar; verified against raw
+   Base UI, which roves fine). Composite items get press feedback from
+   `usePressDepth()` in `@/lib/motion` instead: a function-form render returning
+   a plain element, with the press/settle springs applied imperatively via
+   motion's `animate()` — same tokens, same feel, ref untouched. See
+   `toggle.tsx` and `toolbar.tsx`.
 
 **Never** paste the button base string (`inline-flex items-center justify-center …
 focus-visible:ring-2 focus-visible:ring-ring/50 … disabled:pointer-events-none …`)
@@ -395,7 +405,7 @@ packages/seamui/            # the `seamui` CLI (thin wrapper over shadcn)
 
 - `bun run dev` — docs site.
 - `bun run registry:build` — compile `registry/` → `public/r/*.json`. **Run after every registry change; commit the JSON.**
-- `bun run verify` — the fast CI gates in one shot: `lint` (Biome) + `typecheck` (app **and** CLI) + `motion:check` + `test` (Vitest) + `drift:check`.
+- `bun run verify` — the fast CI gates in one shot: `lint` (Biome) + `typecheck` (app **and** CLI) + `motion:check` + `test:coverage` (Vitest **with the CI coverage thresholds** — plain `test` skips them and green-lights code the coverage gate will reject) + `drift:check`.
 - Individual gates: `bun run lint`, `bun run typecheck`, `bun run motion:check`, `bun run test` / `test:coverage`, `bun run drift:check`, `bun run smoke`, `bun run test:e2e` (Playwright). All six CI jobs live in `.github/workflows/ci.yml`; see CONTRIBUTING.md → "Quality gates".
 - `bun run motion:check` mechanically enforces §3/§5 (no reduced-motion kill switches, no inline springs/durations). Ambient infinite-repeat exceptions go in `scripts/motion-contract-allow.txt` with a justification.
 

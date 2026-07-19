@@ -19,15 +19,16 @@ const COMPONENTS = [
     title: "Toggle Group",
     desc: "Keys rise from a shared well.",
   },
+  {
+    name: "toolbar",
+    title: "Toolbar",
+    desc: "Roving-focus control strip.",
+  },
   { name: "input", title: "Input", desc: "Field-aware text input." },
   { name: "textarea", title: "Textarea", desc: "Auto-growing entry well." },
   { name: "label", title: "Label", desc: "Accessible label for a control." },
-  {
-    name: "field",
-    title: "Field",
-    desc: "Labelled field with validation.",
-  },
-  { name: "form", title: "Form", desc: "Validity-aware form." },
+  { name: "field", title: "Field", desc: "Label + validation wiring." },
+  { name: "form", title: "Form", desc: "Consolidated form validation." },
   { name: "avatar", title: "Avatar", desc: "Image with fade-in and fallback." },
   {
     name: "separator",
@@ -36,6 +37,11 @@ const COMPONENTS = [
   },
   { name: "switch", title: "Switch", desc: "Thumb springs between states." },
   { name: "checkbox", title: "Checkbox", desc: "Mark pops in with a spring." },
+  {
+    name: "checkbox-group",
+    title: "Checkbox Group",
+    desc: "Shared state + select-all.",
+  },
   {
     name: "radio-group",
     title: "Radio Group",
@@ -81,7 +87,12 @@ const COMPONENTS = [
     title: "Breadcrumb",
     desc: "Current page's location.",
   },
-  { name: "alert", title: "Alert", desc: "Callout for important messages." },
+  {
+    name: "pagination",
+    title: "Pagination",
+    desc: "Active page key in a well.",
+  },
+  { name: "alert", title: "Alert", desc: "Persistent inline callout." },
   { name: "progress", title: "Progress", desc: "Eased task-completion fill." },
   { name: "meter", title: "Meter", desc: "Static measurement in a range." },
   {
@@ -97,6 +108,11 @@ const COMPONENTS = [
   },
   { name: "toast", title: "Toast", desc: "Bouncy stacked notifications." },
   { name: "skeleton", title: "Skeleton", desc: "Pulsing loading placeholder." },
+  {
+    name: "empty-state",
+    title: "Empty State",
+    desc: "Zero-data well with actions.",
+  },
   {
     name: "spinner",
     title: "Spinner",

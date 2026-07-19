@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toolbar-demo",
+  "type": "registry:example",
+  "title": "Toolbar Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/toolbar.json",
+    "https://seamui.dev/r/toggle-group.json",
+    "https://seamui.dev/r/toggle.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/toolbar-demo.tsx",
+      "content": "\"use client\"\n\nimport { Bold, Italic, Redo2, Underline, Undo2 } from \"lucide-react\"\n\nimport { Toggle } from \"@/registry/seam/ui/toggle\"\nimport { ToggleGroup } from \"@/registry/seam/ui/toggle-group\"\nimport {\n  Toolbar,\n  ToolbarButton,\n  ToolbarGroup,\n  ToolbarSeparator,\n} from \"@/registry/seam/ui/toolbar\"\n\n// One tab stop for the whole strip — arrow keys move between controls,\n// including the embedded toggle group (its own well inside the raised strip).\nexport default function ToolbarDemo() {\n  return (\n    <Toolbar aria-label=\"Formatting\">\n      <ToggleGroup multiple aria-label=\"Text style\">\n        <Toggle value=\"bold\" aria-label=\"Bold\">\n          <Bold />\n        </Toggle>\n        <Toggle value=\"italic\" aria-label=\"Italic\">\n          <Italic />\n        </Toggle>\n        <Toggle value=\"underline\" aria-label=\"Underline\">\n          <Underline />\n        </Toggle>\n      </ToggleGroup>\n      <ToolbarSeparator />\n      <ToolbarGroup aria-label=\"History\">\n        <ToolbarButton size=\"icon\" className=\"size-9\" aria-label=\"Undo\">\n          <Undo2 />\n        </ToolbarButton>\n        <ToolbarButton\n          size=\"icon\"\n          className=\"size-9\"\n          aria-label=\"Redo\"\n          disabled\n        >\n          <Redo2 />\n        </ToolbarButton>\n      </ToolbarGroup>\n    </Toolbar>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

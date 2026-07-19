@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "form-errors",
+  "type": "registry:example",
+  "title": "Form Errors",
+  "registryDependencies": [
+    "https://seamui.dev/r/form.json",
+    "https://seamui.dev/r/field.json",
+    "https://seamui.dev/r/input.json",
+    "https://seamui.dev/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/form-errors.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport { Button } from \"@/registry/seam/ui/button\"\nimport { Field, FieldError, FieldLabel } from \"@/registry/seam/ui/field\"\nimport { Form } from \"@/registry/seam/ui/form\"\nimport { Input } from \"@/registry/seam/ui/input\"\n\n// Server-side validation: pass the response's errors — keyed by field name —\n// to the `errors` prop and they render (and shake in) exactly like client\n// errors. Base UI clears a field's server error as soon as it changes.\nexport default function FormErrors() {\n  const [errors, setErrors] = React.useState<Record<string, string>>({})\n  const [saving, setSaving] = React.useState(false)\n\n  return (\n    <Form<{ handle: string }>\n      className=\"max-w-xs\"\n      errors={errors}\n      onFormSubmit={async (values) => {\n        setSaving(true)\n        // fake request — every handle is already taken\n        await new Promise((resolve) => setTimeout(resolve, 600))\n        setSaving(false)\n        setErrors({ handle: `\"${values.handle}\" is already taken.` })\n      }}\n    >\n      <Field name=\"handle\">\n        <FieldLabel>Workspace handle</FieldLabel>\n        <Input required placeholder=\"acme\" />\n        <FieldError />\n      </Field>\n      <Button type=\"submit\" disabled={saving}>\n        {saving ? \"Claiming…\" : \"Claim handle\"}\n      </Button>\n    </Form>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

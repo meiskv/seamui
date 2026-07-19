@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toolbar-input",
+  "type": "registry:example",
+  "title": "Toolbar Input",
+  "registryDependencies": [
+    "https://seamui.dev/r/toolbar.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/toolbar-input.tsx",
+      "content": "\"use client\"\n\nimport { Filter, RotateCw } from \"lucide-react\"\n\nimport {\n  Toolbar,\n  ToolbarButton,\n  ToolbarInput,\n  ToolbarSeparator,\n} from \"@/registry/seam/ui/toolbar\"\n\n// An entry well carved into the raised strip — search-and-act rows.\nexport default function ToolbarInputExample() {\n  return (\n    <Toolbar aria-label=\"Members\">\n      <ToolbarInput placeholder=\"Filter members…\" aria-label=\"Filter members\" />\n      <ToolbarSeparator />\n      <ToolbarButton size=\"icon\" className=\"size-9\" aria-label=\"Apply filters\">\n        <Filter />\n      </ToolbarButton>\n      <ToolbarButton size=\"icon\" className=\"size-9\" aria-label=\"Refresh\">\n        <RotateCw />\n      </ToolbarButton>\n    </Toolbar>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toolbar",
+  "type": "registry:ui",
+  "title": "Toolbar",
+  "description": "Raised strip of controls with one tab stop and arrow-key roving focus, built on Base UI.",
+  "dependencies": [
+    "@base-ui/react",
+    "motion",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "https://seamui.dev/r/utils.json",
+    "https://seamui.dev/r/motion.json",
+    "https://seamui.dev/r/haptics.json",
+    "https://seamui.dev/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/ui/toolbar.tsx",
+      "content": "\"use client\"\n\nimport type * as React from \"react\"\nimport { Toolbar as BaseToolbar } from \"@base-ui/react/toolbar\"\nimport type { VariantProps } from \"class-variance-authority\"\n\nimport { cn } from \"@/lib/utils\"\nimport { usePressDepth } from \"@/lib/motion\"\nimport { useHaptics } from \"@/lib/haptics\"\nimport { buttonVariants } from \"./button\"\n\n// A raised strip of controls resting on the canvas. Base UI owns the roving\n// focus (one tab stop, arrows move between items), which is why the items\n// below attach motion via the part's render prop — wrapping them in the\n// Button component would swallow the ref and kill arrow-key navigation (§5A).\nfunction Toolbar({\n  className,\n  ...props\n}: React.ComponentProps<typeof BaseToolbar.Root>) {\n  return (\n    <BaseToolbar.Root\n      data-slot=\"toolbar\"\n      className={cn(\n        \"bg-card border-border/60 shadow-resting flex w-fit items-center gap-1 rounded-lg squircle border p-1.5\",\n        \"data-[orientation=vertical]:flex-col\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\ntype ToolbarButtonProps = React.ComponentProps<typeof BaseToolbar.Button> &\n  Pick<VariantProps<typeof buttonVariants>, \"variant\" | \"size\">\n\nfunction ToolbarButton({\n  className,\n  variant = \"ghost\",\n  size = \"sm\",\n  disabled,\n  onPointerDown,\n  ...props\n}: ToolbarButtonProps) {\n  const { trigger } = useHaptics()\n  // The item's ref drives the toolbar's roving focus — a motion.button\n  // render breaks the registration, so press depth goes on imperatively.\n  const withPress = usePressDepth(disabled ?? false)\n  return (\n    <BaseToolbar.Button\n      data-slot=\"toolbar-button\"\n      className={cn(buttonVariants({ variant, size }), className)}\n      disabled={disabled}\n      // seam touch feedback, tactile half: a haptic tap as the pointer lands.\n      onPointerDown={(e) => {\n        onPointerDown?.(e)\n        if (!disabled && e.button === 0) trigger(\"tap\")\n      }}\n      render={(renderProps) => (\n        <button\n          type=\"button\"\n          {...withPress(renderProps as React.ComponentProps<\"button\">)}\n        />\n      )}\n      {...props}\n    />\n  )\n}\n\n// Navigation inside a toolbar stays a real link (no press depth, like\n// pagination) but participates in the roving focus.\nfunction ToolbarLink({\n  className,\n  ...props\n}: React.ComponentProps<typeof BaseToolbar.Link>) {\n  return (\n    <BaseToolbar.Link\n      data-slot=\"toolbar-link\"\n      className={cn(buttonVariants({ variant: \"link\", size: \"sm\" }), className)}\n      {...props}\n    />\n  )\n}\n\nfunction ToolbarGroup({\n  className,\n  ...props\n}: React.ComponentProps<typeof BaseToolbar.Group>) {\n  return (\n    <BaseToolbar.Group\n      data-slot=\"toolbar-group\"\n      className={cn(\"flex items-center gap-1\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction ToolbarSeparator({\n  className,\n  ...props\n}: React.ComponentProps<typeof BaseToolbar.Separator>) {\n  return (\n    <BaseToolbar.Separator\n      data-slot=\"toolbar-separator\"\n      className={cn(\n        \"bg-border/80 mx-1 shrink-0 data-[orientation=vertical]:h-6 data-[orientation=vertical]:w-px data-[orientation=horizontal]:my-1 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-6\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\n// An entry well carved into the raised strip (§1: you type into it).\nfunction ToolbarInput({\n  className,\n  ...props\n}: React.ComponentProps<typeof BaseToolbar.Input>) {\n  return (\n    <BaseToolbar.Input\n      data-slot=\"toolbar-input\"\n      className={cn(\n        \"border-border/60 bg-muted shadow-well h-8 w-40 min-w-0 rounded-md squircle border px-3 text-sm outline-none\",\n        \"placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground\",\n        \"focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-2\",\n        \"data-[disabled]:pointer-events-none data-[disabled]:opacity-50\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport {\n  Toolbar,\n  ToolbarButton,\n  ToolbarLink,\n  ToolbarGroup,\n  ToolbarSeparator,\n  ToolbarInput,\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/toolbar.tsx"
+    }
+  ]
+}

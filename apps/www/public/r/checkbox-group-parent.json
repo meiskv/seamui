@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox-group-parent",
+  "type": "registry:example",
+  "title": "Checkbox Group Parent",
+  "registryDependencies": [
+    "https://seamui.dev/r/checkbox-group.json",
+    "https://seamui.dev/r/label.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/checkbox-group-parent.tsx",
+      "content": "\"use client\"\n\nimport { Checkbox } from \"@/registry/seam/ui/checkbox\"\nimport { CheckboxGroup } from \"@/registry/seam/ui/checkbox-group\"\nimport { Label } from \"@/registry/seam/ui/label\"\n\nconst SCOPES = [\"read\", \"write\", \"deploy\"]\n\n// `allValues` + a `parent` checkbox = select-all with an indeterminate\n// middle state, managed entirely by Base UI.\nexport default function CheckboxGroupParent() {\n  return (\n    <CheckboxGroup\n      defaultValue={[\"read\"]}\n      allValues={SCOPES}\n      aria-label=\"API scopes\"\n    >\n      <Label className=\"font-semibold\">\n        <Checkbox parent />\n        All scopes\n      </Label>\n      <div className=\"flex flex-col gap-2.5 pl-6\">\n        <Label>\n          <Checkbox name=\"read\" />\n          Read\n        </Label>\n        <Label>\n          <Checkbox name=\"write\" />\n          Write\n        </Label>\n        <Label>\n          <Checkbox name=\"deploy\" />\n          Deploy\n        </Label>\n      </div>\n    </CheckboxGroup>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

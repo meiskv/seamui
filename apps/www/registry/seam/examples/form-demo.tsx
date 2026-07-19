@@ -2,37 +2,42 @@
 
 import * as React from "react"
 
-import {
-  Field,
-  FieldControl,
-  FieldError,
-  FieldLabel,
-} from "@/registry/seam/ui/field"
-import { Form } from "@/registry/seam/ui/form"
 import { Button } from "@/registry/seam/ui/button"
+import { Field, FieldError, FieldLabel } from "@/registry/seam/ui/field"
+import { Form } from "@/registry/seam/ui/form"
+import { Input } from "@/registry/seam/ui/input"
 
+// Native constraints (required, type, minLength) drive validation; submitting
+// with problems focuses the first invalid field and shakes its error in.
+// `onFormSubmit` only fires once everything passes.
 export default function FormDemo() {
-  const [submitted, setSubmitted] = React.useState<string | null>(null)
+  const [signedInAs, setSignedInAs] = React.useState<string | null>(null)
 
   return (
-    <Form
-      className="w-72"
-      onSubmit={(event) => {
-        event.preventDefault()
-        const data = new FormData(event.currentTarget)
-        setSubmitted(String(data.get("email")))
-      }}
+    <Form<{ email: string; password: string }>
+      className="max-w-xs"
+      onFormSubmit={(values) => setSignedInAs(values.email)}
     >
       <Field name="email">
         <FieldLabel>Email</FieldLabel>
-        <FieldControl type="email" required placeholder="you@example.com" />
-        <FieldError match="valueMissing">An email is required.</FieldError>
-        <FieldError match="typeMismatch">Enter a valid email.</FieldError>
+        <Input type="email" required placeholder="you@company.com" />
+        <FieldError match="valueMissing">Enter your email.</FieldError>
+        <FieldError match="typeMismatch">
+          That doesn&apos;t look like an email.
+        </FieldError>
       </Field>
-      <Button type="submit">Subscribe</Button>
-      {submitted ? (
-        <p className="text-muted-foreground text-sm">Subscribed {submitted}</p>
-      ) : null}
+      <Field name="password">
+        <FieldLabel>Password</FieldLabel>
+        <Input type="password" required minLength={8} placeholder="••••••••" />
+        <FieldError match="valueMissing">Enter your password.</FieldError>
+        <FieldError match="tooShort">At least 8 characters.</FieldError>
+      </Field>
+      <Button type="submit">Sign in</Button>
+      {signedInAs && (
+        <p className="text-muted-foreground text-sm">
+          Signed in as {signedInAs}.
+        </p>
+      )}
     </Form>
   )
 }

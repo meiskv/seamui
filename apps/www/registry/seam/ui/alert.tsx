@@ -4,15 +4,17 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const alertVariants = cva(
-  // A raised card key: a callout resting on the canvas with a soft shadow and
-  // squircle corners. The optional leading icon is pinned to the first line.
-  "relative w-full rounded-lg squircle border px-4 py-3 text-sm shadow-resting grid grid-cols-[0_1fr] gap-y-0.5 has-[>svg]:grid-cols-[calc(var(--spacing)*4)_1fr] has-[>svg]:gap-x-3 [&>svg]:size-4 [&>svg]:translate-y-0.5 [&>svg]:text-current",
+  // The persistent counterpart to toast: state carved into the page, so the
+  // callout is a debossed well (inset shadow), not a raised key. Grid keeps
+  // the optional leading icon aligned with the title.
+  "relative grid w-full grid-cols-[0_1fr] items-start gap-y-0.5 rounded-lg squircle border px-4 py-3.5 text-sm has-[>svg]:grid-cols-[calc(var(--spacing)*5)_1fr] has-[>svg]:gap-x-2.5 [&>svg]:size-4 [&>svg]:translate-y-0.5 [&>svg]:text-current",
   {
     variants: {
       variant: {
-        default: "bg-card text-card-foreground",
+        default:
+          "border-border/60 bg-muted text-foreground shadow-well [&>svg]:text-muted-foreground",
         destructive:
-          "bg-card text-destructive [&>svg]:text-current *:data-[slot=alert-description]:text-destructive/80",
+          "border-destructive/30 bg-destructive/10 text-destructive shadow-well [&_[data-slot=alert-description]]:text-destructive/85",
       },
     },
     defaultVariants: { variant: "default" },
@@ -28,7 +30,7 @@ function Alert({
     <div
       data-slot="alert"
       role="alert"
-      className={cn(alertVariants({ variant }), className)}
+      className={cn(alertVariants({ variant, className }))}
       {...props}
     />
   )
@@ -38,10 +40,7 @@ function AlertTitle({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="alert-title"
-      className={cn(
-        "col-start-2 line-clamp-1 min-h-4 font-medium tracking-tight",
-        className
-      )}
+      className={cn("col-start-2 font-medium leading-snug", className)}
       {...props}
     />
   )
@@ -55,7 +54,7 @@ function AlertDescription({
     <div
       data-slot="alert-description"
       className={cn(
-        "text-muted-foreground col-start-2 grid justify-items-start gap-1 text-sm [&_p]:leading-relaxed",
+        "text-muted-foreground col-start-2 text-sm leading-relaxed [&_p]:leading-relaxed",
         className
       )}
       {...props}

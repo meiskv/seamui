@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox-group-disabled",
+  "type": "registry:example",
+  "title": "Checkbox Group Disabled",
+  "registryDependencies": [
+    "https://seamui.dev/r/checkbox-group.json",
+    "https://seamui.dev/r/label.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/checkbox-group-disabled.tsx",
+      "content": "import { Checkbox } from \"@/registry/seam/ui/checkbox\"\nimport { CheckboxGroup } from \"@/registry/seam/ui/checkbox-group\"\nimport { Label } from \"@/registry/seam/ui/label\"\n\nexport default function CheckboxGroupDisabled() {\n  return (\n    <CheckboxGroup disabled defaultValue={[\"logs\"]} aria-label=\"Plan features\">\n      <Label>\n        <Checkbox name=\"logs\" />\n        Audit logs\n      </Label>\n      <Label>\n        <Checkbox name=\"sso\" />\n        SSO\n      </Label>\n    </CheckboxGroup>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

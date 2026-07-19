@@ -1,16 +1,12 @@
-import {
-  Field,
-  FieldControl,
-  FieldDescription,
-  FieldLabel,
-} from "@/registry/seam/ui/field"
+import { Field, FieldDescription, FieldLabel } from "@/registry/seam/ui/field"
+import { Input } from "@/registry/seam/ui/input"
 
 export default function FieldDemo() {
   return (
-    <Field className="w-72">
+    <Field name="email" className="max-w-xs">
       <FieldLabel>Email</FieldLabel>
-      <FieldControl type="email" placeholder="you@example.com" />
-      <FieldDescription>We'll never share your email.</FieldDescription>
+      <Input type="email" placeholder="you@company.com" />
+      <FieldDescription>We only use this for receipts.</FieldDescription>
     </Field>
   )
 }
