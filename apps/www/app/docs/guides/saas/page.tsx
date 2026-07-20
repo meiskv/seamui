@@ -6,6 +6,7 @@ import { CodeBlock } from "@/registry/seam/ui/code-block"
 import { exampleSource } from "@/lib/registry-source"
 import AuthBlock from "@/registry/seam/examples/auth-block"
 import SettingsBlock from "@/registry/seam/examples/settings-block"
+import TeamBlock from "@/registry/seam/examples/team-block"
 
 export const metadata: Metadata = {
   title: "Building a SaaS app — seamui",
@@ -65,12 +66,27 @@ export default function SaasGuide() {
         <CodeBlock code={exampleSource("settings-block")} language="tsx" />
       </Section>
 
+      <Section title="Team — rows, actions, and an invite dialog">
+        <p className="text-muted-foreground text-sm">
+          A Data Table of members — Avatar identity, Badge roles and status —
+          with a per-row DropdownMenu for role changes and removal. Inviting
+          opens a Dialog whose Form pairs a validated email Field with a{" "}
+          <Link
+            className="hover:text-foreground underline"
+            href="/docs/components/combobox"
+          >
+            Combobox
+          </Link>{" "}
+          role picker; the new row lands as &quot;Invited&quot;.
+        </p>
+        <div className="squircle bg-background my-4 flex justify-center rounded-xl border p-6">
+          <TeamBlock />
+        </div>
+        <CodeBlock code={exampleSource("team-block")} language="tsx" />
+      </Section>
+
       <Section title="Coming next">
         <ul className="text-muted-foreground list-disc space-y-1 pl-5 text-sm">
-          <li>
-            <strong>Team members</strong> — Data Table + row actions + an invite
-            Dialog.
-          </li>
           <li>
             <strong>Billing &amp; usage</strong> — plan Cards, a monthly/annual
             Toggle Group, usage meters.
