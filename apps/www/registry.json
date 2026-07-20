@@ -4831,6 +4831,126 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "auth-block",
+      "type": "registry:example",
+      "title": "Auth Block",
+      "registryDependencies": [
+        "https://seamui.dev/r/motion.json",
+        "https://seamui.dev/r/utils.json",
+        "https://seamui.dev/r/card.json",
+        "https://seamui.dev/r/form.json",
+        "https://seamui.dev/r/field.json",
+        "https://seamui.dev/r/input.json",
+        "https://seamui.dev/r/button.json",
+        "https://seamui.dev/r/separator.json",
+        "https://seamui.dev/r/otp-field.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/auth-block.tsx",
+          "type": "registry:example"
+        }
+      ],
+      "dependencies": [
+        "motion"
+      ]
+    },
+    {
+      "name": "settings-block",
+      "type": "registry:example",
+      "title": "Settings Block",
+      "registryDependencies": [
+        "https://seamui.dev/r/card.json",
+        "https://seamui.dev/r/tabs.json",
+        "https://seamui.dev/r/form.json",
+        "https://seamui.dev/r/field.json",
+        "https://seamui.dev/r/input.json",
+        "https://seamui.dev/r/label.json",
+        "https://seamui.dev/r/select.json",
+        "https://seamui.dev/r/switch.json",
+        "https://seamui.dev/r/avatar.json",
+        "https://seamui.dev/r/button.json",
+        "https://seamui.dev/r/alert.json",
+        "https://seamui.dev/r/alert-dialog.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/settings-block.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "team-block",
+      "type": "registry:example",
+      "title": "Team Block",
+      "registryDependencies": [
+        "https://seamui.dev/r/card.json",
+        "https://seamui.dev/r/data-table.json",
+        "https://seamui.dev/r/avatar.json",
+        "https://seamui.dev/r/badge.json",
+        "https://seamui.dev/r/button.json",
+        "https://seamui.dev/r/dialog.json",
+        "https://seamui.dev/r/dropdown-menu.json",
+        "https://seamui.dev/r/combobox.json",
+        "https://seamui.dev/r/form.json",
+        "https://seamui.dev/r/field.json",
+        "https://seamui.dev/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/team-block.tsx",
+          "type": "registry:example"
+        }
+      ],
+      "dependencies": [
+        "lucide-react",
+        "@tanstack/react-table"
+      ]
+    },
+    {
+      "name": "billing-block",
+      "type": "registry:example",
+      "title": "Billing Block",
+      "registryDependencies": [
+        "https://seamui.dev/r/card.json",
+        "https://seamui.dev/r/badge.json",
+        "https://seamui.dev/r/button.json",
+        "https://seamui.dev/r/meter.json",
+        "https://seamui.dev/r/toggle-group.json",
+        "https://seamui.dev/r/toggle.json",
+        "https://seamui.dev/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/billing-block.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "notifications-block",
+      "type": "registry:example",
+      "title": "Notifications Block",
+      "registryDependencies": [
+        "https://seamui.dev/r/popover.json",
+        "https://seamui.dev/r/button.json",
+        "https://seamui.dev/r/badge.json",
+        "https://seamui.dev/r/separator.json",
+        "https://seamui.dev/r/empty-state.json",
+        "https://seamui.dev/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/notifications-block.tsx",
+          "type": "registry:example"
+        }
+      ],
+      "dependencies": [
+        "lucide-react"
+      ]
     }
   ]
 }

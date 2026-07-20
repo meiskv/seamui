@@ -37,6 +37,7 @@ export function VariantPreview({
   variants,
   language = "tsx",
   syncHash = true,
+  stageClassName,
 }: {
   variants: PreviewVariant[]
   /** Language for the code section's highlighter. */
@@ -44,6 +45,10 @@ export function VariantPreview({
   /** Reflect the selected variant in the URL hash. Turn off for secondary
    *  previews so multiple panels on one page don't fight over the hash. */
   syncHash?: boolean
+  /** Extra classes for the preview stage — e.g. a taller min-height when
+   *  variants differ wildly in size, so switching doesn't jump the layout
+   *  (the stage swap has no height animation). */
+  stageClassName?: string
 }) {
   const [variant, setVariant] = React.useState(variants[0]?.key)
   const [grid, setGrid] = React.useState(true)
@@ -126,7 +131,12 @@ export function VariantPreview({
                   example whose root is a wrapper div around a fluid control
                   must carry `w-full max-w-*` itself, or it collapses to
                   content width. See CONTRIBUTING.md → examples. */}
-              <div className="relative flex min-h-44 items-center justify-center p-6">
+              <div
+                className={cn(
+                  "relative flex min-h-44 items-center justify-center p-6",
+                  stageClassName
+                )}
+              >
                 {active?.component}
               </div>
             </motion.div>
