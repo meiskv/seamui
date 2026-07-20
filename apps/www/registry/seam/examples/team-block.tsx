@@ -106,88 +106,96 @@ export default function TeamBlock() {
   const removeMember = (id: string) =>
     setMembers((ms) => ms.filter((m) => m.id !== id))
 
-  const columns: ColumnDef<Member>[] = [
-    {
-      accessorKey: "name",
-      header: "Member",
-      cell: ({ row }) => (
-        <div className="flex items-center gap-2.5">
-          <Avatar className="size-8">
-            <AvatarFallback className="text-xs">
-              {initials(row.original.name)}
-            </AvatarFallback>
-          </Avatar>
-          <div className="leading-tight">
-            <p className="font-medium">{row.original.name}</p>
-            <p className="text-muted-foreground text-xs">
-              {row.original.email}
-            </p>
+  // Memoized: cells only close over the stable setMembers dispatcher, so the
+  // table keeps one column model instead of rebuilding per render.
+  const columns = React.useMemo<ColumnDef<Member>[]>(
+    () => [
+      {
+        accessorKey: "name",
+        header: "Member",
+        cell: ({ row }) => (
+          <div className="flex items-center gap-2.5">
+            <Avatar className="size-8">
+              <AvatarFallback className="text-xs">
+                {initials(row.original.name)}
+              </AvatarFallback>
+            </Avatar>
+            <div className="leading-tight">
+              <p className="font-medium">{row.original.name}</p>
+              <p className="text-muted-foreground text-xs">
+                {row.original.email}
+              </p>
+            </div>
           </div>
-        </div>
-      ),
-    },
-    {
-      accessorKey: "role",
-      header: "Role",
-      cell: ({ row }) => (
-        <Badge variant={row.original.role === "Owner" ? "default" : "muted"}>
-          {row.original.role}
-        </Badge>
-      ),
-    },
-    {
-      accessorKey: "status",
-      header: "Status",
-      cell: ({ row }) => (
-        <Badge
-          variant={row.original.status === "Active" ? "secondary" : "outline"}
-        >
-          {row.original.status}
-        </Badge>
-      ),
-    },
-    {
-      id: "actions",
-      header: () => <span className="sr-only">Actions</span>,
-      cell: ({ row }) => {
-        const m = row.original
-        if (m.role === "Owner") return null
-        return (
-          <div className="flex justify-end">
-            <DropdownMenu>
-              <DropdownMenuTrigger
-                render={
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="size-8"
-                    aria-label={`Actions for ${m.name}`}
-                  >
-                    <MoreHorizontal />
-                  </Button>
-                }
-              />
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem
-                  onClick={() =>
-                    setMemberRole(m.id, m.role === "Admin" ? "Member" : "Admin")
-                  }
-                >
-                  Make {m.role === "Admin" ? "member" : "admin"}
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  className="text-destructive"
-                  onClick={() => removeMember(m.id)}
-                >
-                  Remove from team
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
-        )
+        ),
       },
-    },
-  ]
+      {
+        accessorKey: "role",
+        header: "Role",
+        cell: ({ row }) => (
+          <Badge variant={row.original.role === "Owner" ? "default" : "muted"}>
+            {row.original.role}
+          </Badge>
+        ),
+      },
+      {
+        accessorKey: "status",
+        header: "Status",
+        cell: ({ row }) => (
+          <Badge
+            variant={row.original.status === "Active" ? "secondary" : "outline"}
+          >
+            {row.original.status}
+          </Badge>
+        ),
+      },
+      {
+        id: "actions",
+        header: () => <span className="sr-only">Actions</span>,
+        cell: ({ row }) => {
+          const m = row.original
+          if (m.role === "Owner") return null
+          return (
+            <div className="flex justify-end">
+              <DropdownMenu>
+                <DropdownMenuTrigger
+                  render={
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="size-8"
+                      aria-label={`Actions for ${m.name}`}
+                    >
+                      <MoreHorizontal />
+                    </Button>
+                  }
+                />
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem
+                    onClick={() =>
+                      setMemberRole(
+                        m.id,
+                        m.role === "Admin" ? "Member" : "Admin"
+                      )
+                    }
+                  >
+                    Make {m.role === "Admin" ? "member" : "admin"}
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    className="text-destructive"
+                    onClick={() => removeMember(m.id)}
+                  >
+                    Remove from team
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+          )
+        },
+      },
+    ],
+    []
+  )
 
   return (
     <Card className="w-full max-w-xl">
@@ -214,16 +222,21 @@ export default function TeamBlock() {
               </DialogHeader>
               <Form<{ email: string }>
                 onFormSubmit={(values) => {
-                  setMembers((ms) => [
-                    ...ms,
-                    {
-                      id: `m${Date.now()}`,
-                      name: values.email.replace(/@.*/, ""),
-                      email: values.email,
-                      role: role?.value ?? "Member",
-                      status: "Invited",
-                    },
-                  ])
+                  setMembers((ms) =>
+                    // Already on the team (or already invited) — no duplicate row.
+                    ms.some((m) => m.email === values.email)
+                      ? ms
+                      : [
+                          ...ms,
+                          {
+                            id: crypto.randomUUID(),
+                            name: values.email.replace(/@.*/, ""),
+                            email: values.email,
+                            role: role?.value ?? "Member",
+                            status: "Invited",
+                          },
+                        ]
+                  )
                   setInviteOpen(false)
                 }}
               >

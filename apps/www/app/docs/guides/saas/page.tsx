@@ -32,6 +32,9 @@ export default function SaasGuide() {
       </p>
 
       <VariantPreview
+        // The blocks range from a lone bell to a full team table — a shared
+        // min-height keeps the switcher from jumping between them.
+        stageClassName="sm:min-h-[36rem]"
         variants={[
           {
             key: "auth",

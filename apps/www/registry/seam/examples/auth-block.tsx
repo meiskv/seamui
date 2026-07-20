@@ -23,12 +23,23 @@ import { Separator } from "@/registry/seam/ui/separator"
 // that shakes on a rejected code — and the step swap is motion-owned
 // (AnimatePresence), so it rises with overlay depth and fades under
 // reduced motion.
+type Step = "credentials" | "code" | "done"
+
+const COPY: Record<Step, { title: string; desc: (email: string) => string }> = {
+  credentials: {
+    title: "Sign in",
+    desc: () => "Use your work email to continue.",
+  },
+  code: {
+    title: "Check your phone",
+    desc: (email) => `We sent a 6-digit code for ${email}.`,
+  },
+  done: { title: "Welcome back", desc: () => "Two factors, zero doubt." },
+}
+
 export default function AuthBlock() {
-  const [step, setStep] = React.useState<"credentials" | "code" | "done">(
-    "credentials"
-  )
+  const [step, setStep] = React.useState<Step>("credentials")
   const [email, setEmail] = React.useState("")
-  const [code, setCode] = React.useState("")
   const [invalid, setInvalid] = React.useState(false)
   const reduceMotion = useReducedMotion() ?? false
 
@@ -39,18 +50,14 @@ export default function AuthBlock() {
   return (
     <Card className="w-full max-w-sm">
       <CardHeader>
-        <CardTitle>
-          {step === "credentials" && "Sign in"}
-          {step === "code" && "Check your phone"}
-          {step === "done" && "Welcome back"}
-        </CardTitle>
-        <CardDescription>
-          {step === "credentials" && "Use your work email to continue."}
-          {step === "code" && `We sent a 6-digit code for ${email}.`}
-          {step === "done" && "Two factors, zero doubt."}
-        </CardDescription>
+        <CardTitle>{COPY[step].title}</CardTitle>
+        <CardDescription>{COPY[step].desc(email)}</CardDescription>
       </CardHeader>
       <CardContent>
+        {/* Always mounted so screen readers announce the final step. */}
+        <span className="sr-only" aria-live="polite">
+          {step === "done" ? `Signed in as ${email}.` : ""}
+        </span>
         <AnimatePresence mode="wait" initial={false}>
           {step === "credentials" && (
             <motion.div key="credentials" {...stepMotion}>
@@ -112,14 +119,12 @@ export default function AuthBlock() {
               {...stepMotion}
               className="flex flex-col items-center gap-4"
             >
+              {/* Uncontrolled: the step unmounts on change, so the code
+                  resets for free. */}
               <OTPField
                 length={6}
-                value={code}
                 invalid={invalid}
-                onValueChange={(v: string) => {
-                  setCode(v)
-                  setInvalid(false)
-                }}
+                onValueChange={() => setInvalid(false)}
                 onValueComplete={(v: string) => {
                   if (v === "123456") setStep("done")
                   else setInvalid(true)
@@ -135,7 +140,6 @@ export default function AuthBlock() {
                 variant="ghost"
                 size="sm"
                 onClick={() => {
-                  setCode("")
                   setInvalid(false)
                   setStep("credentials")
                 }}
@@ -151,7 +155,7 @@ export default function AuthBlock() {
               {...stepMotion}
               className="flex flex-col items-center gap-4 py-4"
             >
-              <p className="text-sm" aria-live="polite">
+              <p className="text-sm">
                 Signed in as <strong>{email}</strong>.
               </p>
               <Button
@@ -159,7 +163,6 @@ export default function AuthBlock() {
                 variant="outline"
                 size="sm"
                 onClick={() => {
-                  setCode("")
                   setInvalid(false)
                   setStep("credentials")
                 }}

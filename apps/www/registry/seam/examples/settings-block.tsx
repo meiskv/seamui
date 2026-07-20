@@ -50,9 +50,23 @@ import {
 // The settings page: Tabs hold the sections, Field/Form carry validation on
 // General, Switch rows commit notification state, and the danger zone gates
 // deletion behind an AlertDialog. All foundation, no new parts.
+const NOTIFICATION_PREFS = [
+  { label: "Product updates", desc: "Release notes, once a month.", on: true },
+  { label: "Usage alerts", desc: "When you approach a plan limit.", on: true },
+  { label: "Weekly digest", desc: "Activity summary every Monday.", on: false },
+]
+
 export default function SettingsBlock() {
   const [saved, setSaved] = React.useState(false)
   const [deleted, setDeleted] = React.useState(false)
+  const savedTimer = React.useRef<ReturnType<typeof setTimeout> | null>(null)
+  // Re-arm (never stack) the confirmation timer; clear it on unmount.
+  React.useEffect(
+    () => () => {
+      if (savedTimer.current) clearTimeout(savedTimer.current)
+    },
+    []
+  )
 
   return (
     <Card className="w-full max-w-md">
@@ -74,7 +88,8 @@ export default function SettingsBlock() {
             <Form<{ name: string; region: string }>
               onFormSubmit={() => {
                 setSaved(true)
-                setTimeout(() => setSaved(false), 2000)
+                if (savedTimer.current) clearTimeout(savedTimer.current)
+                savedTimer.current = setTimeout(() => setSaved(false), 2000)
               }}
             >
               <div className="flex items-center gap-3">
@@ -96,7 +111,7 @@ export default function SettingsBlock() {
               </Field>
               <Field name="region">
                 <FieldLabel>Data region</FieldLabel>
-                <Select name="region" defaultValue="eu">
+                <Select defaultValue="eu">
                   <SelectTrigger className="w-full">
                     <SelectValue />
                   </SelectTrigger>
@@ -112,47 +127,30 @@ export default function SettingsBlock() {
               </Field>
               <div className="flex items-center gap-3">
                 <Button type="submit">Save changes</Button>
-                {saved && (
-                  <span
-                    className="text-muted-foreground text-sm"
-                    aria-live="polite"
-                  >
-                    Saved.
-                  </span>
-                )}
+                {/* Always mounted so screen readers announce the change. */}
+                <span
+                  className="text-muted-foreground text-sm"
+                  aria-live="polite"
+                >
+                  {saved ? "Saved." : ""}
+                </span>
               </div>
             </Form>
           </TabsContent>
 
           <TabsContent value="notifications" className="pt-2">
             <div className="flex flex-col gap-4">
-              <Label className="justify-between">
-                <span className="flex flex-col gap-0.5">
-                  Product updates
-                  <span className="text-muted-foreground text-xs font-normal">
-                    Release notes, once a month.
+              {NOTIFICATION_PREFS.map((pref) => (
+                <Label key={pref.label} className="justify-between">
+                  <span className="flex flex-col gap-0.5">
+                    {pref.label}
+                    <span className="text-muted-foreground text-xs font-normal">
+                      {pref.desc}
+                    </span>
                   </span>
-                </span>
-                <Switch defaultChecked />
-              </Label>
-              <Label className="justify-between">
-                <span className="flex flex-col gap-0.5">
-                  Usage alerts
-                  <span className="text-muted-foreground text-xs font-normal">
-                    When you approach a plan limit.
-                  </span>
-                </span>
-                <Switch defaultChecked />
-              </Label>
-              <Label className="justify-between">
-                <span className="flex flex-col gap-0.5">
-                  Weekly digest
-                  <span className="text-muted-foreground text-xs font-normal">
-                    Activity summary every Monday.
-                  </span>
-                </span>
-                <Switch />
-              </Label>
+                  <Switch defaultChecked={pref.on} />
+                </Label>
+              ))}
             </div>
           </TabsContent>
 

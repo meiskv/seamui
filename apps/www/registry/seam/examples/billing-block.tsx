@@ -30,14 +30,14 @@ const PLANS = [
   {
     id: "pro",
     name: "Pro",
-    monthly: 24,
+    monthly: 25,
     blurb: "For working teams.",
     limits: "10 seats · 100 GB",
   },
   {
     id: "scale",
     name: "Scale",
-    monthly: 96,
+    monthly: 100,
     blurb: "For the whole org.",
     limits: "Unlimited seats · 1 TB",
   },

@@ -59,6 +59,11 @@ const SEED: Notification[] = [
   },
 ]
 
+const DAYS = [
+  "Today",
+  "Yesterday",
+] as const satisfies readonly Notification["day"][]
+
 const ICONS = {
   pr: GitPullRequest,
   mention: MessageSquare,
@@ -71,9 +76,6 @@ const ICONS = {
 export default function NotificationsBlock() {
   const [items, setItems] = React.useState<Notification[]>(SEED)
   const unread = items.filter((n) => n.unread).length
-  const days = ["Today", "Yesterday"].filter((d) =>
-    items.some((n) => n.day === d)
-  ) as Notification["day"][]
 
   return (
     <Popover>
@@ -88,6 +90,7 @@ export default function NotificationsBlock() {
             <Bell />
             {unread > 0 && (
               <Badge
+                aria-hidden
                 variant="destructive"
                 className="absolute -top-1.5 -right-1.5 size-5 rounded-full p-0 text-[0.625rem]"
               >
@@ -133,20 +136,24 @@ export default function NotificationsBlock() {
           </EmptyState>
         ) : (
           <div className="max-h-72 overflow-y-auto py-1">
-            {days.map((day) => (
-              <div key={day}>
-                <p className="text-muted-foreground px-4 pt-2 pb-1 text-[0.6875rem] font-semibold tracking-[0.1em] uppercase">
-                  {day}
-                </p>
-                {items
-                  .filter((n) => n.day === day)
-                  .map((n) => {
+            {DAYS.map((day) => {
+              const dayItems = items.filter((n) => n.day === day)
+              if (dayItems.length === 0) return null
+              return (
+                <div key={day}>
+                  <p className="text-muted-foreground px-4 pt-2 pb-1 text-[0.6875rem] font-semibold tracking-[0.1em] uppercase">
+                    {day}
+                  </p>
+                  {dayItems.map((n) => {
                     const Icon = ICONS[n.icon]
                     return (
-                      <button
-                        type="button"
+                      // The row is pressable, so it wears Button (ghost,
+                      // row-shaped) — press depth, haptics, and focus come
+                      // from the foundation (the session-item shape).
+                      <Button
                         key={n.id}
-                        className="hover:bg-accent focus-visible:ring-ring/50 flex w-full items-start gap-3 px-4 py-2 text-left outline-none focus-visible:ring-2"
+                        variant="ghost"
+                        className="h-auto w-full items-start justify-start gap-3 rounded-none px-4 py-2 text-left font-normal whitespace-normal"
                         onClick={() =>
                           setItems((ns) =>
                             ns.map((x) =>
@@ -174,11 +181,12 @@ export default function NotificationsBlock() {
                             className="bg-primary mt-1.5 size-2 shrink-0 rounded-full"
                           />
                         )}
-                      </button>
+                      </Button>
                     )
                   })}
-              </div>
-            ))}
+                </div>
+              )
+            })}
           </div>
         )}
       </PopoverContent>

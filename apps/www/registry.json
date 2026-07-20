@@ -4837,6 +4837,8 @@
       "type": "registry:example",
       "title": "Auth Block",
       "registryDependencies": [
+        "https://seamui.dev/r/motion.json",
+        "https://seamui.dev/r/utils.json",
         "https://seamui.dev/r/card.json",
         "https://seamui.dev/r/form.json",
         "https://seamui.dev/r/field.json",
@@ -4850,6 +4852,9 @@
           "path": "registry/seam/examples/auth-block.tsx",
           "type": "registry:example"
         }
+      ],
+      "dependencies": [
+        "motion"
       ]
     },
     {
@@ -4899,6 +4904,10 @@
           "path": "registry/seam/examples/team-block.tsx",
           "type": "registry:example"
         }
+      ],
+      "dependencies": [
+        "lucide-react",
+        "@tanstack/react-table"
       ]
     },
     {
@@ -4938,6 +4947,9 @@
           "path": "registry/seam/examples/notifications-block.tsx",
           "type": "registry:example"
         }
+      ],
+      "dependencies": [
+        "lucide-react"
       ]
     }
   ]
