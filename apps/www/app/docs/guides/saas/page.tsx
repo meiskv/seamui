@@ -7,6 +7,8 @@ import { exampleSource } from "@/lib/registry-source"
 import AuthBlock from "@/registry/seam/examples/auth-block"
 import SettingsBlock from "@/registry/seam/examples/settings-block"
 import TeamBlock from "@/registry/seam/examples/team-block"
+import BillingBlock from "@/registry/seam/examples/billing-block"
+import NotificationsBlock from "@/registry/seam/examples/notifications-block"
 
 export const metadata: Metadata = {
   title: "Building a SaaS app — seamui",
@@ -85,24 +87,62 @@ export default function SaasGuide() {
         <CodeBlock code={exampleSource("team-block")} language="tsx" />
       </Section>
 
-      <Section title="Coming next">
-        <ul className="text-muted-foreground list-disc space-y-1 pl-5 text-sm">
-          <li>
-            <strong>Billing &amp; usage</strong> — plan Cards, a monthly/annual
-            Toggle Group, usage meters.
-          </li>
-          <li>
-            <strong>Notifications</strong> — a Popover feed with a Badge dot.
-          </li>
-        </ul>
-        <p className="text-muted-foreground/80 text-xs">
-          Tracked in{" "}
-          <a
+      <Section title="Billing &amp; usage — plans, cycles, and meters">
+        <p className="text-muted-foreground text-sm">
+          Plan Cards with a monthly/annual ToggleGroup — the embossed key slides
+          between cycles — the current plan wearing a Badge, and usage rows on{" "}
+          <Link
             className="hover:text-foreground underline"
-            href="https://github.com/meiskv/seamui/issues/90"
+            href="/docs/components/meter"
           >
-            the SaaS-suite issue
-          </a>
+            Meter
+          </Link>{" "}
+          that turn destructive past 90% of the limit: the context-meter
+          threshold pattern, generalized.
+        </p>
+        <div className="squircle bg-background my-4 flex justify-center rounded-xl border p-6">
+          <BillingBlock />
+        </div>
+        <CodeBlock code={exampleSource("billing-block")} language="tsx" />
+      </Section>
+
+      <Section title="Notifications — a Popover feed">
+        <p className="text-muted-foreground text-sm">
+          A bell with a Badge count opens a Popover feed grouped by day. Reading
+          an item clears its dot; clearing everything lands on{" "}
+          <Link
+            className="hover:text-foreground underline"
+            href="/docs/components/empty-state"
+          >
+            Empty State
+          </Link>
+          .
+        </p>
+        <div className="squircle bg-background my-4 flex h-40 items-start justify-center rounded-xl border p-6">
+          <NotificationsBlock />
+        </div>
+        <CodeBlock code={exampleSource("notifications-block")} language="tsx" />
+      </Section>
+
+      <Section title="Where to go from here">
+        <p className="text-muted-foreground text-sm">
+          Every block is a registry example — install one with{" "}
+          <code>bunx --bun @seamui/cli@latest add auth-block</code> (or{" "}
+          <code>settings-block</code>, <code>team-block</code>,{" "}
+          <code>billing-block</code>, <code>notifications-block</code>) and its
+          whole component stack comes with it. The pieces are documented under
+          Forms, Overlay, and Data in the sidebar; motion and accessibility
+          policy live on{" "}
+          <Link className="hover:text-foreground underline" href="/docs/motion">
+            Motion
+          </Link>{" "}
+          and{" "}
+          <Link
+            className="hover:text-foreground underline"
+            href="/docs/haptics"
+          >
+            Haptics
+          </Link>
           .
         </p>
       </Section>

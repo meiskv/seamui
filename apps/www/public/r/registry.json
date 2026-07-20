@@ -4900,6 +4900,45 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "billing-block",
+      "type": "registry:example",
+      "title": "Billing Block",
+      "registryDependencies": [
+        "https://seamui.dev/r/card.json",
+        "https://seamui.dev/r/badge.json",
+        "https://seamui.dev/r/button.json",
+        "https://seamui.dev/r/meter.json",
+        "https://seamui.dev/r/toggle-group.json",
+        "https://seamui.dev/r/toggle.json",
+        "https://seamui.dev/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/billing-block.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "notifications-block",
+      "type": "registry:example",
+      "title": "Notifications Block",
+      "registryDependencies": [
+        "https://seamui.dev/r/popover.json",
+        "https://seamui.dev/r/button.json",
+        "https://seamui.dev/r/badge.json",
+        "https://seamui.dev/r/separator.json",
+        "https://seamui.dev/r/empty-state.json",
+        "https://seamui.dev/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/notifications-block.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }
