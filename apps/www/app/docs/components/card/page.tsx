@@ -6,6 +6,7 @@ import { exampleSource } from "@/lib/registry-source"
 import CardDemo from "@/registry/seam/examples/card-demo"
 import CardStats from "@/registry/seam/examples/card-stats"
 import CardNotification from "@/registry/seam/examples/card-notification"
+import CardVariants from "@/registry/seam/examples/card-variants"
 
 export const metadata: Metadata = {
   title: "Card — seamui",
@@ -41,7 +42,16 @@ export default function CardDocs() {
             component: <CardNotification />,
             code: exampleSource("card-notification"),
           },
+          {
+            key: "variants",
+            title: "Variants",
+            component: <CardVariants />,
+            code: exampleSource("card-variants"),
+            description:
+              "Three surfaces: the default key, a folder whose stroked back panel signals it holds a set, and a debossed well.",
+          },
         ]}
+        stageClassName="min-h-[34rem]"
       />
 
       <Install name="card" />
@@ -56,6 +66,12 @@ export default function CardDocs() {
           Renders plain <code>&lt;div&gt;</code> structure with no implicit
           semantics — use a heading element inside <code>CardTitle</code> when
           the card titles a page section.
+        </li>
+        <li>
+          <code>variant="folder"</code> draws its back panel as a pseudo-element
+          <em> above</em> the card's box, so an <code>overflow-hidden</code> on
+          the card (common when clipping media) will clip the tab away — put the
+          clipping on an inner wrapper instead.
         </li>
       </Notes>
     </main>

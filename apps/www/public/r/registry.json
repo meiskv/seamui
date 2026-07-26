@@ -758,10 +758,13 @@
       ]
     },
     {
-      "name": "card",
-      "type": "registry:ui",
-      "title": "Card",
       "description": "A raised surface key with header, content, and footer sections.",
+      "title": "Card",
+      "type": "registry:ui",
+      "name": "card",
+      "dependencies": [
+        "class-variance-authority"
+      ],
       "registryDependencies": [
         "https://seamui.dev/r/utils.json"
       ],
@@ -812,7 +815,7 @@
       "name": "empty-state",
       "type": "registry:ui",
       "title": "Empty State",
-      "description": "Zero-data placeholder — a debossed well with an embossed icon key, copy, and actions.",
+      "description": "Zero-data placeholder \u2014 a debossed well with an embossed icon key, copy, and actions.",
       "dependencies": [],
       "registryDependencies": [
         "https://seamui.dev/r/utils.json"
@@ -864,7 +867,7 @@
       "name": "message",
       "type": "registry:ui",
       "title": "Message",
-      "description": "Chat message row — user as an embossed key, assistant as flat prose.",
+      "description": "Chat message row \u2014 user as an embossed key, assistant as flat prose.",
       "dependencies": [
         "@base-ui/react",
         "motion"
@@ -908,7 +911,7 @@
       "name": "composer",
       "type": "registry:ui",
       "title": "Composer",
-      "description": "The prompt input — a debossed well with send/stop, attachments, and Enter-to-send.",
+      "description": "The prompt input \u2014 a debossed well with send/stop, attachments, and Enter-to-send.",
       "dependencies": [
         "motion",
         "lucide-react"
@@ -978,7 +981,7 @@
       "name": "tool",
       "type": "registry:ui",
       "title": "Tool",
-      "description": "Agentic step disclosure — status chip, collapsible result. Includes Reasoning.",
+      "description": "Agentic step disclosure \u2014 status chip, collapsible result. Includes Reasoning.",
       "dependencies": [
         "@base-ui/react",
         "motion",
@@ -1173,7 +1176,7 @@
       "name": "agent-status",
       "type": "registry:ui",
       "title": "Agent Status",
-      "description": "The canonical agent-state indicator — waiting/working/ready/done/error, as dot or chip.",
+      "description": "The canonical agent-state indicator \u2014 waiting/working/ready/done/error, as dot or chip.",
       "dependencies": [
         "lucide-react"
       ],
@@ -1193,7 +1196,7 @@
       "name": "branch-chip",
       "type": "registry:ui",
       "title": "Branch Chip",
-      "description": "Branch/worktree pill — press to copy, with ahead/behind counts and PR state.",
+      "description": "Branch/worktree pill \u2014 press to copy, with ahead/behind counts and PR state.",
       "dependencies": [
         "motion",
         "lucide-react"
@@ -1236,7 +1239,7 @@
       "name": "sidebar",
       "type": "registry:ui",
       "title": "Sidebar",
-      "description": "Collapsible app sidebar — a recessed well the active session rises out of; ⌘B rail collapse.",
+      "description": "Collapsible app sidebar \u2014 a recessed well the active session rises out of; \u2318B rail collapse.",
       "dependencies": [
         "lucide-react"
       ],
@@ -1257,7 +1260,7 @@
       "name": "command-palette",
       "type": "registry:ui",
       "title": "Command Palette",
-      "description": "⌘K launcher — Base UI Autocomplete rendered inline and always-open inside a Dialog.",
+      "description": "\u2318K launcher \u2014 Base UI Autocomplete rendered inline and always-open inside a Dialog.",
       "dependencies": [
         "@base-ui/react",
         "lucide-react"
@@ -1279,7 +1282,7 @@
       "name": "model-picker",
       "type": "registry:ui",
       "title": "Model Picker",
-      "description": "Provider-grouped model select with connection dots — a recipe over Select for composer footers.",
+      "description": "Provider-grouped model select with connection dots \u2014 a recipe over Select for composer footers.",
       "dependencies": [],
       "registryDependencies": [
         "https://seamui.dev/r/utils.json",
@@ -1297,7 +1300,7 @@
       "name": "mode-selector",
       "type": "registry:ui",
       "title": "Mode Selector",
-      "description": "Agent/plan/ask segmented control — a compact recipe over Toggle Group for composer footers.",
+      "description": "Agent/plan/ask segmented control \u2014 a compact recipe over Toggle Group for composer footers.",
       "dependencies": [],
       "registryDependencies": [
         "https://seamui.dev/r/utils.json",
@@ -1316,7 +1319,7 @@
       "name": "dictation-card",
       "type": "registry:ui",
       "title": "Dictation Card",
-      "description": "Waveform + live editable transcript + confirm/cancel — dictation as a review step in the composer well.",
+      "description": "Waveform + live editable transcript + confirm/cancel \u2014 dictation as a review step in the composer well.",
       "dependencies": [
         "lucide-react"
       ],
@@ -1338,7 +1341,7 @@
       "name": "permission-card",
       "type": "registry:ui",
       "title": "Permission Card",
-      "description": "Inline approval — allow once / allow for session / deny, settling into a receipt.",
+      "description": "Inline approval \u2014 allow once / allow for session / deny, settling into a receipt.",
       "dependencies": [
         "lucide-react"
       ],
@@ -1473,7 +1476,7 @@
       "name": "workbench-header",
       "type": "registry:ui",
       "title": "Workbench Header",
-      "description": "The bar over the thread — session identity left, telemetry and actions right.",
+      "description": "The bar over the thread \u2014 session identity left, telemetry and actions right.",
       "dependencies": [],
       "registryDependencies": [
         "https://seamui.dev/r/utils.json"
@@ -3058,6 +3061,23 @@
       ]
     },
     {
+      "name": "card-variants",
+      "type": "registry:example",
+      "title": "Card Variants",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://seamui.dev/r/card.json"
+      ],
+      "files": [
+        {
+          "path": "registry/seam/examples/card-variants.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "progress-labeled",
       "type": "registry:example",
       "title": "Progress Labeled",
@@ -4318,7 +4338,7 @@
       "name": "field",
       "type": "registry:ui",
       "title": "Field",
-      "description": "Base UI Field wrappers — label, description, and an error that shakes in, with the error haptic.",
+      "description": "Base UI Field wrappers \u2014 label, description, and an error that shakes in, with the error haptic.",
       "dependencies": [
         "@base-ui/react",
         "motion"
@@ -4438,7 +4458,7 @@
       "name": "alert",
       "type": "registry:ui",
       "title": "Alert",
-      "description": "Static inline callout for persistent state — the debossed counterpart to toast.",
+      "description": "Static inline callout for persistent state \u2014 the debossed counterpart to toast.",
       "dependencies": [
         "class-variance-authority"
       ],

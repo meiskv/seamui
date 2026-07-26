@@ -1,3 +1,4 @@
+import type * as React from "react"
 import { Sparkles } from "lucide-react"
 
 import { Button } from "@/registry/seam/ui/button"
@@ -22,6 +23,18 @@ export const cardSpec: PlaygroundSpec = {
   group: "Display",
   blurb: "A raised key resting on the canvas. Compose the slots you need.",
   controls: [
+    {
+      id: "variant",
+      label: "Style",
+      group: "Card",
+      type: "enum",
+      default: "default",
+      options: [
+        { value: "default", label: "Key" },
+        { value: "folder", label: "Folder" },
+        { value: "well", label: "Well" },
+      ],
+    },
     {
       id: "media",
       label: "Media",
@@ -81,7 +94,14 @@ export const cardSpec: PlaygroundSpec = {
     const hasFooter = primary || secondary || ghost
 
     return (
-      <Card className="w-full max-w-sm">
+      <Card
+        variant={
+          str(state, "variant", "default") as React.ComponentProps<
+            typeof Card
+          >["variant"]
+        }
+        className="w-full max-w-sm"
+      >
         <CardHeader className="flex flex-row items-start gap-3">
           {media === "icon" ? (
             <div className={MEDIA_WELL}>
@@ -149,8 +169,12 @@ export const cardSpec: PlaygroundSpec = {
         )
       : null
 
+    const variant = str(state, "variant", "default")
     const body = lines(
-      '<Card className="w-full max-w-sm">',
+      `<Card${attrs([
+        ["variant", variant !== "default" && variant],
+        ["className", "w-full max-w-sm"],
+      ])}>`,
       '  <CardHeader className="flex flex-row items-start gap-3">',
       mediaBlock,
       '    <div className="grid gap-1.5">',
