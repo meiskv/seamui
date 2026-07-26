@@ -2,11 +2,18 @@
 
 import type * as React from "react"
 import { Checkbox as BaseCheckbox } from "@base-ui/react/checkbox"
-import { motion, useReducedMotion } from "motion/react"
+import { motion } from "motion/react"
 import { Check, Minus } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { springs, fades, depth, reduced, useMounted } from "@/lib/motion"
+import {
+  springs,
+  fades,
+  depth,
+  reduced,
+  useMounted,
+  useReducedMotion,
+} from "@/lib/motion"
 import { useHaptics } from "@/lib/haptics"
 
 function Checkbox({

@@ -1,12 +1,15 @@
 "use client"
 
 import * as React from "react"
+import { MotionConfig } from "motion/react"
 
 import { cn } from "@/lib/utils"
 import { CodeBlock } from "@/components/docs/code-block"
+import { HapticsProvider } from "@/lib/haptics"
 import { Switch } from "@/registry/seam/ui/switch"
 import type { PlaygroundSpec } from "@/lib/playground/types"
 import { InspectLayer } from "./inspect-layer"
+import type { StageEnv } from "./environment-panel"
 
 /**
  * The middle pane: the live component over drafting-dot paper, with its
@@ -22,10 +25,12 @@ export function Stage({
   spec,
   preview,
   code,
+  env,
 }: {
   spec: PlaygroundSpec
   preview: React.ReactNode
   code: string
+  env: StageEnv
 }) {
   const [inspect, setInspect] = React.useState(false)
 
@@ -57,7 +62,14 @@ export function Stage({
               spec.stageClassName
             )}
           >
-            {preview}
+            {/* MotionConfig overrides useReducedMotion() for the subtree; the
+                nested HapticsProvider shadows the site-wide one, so both
+                settings are the real library layers, not a simulation. */}
+            <MotionConfig reducedMotion={env.reducedMotion}>
+              <HapticsProvider enabled={env.haptics} sound={env.sound}>
+                {preview}
+              </HapticsProvider>
+            </MotionConfig>
           </div>
         </InspectLayer>
       </div>

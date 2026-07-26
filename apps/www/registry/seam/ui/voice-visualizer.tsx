@@ -1,10 +1,10 @@
 "use client"
 
 import * as React from "react"
-import { motion, useReducedMotion, type Transition } from "motion/react"
+import { motion, type Transition } from "motion/react"
 
 import { cn } from "@/lib/utils"
-import { springs, fades, useMounted } from "@/lib/motion"
+import { springs, fades, useMounted, useReducedMotion } from "@/lib/motion"
 
 type VoiceState =
   | "disconnected"

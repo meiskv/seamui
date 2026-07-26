@@ -1,8 +1,21 @@
 // seamui motion tokens — the single source of truth for all animation.
 // Springs over durations; depth over flatness. See seamui docs → Motion.
 import * as React from "react"
-import { animate, useReducedMotion } from "motion/react"
+import { animate, useReducedMotionConfig } from "motion/react"
 import type { TargetAndTransition, Transition } from "motion/react"
+
+/**
+ * The reduced-motion signal every seamui component branches on (§5b).
+ *
+ * Import this from `@/lib/motion` — NOT motion's own `useReducedMotion`, which
+ * reads the device media query and nothing else, so an app can never override
+ * it. This is motion's config-aware variant: it still follows the OS by
+ * default, but honors a surrounding
+ * `<MotionConfig reducedMotion="always" | "never">`. That makes the reduced
+ * variant something an app can force (and the docs can demo) rather than a
+ * state only reachable by changing a system preference.
+ */
+export const useReducedMotion = useReducedMotionConfig
 
 /**
  * True only after the first client render. Gate a motion `initial` that moves

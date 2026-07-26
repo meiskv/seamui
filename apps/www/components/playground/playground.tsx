@@ -19,6 +19,11 @@ import {
 import type { KnobState, KnobValue } from "@/lib/playground/types"
 import { ComponentList } from "./component-list"
 import { ControlPanel } from "./control-panel"
+import {
+  DEFAULT_ENV,
+  EnvironmentPanel,
+  type StageEnv,
+} from "./environment-panel"
 import { PresetBar } from "./preset-bar"
 import { Stage } from "./stage"
 
@@ -36,6 +41,9 @@ export function Playground() {
 
   const [state, setState] = React.useState<KnobState>(() => defaultsFor(spec))
   const [presets, setPresets] = React.useState<Preset[]>([])
+  // Stage environment (motion + haptics) is deliberately separate from knob
+  // state: it survives switching components and never reaches the codegen.
+  const [env, setEnv] = React.useState<StageEnv>(DEFAULT_ENV)
 
   // Honor a deep link on mount: ?c=<component>&<knob>=<value>.
   React.useEffect(() => {
@@ -119,6 +127,7 @@ export function Playground() {
           spec={spec}
           preview={spec.render(state)}
           code={spec.code(state)}
+          env={env}
         />
       </main>
 
@@ -132,6 +141,9 @@ export function Playground() {
           }
           onShuffle={() => commit(randomState(spec))}
         />
+        <div className="mt-5">
+          <EnvironmentPanel env={env} onChange={setEnv} />
+        </div>
         <div className="mt-5">
           <PresetBar
             presets={presets}

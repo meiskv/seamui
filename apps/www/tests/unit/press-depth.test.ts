@@ -12,6 +12,11 @@ vi.mock("motion/react", async (importOriginal) => {
   return {
     ...mod,
     animate: (...args: unknown[]) => animateMock(...args),
+    // `@/lib/motion` re-exports motion's CONFIG-aware hook as its own
+    // `useReducedMotion` (so <MotionConfig reducedMotion> can override the
+    // OS setting) — so that's the name to intercept here. The plain hook is
+    // stubbed too, in case anything still reaches for it.
+    useReducedMotionConfig: () => reducedMotion,
     useReducedMotion: () => reducedMotion,
   }
 })

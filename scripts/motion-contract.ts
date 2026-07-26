@@ -107,6 +107,16 @@ const RULES: Rule[] = [
       "inline spring config — springs must come from a personality in @/lib/motion, never be written in a component",
   },
   {
+    id: "reduced-motion-wrong-import",
+    // `useReducedMotion` pulled from motion/react instead of @/lib/motion.
+    // Motion's own hook reads only the device media query, so a component
+    // using it can't be overridden by <MotionConfig reducedMotion>, and the
+    // reduced variant becomes unreachable except via OS settings.
+    test: /import\s*\{[^}]*\buseReducedMotion\b[^}]*\}\s*from\s*"motion\/react"/g,
+    message:
+      "useReducedMotion imported from motion/react — import it from @/lib/motion (the config-aware variant), see CLAUDE.md §3",
+  },
+  {
     id: "inline-duration",
     test: /\bduration\s*:/g,
     message:

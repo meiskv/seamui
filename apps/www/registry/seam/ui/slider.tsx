@@ -2,10 +2,10 @@
 
 import type * as React from "react"
 import { Slider as BaseSlider } from "@base-ui/react/slider"
-import { motion, useReducedMotion } from "motion/react"
+import { motion } from "motion/react"
 
 import { cn } from "@/lib/utils"
-import { springs, fades, depth, reduced } from "@/lib/motion"
+import { springs, fades, depth, reduced, useReducedMotion } from "@/lib/motion"
 import { useHaptics } from "@/lib/haptics"
 
 const MotionThumb = motion.create(BaseSlider.Thumb)

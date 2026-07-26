@@ -148,6 +148,7 @@ file *in the registry* so every future install gets it.
 - **`useMounted`** — a tiny SSR-hydration guard: `true` only after the first client render. Gate any motion `initial` that *moves* (scale/translate) behind it (`initial={mounted ? … : false}`) so the server's serialized transform and the client's first paint agree — otherwise React throws a hydration-mismatch warning. Opacity-only `initial` doesn't need it. Elements mounting *after* hydration (a new message, an added chip) still get their entrance. Used by composer, message, checkbox, switch, voice-avatar.
 - **`shake`** — error feedback (brief x-axis shake); pair with `reduced.flash` under reduced motion.
 - **`reduced`** — the reduced-motion fallbacks (see §5). `pressed` (dim, no move), `fadeIn` (opacity-only enter), `instant` (zero-duration layout jump), `flash` (opacity error pulse).
+- **`useReducedMotion`** — the signal every component branches on. Import it from `@/lib/motion`, **never from `motion/react`**: motion's own hook reads the device media query and nothing else, so an app can never override it. Ours is motion's config-aware variant, so it still follows the OS by default but honors a surrounding `<MotionConfig reducedMotion="always" | "never">`. That's what makes the reduced variant forceable app-wide — and demoable in the docs playground — instead of a state only reachable by changing a system preference. `motion:check` enforces the import source.
 
 ### 3b. The haptics layer — `lib/haptics.tsx`
 
@@ -172,7 +173,7 @@ For any new component `<name>`:
 1. **Read the Base UI docs** for the part: `base-ui.com/react/components/<name>`. Note the anatomy (Root/Trigger/Popup/…), the state attributes (`data-pressed`, `data-popup-open`, `data-checked`, …), and whether Base UI manages mount/unmount (it usually does — it keeps the element mounted through exit, so you animate with `initial`/`animate`, **not** `AnimatePresence`).
 2. **Create** `apps/www/registry/seam/ui/<name>.tsx`:
    - `"use client"` at top (any component using hooks or motion).
-   - Import the part from `@base-ui/react/<name>`, `motion`/`useReducedMotion` from `motion/react`, tokens from `@/lib/motion`, `cn` from `@/lib/utils`.
+   - Import the part from `@base-ui/react/<name>`, `motion` from `motion/react`, tokens **and `useReducedMotion`** from `@/lib/motion`, `cn` from `@/lib/utils`. Never import `useReducedMotion` from `motion/react` — see §3.
    - One exported wrapper per Base UI part, named shadcn-style (`Dialog`, `DialogTrigger`, `DialogContent`…), each carrying a `data-slot`.
    - Style with `cva` if it has variants, else plain `cn`. Apply the design language from §2 (keys, wells, squircle, roomy padding).
    - Animate **only** with `@/lib/motion` tokens at the right depth level.

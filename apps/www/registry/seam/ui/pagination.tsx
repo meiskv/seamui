@@ -2,10 +2,10 @@
 
 import * as React from "react"
 import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react"
-import { motion, useReducedMotion } from "motion/react"
+import { motion } from "motion/react"
 
 import { cn } from "@/lib/utils"
-import { springs } from "@/lib/motion"
+import { springs, useReducedMotion } from "@/lib/motion"
 import { useHaptics } from "@/lib/haptics"
 import { buttonVariants } from "./button"
 

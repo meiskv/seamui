@@ -2,11 +2,11 @@
 
 import * as React from "react"
 import { Button as BaseButton } from "@base-ui/react/button"
-import { motion, useReducedMotion } from "motion/react"
+import { motion } from "motion/react"
 import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
-import { springs, fades, depth, reduced } from "@/lib/motion"
+import { springs, fades, depth, reduced, useReducedMotion } from "@/lib/motion"
 import { useHaptics, type HapticPreset } from "@/lib/haptics"
 
 const buttonVariants = cva(
