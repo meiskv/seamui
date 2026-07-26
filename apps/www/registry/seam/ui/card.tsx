@@ -11,8 +11,8 @@ const cardVariants = cva(
         // a raised key resting on the canvas — never flat, never pure white edges.
         default: "bg-card text-card-foreground border-border/60 shadow-resting",
         /**
-         * The same key, with the back panel of a folder showing above it: a
-         * hairline tab aligned to the content column.
+         * The same key, hinting at a folder: a hairline tab aligned to the
+         * content column.
          *
          * Stroke only — no fill, no shadow — so it reads as the layer *behind*
          * rather than a second key (§2: depth comes from shadow, and the back
@@ -21,12 +21,42 @@ const cardVariants = cva(
          * outline and `corner-shape` still applies. Note it renders outside the
          * card's box: an `overflow-hidden` on the card will clip it away.
          */
-        folder: [
+        tabbed: [
           "relative bg-card text-card-foreground border-border/60 shadow-resting",
           "before:absolute before:-top-2.5 before:left-5 before:h-2.5 before:w-2/5",
           "before:rounded-t-lg before:squircle",
           "before:border before:border-b-0 before:border-border/60",
           "before:content-['']",
+        ],
+        /**
+         * A full folder silhouette: a filled tab rising off the card's top
+         * left, joined down to the body by an angled shoulder.
+         *
+         * Three details carry the shape:
+         *
+         * 1. No stroke (`border-transparent`). A hairline would run straight
+         *    across the seam where tab meets body and give the join away —
+         *    and in dark mode `--border` is translucent, so it can't be
+         *    painted over. Fill and shadow carry the edge instead.
+         * 2. `::before` is the tab, `::after` a right triangle bridging it
+         *    down to the card's top edge — 16px of drop over 9px of run,
+         *    which is 60°, the angle of a clock's 11-to-5 line. Both are
+         *    fixed px so the angle holds at any card width; a percentage run
+         *    would flatten on a wide card and steepen on a narrow one.
+         * 3. `rounded-tl-none` squares the card's own corner so the tab's
+         *    left edge continues into it, and the tab carries the rounding
+         *    instead.
+         *
+         * Like `tabbed`, the tab renders outside the card's box —
+         * `overflow-hidden` clips it, and it overlaps whatever sits directly
+         * above.
+         */
+        folder: [
+          "relative rounded-tl-none border-transparent bg-card text-card-foreground shadow-resting",
+          "before:absolute before:-top-4 before:left-0 before:h-4 before:w-24",
+          "before:rounded-tl-xl before:squircle before:bg-card before:content-['']",
+          "after:absolute after:-top-4 after:left-24 after:h-4 after:w-[9px] after:bg-card after:content-['']",
+          "after:[clip-path:polygon(0_0,0_100%,100%_100%)]",
         ],
         // the debossed counterpart — a container things sit *in*, not a
         // surface that sits *on* (§1: slot vs token).

@@ -31,6 +31,7 @@ export const cardSpec: PlaygroundSpec = {
       default: "default",
       options: [
         { value: "default", label: "Key" },
+        { value: "tabbed", label: "Tabbed" },
         { value: "folder", label: "Folder" },
         { value: "well", label: "Well" },
         { value: "flat", label: "Flat" },

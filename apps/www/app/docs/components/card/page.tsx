@@ -48,7 +48,7 @@ export default function CardDocs() {
             component: <CardVariants />,
             code: exampleSource("card-variants"),
             description:
-              "Three surfaces: the default key, a folder whose stroked back panel signals it holds a set, and a debossed well.",
+              "The default key, a tabbed card that hints at a folder, the full folder silhouette, a debossed well, and a flat hairline.",
           },
         ]}
         stageClassName="min-h-[34rem]"
@@ -68,10 +68,11 @@ export default function CardDocs() {
           the card titles a page section.
         </li>
         <li>
-          <code>variant="folder"</code> draws its back panel as a pseudo-element
-          <em> above</em> the card's box, so an <code>overflow-hidden</code> on
-          the card (common when clipping media) will clip the tab away — put the
-          clipping on an inner wrapper instead.
+          <code>variant="folder"</code> and <code>variant="tabbed"</code> draw
+          their tab as a pseudo-element <em>above</em> the card&apos;s box, so
+          an <code>overflow-hidden</code> on the card (common when clipping
+          media) clips the tab away — put the clipping on an inner wrapper — and
+          the tab overlaps whatever sits directly above it.
         </li>
       </Notes>
     </main>

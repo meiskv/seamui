@@ -1,4 +1,10 @@
-import { Folder, Layers, RectangleHorizontal, Square } from "lucide-react"
+import {
+  Folder,
+  Layers,
+  PanelTop,
+  RectangleHorizontal,
+  Square,
+} from "lucide-react"
 
 import {
   Card,
@@ -15,10 +21,16 @@ const VARIANTS = [
     body: "The default — a raised surface resting on the canvas.",
   },
   {
+    variant: "tabbed" as const,
+    Icon: PanelTop,
+    title: "Tabbed",
+    body: "A hairline tab hints at a folder without redrawing the shape.",
+  },
+  {
     variant: "folder" as const,
     Icon: Folder,
     title: "Folder",
-    body: "A stroked back panel rises above the key: this card holds a set.",
+    body: "The full silhouette — a filled tab joined by a concave curve.",
   },
   {
     variant: "well" as const,

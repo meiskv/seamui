@@ -3106,52 +3106,6 @@
       ]
     },
     {
-      "name": "folder-shell",
-      "type": "registry:ui",
-      "title": "Folder Shell",
-      "description": "A flat tabbed folder silhouette that wraps a card, accented by one custom property.",
-      "registryDependencies": [
-        "https://seamui.dev/r/utils.json"
-      ],
-      "files": [
-        {
-          "path": "registry/seam/ui/folder-shell.tsx",
-          "type": "registry:ui",
-          "target": "components/ui/folder-shell.tsx"
-        }
-      ]
-    },
-    {
-      "name": "folder-shell-demo",
-      "type": "registry:example",
-      "title": "Folder Shell Demo",
-      "registryDependencies": [
-        "https://seamui.dev/r/folder-shell.json",
-        "https://seamui.dev/r/card.json"
-      ],
-      "files": [
-        {
-          "path": "registry/seam/examples/folder-shell-demo.tsx",
-          "type": "registry:example"
-        }
-      ]
-    },
-    {
-      "name": "folder-shell-accent",
-      "type": "registry:example",
-      "title": "Folder Shell Accent",
-      "registryDependencies": [
-        "https://seamui.dev/r/folder-shell.json",
-        "https://seamui.dev/r/card.json"
-      ],
-      "files": [
-        {
-          "path": "registry/seam/examples/folder-shell-accent.tsx",
-          "type": "registry:example"
-        }
-      ]
-    },
-    {
       "name": "progress-labeled",
       "type": "registry:example",
       "title": "Progress Labeled",
