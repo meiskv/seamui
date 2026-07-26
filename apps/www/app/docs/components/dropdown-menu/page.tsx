@@ -7,6 +7,7 @@ import DropdownMenuDemo from "@/registry/seam/examples/dropdown-menu-demo"
 import DropdownMenuCheckboxes from "@/registry/seam/examples/dropdown-menu-checkboxes"
 import DropdownMenuRadio from "@/registry/seam/examples/dropdown-menu-radio"
 import DropdownMenuSubmenu from "@/registry/seam/examples/dropdown-menu-submenu"
+import DropdownMenuNested from "@/registry/seam/examples/dropdown-menu-nested"
 import DropdownMenuShortcuts from "@/registry/seam/examples/dropdown-menu-shortcuts"
 
 export const metadata: Metadata = {
@@ -21,7 +22,9 @@ export default function DropdownMenuDocs() {
       <h1 className="text-2xl font-semibold tracking-tight">Dropdown Menu</h1>
       <p className="text-muted-foreground mt-1.5 text-[0.9375rem]">
         A menu of actions triggered by a button. Rises with overlay depth; items
-        highlight on hover and keyboard navigation.
+        highlight on hover and keyboard navigation. Submenus nest{" "}
+        <em>inside</em> the popup rather than flying out beside it, so depth is
+        unlimited and costs no horizontal room.
       </p>
 
       <VariantPreview
@@ -51,6 +54,12 @@ export default function DropdownMenuDocs() {
             code: exampleSource("dropdown-menu-submenu"),
           },
           {
+            key: "nested",
+            title: "Nested",
+            component: <DropdownMenuNested />,
+            code: exampleSource("dropdown-menu-nested"),
+          },
+          {
             key: "shortcuts",
             title: "Shortcuts",
             component: <DropdownMenuShortcuts />,
@@ -68,7 +77,15 @@ export default function DropdownMenuDocs() {
           positioning and collision.
         </li>
         <li>
-          Submenus animate from their own trigger origin, same as the root menu.
+          Submenus drill in place: the level replaces the one below it and the
+          popup springs to the new size. Nesting is unlimited — a{" "}
+          <code>DropdownMenuSub</code> inside a{" "}
+          <code>DropdownMenuSubContent</code> is just the next level.
+        </li>
+        <li>
+          Every nested level opens with a back row labelled from its trigger.
+          ArrowRight or Enter drills in; ArrowLeft, Escape, or the back row
+          steps out. Escape only closes the menu once you are back at the root.
         </li>
         <li>
           Checkbox and radio items ship in the same file when a menu needs

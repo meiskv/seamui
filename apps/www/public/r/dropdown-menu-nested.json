@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dropdown-menu-nested",
+  "type": "registry:example",
+  "title": "Dropdown Menu Nested",
+  "registryDependencies": [
+    "https://seamui.dev/r/dropdown-menu.json",
+    "https://seamui.dev/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/dropdown-menu-nested.tsx",
+      "content": "import { Button } from \"@/registry/seam/ui/button\"\nimport {\n  DropdownMenu,\n  DropdownMenuContent,\n  DropdownMenuItem,\n  DropdownMenuLabel,\n  DropdownMenuSeparator,\n  DropdownMenuSub,\n  DropdownMenuSubContent,\n  DropdownMenuSubTrigger,\n  DropdownMenuTrigger,\n} from \"@/registry/seam/ui/dropdown-menu\"\n\nexport default function DropdownMenuNested() {\n  return (\n    <DropdownMenu>\n      <DropdownMenuTrigger\n        render={<Button variant=\"outline\">Move to</Button>}\n      />\n      <DropdownMenuContent>\n        <DropdownMenuLabel>Workspace</DropdownMenuLabel>\n        <DropdownMenuItem>Inbox</DropdownMenuItem>\n        <DropdownMenuSub>\n          <DropdownMenuSubTrigger>Projects</DropdownMenuSubTrigger>\n          <DropdownMenuSubContent>\n            <DropdownMenuItem>Backlog</DropdownMenuItem>\n            <DropdownMenuSub>\n              <DropdownMenuSubTrigger>Design system</DropdownMenuSubTrigger>\n              <DropdownMenuSubContent>\n                <DropdownMenuItem>Tokens</DropdownMenuItem>\n                <DropdownMenuSub>\n                  <DropdownMenuSubTrigger>Components</DropdownMenuSubTrigger>\n                  <DropdownMenuSubContent>\n                    <DropdownMenuItem>Nested dropdown menu</DropdownMenuItem>\n                    <DropdownMenuItem>Popover</DropdownMenuItem>\n                    <DropdownMenuItem>Tooltip</DropdownMenuItem>\n                  </DropdownMenuSubContent>\n                </DropdownMenuSub>\n                <DropdownMenuItem>Icons</DropdownMenuItem>\n              </DropdownMenuSubContent>\n            </DropdownMenuSub>\n            <DropdownMenuItem>Marketing site</DropdownMenuItem>\n          </DropdownMenuSubContent>\n        </DropdownMenuSub>\n        <DropdownMenuSeparator />\n        <DropdownMenuItem>Archive</DropdownMenuItem>\n      </DropdownMenuContent>\n    </DropdownMenu>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

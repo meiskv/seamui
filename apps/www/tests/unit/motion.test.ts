@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest"
 import {
   condense,
   depth,
+  drill,
   fades,
   personalities,
   reduced,
@@ -103,6 +104,20 @@ describe("reduced (the reduced-motion variants)", () => {
     // error feedback flashes opacity, no x-shake.
     expect(reduced.flash.animate.opacity).toBeDefined()
     expect(reduced.flash.animate).not.toHaveProperty("x")
+  })
+})
+
+describe("drill (nested-menu levels)", () => {
+  it("enters from the direction of travel and settles flush", () => {
+    expect(drill.enter(1).x).toBeGreaterThan(0)
+    expect(drill.enter(-1).x).toBeLessThan(0)
+    expect(drill.enter(1).opacity).toBe(0)
+    expect(drill.settle).toEqual({ opacity: 1, x: 0 })
+  })
+
+  it("travels laterally only — depth is the surface's job, not the level's", () => {
+    expect(drill.enter(1)).not.toHaveProperty("y")
+    expect(drill.enter(1)).not.toHaveProperty("scale")
   })
 })
 
