@@ -31,6 +31,9 @@ const cardVariants = cva(
         // the debossed counterpart — a container things sit *in*, not a
         // surface that sits *on* (§1: slot vs token).
         well: "bg-muted text-card-foreground border-border/60 shadow-well",
+        // hairline only. For dense grids, where a dozen raised keys reads as
+        // noise — the stroke still separates the surface from the canvas.
+        flat: "bg-card text-card-foreground border-border/60 shadow-none",
       },
     },
     defaultVariants: { variant: "default" },

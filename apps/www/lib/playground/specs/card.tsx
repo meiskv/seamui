@@ -33,6 +33,7 @@ export const cardSpec: PlaygroundSpec = {
         { value: "default", label: "Key" },
         { value: "folder", label: "Folder" },
         { value: "well", label: "Well" },
+        { value: "flat", label: "Flat" },
       ],
     },
     {

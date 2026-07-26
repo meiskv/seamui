@@ -19,11 +19,25 @@ function DrawerTrigger(props: React.ComponentProps<typeof BaseDrawer.Trigger>) {
   return <BaseDrawer.Trigger data-slot="drawer-trigger" {...props} />
 }
 
+/**
+ * Width of the sheet where there's room for it — the sheet is full-bleed on
+ * a phone and centers once the viewport outgrows the cap. Height stays
+ * content-driven under the 90vh ceiling, same as Dialog.
+ */
+const DRAWER_SIZES = {
+  sm: "max-w-sm",
+  default: "max-w-md",
+  lg: "max-w-2xl",
+} as const
+
 function DrawerContent({
   className,
   children,
+  size = "default",
   ...props
-}: React.ComponentProps<typeof BaseDrawer.Popup>) {
+}: React.ComponentProps<typeof BaseDrawer.Popup> & {
+  size?: keyof typeof DRAWER_SIZES
+}) {
   return (
     <BaseDrawer.Portal>
       <BaseDrawer.Backdrop
@@ -33,7 +47,8 @@ function DrawerContent({
       <BaseDrawer.Popup
         data-slot="drawer-content"
         className={cn(
-          "bg-popover text-popover-foreground fixed inset-x-0 bottom-0 z-50 mx-auto flex max-h-[90vh] w-full max-w-md flex-col gap-4 rounded-t-2xl squircle border-t p-6 shadow-modal outline-none",
+          "bg-popover text-popover-foreground fixed inset-x-0 bottom-0 z-50 mx-auto flex max-h-[90vh] w-full flex-col gap-4 rounded-t-2xl squircle border-t p-6 shadow-modal outline-none",
+          DRAWER_SIZES[size],
           // seam condense: the sheet slides up and fades in, falls back on
           // dismiss (Base UI awaits it); suppressed mid-swipe so drag is 1:1.
           condense.sheet,

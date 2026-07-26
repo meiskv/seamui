@@ -6,6 +6,7 @@ import { exampleSource } from "@/lib/registry-source"
 import DrawerDemo from "@/registry/seam/examples/drawer-demo"
 import DrawerMenu from "@/registry/seam/examples/drawer-menu"
 import DrawerForm from "@/registry/seam/examples/drawer-form"
+import DrawerSizes from "@/registry/seam/examples/drawer-sizes"
 
 export const metadata: Metadata = {
   title: "Drawer — seamui",
@@ -42,6 +43,14 @@ export default function DrawerDocs() {
             component: <DrawerForm />,
             code: exampleSource("drawer-form"),
             description: "Collect input without leaving the sheet.",
+          },
+          {
+            key: "sizes",
+            title: "Sizes",
+            component: <DrawerSizes />,
+            code: exampleSource("drawer-sizes"),
+            description:
+              "size caps the sheet width once the viewport outgrows it; on a phone every sheet is full-bleed.",
           },
         ]}
       />

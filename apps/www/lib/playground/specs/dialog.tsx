@@ -20,6 +20,19 @@ export const dialogSpec: PlaygroundSpec = {
     "Rises to the top of the stack and dims the page behind it — the condense pattern, in CSS so Base UI can await the exit.",
   controls: [
     {
+      id: "size",
+      label: "Size",
+      group: "Dialog",
+      type: "enum",
+      as: "segmented",
+      default: "default",
+      options: [
+        { value: "sm", label: "Small" },
+        { value: "default", label: "Default" },
+        { value: "lg", label: "Large" },
+      ],
+    },
+    {
       id: "title",
       label: "Title",
       group: "Dialog",
@@ -66,7 +79,10 @@ export const dialogSpec: PlaygroundSpec = {
     return (
       <Dialog>
         <DialogTrigger render={<Button variant="outline">{title}</Button>} />
-        <DialogContent showClose={bool(state, "showClose", true)}>
+        <DialogContent
+          size={str(state, "size", "default") as "sm" | "default" | "lg"}
+          showClose={bool(state, "showClose", true)}
+        >
           <DialogHeader>
             <DialogTitle>{title}</DialogTitle>
             {description ? (
@@ -120,7 +136,12 @@ export const dialogSpec: PlaygroundSpec = {
     return `${head}\n\n${lines(
       "<Dialog>",
       `  <DialogTrigger render={<Button variant="outline">${title}</Button>} />`,
-      `  <DialogContent${showClose ? "" : " showClose={false}"}>`,
+      `  <DialogContent${attrs([
+        [
+          "size",
+          str(state, "size", "default") !== "default" && str(state, "size"),
+        ],
+      ])}${showClose ? "" : " showClose={false}"}>`,
       "    <DialogHeader>",
       `      <DialogTitle>${title}</DialogTitle>`,
       description &&

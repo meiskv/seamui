@@ -6,6 +6,7 @@ import { exampleSource } from "@/lib/registry-source"
 import DialogDemo from "@/registry/seam/examples/dialog-demo"
 import DialogForm from "@/registry/seam/examples/dialog-form"
 import DialogScroll from "@/registry/seam/examples/dialog-scroll"
+import DialogSizes from "@/registry/seam/examples/dialog-sizes"
 
 export const metadata: Metadata = {
   title: "Dialog — seamui",
@@ -44,6 +45,14 @@ export default function DialogDocs() {
             code: exampleSource("dialog-scroll"),
             description:
               "Long content scrolls inside the modal; the header and footer stay put.",
+          },
+          {
+            key: "sizes",
+            title: "Sizes",
+            component: <DialogSizes />,
+            code: exampleSource("dialog-sizes"),
+            description:
+              "size caps the panel width — sm for a confirm, lg for a table or a diff. Height stays content-driven.",
           },
         ]}
       />

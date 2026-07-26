@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dialog-sizes",
+  "type": "registry:example",
+  "title": "Dialog Sizes",
+  "registryDependencies": [
+    "https://seamui.dev/r/dialog.json",
+    "https://seamui.dev/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/dialog-sizes.tsx",
+      "content": "import { Button } from \"@/registry/seam/ui/button\"\nimport {\n  Dialog,\n  DialogClose,\n  DialogContent,\n  DialogDescription,\n  DialogFooter,\n  DialogHeader,\n  DialogTitle,\n  DialogTrigger,\n} from \"@/registry/seam/ui/dialog\"\n\nconst SIZES = [\n  { size: \"sm\" as const, label: \"Small\", body: \"A confirm, and not much else.\" },\n  {\n    size: \"default\" as const,\n    label: \"Default\",\n    body: \"The everyday modal — a form, a set of choices.\",\n  },\n  {\n    size: \"lg\" as const,\n    label: \"Large\",\n    body: \"Room for a table, a diff, or a two-column layout.\",\n  },\n]\n\nexport default function DialogSizes() {\n  return (\n    <div className=\"flex flex-wrap items-center gap-2\">\n      {SIZES.map(({ size, label, body }) => (\n        <Dialog key={size}>\n          <DialogTrigger render={<Button variant=\"outline\">{label}</Button>} />\n          <DialogContent size={size}>\n            <DialogHeader>\n              <DialogTitle>{label} dialog</DialogTitle>\n              <DialogDescription>{body}</DialogDescription>\n            </DialogHeader>\n            <DialogFooter>\n              <DialogClose render={<Button variant=\"ghost\">Cancel</Button>} />\n              <DialogClose render={<Button>Save</Button>} />\n            </DialogFooter>\n          </DialogContent>\n        </Dialog>\n      ))}\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}
