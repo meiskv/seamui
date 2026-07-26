@@ -3,16 +3,17 @@ import type * as React from "react"
 import { cn } from "@/lib/utils"
 
 /**
- * A folder — a tabbed surface you write straight into, no card nested inside.
+ * A folder — tabbed back panel, a sheet peeking out of it, and a translucent
+ * pocket carrying the label.
  *
  * ── how the shape is made ────────────────────────────────────────────────
- * Two solid blocks: an angled tab at the top left over a full-width body,
- * overlapping so they read as one silhouette (there is no stroke, so nothing
- * seams). Square corners — the folder is a rectangle, not a rounded key.
- *
- * The tab's slant is a `clip-path` on the tab alone — safe here because the
- * folder is flat: clipping would otherwise cut off a box-shadow, which is why
- * the whole shape can't be one clipped element if it ever gains depth.
+ * Three solid blocks rather than one clipped element: a tab at the top left, a
+ * full-width body beneath it, and — between them — a square whose
+ * radial-gradient paints everything *except* a quarter disc. That carved
+ * quarter is the concave curve where the tab meets the body; a straight
+ * `clip-path` cut gives a hard corner there, and a border-radius can only bend
+ * the other way. All three share one fill, so they read as a single silhouette
+ * with no seam to misalign.
  *
  * ── colour ──────────────────────────────────────────────────────────────
  * Two custom properties, defaulting to the `--muted` well. Set them together
@@ -20,27 +21,22 @@ import { cn } from "@/lib/utils"
  *
  *   <FolderShell className="[--folder-fill:var(--color-violet-500)]
  *                           [--folder-foreground:var(--color-white)]">
- */
-
-/**
- * Tab: square along the left, cut back on the right at ~30° — the angle of a
- * clock's 10-to-4 line.
  *
- * The run is in px, not a percentage: a percentage is measured against the
- * tab's width, so the slant would flatten out on a wide folder and steepen on
- * a narrow one. 24px of run against the 14px tab height holds the angle at
- * 30° whatever the folder's size.
+ * The pocket and sheet are white at low alpha over that fill, so an accent
+ * only ever has to be set in one place.
  */
-const TAB_SLANT = "[clip-path:polygon(0_0,calc(100%-24px)_0,100%_100%,0_100%)]"
 
 function FolderShell({
   className,
   children,
-  icon,
+  action,
+  footer,
   ...props
 }: React.ComponentProps<"div"> & {
-  /** Optional leading glyph, rendered beside the text. */
-  icon?: React.ReactNode
+  /** Sits at the top right of the pocket — a menu key, usually. */
+  action?: React.ReactNode
+  /** Quiet line along the foot of the pocket. */
+  footer?: React.ReactNode
 }) {
   return (
     <div
@@ -55,37 +51,58 @@ function FolderShell({
       )}
       {...props}
     >
+      {/* tab — rounded along its top, square where the body meets it */}
       <div
         aria-hidden
         data-slot="folder-shell-tab"
-        className={cn(
-          "absolute top-0 left-0 h-3.5 w-[46%] bg-[var(--folder-fill)]",
-          TAB_SLANT
-        )}
+        className="absolute top-0 left-0 h-6 w-[42%] rounded-t-2xl bg-[var(--folder-fill)]"
       />
-      {/* the body overlaps the tab's foot, so the two read as one shape */}
+      {/* the concave joint: fill everywhere except a carved quarter disc */}
+      <div
+        aria-hidden
+        data-slot="folder-shell-notch"
+        // spans tab-top to body-top exactly, so the curve starts flush with
+        // the tab's top edge and lands flush on the body's — the circle is
+        // centred top-RIGHT, carving the quarter away from the tab
+        className="absolute top-0 left-[42%] size-5 bg-[radial-gradient(circle_at_100%_0%,transparent_var(--notch),var(--folder-fill)_var(--notch))] [--notch:20px]"
+      />
+      {/* body */}
       <div
         aria-hidden
         data-slot="folder-shell-body"
-        className="absolute inset-x-0 top-2.5 bottom-0 bg-[var(--folder-fill)]"
+        className="absolute inset-x-0 top-5 bottom-0 rounded-2xl squircle bg-[var(--folder-fill)]"
       />
 
-      {/* the label sits at the foot of the folder, the way a written tab does */}
+      {/* a sheet, showing only in the gap above the pocket — it must not run
+          under the label, because the pocket is translucent and would wash
+          the text out */}
       <div
-        data-slot="folder-shell-content"
-        className="absolute inset-0 z-10 flex items-end px-4 pt-6 pb-4"
+        aria-hidden
+        data-slot="folder-shell-sheet"
+        className="absolute inset-x-4 top-7 h-6 rounded-t-lg bg-white/85 dark:bg-white/70"
+      />
+
+      {/* the pocket — white at low alpha, so one fill drives the whole folder */}
+      <div
+        data-slot="folder-shell-pocket"
+        className="absolute inset-x-1.5 top-12 bottom-1.5 flex flex-col rounded-2xl squircle bg-white/20 px-4 pt-3.5 pb-3"
       >
-        <div className="flex w-full items-center gap-3">
-          {icon ? (
-            <span
-              data-slot="folder-shell-icon"
-              className="shrink-0 opacity-70 [&_svg]:size-5"
-            >
-              {icon}
+        <div className="flex items-start justify-between gap-3">
+          <div className="min-w-0">{children}</div>
+          {action ? (
+            <span data-slot="folder-shell-action" className="shrink-0">
+              {action}
             </span>
           ) : null}
-          <div className="min-w-0 flex-1">{children}</div>
         </div>
+        {footer ? (
+          <div
+            data-slot="folder-shell-footer"
+            className="mt-auto pt-3 text-xs opacity-70"
+          >
+            {footer}
+          </div>
+        ) : null}
       </div>
     </div>
   )
@@ -98,7 +115,7 @@ function FolderShellTitle({
   return (
     <div
       data-slot="folder-shell-title"
-      className={cn("text-base leading-none font-semibold", className)}
+      className={cn("truncate text-lg leading-tight font-semibold", className)}
       {...props}
     />
   )
@@ -112,7 +129,7 @@ function FolderShellDescription({
   return (
     <div
       data-slot="folder-shell-description"
-      className={cn("mt-1.5 text-sm opacity-70", className)}
+      className={cn("mt-0.5 truncate text-sm opacity-80", className)}
       {...props}
     />
   )

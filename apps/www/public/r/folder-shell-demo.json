@@ -10,7 +10,7 @@
   "files": [
     {
       "path": "registry/seam/examples/folder-shell-demo.tsx",
-      "content": "import { Folder } from \"lucide-react\"\n\nimport {\n  FolderShell,\n  FolderShellDescription,\n  FolderShellTitle,\n} from \"@/registry/seam/ui/folder-shell\"\n\nexport default function FolderShellDemo() {\n  return (\n    <FolderShell icon={<Folder />} className=\"w-full max-w-xs\">\n      <FolderShellTitle>Work</FolderShellTitle>\n      <FolderShellDescription>\n        56 documents, last opened Tuesday\n      </FolderShellDescription>\n    </FolderShell>\n  )\n}\n",
+      "content": "import { MoreVertical } from \"lucide-react\"\n\nimport { Button } from \"@/registry/seam/ui/button\"\nimport {\n  FolderShell,\n  FolderShellDescription,\n  FolderShellTitle,\n} from \"@/registry/seam/ui/folder-shell\"\n\nexport default function FolderShellDemo() {\n  return (\n    <FolderShell\n      className=\"w-full max-w-xs\"\n      action={\n        <Button\n          variant=\"ghost\"\n          size=\"icon\"\n          aria-label=\"Folder options\"\n          className=\"-mt-1 -mr-1 size-8 hover:bg-white/20\"\n        >\n          <MoreVertical />\n        </Button>\n      }\n      footer=\"Last added Oct 13, 2025\"\n    >\n      <FolderShellTitle>Designs</FolderShellTitle>\n      <FolderShellDescription>318 images</FolderShellDescription>\n    </FolderShell>\n  )\n}\n",
       "type": "registry:example"
     }
   ]

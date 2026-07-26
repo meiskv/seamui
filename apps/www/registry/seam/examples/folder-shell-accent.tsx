@@ -1,5 +1,4 @@
 import type * as React from "react"
-import { BookMarked, FlaskConical } from "lucide-react"
 
 import {
   FolderShell,
@@ -10,14 +9,14 @@ import {
 const FOLDERS = [
   {
     title: "Books",
-    meta: "Fiction, mystery, and a little poetry",
-    icon: <BookMarked />,
+    meta: "12 titles",
+    footer: "Last added Sep 2, 2025",
     fill: "var(--color-green-600)",
   },
   {
     title: "Research",
-    meta: "744 items across twelve threads",
-    icon: <FlaskConical />,
+    meta: "744 items",
+    footer: "Last added Oct 13, 2025",
     fill: "var(--color-violet-500)",
   },
 ]
@@ -29,7 +28,7 @@ export default function FolderShellAccent() {
         // fill and foreground travel together, so the label keeps its contrast
         <FolderShell
           key={folder.title}
-          icon={folder.icon}
+          footer={folder.footer}
           style={
             {
               "--folder-fill": folder.fill,

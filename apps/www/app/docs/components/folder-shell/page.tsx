@@ -48,8 +48,8 @@ export default function FolderShellDocs() {
         <li>
           A surface in its own right — write straight into it with{" "}
           <code>FolderShellTitle</code> / <code>FolderShellDescription</code>{" "}
-          (or any markup), and pass <code>icon</code> for a leading glyph. No
-          card nested inside.
+          (or any markup). <code>action</code> sits at the top right of the
+          pocket, <code>footer</code> along its foot. No card nested inside.
         </li>
         <li>
           The shape is two solid blocks — an angled tab over a full-width body —
