@@ -32,46 +32,43 @@ const cardVariants = cva(
          * A full folder silhouette: a filled tab rising off the card's top
          * left, joined down to the body by an angled shoulder.
          *
-         * Three details carry the shape:
+         * `::before` is the tab, `::after` the shoulder curving down to the
+         * card's top edge, and `rounded-tl-none` squares the card's own
+         * corner so the tab's left edge continues into it.
          *
-         * 1. No stroke (`border-transparent`). A hairline would run straight
-         *    across the seam where tab meets body and give the join away —
-         *    and in dark mode `--border` is translucent, so it can't be
-         *    painted over. Fill and shadow carry the edge instead.
-         * 2. `::before` is the tab, `::after` a right triangle bridging it
-         *    down to the card's top edge — 16px of drop over 9px of run,
-         *    which is 60°, the angle of a clock's 11-to-5 line. Both are
-         *    fixed px so the angle holds at any card width; a percentage run
-         *    would flatten on a wide card and steepen on a narrow one.
-         * 3. `rounded-tl-none` squares the card's own corner so the tab's
-         *    left edge continues into it, and the tab carries the rounding
-         *    instead.
-         *
-         * The tab needs its own `shadow-resting`, because `box-shadow` traces
-         * the card's box and so stops dead at its top edge. Both pseudos sit
-         * at `-z-10`: a pseudo-element normally paints *above* its element's
-         * background, which would smear the tab's shadow across the card
-         * body — negative z drops them behind it, so only the part outside
-         * the box shows. This works because Card is `relative` with
-         * `z-index: auto`, and so forms no stacking context of its own; add
-         * `isolate` (or a transform/opacity) and the shadow reappears.
+         * Everything here is 18px — tab height, corner radius, shoulder — so
+         * the silhouette has one radius throughout. The outline survives the
+         * curve because the shoulder's gradient paints its own hairline; a
+         * `clip-path` cut can't, which is why the shoulder isn't a triangle.
          *
          * Like `tabbed`, the tab renders outside the card's box —
          * `overflow-hidden` clips it, and it overlaps whatever sits directly
          * above.
          */
         folder: [
-          "relative rounded-tl-none border-transparent bg-card text-card-foreground shadow-resting",
-          "before:absolute before:-top-4 before:left-0 before:h-4 before:w-24",
-          "before:rounded-tl-xl before:squircle before:bg-card before:content-['']",
-          // the tab carries the same resting depth as the body, so the
-          // silhouette's shadow doesn't stop dead at the card's top edge.
-          // Set as a raw property: Tailwind's `shadow-*` composes through
-          // `--tw-shadow`, which doesn't resolve inside a pseudo-element rule
-          // and leaves a transparent shadow behind.
-          "before:[box-shadow:var(--shadow-resting)] before:-z-10",
-          "after:absolute after:-top-4 after:left-24 after:h-4 after:w-[9px] after:bg-card after:content-['']",
-          "after:[clip-path:polygon(0_0,0_100%,100%_100%)] after:-z-10",
+          "relative rounded-tl-none border-border/60 bg-card text-card-foreground shadow-resting",
+          // Tab. 18px tall so the 18px corner renders un-clamped and matches
+          // the card's other corners — a shorter tab makes the browser scale
+          // the radius down and the top left reads tighter than the rest.
+          "before:absolute before:-top-[18px] before:left-0 before:h-[18px] before:w-24",
+          "before:rounded-tl-[18px] before:squircle before:bg-card before:content-['']",
+          // Its own top and left hairline, continuing the card's outline. The
+          // tab paints ABOVE the card (no negative z), so its fill hides the
+          // card's own top border where it runs beneath — that segment isn't
+          // part of the folder's silhouette.
+          "before:border-t before:border-l before:border-border/60",
+          // Depth, cast up and out only. A full resting shadow would fall
+          // *onto* the card body, since a pseudo-element paints over its
+          // element's background.
+          "before:[box-shadow:0_-1px_3px_oklch(0.23_0.004_286/0.06)]",
+          "dark:before:[box-shadow:0_-1px_3px_rgb(0_0_0/0.4)]",
+          // Shoulder: one radial-gradient doing three jobs — transparent
+          // inside the arc, a 1px hairline along it, fill beyond. That keeps
+          // the outline unbroken round the curve, which a clip-path cut can't
+          // do (it has no border to speak of), and gives the join the same
+          // 18px radius as the corners instead of a sharp vertex.
+          "after:absolute after:-top-[18px] after:left-24 after:size-[18px] after:content-['']",
+          "after:bg-[radial-gradient(circle_at_100%_0%,transparent_17px,var(--border)_17px,var(--border)_18px,var(--card)_18px)]",
         ],
         // the debossed counterpart — a container things sit *in*, not a
         // surface that sits *on* (§1: slot vs token).
