@@ -13,9 +13,12 @@ import { Button } from "@/registry/seam/ui/button"
 export function CopyButton({
   text,
   className,
+  label = "Copy command",
 }: {
   text: string
   className?: string
+  /** Accessible name for the idle state — override when it isn't a command. */
+  label?: string
 }) {
   const [copied, setCopied] = React.useState(false)
 
@@ -34,7 +37,7 @@ export function CopyButton({
       variant="ghost"
       size="icon"
       onClick={copy}
-      aria-label={copied ? "Copied" : "Copy command"}
+      aria-label={copied ? "Copied" : label}
       className={cn("text-muted-foreground size-8 shrink-0", className)}
     >
       <AnimatePresence mode="wait" initial={false}>
