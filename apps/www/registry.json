@@ -3109,7 +3109,7 @@
       "name": "folder-shell",
       "type": "registry:ui",
       "title": "Folder Shell",
-      "description": "A tabbed folder silhouette that wraps a card — stackable, accented by one custom property.",
+      "description": "A flat tabbed folder silhouette that wraps a card, accented by one custom property.",
       "registryDependencies": [
         "https://seamui.dev/r/utils.json"
       ],
@@ -3137,16 +3137,16 @@
       ]
     },
     {
-      "name": "folder-shell-stacked",
+      "name": "folder-shell-accent",
       "type": "registry:example",
-      "title": "Folder Shell Stacked",
+      "title": "Folder Shell Accent",
       "registryDependencies": [
         "https://seamui.dev/r/folder-shell.json",
         "https://seamui.dev/r/card.json"
       ],
       "files": [
         {
-          "path": "registry/seam/examples/folder-shell-stacked.tsx",
+          "path": "registry/seam/examples/folder-shell-accent.tsx",
           "type": "registry:example"
         }
       ]

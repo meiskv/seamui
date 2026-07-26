@@ -4,12 +4,12 @@ import { VariantPreview } from "@/components/docs/variant-preview"
 import { Install, Notes } from "@/components/docs/section"
 import { exampleSource } from "@/lib/registry-source"
 import FolderShellDemo from "@/registry/seam/examples/folder-shell-demo"
-import FolderShellStacked from "@/registry/seam/examples/folder-shell-stacked"
+import FolderShellAccent from "@/registry/seam/examples/folder-shell-accent"
 
 export const metadata: Metadata = {
   title: "Folder Shell — seamui",
   description:
-    "A tabbed folder silhouette that wraps a card — stackable, accented by one custom property.",
+    "A flat tabbed folder silhouette that wraps a card, accented by one custom property.",
 }
 
 export default function FolderShellDocs() {
@@ -31,12 +31,12 @@ export default function FolderShellDocs() {
             code: exampleSource("folder-shell-demo"),
           },
           {
-            key: "stacked",
-            title: "Stacked",
-            component: <FolderShellStacked />,
-            code: exampleSource("folder-shell-stacked"),
+            key: "accent",
+            title: "Accent",
+            component: <FolderShellAccent />,
+            code: exampleSource("folder-shell-accent"),
             description:
-              "layers={2 | 3} offsets extra tabs behind the front one; each tints itself off the same fill.",
+              "One custom property colours the whole shell — the tab and body share --folder-fill.",
           },
         ]}
         stageClassName="min-h-72"
@@ -53,24 +53,22 @@ export default function FolderShellDocs() {
         <li>
           The notch is two solid rectangles, not a <code>clip-path</code>.
           Clipping cuts the silhouette from one box but also clips{" "}
-          <code>box-shadow</code>, which would drop the folder out of the depth
-          stack; two opaque shapes composite seamlessly and the wrapper&apos;s{" "}
-          <code>drop-shadow</code> follows their combined alpha, so the folder
-          casts one correct shadow.
+          <code>box-shadow</code>, so anything placed inside would lose its
+          depth; two opaque shapes composite with no seam, because there is no
+          stroke to misalign.
         </li>
         <li>
           Colour comes from a single custom property. Pass{" "}
           <code>
             className=&quot;[--folder-fill:var(--color-violet-500)]&quot;
           </code>{" "}
-          to accent one; stacked layers reuse that same fill at lower opacity,
-          so you never set more than one value. They lighten rather than{" "}
-          <code>color-mix</code> toward the canvas, which drifts hue in oklch —
-          a violet accent came out pink.
+          to accent one — the tab and body share it, so there is never more than
+          one value to set.
         </li>
         <li>
-          Static — no motion of its own. Depth belongs to the interactive keys
-          placed inside it.
+          Flat by design — the shell is a backdrop and carries no shadow, so the
+          card in front of it stays the raised key. It has no motion of its own
+          either.
         </li>
       </Notes>
     </main>
