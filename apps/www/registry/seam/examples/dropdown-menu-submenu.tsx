@@ -16,7 +16,7 @@ export default function DropdownMenuSubmenu() {
       <DropdownMenuTrigger
         render={<Button variant="outline">Actions</Button>}
       />
-      <DropdownMenuContent className="w-44">
+      <DropdownMenuContent>
         <DropdownMenuItem>New tab</DropdownMenuItem>
         <DropdownMenuItem>New window</DropdownMenuItem>
         <DropdownMenuSub>
