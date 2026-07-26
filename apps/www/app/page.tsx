@@ -42,6 +42,13 @@ export default function HomePage() {
           <Button
             variant="ghost"
             size="sm"
+            render={<Link href="/playground" />}
+          >
+            Playground
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
             render={<Link href="/docs/guides/chat" />}
           >
             Guides
@@ -70,11 +77,12 @@ export default function HomePage() {
             <Button render={<Link href="/docs/components" />}>
               Browse components
             </Button>
-            <Button
-              variant="secondary"
-              render={<Link href="/docs/guides/chat" />}
-            >
-              Building a chat app →
+            {/* The claim above is "feels physical" — the playground is where a
+                visitor can actually test it (tune a component, force reduced
+                motion, fire a haptic), so it earns the second CTA over a
+                single guide, which stays in the nav and footer. */}
+            <Button variant="secondary" render={<Link href="/playground" />}>
+              Try the playground →
             </Button>
           </div>
         </section>
@@ -210,6 +218,9 @@ export default function HomePage() {
         {/* footer */}
         <footer className="text-muted-foreground mt-20 flex flex-wrap items-center justify-between gap-4 border-t pt-6 text-sm">
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+            <Link className="hover:text-foreground" href="/playground">
+              Playground
+            </Link>
             <Link className="hover:text-foreground" href="/docs/guides/chat">
               Guides
             </Link>
