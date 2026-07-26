@@ -1,20 +1,18 @@
+import { Folder } from "lucide-react"
+
 import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/registry/seam/ui/card"
-import { FolderShell } from "@/registry/seam/ui/folder-shell"
+  FolderShell,
+  FolderShellDescription,
+  FolderShellTitle,
+} from "@/registry/seam/ui/folder-shell"
 
 export default function FolderShellDemo() {
   return (
-    <FolderShell className="w-full max-w-xs">
-      <Card>
-        <CardHeader>
-          <CardTitle>Work</CardTitle>
-          <CardDescription>56 documents</CardDescription>
-        </CardHeader>
-      </Card>
+    <FolderShell icon={<Folder />} className="w-full max-w-xs">
+      <FolderShellTitle>Work</FolderShellTitle>
+      <FolderShellDescription>
+        56 documents, last opened Tuesday
+      </FolderShellDescription>
     </FolderShell>
   )
 }

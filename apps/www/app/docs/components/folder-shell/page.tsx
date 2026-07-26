@@ -46,16 +46,17 @@ export default function FolderShellDocs() {
 
       <Notes>
         <li>
-          A wrapper, not a card — put a <code>Card</code> (or anything else)
-          inside it. The shell only draws the shape and the padding that keeps
-          its tab visible above the content.
+          A surface in its own right — write straight into it with{" "}
+          <code>FolderShellTitle</code> / <code>FolderShellDescription</code>{" "}
+          (or any markup), and pass <code>icon</code> for a leading glyph. No
+          card nested inside.
         </li>
         <li>
-          The notch is two solid rectangles, not a <code>clip-path</code>.
-          Clipping cuts the silhouette from one box but also clips{" "}
-          <code>box-shadow</code>, so anything placed inside would lose its
-          depth; two opaque shapes composite with no seam, because there is no
-          stroke to misalign.
+          The shape is two solid blocks — an angled tab over a full-width body —
+          overlapping so they read as one silhouette; there is no stroke, so
+          nothing seams. The slant is a <code>clip-path</code> on the tab alone,
+          which is safe only because the folder is flat: clipping cuts off{" "}
+          <code>box-shadow</code> too.
         </li>
         <li>
           Colour comes from a single custom property. Pass{" "}
