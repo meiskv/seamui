@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "folder-shell-demo",
+  "type": "registry:example",
+  "title": "Folder Shell Demo",
+  "registryDependencies": [
+    "https://seamui.dev/r/folder-shell.json",
+    "https://seamui.dev/r/card.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/folder-shell-demo.tsx",
+      "content": "import {\n  Card,\n  CardDescription,\n  CardHeader,\n  CardTitle,\n} from \"@/registry/seam/ui/card\"\nimport { FolderShell } from \"@/registry/seam/ui/folder-shell\"\n\nexport default function FolderShellDemo() {\n  return (\n    <FolderShell className=\"w-full max-w-xs\">\n      <Card>\n        <CardHeader>\n          <CardTitle>Work</CardTitle>\n          <CardDescription>56 documents</CardDescription>\n        </CardHeader>\n      </Card>\n    </FolderShell>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

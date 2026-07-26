@@ -95,6 +95,7 @@ export const NAV: NavGroup[] = [
       c("avatar", "Avatar"),
       c("badge", "Badge"),
       c("card", "Card"),
+      c("folder-shell", "Folder Shell"),
       c("kbd", "Kbd"),
     ],
   },
