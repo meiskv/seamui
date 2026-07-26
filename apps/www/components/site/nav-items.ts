@@ -11,6 +11,7 @@ export const NAV: NavGroup[] = [
     title: "Getting Started",
     items: [
       { title: "Overview", href: "/docs/components" },
+      { title: "Playground", href: "/playground" },
       { title: "Motion", href: "/docs/motion" },
       { title: "Haptics", href: "/docs/haptics" },
     ],
