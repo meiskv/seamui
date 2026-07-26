@@ -22,16 +22,18 @@ const menuItemClass =
  * this way — and it behaves the same on a phone as on a wide desktop.
  *
  * The whole thing is one piece of state: `path`, the list of submenus you've
- * opened. The panel at `depth === path.length` is the one on screen; the levels
- * above it stay mounted but draw nothing, so the branch holding the visible
- * level still has somewhere to hang.
+ * opened. The panel at `depth === path.length` is the one on screen. Levels
+ * you've drilled past stay mounted and hidden (see `useParked` — it's what
+ * keeps their uncontrolled state alive); levels off the open path aren't
+ * mounted at all, exactly like a closed flyout submenu.
  *
- * **Only the visible level's items are ever mounted**, and that is load-bearing,
- * not an optimization. Base UI's Menu is a composite: it registers items by DOM
- * node and roves focus across whatever is registered. A level that lingers to
- * animate out is a level whose items still answer to the arrow keys. So the
- * outgoing level's items go the instant the path changes, and the incoming
- * level carries the motion on its own (see `drill` in @/lib/motion).
+ * **Only the visible level's items are ever rendered**, and that is
+ * load-bearing, not cosmetic. Base UI's Menu is a composite: it registers items
+ * by DOM node and roves focus across them, skipping any that `checkVisibility()`
+ * says aren't rendered. So a level that lingered *visibly* to animate out would
+ * be a level whose items still answer to the arrow keys — which is why the
+ * outgoing level goes the instant the path changes, and the incoming level
+ * carries the transition on its own (see `drill` in @/lib/motion).
  * ──────────────────────────────────────────────────────────────────────────── */
 
 type DropdownLevel = {
@@ -47,6 +49,8 @@ type DropdownNav = {
   /** False until the first drill of this open, so the root level never slides
    *  in behind the popup's own entrance. */
   navigated: boolean
+  /** After stepping back, the sub whose trigger focus should return to. */
+  returnTo?: string
 }
 
 const AT_ROOT: DropdownNav = { path: [], direction: 1, navigated: false }
@@ -78,6 +82,28 @@ const DropdownPanelContext = React.createContext<{
 /** How the viewport finds the level it should be sized to. */
 const ACTIVE_PANEL = '[data-slot="dropdown-menu-panel"][data-active]'
 
+/**
+ * Parts on a level you've drilled past render hidden rather than not at all.
+ *
+ * Unmounting them would be simpler, but it throws away any uncontrolled state
+ * they hold: a `defaultChecked` checkbox or a `defaultValue` radio group would
+ * silently reset every time you drilled past its level and came back. A flyout
+ * submenu never did that — the level underneath stayed mounted — so neither
+ * should this.
+ *
+ * Hiding keeps the state and still keeps the parts out of the keyboard's way:
+ * Base UI's list navigation runs `checkVisibility()` over the items it has
+ * registered and skips the ones that aren't rendered. Comes last in `cn` so it
+ * wins the display conflict against `flex` (and anything a caller passed).
+ *
+ * Levels *not* on the open path stay unmounted — that's a closed submenu, and
+ * it dropped its uncontrolled state before this change too.
+ */
+function useParked(): string | undefined {
+  const { active } = React.useContext(DropdownPanelContext)
+  return active ? undefined : "hidden"
+}
+
 const DropdownSubContext = React.createContext<{ id: string } | null>(null)
 
 function DropdownMenu({
@@ -105,6 +131,7 @@ function DropdownMenu({
       path: prev.path.slice(0, -1),
       direction: -1,
       navigated: true,
+      returnTo: prev.path.at(-1)?.id,
     }))
   }, [])
 
@@ -151,7 +178,7 @@ function DropdownMenuTrigger(
  * shrinks around the content instead of jumping.
  */
 function DropdownMenuViewport({ children }: { children?: React.ReactNode }) {
-  const { path } = useDropdownNav()
+  const { path, navigated, returnTo } = useDropdownNav()
   const reduceMotion = useReducedMotion() ?? false
   const viewportRef = React.useRef<HTMLDivElement | null>(null)
   const [size, setSize] = React.useState<{
@@ -197,6 +224,29 @@ function DropdownMenuViewport({ children }: { children?: React.ReactNode }) {
     observer.observe(panel)
     return () => observer.disconnect()
   }, [measure, path])
+
+  // Move focus onto the level a drill lands on. Base UI does this itself when
+  // items *mount*, but levels here are hidden rather than unmounted, so nothing
+  // moves and focus would sit on the popup — a keyboard user would drill in and
+  // see no highlight at all. Skipped before the first drill, where Base UI's own
+  // open focus is correct.
+  //
+  // Stepping back returns to the trigger you left through, like a flyout
+  // submenu closing. Drilling in lands on the back row: it is the level's first
+  // row, and it announces which level you just entered.
+  React.useEffect(() => {
+    if (!navigated) return
+    const panel = viewportRef.current?.querySelector<HTMLElement>(ACTIVE_PANEL)
+    if (!panel) return
+    const restored = returnTo
+      ? panel.querySelector<HTMLElement>(
+          `[data-sub-id="${CSS.escape(returnTo)}"]`
+        )
+      : null
+    ;(
+      restored ?? panel.querySelector<HTMLElement>('[role^="menuitem"]')
+    )?.focus()
+  }, [navigated, path, returnTo])
 
   return (
     <motion.div
@@ -337,13 +387,12 @@ function DropdownMenuItem({
   className,
   ...props
 }: React.ComponentProps<typeof BaseMenu.Item>) {
-  const { active } = React.useContext(DropdownPanelContext)
-  if (!active) return null
+  const parked = useParked()
 
   return (
     <BaseMenu.Item
       data-slot="dropdown-menu-item"
-      className={cn(menuItemClass, className)}
+      className={cn(menuItemClass, className, parked)}
       {...props}
     />
   )
@@ -353,11 +402,9 @@ function DropdownMenuGroup({
   children,
   ...props
 }: React.ComponentProps<typeof BaseMenu.Group>) {
-  const { active } = React.useContext(DropdownPanelContext)
-  // Off-level, pass the branch through: the level we've drilled into shouldn't
-  // inherit a stray `role="group"` from a level that isn't on screen.
-  if (!active) return <>{children}</>
-
+  // Not hidden when parked, unlike the parts inside it: a group can contain the
+  // sub whose level is on screen, and hiding it would hide that too. Its own
+  // items hide themselves.
   return (
     <BaseMenu.Group data-slot="dropdown-menu-group" {...props}>
       {children}
@@ -372,15 +419,15 @@ function DropdownMenuLabel({
   className,
   ...props
 }: React.ComponentProps<"div">) {
-  const { active } = React.useContext(DropdownPanelContext)
-  if (!active) return null
+  const parked = useParked()
 
   return (
     <div
       data-slot="dropdown-menu-label"
       className={cn(
         "px-2 py-1.5 text-xs font-medium text-muted-foreground",
-        className
+        className,
+        parked
       )}
       {...props}
     />
@@ -391,13 +438,12 @@ function DropdownMenuSeparator({
   className,
   ...props
 }: React.ComponentProps<typeof BaseMenu.Separator>) {
-  const { active } = React.useContext(DropdownPanelContext)
-  if (!active) return null
+  const parked = useParked()
 
   return (
     <BaseMenu.Separator
       data-slot="dropdown-menu-separator"
-      className={cn("bg-border -mx-1 my-1 h-px", className)}
+      className={cn("bg-border -mx-1 my-1 h-px", className, parked)}
       {...props}
     />
   )
@@ -411,13 +457,12 @@ function DropdownMenuCheckboxItem({
 }: React.ComponentProps<typeof BaseMenu.CheckboxItem>) {
   // Toggling a checkbox item commits state — fire the seam tick (§3b).
   const { trigger } = useHaptics()
-  const { active } = React.useContext(DropdownPanelContext)
-  if (!active) return null
+  const parked = useParked()
 
   return (
     <BaseMenu.CheckboxItem
       data-slot="dropdown-menu-checkbox-item"
-      className={cn(menuItemClass, "pl-8", className)}
+      className={cn(menuItemClass, "pl-8", className, parked)}
       onCheckedChange={(
         ...args: Parameters<NonNullable<typeof onCheckedChange>>
       ) => {
@@ -443,9 +488,10 @@ function DropdownMenuRadioGroup({
 }: React.ComponentProps<typeof BaseMenu.RadioGroup>) {
   // Selecting a different radio item commits state — fire the seam tick (§3b).
   const { trigger } = useHaptics()
-  const { active } = React.useContext(DropdownPanelContext)
-  if (!active) return <>{children}</>
 
+  // Never swapped out or hidden when parked: unmounting it would drop an
+  // uncontrolled `defaultValue`, and hiding it would hide a sub nested inside
+  // it. Its items hide themselves.
   return (
     <BaseMenu.RadioGroup
       data-slot="dropdown-menu-radio-group"
@@ -467,13 +513,12 @@ function DropdownMenuRadioItem({
   children,
   ...props
 }: React.ComponentProps<typeof BaseMenu.RadioItem>) {
-  const { active } = React.useContext(DropdownPanelContext)
-  if (!active) return null
+  const parked = useParked()
 
   return (
     <BaseMenu.RadioItem
       data-slot="dropdown-menu-radio-item"
-      className={cn(menuItemClass, "pl-8", className)}
+      className={cn(menuItemClass, "pl-8", className, parked)}
       {...props}
     >
       <span className="absolute left-2 flex size-4 items-center justify-center">
@@ -512,10 +557,10 @@ function DropdownMenuSubTrigger({
   heading?: React.ReactNode
 }) {
   const sub = React.useContext(DropdownSubContext)
-  const { active } = React.useContext(DropdownPanelContext)
   const { push } = useDropdownNav()
   const { trigger } = useHaptics()
-  if (!active || !sub) return null
+  const parked = useParked()
+  if (!sub) return null
 
   const drillIn = () => {
     trigger("tap")
@@ -525,7 +570,8 @@ function DropdownMenuSubTrigger({
   return (
     <BaseMenu.Item
       data-slot="dropdown-menu-sub-trigger"
-      className={cn(menuItemClass, className)}
+      data-sub-id={sub.id}
+      className={cn(menuItemClass, className, parked)}
       // The popup stays open — the nested level replaces this one inside it.
       closeOnClick={false}
       onClick={(event) => {
@@ -553,13 +599,12 @@ function DropdownMenuSubTrigger({
 function DropdownMenuBack({ children }: { children?: React.ReactNode }) {
   const { pop } = useDropdownNav()
   const { trigger } = useHaptics()
-  const { active } = React.useContext(DropdownPanelContext)
-  if (!active) return null
+  const parked = useParked()
 
   return (
     <BaseMenu.Item
       data-slot="dropdown-menu-back"
-      className={cn(menuItemClass, "gap-1.5 pl-1 font-medium")}
+      className={cn(menuItemClass, "gap-1.5 pl-1 font-medium", parked)}
       closeOnClick={false}
       onClick={() => {
         trigger("tap")

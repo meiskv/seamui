@@ -78,14 +78,17 @@ export default function DropdownMenuDocs() {
         </li>
         <li>
           Submenus drill in place: the level replaces the one below it and the
-          popup springs to the new size. Nesting is unlimited — a{" "}
+          popup springs to the new size. Levels you drill past keep their state,
+          so an uncontrolled checkbox or radio group is still set the way you
+          left it when you come back. Nesting is unlimited — a{" "}
           <code>DropdownMenuSub</code> inside a{" "}
           <code>DropdownMenuSubContent</code> is just the next level.
         </li>
         <li>
           Every nested level opens with a back row labelled from its trigger.
           ArrowRight or Enter drills in; ArrowLeft, Escape, or the back row
-          steps out. Escape only closes the menu once you are back at the root.
+          steps out, returning focus to the trigger you left through. Escape
+          only closes the menu once you are back at the root.
         </li>
         <li>
           Checkbox and radio items ship in the same file when a menu needs
