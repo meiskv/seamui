@@ -41,6 +41,20 @@ export function findSpec(
   return SPECS.find((spec) => spec.id === id)
 }
 
+/**
+ * The specs either side of `id`, in `SPECS` order — the playground's
+ * prev/next pagination. Ends are `undefined` rather than wrapping, so the
+ * controls disable there and the position stays legible.
+ */
+export function adjacentSpecs(id: string): {
+  previous?: PlaygroundSpec
+  next?: PlaygroundSpec
+} {
+  const index = SPECS.findIndex((spec) => spec.id === id)
+  if (index === -1) return {}
+  return { previous: SPECS[index - 1], next: SPECS[index + 1] }
+}
+
 /** Specs bucketed by nav group, preserving the order of `SPECS`. */
 export function specsByGroup(): Array<{
   group: string

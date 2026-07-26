@@ -2,10 +2,15 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { ArrowUpRight } from "lucide-react"
+import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react"
 
 import { Button } from "@/registry/seam/ui/button"
-import { DEFAULT_SPEC_ID, findSpec, SPECS } from "@/lib/playground/registry"
+import {
+  adjacentSpecs,
+  DEFAULT_SPEC_ID,
+  findSpec,
+  SPECS,
+} from "@/lib/playground/registry"
 import {
   decodeState,
   defaultsFor,
@@ -88,6 +93,8 @@ export function Playground() {
     syncUrl(defaults, id)
   }
 
+  const { previous, next } = adjacentSpecs(specId)
+
   // Rendered on the server too, so guard `window` rather than assume it.
   const shareUrl =
     typeof window === "undefined"
@@ -112,15 +119,48 @@ export function Playground() {
               {spec.blurb}
             </p>
           </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            render={<Link href={`/docs/components/${spec.id}`} />}
-            className="text-muted-foreground"
-          >
-            Docs
-            <ArrowUpRight />
-          </Button>
+          <div className="flex items-center gap-1">
+            {/* Step through the library without going back to the list —
+                the left rail is hidden on narrow screens, so on a phone
+                these are the only way to reach another component. */}
+            <Button
+              variant="ghost"
+              size="icon"
+              className="text-muted-foreground size-9"
+              disabled={!previous}
+              aria-label={
+                previous
+                  ? `Previous component: ${previous.title}`
+                  : "Previous component"
+              }
+              title={previous?.title}
+              onClick={() => previous && selectSpec(previous.id)}
+            >
+              <ChevronLeft />
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="text-muted-foreground size-9"
+              disabled={!next}
+              aria-label={
+                next ? `Next component: ${next.title}` : "Next component"
+              }
+              title={next?.title}
+              onClick={() => next && selectSpec(next.id)}
+            >
+              <ChevronRight />
+            </Button>
+            <Button
+              variant="ghost"
+              size="sm"
+              render={<Link href={`/docs/components/${spec.id}`} />}
+              className="text-muted-foreground"
+            >
+              Docs
+              <ArrowUpRight />
+            </Button>
+          </div>
         </div>
 
         <Stage

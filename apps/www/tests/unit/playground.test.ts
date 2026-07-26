@@ -1,7 +1,12 @@
 import { describe, expect, it } from "vitest"
 
 import { attrs, imports, lines } from "@/lib/playground/codegen"
-import { SPECS, findSpec, specsByGroup } from "@/lib/playground/registry"
+import {
+  SPECS,
+  adjacentSpecs,
+  findSpec,
+  specsByGroup,
+} from "@/lib/playground/registry"
 import {
   decodeState,
   defaultsFor,
@@ -86,6 +91,41 @@ describe("spec registry", () => {
         "undefined"
       )
     }
+  })
+})
+
+describe("adjacentSpecs (prev/next pagination)", () => {
+  it("has no previous at the first spec and no next at the last", () => {
+    expect(adjacentSpecs(SPECS[0].id).previous).toBeUndefined()
+    expect(adjacentSpecs(SPECS[0].id).next?.id).toBe(SPECS[1].id)
+
+    const last = SPECS[SPECS.length - 1]
+    expect(adjacentSpecs(last.id).next).toBeUndefined()
+    expect(adjacentSpecs(last.id).previous?.id).toBe(SPECS[SPECS.length - 2].id)
+  })
+
+  it("steps in SPECS order, and prev/next are inverses", () => {
+    for (let i = 0; i < SPECS.length; i++) {
+      const { previous, next } = adjacentSpecs(SPECS[i].id)
+      expect(previous?.id).toBe(SPECS[i - 1]?.id)
+      expect(next?.id).toBe(SPECS[i + 1]?.id)
+      // stepping forward then back returns to where you started
+      if (next) expect(adjacentSpecs(next.id).previous?.id).toBe(SPECS[i].id)
+    }
+  })
+
+  it("walks the whole library from the first spec", () => {
+    const walked = [SPECS[0].id]
+    let cursor = adjacentSpecs(SPECS[0].id).next
+    while (cursor) {
+      walked.push(cursor.id)
+      cursor = adjacentSpecs(cursor.id).next
+    }
+    expect(walked).toEqual(SPECS.map((spec) => spec.id))
+  })
+
+  it("returns nothing for an unknown id", () => {
+    expect(adjacentSpecs("nope")).toEqual({})
   })
 })
 
