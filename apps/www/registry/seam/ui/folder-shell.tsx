@@ -22,8 +22,16 @@ import { cn } from "@/lib/utils"
  *                           [--folder-foreground:var(--color-white)]">
  */
 
-/** Tab: square along the left, slanting in from 70% of its width. */
-const TAB_SLANT = "[clip-path:polygon(0_0,70%_0,100%_100%,0_100%)]"
+/**
+ * Tab: square along the left, cut back on the right at ~30° — the angle of a
+ * clock's 10-to-4 line.
+ *
+ * The run is in px, not a percentage: a percentage is measured against the
+ * tab's width, so the slant would flatten out on a wide folder and steepen on
+ * a narrow one. 24px of run against the 14px tab height holds the angle at
+ * 30° whatever the folder's size.
+ */
+const TAB_SLANT = "[clip-path:polygon(0_0,calc(100%-24px)_0,100%_100%,0_100%)]"
 
 function FolderShell({
   className,
@@ -38,7 +46,9 @@ function FolderShell({
     <div
       data-slot="folder-shell"
       className={cn(
-        "relative isolate",
+        // 3:2 — the folder keeps its proportion instead of collapsing to the
+        // label. Override with `aspect-auto` to size from content.
+        "relative isolate aspect-3/2",
         "[--folder-fill:var(--muted)] [--folder-foreground:var(--foreground)]",
         "text-[var(--folder-foreground)]",
         className
@@ -60,19 +70,22 @@ function FolderShell({
         className="absolute inset-x-0 top-2.5 bottom-0 bg-[var(--folder-fill)]"
       />
 
+      {/* the label sits at the foot of the folder, the way a written tab does */}
       <div
         data-slot="folder-shell-content"
-        className="relative z-10 flex items-start gap-3 px-4 pt-6 pb-4"
+        className="absolute inset-0 z-10 flex items-end px-4 pt-6 pb-4"
       >
-        {icon ? (
-          <span
-            data-slot="folder-shell-icon"
-            className="mt-0.5 shrink-0 opacity-70 [&_svg]:size-5"
-          >
-            {icon}
-          </span>
-        ) : null}
-        <div className="min-w-0 flex-1">{children}</div>
+        <div className="flex w-full items-center gap-3">
+          {icon ? (
+            <span
+              data-slot="folder-shell-icon"
+              className="shrink-0 opacity-70 [&_svg]:size-5"
+            >
+              {icon}
+            </span>
+          ) : null}
+          <div className="min-w-0 flex-1">{children}</div>
+        </div>
       </div>
     </div>
   )
