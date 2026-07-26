@@ -1,9 +1,9 @@
 "use client"
 
 import * as React from "react"
-import { MotionConfig } from "motion/react"
 
 import { cn } from "@/lib/utils"
+import { MotionPreferenceProvider } from "@/lib/motion"
 import { CodeBlock } from "@/components/docs/code-block"
 import { HapticsProvider } from "@/lib/haptics"
 import { Switch } from "@/registry/seam/ui/switch"
@@ -62,14 +62,15 @@ export function Stage({
               spec.stageClassName
             )}
           >
-            {/* MotionConfig overrides useReducedMotion() for the subtree; the
-                nested HapticsProvider shadows the site-wide one, so both
-                settings are the real library layers, not a simulation. */}
-            <MotionConfig reducedMotion={env.reducedMotion}>
+            {/* Both are the real library layers, not a simulation: the
+                preference provider is what seamui's own useReducedMotion
+                reads, and the nested HapticsProvider shadows the site-wide
+                one. */}
+            <MotionPreferenceProvider preference={env.reducedMotion}>
               <HapticsProvider enabled={env.haptics} sound={env.sound}>
                 {preview}
               </HapticsProvider>
-            </MotionConfig>
+            </MotionPreferenceProvider>
           </div>
         </InspectLayer>
       </div>

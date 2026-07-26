@@ -48,11 +48,25 @@ function Tabs({
 function TabsList({
   className,
   children,
+  ref,
   ...props
 }: React.ComponentProps<typeof BaseTabs.List>) {
   const size = React.useContext(TabsSizeContext)
   const reduceMotion = useReducedMotion()
   const listRef = React.useRef<HTMLDivElement>(null)
+
+  // The list needs its own ref to measure the selected tab, but callers pass
+  // one too (scrolling the strip into view, say). Compose them — spreading
+  // `{...props}` over `ref` would let theirs win and leave the indicator
+  // permanently unmeasured, so no active key would ever be drawn.
+  const attachRef = React.useCallback(
+    (node: HTMLDivElement | null) => {
+      listRef.current = node
+      if (typeof ref === "function") ref(node)
+      else if (ref) ref.current = node
+    },
+    [ref]
+  )
   const [box, setBox] = React.useState<{ left: number; width: number } | null>(
     null
   )
@@ -97,7 +111,7 @@ function TabsList({
 
   return (
     <BaseTabs.List
-      ref={listRef}
+      ref={attachRef}
       data-slot="tabs-list"
       className={cn(
         // recessed well — grouped controls sit below the surface; the active

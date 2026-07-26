@@ -1,9 +1,9 @@
 "use client"
 
 import * as React from "react"
-import { AnimatePresence, motion, useReducedMotion } from "motion/react"
+import { AnimatePresence, motion } from "motion/react"
 
-import { depth, fades, reduced, springs } from "@/lib/motion"
+import { depth, fades, reduced, springs, useReducedMotion } from "@/lib/motion"
 import { Button } from "@/registry/seam/ui/button"
 import {
   Card,

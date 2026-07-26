@@ -2,7 +2,8 @@
 
 import type * as React from "react"
 
-import { HapticsProvider, useHaptics, type HapticPreset } from "@/lib/haptics"
+import { HapticsProvider, type HapticPreset } from "@/lib/haptics"
+import type { MotionPreference } from "@/lib/motion"
 import { Button } from "@/registry/seam/ui/button"
 import { Switch } from "@/registry/seam/ui/switch"
 import { Toggle } from "@/registry/seam/ui/toggle"
@@ -13,32 +14,33 @@ import { ToggleGroup } from "@/registry/seam/ui/toggle-group"
  * every component reacts to, but which aren't props on any of them.
  *
  * These wrap the preview rather than feed the code generator: `reducedMotion`
- * rides motion's `MotionConfig` (which seamui's `useReducedMotion` honors), and
- * the haptics switches nest a second `HapticsProvider` over the stage. Both are
- * things you'd set once in an app shell, so they stay out of the snippet.
+ * rides `MotionPreferenceProvider` (what seamui's own `useReducedMotion`
+ * reads), and the haptics switches nest a second `HapticsProvider` over the
+ * stage. Both are things you'd set once in an app shell, so they stay out of
+ * the snippet.
  */
 
 export type StageEnv = {
   /** Overrides `useReducedMotion()` for the preview subtree. */
-  reducedMotion: "user" | "always" | "never"
+  reducedMotion: MotionPreference
   haptics: boolean
   sound: boolean
 }
 
 export const DEFAULT_ENV: StageEnv = {
-  reducedMotion: "user",
+  reducedMotion: "system",
   haptics: true,
   sound: true,
 }
 
 const MOTION_OPTIONS: Array<{
-  value: StageEnv["reducedMotion"]
+  value: MotionPreference
   label: string
   hint: string
 }> = [
-  { value: "user", label: "System", hint: "Follow the OS setting" },
-  { value: "always", label: "Reduced", hint: "Force the reduced variant" },
-  { value: "never", label: "Full", hint: "Force full motion" },
+  { value: "system", label: "System", hint: "Follow the OS setting" },
+  { value: "reduce", label: "Reduced", hint: "Force the reduced variant" },
+  { value: "full", label: "Full", hint: "Force full motion" },
 ]
 
 /** Every preset the haptics layer ships — press one to feel (or hear) it. */
@@ -53,9 +55,15 @@ const HAPTIC_PRESETS: Array<{
   { preset: "error", label: "Error", use: "A rejected or invalid action" },
 ]
 
-/** Lives inside the panel's own provider so the switches above govern it. */
+/**
+ * Lives inside the panel's own provider so the switches above govern it.
+ *
+ * The preset fires from Button's own `haptic` prop and nothing else — an
+ * additional onClick would play the preset twice per press, which on the
+ * panel whose whole job is demonstrating what each preset feels like would
+ * mis-demo every one of them as a double pulse.
+ */
 function HapticTesters() {
-  const { trigger } = useHaptics()
   return (
     <div className="flex flex-wrap gap-1 px-1">
       {HAPTIC_PRESETS.map((item) => (
@@ -65,7 +73,6 @@ function HapticTesters() {
           size="sm"
           haptic={item.preset}
           title={item.use}
-          onClick={() => trigger(item.preset)}
         >
           {item.label}
         </Button>
@@ -111,7 +118,7 @@ export function EnvironmentPanel({
           // single-select: keep the current value if the pressed key is
           // already the active one.
           onValueChange={(next: string[]) => {
-            const picked = next.at(-1) as StageEnv["reducedMotion"] | undefined
+            const picked = next.at(-1) as MotionPreference | undefined
             if (picked) onChange({ ...env, reducedMotion: picked })
           }}
           className="flex w-full"

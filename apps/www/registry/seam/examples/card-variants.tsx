@@ -1,4 +1,4 @@
-import { Folder, Layers, Square } from "lucide-react"
+import { Folder, Layers, RectangleHorizontal, Square } from "lucide-react"
 
 import {
   Card,
@@ -25,6 +25,12 @@ const VARIANTS = [
     Icon: Layers,
     title: "Well",
     body: "Debossed instead of raised — a container things sit inside.",
+  },
+  {
+    variant: "flat" as const,
+    Icon: RectangleHorizontal,
+    title: "Flat",
+    body: "Hairline only, no shadow — for grids where raised keys read noisy.",
   },
 ]
 

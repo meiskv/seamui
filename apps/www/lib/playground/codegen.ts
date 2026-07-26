@@ -22,8 +22,16 @@ export function attrs(pairs: Array<[string, AttrValue]>): string {
   for (const [name, value] of pairs) {
     if (value === undefined || value === null || value === false) continue
     if (value === true) out.push(name)
-    else if (typeof value === "string") out.push(`${name}="${value}"`)
-    else out.push(`${name}={${value}}`)
+    else if (typeof value === "string") {
+      // A text knob can contain a double quote, which would terminate the
+      // attribute early and emit code that doesn't parse. Fall back to the
+      // expression form, where JSON.stringify escapes it correctly.
+      out.push(
+        value.includes('"')
+          ? `${name}={${JSON.stringify(value)}}`
+          : `${name}="${value}"`
+      )
+    } else out.push(`${name}={${value}}`)
   }
   return out.length > 0 ? ` ${out.join(" ")}` : ""
 }

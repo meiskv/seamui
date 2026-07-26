@@ -36,7 +36,10 @@ function Input({
           "border-transparent bg-transparent px-2 hover:bg-muted/50",
         "placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground",
         "focus-visible:ring-2 focus-visible:ring-ring/50",
-        "disabled:pointer-events-none disabled:opacity-50 data-[invalid]:border-destructive data-[invalid]:ring-destructive/30",
+        "disabled:pointer-events-none disabled:opacity-50",
+        // Both hooks, like Textarea: Base UI's Field sets `data-invalid`, while
+        // a plain <Input aria-invalid> is what you write outside a Field.
+        "aria-invalid:border-destructive aria-invalid:ring-destructive/30 data-[invalid]:border-destructive data-[invalid]:ring-destructive/30",
         "file:border-0 file:bg-transparent file:text-sm file:font-medium",
         className
       )}

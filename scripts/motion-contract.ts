@@ -29,12 +29,18 @@ import { fileURLToPath } from "node:url"
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..")
 const UI_GLOB = "apps/www/registry/seam/ui/*.tsx"
+// Anything else we ship that can call the hook. Examples are installed into a
+// consumer's app too, so an import rule that only covered `ui/` let a real
+// violation through (auth-block.tsx) while still reporting clean.
+const SHIPPED_GLOBS = [UI_GLOB, "apps/www/registry/seam/examples/*.tsx"]
 const ALLOW_FILE = "scripts/motion-contract-allow.txt"
 
 type Rule = {
   id: string
   test: RegExp
   message: string
+  /** Files this rule scans. Defaults to the component sources. */
+  globs?: string[]
   /** Files in the allowlist skip this rule. */
   allowlisted?: boolean
   /**
@@ -112,7 +118,10 @@ const RULES: Rule[] = [
     // Motion's own hook reads only the device media query, so a component
     // using it can't be overridden by <MotionConfig reducedMotion>, and the
     // reduced variant becomes unreachable except via OS settings.
-    test: /import\s*\{[^}]*\buseReducedMotion\b[^}]*\}\s*from\s*"motion\/react"/g,
+    globs: SHIPPED_GLOBS,
+    // An `as` alias is the one legitimate use — @/lib/motion itself wraps
+    // motion's hook — so only a bare `useReducedMotion` specifier counts.
+    test: /import\s*\{[^}]*\buseReducedMotion\b\s*(?![\w\s]*\bas\b)[^}]*\}\s*from\s*"motion\/react"/g,
     message:
       "useReducedMotion imported from motion/react — import it from @/lib/motion (the config-aware variant), see CLAUDE.md §3",
   },
@@ -159,14 +168,34 @@ function lineAt(src: string, offset: number): number {
 
 const allowlist = loadAllowlist()
 const violations: string[] = []
-let scanned = 0
 
-for (const abs of new Glob(UI_GLOB).scanSync({ cwd: ROOT, absolute: true })) {
-  scanned++
-  const rel = relative(ROOT, abs).replaceAll("\\", "/")
-  const src = blankLineComments(readFileSync(abs, "utf8"))
-  for (const rule of RULES) {
+/** Repo-relative paths matching a glob set, deduped and sorted. */
+function filesFor(globs: string[]): string[] {
+  const out = new Set<string>()
+  for (const pattern of globs) {
+    for (const abs of new Glob(pattern).scanSync({
+      cwd: ROOT,
+      absolute: true,
+    })) {
+      out.add(relative(ROOT, abs).replaceAll("\\", "/"))
+    }
+  }
+  return [...out].sort()
+}
+
+// Read each file once, then apply only the rules that cover it.
+const sources = new Map<string, string>()
+for (const rel of filesFor([
+  ...new Set(RULES.flatMap((r) => r.globs ?? [UI_GLOB])),
+])) {
+  sources.set(rel, blankLineComments(readFileSync(join(ROOT, rel), "utf8")))
+}
+
+for (const rule of RULES) {
+  for (const rel of filesFor(rule.globs ?? [UI_GLOB])) {
     if (rule.allowlisted && allowlist.has(rel)) continue
+    const src = sources.get(rel)
+    if (src === undefined) continue
     rule.test.lastIndex = 0
     let match: RegExpExecArray | null
     // biome-ignore lint/suspicious/noAssignInExpressions: standard global-regex walk
@@ -177,6 +206,9 @@ for (const abs of new Glob(UI_GLOB).scanSync({ cwd: ROOT, absolute: true })) {
     }
   }
 }
+
+violations.sort()
+const scanned = sources.size
 
 if (violations.length > 0) {
   console.error(`✖ motion-contract: ${violations.length} violation(s)\n`)

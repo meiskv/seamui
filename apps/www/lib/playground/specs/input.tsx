@@ -63,8 +63,8 @@ export const inputSpec: PlaygroundSpec = {
         type={str(state, "type", "text")}
         placeholder={str(state, "placeholder", "m@example.com")}
         disabled={bool(state, "disabled")}
-        // Base UI surfaces validity as a data attribute; the class hooks off it.
-        data-invalid={bool(state, "invalid") ? "" : undefined}
+        // aria-invalid only — matching what the generated snippet emits, so
+        // the preview and the code you copy style the field the same way.
         aria-invalid={bool(state, "invalid") || undefined}
       />
     </div>
