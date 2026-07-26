@@ -47,6 +47,15 @@ const cardVariants = cva(
          *    left edge continues into it, and the tab carries the rounding
          *    instead.
          *
+         * The tab needs its own `shadow-resting`, because `box-shadow` traces
+         * the card's box and so stops dead at its top edge. Both pseudos sit
+         * at `-z-10`: a pseudo-element normally paints *above* its element's
+         * background, which would smear the tab's shadow across the card
+         * body — negative z drops them behind it, so only the part outside
+         * the box shows. This works because Card is `relative` with
+         * `z-index: auto`, and so forms no stacking context of its own; add
+         * `isolate` (or a transform/opacity) and the shadow reappears.
+         *
          * Like `tabbed`, the tab renders outside the card's box —
          * `overflow-hidden` clips it, and it overlaps whatever sits directly
          * above.
@@ -55,8 +64,14 @@ const cardVariants = cva(
           "relative rounded-tl-none border-transparent bg-card text-card-foreground shadow-resting",
           "before:absolute before:-top-4 before:left-0 before:h-4 before:w-24",
           "before:rounded-tl-xl before:squircle before:bg-card before:content-['']",
+          // the tab carries the same resting depth as the body, so the
+          // silhouette's shadow doesn't stop dead at the card's top edge.
+          // Set as a raw property: Tailwind's `shadow-*` composes through
+          // `--tw-shadow`, which doesn't resolve inside a pseudo-element rule
+          // and leaves a transparent shadow behind.
+          "before:[box-shadow:var(--shadow-resting)] before:-z-10",
           "after:absolute after:-top-4 after:left-24 after:h-4 after:w-[9px] after:bg-card after:content-['']",
-          "after:[clip-path:polygon(0_0,0_100%,100%_100%)]",
+          "after:[clip-path:polygon(0_0,0_100%,100%_100%)] after:-z-10",
         ],
         // the debossed counterpart — a container things sit *in*, not a
         // surface that sits *on* (§1: slot vs token).
