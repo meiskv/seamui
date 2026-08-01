@@ -1,10 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { Shuffle } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { Button } from "@/registry/seam/ui/button"
 import { Input } from "@/registry/seam/ui/input"
 import { Label } from "@/registry/seam/ui/label"
 import {
@@ -167,13 +165,11 @@ export function ControlPanel({
   spec,
   values,
   onChange,
-  onShuffle,
   className,
 }: {
   spec: PlaygroundSpec
   values: KnobValues
   onChange: (id: string, next: KnobValue) => void
-  onShuffle: () => void
   className?: string
 }) {
   // Preserve authoring order, but collect each group's knobs together.
@@ -190,20 +186,10 @@ export function ControlPanel({
 
   return (
     <div className={cn("flex flex-col", className)}>
-      <div className="flex items-center justify-between gap-2 px-4 pb-2 pt-4">
+      <div className="px-4 pb-2 pt-4">
         <h2 className="text-sm font-semibold tracking-tight">
           Playground variant
         </h2>
-        <Button
-          variant="ghost"
-          size="icon"
-          haptic="tick"
-          onClick={onShuffle}
-          aria-label="Shuffle variant"
-          className="text-muted-foreground size-7"
-        >
-          <Shuffle className="size-4" />
-        </Button>
       </div>
 
       <div className="space-y-4 px-4 pb-6">

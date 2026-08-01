@@ -2,7 +2,15 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { BookOpen, Check, Link2, RotateCcw, Save, Trash2 } from "lucide-react"
+import {
+  BookOpen,
+  Check,
+  Link2,
+  RotateCcw,
+  Save,
+  Shuffle,
+  Trash2,
+} from "lucide-react"
 
 import { useCopy } from "@/lib/use-copy"
 import { Button } from "@/registry/seam/ui/button"
@@ -157,22 +165,36 @@ export function PlaygroundApp() {
   const code = React.useMemo(() => spec.code(values), [spec, values])
   const pristine = encodeConfig(spec, values) === ""
 
+  // The rail owns its own scrolling so Generate can sit in a pinned footer:
+  // only the body between the header and the footer scrolls.
   const controls = (
-    <>
-      <ControlPanel
-        spec={spec}
-        values={values}
-        onChange={setKnob}
-        onShuffle={() => setValues(randomValues(spec))}
-      />
-      <PresetBar
-        spec={spec}
-        presets={presets}
-        onApply={setValues}
-        onSave={(name) => setPresets(savePreset(spec, name, values))}
-        onDelete={(name) => setPresets(deletePreset(spec, name))}
-      />
-    </>
+    <div className="flex h-full min-h-0 flex-col">
+      <div className="min-h-0 flex-1 overflow-y-auto">
+        <ControlPanel spec={spec} values={values} onChange={setKnob} />
+        <PresetBar
+          spec={spec}
+          presets={presets}
+          onApply={setValues}
+          onSave={(name) => setPresets(savePreset(spec, name, values))}
+          onDelete={(name) => setPresets(deletePreset(spec, name))}
+        />
+      </div>
+
+      {/* Generate acts on every knob above, so it stays reachable at the
+          bottom of the rail no matter how far the body has scrolled.
+          `default` is the inverted key — near-black on light, white on dark. */}
+      <div className="border-border/60 shrink-0 border-t p-4">
+        <Button
+          haptic="tick"
+          className="w-full"
+          title="Randomize every option above"
+          onClick={() => setValues(randomValues(spec))}
+        >
+          <Shuffle />
+          Generate
+        </Button>
+      </div>
+    </div>
   )
 
   return (
@@ -261,8 +283,10 @@ export function PlaygroundApp() {
               <DrawerTrigger render={<Button variant="secondary" size="sm" />}>
                 Customize
               </DrawerTrigger>
-              <DrawerContent className="max-h-[80vh]">
-                <div className="overflow-y-auto">{controls}</div>
+              {/* A definite height (not max-h) gives the pinned footer inside
+                  `controls` something to anchor to. */}
+              <DrawerContent className="h-[80vh] gap-0 px-0 pb-0">
+                <div className="min-h-0 flex-1">{controls}</div>
               </DrawerContent>
             </Drawer>
           </div>
@@ -271,7 +295,7 @@ export function PlaygroundApp() {
         </main>
 
         {/* Right rail — the variant tuner. */}
-        <aside className="bg-card sticky top-14 hidden h-[calc(100vh-3.5rem)] w-72 shrink-0 overflow-y-auto border-l xl:block">
+        <aside className="bg-card sticky top-14 hidden h-[calc(100vh-3.5rem)] w-72 shrink-0 border-l xl:block">
           {controls}
         </aside>
       </div>
