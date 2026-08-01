@@ -175,6 +175,30 @@ export const depth = {
 } as const
 
 /**
+ * Drill-down — moving between levels of a single surface (the nested dropdown
+ * menu). Unlike `depth`, nothing changes z-position: the level you're entering
+ * slides in laterally from the direction of travel while the surface springs to
+ * its new size around it. `direction` is 1 drilling in, -1 stepping back.
+ *
+ * Only the level being entered animates. Its predecessor is unmounted the
+ * instant the path changes — a menu is a roving-focus composite, and a level
+ * that lingers to animate out is a level whose items are still registered for
+ * arrow keys. Movement here is deliberately short: the size spring carries the
+ * transition, the slide only says which way you went.
+ *
+ * Reduced motion drops the travel and keeps the fade — use `reduced.fadeIn`.
+ */
+export const drill = {
+  /** Entry offset for the incoming level, in px, signed by travel direction. */
+  enter: (direction: 1 | -1): TargetAndTransition => ({
+    opacity: 0,
+    x: direction * 14,
+  }),
+  /** Settled: flush with the surface. */
+  settle: { opacity: 1, x: 0 } satisfies TargetAndTransition,
+} as const
+
+/**
  * The seam "condense" — how every Base UI overlay animates: rise + fade in,
  * fall back + fade out, backdrop dimming on the same clock. In CSS (keyed to
  * Base UI's `data-starting-style` / `data-ending-style`) because Base UI keeps
