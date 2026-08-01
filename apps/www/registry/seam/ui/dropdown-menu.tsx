@@ -2,11 +2,18 @@
 
 import * as React from "react"
 import { Menu as BaseMenu } from "@base-ui/react/menu"
-import { motion, useReducedMotion } from "motion/react"
+import { motion } from "motion/react"
 import { Check, ChevronLeft, ChevronRight, Circle } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { condense, drill, fades, reduced, springs } from "@/lib/motion"
+import {
+  condense,
+  drill,
+  fades,
+  reduced,
+  springs,
+  useReducedMotion,
+} from "@/lib/motion"
 import { useHaptics } from "@/lib/haptics"
 
 // Shared item shape so Item / CheckboxItem / RadioItem / SubTrigger stay in sync.
