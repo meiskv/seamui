@@ -18,7 +18,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table"
-import { motion, useAnimate, useReducedMotion } from "motion/react"
+import { motion, useAnimate } from "motion/react"
 import {
   ArrowUp,
   ArrowUpDown,
@@ -30,7 +30,7 @@ import {
 } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { fades, reduced, shake, springs } from "@/lib/motion"
+import { fades, reduced, shake, springs, useReducedMotion } from "@/lib/motion"
 import { useHaptics } from "@/lib/haptics"
 import {
   Table,

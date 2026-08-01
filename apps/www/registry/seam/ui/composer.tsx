@@ -1,11 +1,18 @@
 "use client"
 
 import * as React from "react"
-import { AnimatePresence, motion, useReducedMotion } from "motion/react"
+import { AnimatePresence, motion } from "motion/react"
 import { ArrowUp, Square, X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { springs, fades, depth, reduced, useMounted } from "@/lib/motion"
+import {
+  springs,
+  fades,
+  depth,
+  reduced,
+  useMounted,
+  useReducedMotion,
+} from "@/lib/motion"
 import { Badge } from "./badge"
 import { Button } from "./button"
 import { Textarea } from "./textarea"

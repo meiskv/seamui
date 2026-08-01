@@ -2,20 +2,43 @@
 
 import type * as React from "react"
 import { Switch as BaseSwitch } from "@base-ui/react/switch"
-import { motion, useReducedMotion } from "motion/react"
+import { motion } from "motion/react"
 
 import { cn } from "@/lib/utils"
-import { springs, fades, reduced, useMounted } from "@/lib/motion"
+import {
+  springs,
+  fades,
+  reduced,
+  useMounted,
+  useReducedMotion,
+} from "@/lib/motion"
 import { useHaptics } from "@/lib/haptics"
 
 const MotionThumb = motion.create(BaseSwitch.Thumb)
+
+type SwitchSize = "default" | "sm"
+
+/**
+ * Track/thumb geometry per size. The thumb's rest and pressed widths live here
+ * too, because the press-stretch is an inline motion value (px) — a CSS class
+ * alone can't scale it, and mismatched pairs distort the thumb.
+ */
+const SIZES: Record<
+  SwitchSize,
+  { track: string; thumb: string; rest: number; pressed: number }
+> = {
+  default: { track: "h-5 w-9", thumb: "size-4", rest: 16, pressed: 20 },
+  sm: { track: "h-4 w-7", thumb: "size-3", rest: 12, pressed: 15 },
+}
 
 function Switch({
   className,
   disabled,
   onCheckedChange,
+  size = "default",
   ...props
-}: React.ComponentProps<typeof BaseSwitch.Root>) {
+}: React.ComponentProps<typeof BaseSwitch.Root> & { size?: SwitchSize }) {
+  const geometry = SIZES[size]
   const reduceMotion = useReducedMotion()
   const { trigger } = useHaptics()
   // Defer motion's animated inline styles until after hydration: the width
@@ -55,7 +78,8 @@ function Switch({
       }
       className={cn(
         // track — the thumb rides from left to right via the flex justify swap.
-        "inline-flex h-5 w-9 shrink-0 items-center rounded-full p-0.5 outline-none",
+        "inline-flex shrink-0 items-center rounded-full p-0.5 outline-none",
+        geometry.track,
         "bg-input data-[checked]:bg-primary",
         "justify-start data-[checked]:justify-end",
         "focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
@@ -74,11 +98,14 @@ function Switch({
         // hydration (avoids the serialized-inline-style mismatch).
         variants={
           mounted && !reduceMotion
-            ? { rest: { width: 16 }, pressed: { width: 20 } }
+            ? {
+                rest: { width: geometry.rest },
+                pressed: { width: geometry.pressed },
+              }
             : undefined
         }
         transition={reduceMotion ? reduced.instant : springs.snappy}
-        className="bg-card size-4 rounded-full shadow-resting"
+        className={cn("bg-card rounded-full shadow-resting", geometry.thumb)}
       />
     </BaseSwitch.Root>
   )

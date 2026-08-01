@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-ghost",
+  "type": "registry:example",
+  "title": "Input Ghost",
+  "registryDependencies": [
+    "https://seamui.dev/r/input.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/input-ghost.tsx",
+      "content": "import { Input } from \"@/registry/seam/ui/input\"\n\nexport default function InputGhost() {\n  return (\n    <div className=\"grid w-full max-w-sm gap-4\">\n      <div className=\"grid gap-1.5\">\n        <span className=\"text-muted-foreground text-xs\">Default — a well</span>\n        <Input placeholder=\"m@example.com\" />\n      </div>\n      <div className=\"grid gap-1.5\">\n        <span className=\"text-muted-foreground text-xs\">\n          Ghost — edits in place\n        </span>\n        {/* No well and no stroke until focus, for editing inside a toolbar,\n            a table cell, or a title row. */}\n        <Input variant=\"ghost\" defaultValue=\"Untitled project\" />\n      </div>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

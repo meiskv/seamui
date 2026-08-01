@@ -1,11 +1,11 @@
 "use client"
 
 import type * as React from "react"
-import { motion, useReducedMotion } from "motion/react"
+import { motion } from "motion/react"
 import { ChevronDown, Plug } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { springs, fades, depth, reduced } from "@/lib/motion"
+import { springs, fades, depth, reduced, useReducedMotion } from "@/lib/motion"
 import { Badge } from "./badge"
 import { Button, buttonVariants } from "./button"
 import {

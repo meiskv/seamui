@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "textarea-ghost",
+  "type": "registry:example",
+  "title": "Textarea Ghost",
+  "registryDependencies": [
+    "https://seamui.dev/r/textarea.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/textarea-ghost.tsx",
+      "content": "import { Textarea } from \"@/registry/seam/ui/textarea\"\n\nexport default function TextareaGhost() {\n  return (\n    <div className=\"grid w-full max-w-sm gap-4\">\n      <div className=\"grid gap-1.5\">\n        <span className=\"text-muted-foreground text-xs\">Default — a well</span>\n        <Textarea placeholder=\"Leave a note…\" />\n      </div>\n      <div className=\"grid gap-1.5\">\n        <span className=\"text-muted-foreground text-xs\">\n          Ghost — composes in place\n        </span>\n        <Textarea\n          variant=\"ghost\"\n          defaultValue=\"Ships the whole flow: the sheet, the confirm, and the receipt.\"\n        />\n      </div>\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

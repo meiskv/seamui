@@ -16,12 +16,23 @@ function DialogTrigger(props: React.ComponentProps<typeof BaseDialog.Trigger>) {
   return <BaseDialog.Trigger data-slot="dialog-trigger" {...props} />
 }
 
+/** Width of the modal panel. Height is always content-driven. */
+const DIALOG_SIZES = {
+  sm: "max-w-sm",
+  default: "max-w-lg",
+  lg: "max-w-2xl",
+} as const
+
 function DialogContent({
   className,
   children,
   showClose = true,
+  size = "default",
   ...props
-}: React.ComponentProps<typeof BaseDialog.Popup> & { showClose?: boolean }) {
+}: React.ComponentProps<typeof BaseDialog.Popup> & {
+  showClose?: boolean
+  size?: keyof typeof DIALOG_SIZES
+}) {
   return (
     <BaseDialog.Portal>
       <BaseDialog.Backdrop
@@ -32,7 +43,8 @@ function DialogContent({
       <BaseDialog.Popup
         data-slot="dialog-content"
         className={cn(
-          "bg-popover text-popover-foreground fixed left-1/2 top-1/2 z-50 grid w-full max-w-lg -translate-x-1/2 -translate-y-1/2 gap-4 rounded-xl squircle border p-6 shadow-modal outline-none",
+          "bg-popover text-popover-foreground fixed left-1/2 top-1/2 z-50 grid w-full -translate-x-1/2 -translate-y-1/2 gap-4 rounded-xl squircle border p-6 shadow-modal outline-none",
+          DIALOG_SIZES[size],
           // seam condense: the modal pops up from center and fades in; on
           // dismiss it falls back and fades — Base UI awaits the CSS exit.
           condense.surface,

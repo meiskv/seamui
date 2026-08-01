@@ -3,10 +3,17 @@
 import type * as React from "react"
 import { RadioGroup as BaseRadioGroup } from "@base-ui/react/radio-group"
 import { Radio as BaseRadio } from "@base-ui/react/radio"
-import { motion, useReducedMotion } from "motion/react"
+import { motion } from "motion/react"
 
 import { cn } from "@/lib/utils"
-import { springs, fades, depth, reduced, useMounted } from "@/lib/motion"
+import {
+  springs,
+  fades,
+  depth,
+  reduced,
+  useMounted,
+  useReducedMotion,
+} from "@/lib/motion"
 import { useHaptics } from "@/lib/haptics"
 
 function RadioGroup({

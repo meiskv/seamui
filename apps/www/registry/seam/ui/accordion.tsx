@@ -2,11 +2,11 @@
 
 import type * as React from "react"
 import { Accordion as BaseAccordion } from "@base-ui/react/accordion"
-import { motion, useReducedMotion } from "motion/react"
+import { motion } from "motion/react"
 import { ChevronDown } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { springs, fades, depth, reduced } from "@/lib/motion"
+import { springs, fades, depth, reduced, useReducedMotion } from "@/lib/motion"
 
 function Accordion({
   className,

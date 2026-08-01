@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "drawer-sizes",
+  "type": "registry:example",
+  "title": "Drawer Sizes",
+  "registryDependencies": [
+    "https://seamui.dev/r/drawer.json",
+    "https://seamui.dev/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/seam/examples/drawer-sizes.tsx",
+      "content": "import { Button } from \"@/registry/seam/ui/button\"\nimport {\n  Drawer,\n  DrawerClose,\n  DrawerContent,\n  DrawerDescription,\n  DrawerFooter,\n  DrawerHeader,\n  DrawerTitle,\n  DrawerTrigger,\n} from \"@/registry/seam/ui/drawer\"\n\nconst SIZES = [\n  { size: \"sm\" as const, label: \"Small\" },\n  { size: \"default\" as const, label: \"Default\" },\n  { size: \"lg\" as const, label: \"Large\" },\n]\n\nexport default function DrawerSizes() {\n  return (\n    <div className=\"flex flex-wrap items-center gap-2\">\n      {SIZES.map(({ size, label }) => (\n        <Drawer key={size}>\n          <DrawerTrigger render={<Button variant=\"outline\">{label}</Button>} />\n          <DrawerContent size={size}>\n            <DrawerHeader>\n              <DrawerTitle>{label} sheet</DrawerTitle>\n              <DrawerDescription>\n                Size caps the width once the viewport outgrows it — on a phone\n                every sheet is full-bleed, and the height stays content-driven.\n              </DrawerDescription>\n            </DrawerHeader>\n            <DrawerFooter>\n              <DrawerClose render={<Button>Done</Button>} />\n            </DrawerFooter>\n          </DrawerContent>\n        </Drawer>\n      ))}\n    </div>\n  )\n}\n",
+      "type": "registry:example"
+    }
+  ]
+}

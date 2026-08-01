@@ -2,10 +2,10 @@
 
 import * as React from "react"
 import { OTPField as BaseOTPField } from "@base-ui/react/otp-field"
-import { motion, useReducedMotion } from "motion/react"
+import { motion } from "motion/react"
 
 import { cn } from "@/lib/utils"
-import { springs, fades, shake, reduced } from "@/lib/motion"
+import { springs, fades, shake, reduced, useReducedMotion } from "@/lib/motion"
 import { useHaptics } from "@/lib/haptics"
 
 const MotionInput = motion.create(BaseOTPField.Input)

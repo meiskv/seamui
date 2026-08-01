@@ -1,8 +1,73 @@
 // seamui motion tokens — the single source of truth for all animation.
 // Springs over durations; depth over flatness. See seamui docs → Motion.
 import * as React from "react"
-import { animate, useReducedMotion } from "motion/react"
+import {
+  animate,
+  MotionConfigContext,
+  useReducedMotion as useSystemReducedMotion,
+} from "motion/react"
 import type { TargetAndTransition, Transition } from "motion/react"
+
+/**
+ * How the app wants motion resolved. `system` (the default) follows the OS.
+ */
+export type MotionPreference = "system" | "reduce" | "full"
+
+const MotionPreferenceContext = React.createContext<MotionPreference>("system")
+
+/**
+ * Force the reduced (or full) variant for a subtree, overriding the OS.
+ *
+ *   <MotionPreferenceProvider preference="reduce">
+ *
+ * Without one, everything follows `prefers-reduced-motion`, which is what an
+ * app should normally do — this exists so a settings screen (or the docs
+ * playground) can offer motion as a user-facing choice.
+ */
+function MotionPreferenceProvider({
+  preference,
+  children,
+}: {
+  preference: MotionPreference
+  children: React.ReactNode
+}) {
+  return React.createElement(
+    MotionPreferenceContext.Provider,
+    { value: preference },
+    children
+  )
+}
+
+/**
+ * The reduced-motion signal every seamui component branches on (§5b).
+ *
+ * Import this from `@/lib/motion`, never `useReducedMotion` from motion/react
+ * — going through here is what lets an app override the OS.
+ *
+ * Resolution order:
+ *   1. a surrounding `<MotionPreferenceProvider>` — an explicit app choice;
+ *   2. `<MotionConfig reducedMotion="always">` — unambiguous opt-in, honored
+ *      so motion's own API keeps working;
+ *   3. the OS `prefers-reduced-motion` media query.
+ *
+ * Note what is deliberately NOT honored: `MotionConfig`'s `reducedMotion:
+ * "never"`. That is the *default* value of motion's context (see
+ * MotionConfigContext), so it appears even when no provider exists and cannot
+ * be told apart from a real opt-out. Treating it as "force full motion" is
+ * exactly how this hook once silently ignored the OS setting for every
+ * consumer — the §5b failure with its polarity flipped.
+ */
+function useReducedMotion(): boolean {
+  const preference = React.useContext(MotionPreferenceContext)
+  const { reducedMotion } = React.useContext(MotionConfigContext)
+  const system = useSystemReducedMotion()
+
+  if (preference === "reduce" || reducedMotion === "always") return true
+  if (preference === "full") return false
+  return system ?? false
+}
+
+export { MotionPreferenceProvider, useReducedMotion }
 
 /**
  * True only after the first client render. Gate a motion `initial` that moves

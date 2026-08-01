@@ -7,6 +7,7 @@ import InputDemo from "@/registry/seam/examples/input-demo"
 import InputDisabled from "@/registry/seam/examples/input-disabled"
 import InputInvalid from "@/registry/seam/examples/input-invalid"
 import InputFile from "@/registry/seam/examples/input-file"
+import InputGhost from "@/registry/seam/examples/input-ghost"
 
 export const metadata: Metadata = {
   title: "Input — seamui",
@@ -47,6 +48,14 @@ export default function InputDocs() {
             title: "File",
             component: <InputFile />,
             code: exampleSource("input-file"),
+          },
+          {
+            key: "ghost",
+            title: "Ghost",
+            component: <InputGhost />,
+            code: exampleSource("input-ghost"),
+            description:
+              "The naked inline form — no well and no stroke until focus, for editing inside a toolbar or a table cell. Mirrors SelectTrigger’s ghost.",
           },
         ]}
       />

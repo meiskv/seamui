@@ -6,6 +6,7 @@ import { exampleSource } from "@/lib/registry-source"
 import TextareaDemo from "@/registry/seam/examples/textarea-demo"
 import TextareaWithButton from "@/registry/seam/examples/textarea-with-button"
 import TextareaDisabled from "@/registry/seam/examples/textarea-disabled"
+import TextareaGhost from "@/registry/seam/examples/textarea-ghost"
 
 export const metadata: Metadata = {
   title: "Textarea — seamui",
@@ -41,6 +42,14 @@ export default function TextareaDocs() {
             title: "Disabled",
             component: <TextareaDisabled />,
             code: exampleSource("textarea-disabled"),
+          },
+          {
+            key: "ghost",
+            title: "Ghost",
+            component: <TextareaGhost />,
+            code: exampleSource("textarea-ghost"),
+            description:
+              "Composes in place, with the same variant name Input and SelectTrigger use.",
           },
         ]}
       />

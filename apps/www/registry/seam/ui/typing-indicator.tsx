@@ -1,10 +1,10 @@
 "use client"
 
 import type * as React from "react"
-import { motion, useReducedMotion } from "motion/react"
+import { motion } from "motion/react"
 
 import { cn } from "@/lib/utils"
-import { springs, fades } from "@/lib/motion"
+import { springs, fades, useReducedMotion } from "@/lib/motion"
 
 // The pre-first-token state — distinct from Spinner (generic loading): this
 // says someone is about to talk. It's the reference case for reduced motion as

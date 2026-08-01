@@ -1,10 +1,17 @@
 "use client"
 
 import type * as React from "react"
-import { motion, useReducedMotion } from "motion/react"
+import { motion } from "motion/react"
 
 import { cn } from "@/lib/utils"
-import { springs, fades, depth, reduced, useMounted } from "@/lib/motion"
+import {
+  springs,
+  fades,
+  depth,
+  reduced,
+  useMounted,
+  useReducedMotion,
+} from "@/lib/motion"
 import { Avatar, AvatarFallback, AvatarImage } from "./avatar"
 
 type Role = "user" | "assistant"
